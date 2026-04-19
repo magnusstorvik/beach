@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='description' content='Vikaneset. Harbour property on Frei island, Kristiansund municipality. Self catering accommodation. Kjørvegen 31, 6520 Frei.'>
+  <title>Vikaneset Havhotell</title>
+
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap' rel='stylesheet'>
+
+  <style>
+    :root {
+      --navy: #0E2430;
+      --navy-deep: #0A1D28;
+      --navy-soft: #163646;
+      --navy-mist: rgba(14, 36, 48, 0.06);
+      --navy-line: rgba(14, 36, 48, 0.14);
+      --stone: #ECE9E3;
+      --stone-deep: #E5E0D8;
+      --white: #FFFFFF;
+      --text: #202020;
+      --text-mid: #565350;
+      --timber: #7E7B74;
+      --line: rgba(26, 58, 74, 0.10);
+      --line-soft: rgba(26, 58, 74, 0.07);
+      --shadow: 0 18px 40px rgba(14, 36, 48, 0.08);
+      --shadow-soft: 0 12px 28px rgba(14, 36, 48, 0.06);
+      --font-serif: 'Spectral', Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --max: 1160px;
+      --gutter: clamp(1.25rem, 4vw, 3rem);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--stone);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.2s ease, color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    a:hover {
+      opacity: 0.92;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+      color: var(--navy);
+      font-weight: 400;
+      line-height: 1.2;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 52px;
+      height: 2px;
+      margin-top: 0.7rem;
+      background: rgba(14, 36, 48, 0.22);
+    }
+
+    .section-intro {
+      margin-top: 0.75rem;
+      max-width: 39rem;
+      font-size: 0.93rem;
+      color: rgba(14, 36, 48, 0.78);
+      line-height: 1.72;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .accommodation,
+    .site,
+    .practical,
+    .gallery,
+    .information,
+    .contact {
+      scroll-margin-top: 110px;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.08rem var(--gutter);
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(14, 36, 48, 0.96);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}   
+
+    .nav__logo,
+.footer__logo {
+  width: 62px;
+  height: 38px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+    .nav__text,
+    .footer__text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.16rem;
+    }
+
+    .nav__name,
+    .footer__name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .nav__name {
+      color: #fff;
+    }
+
+    .footer__name {
+      color: var(--stone);
+    }
+
+    .nav__sub,
+    .footer__sub {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .nav__sub {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .footer__sub {
+      color: rgba(236, 233, 227, 0.45);
+    }
+
+    .nav__menu {
+      display: flex;
+      align-items: center;
+      gap: 1.35rem;
+    }
+
+    .nav__links {
+      list-style: none;
+      display: flex;
+      gap: 1.45rem;
+      align-items: center;
+    }
+
+    .nav__links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.82);
+      white-space: nowrap;
+    }
+
+    .nav__links a:hover,
+    .nav__links a.active {
+      color: #fff;
+      opacity: 1;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding-left: 0.9rem;
+      border-left: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .lang-switch__btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.42rem 0.55rem;
+      cursor: pointer;
+    }
+
+    .lang-switch__btn:hover,
+    .lang-switch__btn.is-active {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      opacity: 1;
+    }
+
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav__toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #fff;
+      margin: 5px 0;
+    }
+
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.8rem;
+      padding: 2rem;
+    }
+
+    .nav__mobile.open {
+      display: flex;
+    }
+
+    .nav__mobile a,
+    .nav__mobile button {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      color: var(--stone);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav__mobile-close {
+      position: absolute;
+      top: 1.25rem;
+      right: var(--gutter);
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 0.4rem;
+    }
+
+    .nav__mobile-lang {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.6rem;
+    }
+
+    .nav__mobile-lang button {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.55rem 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: stretch;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/images/hero.jpg');
+      background-size: cover;
+      background-position: 52% 58%;
+      transform: scale(1.015);
+    }
+
+    .hero__scrim {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(10, 29, 40, 0.42) 0%, rgba(10, 29, 40, 0.16) 18%, rgba(10, 29, 40, 0.00) 34%),
+        linear-gradient(to top, rgba(14, 36, 48, 0.92) 0%, rgba(14, 36, 48, 0.50) 26%, rgba(14, 36, 48, 0.10) 52%, rgba(14, 36, 48, 0.00) 72%);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8.25rem var(--gutter) 2.6rem;
+    }
+
+    .hero__inner {
+  width: 100%;
+  max-width: 31rem;
+  margin: 0;
+}
+
+.hero__geo {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+}
+
+    .hero__name {
+  font-family: var(--font-serif);
+  font-size: clamp(4.2rem, 16vw, 11.5rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  color: #fff;
+  margin-bottom: 0.9rem;
+  text-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+    .hero__note {
+      max-width: 25rem;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.72;
+    }
+
+    .intro {
+      background: linear-gradient(to bottom, var(--stone) 0%, #e8e4dc 100%);
+      padding: clamp(3.5rem, 7vw, 6rem) 0 0;
+    }
+
+    .intro__text {
+      max-width: 35rem;
+    }
+
+    .intro__lead {
+      font-family: var(--font-serif);
+      font-size: clamp(1.35rem, 2.6vw, 1.95rem);
+      color: var(--navy);
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .aerial {
+      margin-top: clamp(1rem, 1.5vw, 1.5rem);
+      height: clamp(340px, 48vw, 620px);
+      background-image: url('assets/images/aerial.jpg');
+      background-size: cover;
+      background-position: center 72%;
+      background-color: var(--navy);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    .accommodation {
+      background: var(--stone);
+      padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+    }
+
+    .accommodation__header {
+      margin-bottom: 2.5rem;
+    }
+
+    .accommodation__count {
+      margin-top: 0.45rem;
+      font-size: 0.82rem;
+      color: var(--text-mid);
+    }
+
+    .units {
+      border-top: 1px solid var(--line);
+    }
+
+    .unit {
+      display: grid;
+      grid-template-columns: 2fr 1.4fr 3fr;
+      gap: 0 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line-soft);
+      align-items: baseline;
+    }
+
+    .unit__name {
+      font-family: var(--font-serif);
+      font-size: 1.06rem;
+      color: var(--navy);
+      font-weight: 400;
+    }
+
+    .unit__meta {
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--timber);
+    }
+
+    .unit__desc {
+      font-size: 0.84rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    .site {
+      background: var(--stone);
+      padding: clamp(3.5rem, 6vw, 5rem) 0;
+      overflow-x: clip;
+    }
+
+    .site__header {
+      margin-bottom: 2.5rem;
+    }
+
+    .site__items {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(4.5rem, 8vw, 6.4rem);
+    }
+
+    .site__item {
+      display: block;
+    }
+
+    .site__img {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      aspect-ratio: 3 / 2;
+      max-height: 680px;
+      overflow: hidden;
+      background: var(--stone);
+    }
+
+    .site__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s ease;
+    }
+
+    .site__item:hover .site__img img {
+      transform: scale(1.02);
+    }
+
+    .site__copy {
+      padding-top: 1.2rem;
+    }
+
+    .site__copy > * {
+      max-width: 23rem;
+    }
+
+    .site__item--alt .site__copy > * {
+      margin-left: auto;
+    }
+
+    .site__item-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.08rem, 1.8vw, 1.45rem);
+      color: var(--navy);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .site__body {
+      font-size: 0.84rem;
+      color: var(--text-mid);
+      line-height: 1.72;
+    }
+
+    .site__detail {
+      margin-top: 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--timber);
+    }
+
+    .practical {
+      background: var(--stone);
+      padding: clamp(3rem, 5vw, 4.5rem) 0;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .practical__header {
+      margin-bottom: 2rem;
+    }
+
+    .practical__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem 5rem;
+    }
+
+    .pblock__title {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--timber);
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(122, 114, 104, 0.3);
+      margin-bottom: 1.5rem;
+    }
+
+    .dl {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.7rem 1.5rem;
+      align-items: baseline;
+    }
+
+    .dl dt {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .dl dd {
+      font-size: 0.84rem;
+      color: var(--text-mid);
+      line-height: 1.58;
+    }
+
+    .incl {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .incl li {
+      font-size: 0.84rem;
+      color: var(--text-mid);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .incl li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--timber);
+    }
+
+    .gallery {
+      background: linear-gradient(to bottom, #e7e2da 0%, var(--stone) 100%);
+      padding: clamp(3rem, 5vw, 4.5rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .gallery__header {
+      margin-bottom: 1.8rem;
+    }
+
+    .gallery__carousel {
+      position: relative;
+    }
+
+    .gallery__viewport {
+      overflow: hidden;
+      background: rgba(14, 36, 48, 0.05);
+      box-shadow: var(--shadow);
+      padding: 1.25rem 4.25rem;
+    }
+
+    .gallery__track {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.55s ease;
+      will-change: transform;
+    }
+
+    .gallery__slide {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(14, 36, 48, 0.04);
+    }
+
+    .gallery__slide img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: min(78vw, 980px);
+      max-height: 72vh;
+      object-fit: contain;
+    }
+
+    .gallery__btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(14, 36, 48, 0.72);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 2;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 24px rgba(14, 36, 48, 0.16);
+    }
+
+    .gallery__btn:hover {
+      background: rgba(14, 36, 48, 0.88);
+      opacity: 1;
+    }
+
+    .gallery__btn--prev {
+      left: 1rem;
+    }
+
+    .gallery__btn--next {
+      right: 1rem;
+    }
+
+    .information {
+      background: var(--stone);
+      padding: clamp(3rem, 5vw, 4.5rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .information__header {
+      margin-bottom: 1.8rem;
+    }
+
+    .information__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(14, 36, 48, 0.055) 0%, rgba(14, 36, 48, 0.025) 100%);
+      border: 1px solid rgba(14, 36, 48, 0.11);
+      padding: 1.45rem;
+      box-shadow: var(--shadow-soft);
+      min-height: 100%;
+    }
+
+    .card__title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--navy);
+      font-weight: 400;
+      margin-bottom: 0.55rem;
+    }
+
+    .card__body {
+      font-size: 0.84rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .card__meta {
+      margin-top: 0.85rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--timber);
+    }
+
+    .button-link {
+      display: inline-block;
+      background: var(--navy);
+      color: #fff;
+      border: 1px solid var(--navy);
+      padding: 0.8rem 1.3rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      align-self: flex-start;
+      box-shadow: 0 10px 24px rgba(14, 36, 48, 0.10);
+    }
+
+    .button-link:hover {
+      background: var(--navy-soft);
+      border-color: var(--navy-soft);
+      opacity: 1;
+    }
+
+    .card video {
+      width: 100%;
+      display: block;
+      margin-top: 0.4rem;
+      background: #000;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact {
+      background: linear-gradient(to bottom, var(--stone) 0%, #e7e2da 100%);
+      padding: clamp(3rem, 5vw, 4.5rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact__header {
+      margin-bottom: 2rem;
+    }
+
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 3rem 5rem;
+      align-items: start;
+    }
+
+    .contact__details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .cinfo__label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--timber);
+      margin-bottom: 0.3rem;
+    }
+
+    .cinfo__value {
+      font-family: var(--font-serif);
+      font-size: 1.14rem;
+      color: var(--navy);
+    }
+
+    .cinfo__value a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      opacity: 1;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .field label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .field input,
+    .field textarea {
+      background: var(--white);
+      border: 1px solid rgba(26, 58, 74, 0.18);
+      padding: 0.78rem 0.9rem;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      color: var(--text);
+      width: 100%;
+      -webkit-appearance: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(14, 36, 48, 0.06);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form__btn {
+      align-self: flex-start;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      padding: 0.85rem 1.8rem;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(14, 36, 48, 0.10);
+    }
+
+    .form__btn:hover {
+      background: var(--navy-soft);
+      opacity: 1;
+    }
+
+    .footer {
+      background: var(--navy);
+      padding: 3rem var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer__brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .footer__loc {
+      font-size: 0.72rem;
+      color: rgba(240, 236, 229, 0.38);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 960px) {
+      .practical__grid,
+      .information__grid,
+      .contact__grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem 0;
+      }
+
+      .unit {
+        grid-template-columns: 2fr 1.5fr;
+        gap: 0.2rem 1.5rem;
+      }
+
+      .unit__desc {
+        grid-column: 1 / -1;
+        padding-top: 0.35rem;
+      }
+
+      .site__item--alt .site__copy > * {
+        margin-left: 0;
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav__links,
+      .lang-switch {
+        display: none;
+      }
+
+      .nav__toggle {
+        display: block;
+      }
+
+      .gallery__viewport {
+        padding: 1rem 3.6rem;
+      }
+
+      .gallery__btn {
+        width: 46px;
+        height: 46px;
+      }
+
+      .gallery__btn--prev {
+        left: 0.7rem;
+      }
+
+      .gallery__btn--next {
+        right: 0.7rem;
+      }
+
+      .gallery__slide img {
+        max-width: min(74vw, 980px);
+        max-height: 64vh;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero__bg {
+        background-position: 56% 58%;
+      }
+
+      .hero__content {
+        padding-top: 6.7rem;
+      }
+
+      .hero__inner {
+        max-width: 22rem;
+      }
+
+      .hero__name {
+        font-size: clamp(4rem, 22vw, 8rem);
+      }
+
+      .hero__note {
+        max-width: 22rem;
+      }
+
+      .unit {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+        padding: 1.25rem 0;
+      }
+
+      .unit__desc {
+        grid-column: 1;
+        padding-top: 0.5rem;
+      }
+
+      .form__row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class='nav' id='nav' aria-label='Main navigation'>
+    <a href='#top' class='nav__brand' aria-label='Vikaneset home'>
+      <img class='nav__logo' src='assets/images/logo.svg' alt='Vikaneset logo'>
+      <div class='nav__text'>
+        <span class='nav__name'>Vikaneset</span>
+        <span class='nav__sub'>Havhotell</span>
+      </div>
+    </a>
+
+    <div class='nav__menu'>
+      <ul class='nav__links' role='list'>
+        <li><a href='#accommodation' data-i18n='navAccommodation'>Accommodation</a></li>
+        <li><a href='#site' data-i18n='navSite'>The site</a></li>
+        <li><a href='#practical' data-i18n='navPractical'>Practical</a></li>
+        <li><a href='#gallery' data-i18n='navGallery'>Gallery</a></li>
+        <li><a href='#information' data-i18n='navInformation'>Information</a></li>
+        <li><a href='#contact' data-i18n='navContact'>Contact</a></li>
+      </ul>
+
+      <div class='lang-switch' aria-label='Language switch'>
+        <button class='lang-switch__btn is-active' type='button' data-lang='en'>EN</button>
+        <button class='lang-switch__btn' type='button' data-lang='no'>NO</button>
+      </div>
+    </div>
+
+    <button class='nav__toggle' id='navToggle' aria-label='Open menu' aria-expanded='false'>
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class='nav__mobile' id='navMobile' role='dialog' aria-modal='true' aria-label='Navigation'>
+    <button class='nav__mobile-close' id='navClose' aria-label='Close menu'>&#x2715;</button>
+    <a href='#accommodation' data-i18n='navAccommodation'>Accommodation</a>
+    <a href='#site' data-i18n='navSite'>The site</a>
+    <a href='#practical' data-i18n='navPractical'>Practical</a>
+    <a href='#gallery' data-i18n='navGallery'>Gallery</a>
+    <a href='#information' data-i18n='navInformation'>Information</a>
+    <a href='#contact' data-i18n='navContact'>Contact</a>
+
+    <div class='nav__mobile-lang'>
+      <button type='button' data-lang='en'>EN</button>
+      <button type='button' data-lang='no'>NO</button>
+    </div>
+  </div>
+
+  <main id='top'>
+    <section class='hero' aria-label='Vikaneset'>
+      <div class='hero__bg' role='img' aria-label='View of Vikaneset'></div>
+      <div class='hero__scrim' aria-hidden='true'></div>
+
+      <div class='hero__content'>
+        <div class='hero__inner reveal'>
+          <p class='hero__geo' data-i18n='heroGeo'>Frei · Kristiansund · Norway</p>
+
+          <h1 class='hero__name'>Vikaneset</h1>
+
+          <p class='hero__note' data-i18n='heroNote'>
+            Vikaneset lies by the sea on Frei, with accommodation, historic buildings and space for stays, gatherings and access to the water.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class='intro'>
+      <div class='wrap'>
+        <div class='intro__text reveal'>
+          <p class='intro__lead' data-i18n='introLead'>
+            Several buildings of different age and use, gathered around a harbour on the south side of Kristiansund.
+          </p>
+        </div>
+      </div>
+
+      <div class='aerial reveal' role='img' aria-label='Aerial view of the Vikaneset property on Frei island'></div>
+    </section>
+
+    <section class='accommodation' id='accommodation' aria-labelledby='accommodation-title'>
+      <div class='wrap'>
+        <div class='accommodation__header reveal'>
+          <h2 class='section-title' id='accommodation-title' data-i18n='accommodationTitle'>Accommodation</h2>
+          <p class='accommodation__count' data-i18n='accommodationCount'>8 self catering units across two buildings</p>
+        </div>
+
+        <div class='units reveal' role='list'>
+          <div class='unit' role='listitem'>
+            <p class='unit__name'>Sjøhus</p>
+            <p class='unit__meta' data-i18n='unit1Meta'>5 units · Waterfront</p>
+            <p class='unit__desc' data-i18n='unit1Desc'>
+              Five self catering units on the waterfront. Each unit has a kitchen, bathroom and sleeping loft, with direct harbour access and its own balcony.
+            </p>
+          </div>
+
+          <div class='unit' role='listitem'>
+            <p class='unit__name'>Sjøleiligheter</p>
+            <p class='unit__meta' data-i18n='unit2Meta'>3 units</p>
+            <p class='unit__desc' data-i18n='unit2Desc'>
+              Three self catering units in the main building, each with its own kitchen and bathroom.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='site' id='site' aria-labelledby='site-title'>
+      <div class='wrap'>
+        <div class='site__header reveal'>
+          <h2 class='section-title' id='site-title' data-i18n='siteTitle'>The site</h2>
+          <p class='section-intro' data-i18n='siteIntro'>
+            A sequence of spaces across the property, from the main brygge hall to the harbour, shoreline and outdoor gathering area.
+          </p>
+        </div>
+      </div>
+
+      <div class='site__items'>
+        <article class='site__item reveal'>
+          <div class='site__img'>
+            <img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga interior with timber trusses and bay windows' loading='lazy' style='object-position: center 35%;'>
+          </div>
+          <div class='site__copy wrap'>
+            <h3 class='site__item-title'>Klippfiskbrygga</h3>
+            <p class='site__body' data-i18n='site1Body'>
+              Brygge building dating to approximately 1900 and renovated between 2006 and 2009. The main hall has exposed timber trusses, wooden floors and a stone fireplace, and is used for dining and events.
+            </p>
+            <p class='site__detail' data-i18n='site1Detail'>860 m² · Three storeys</p>
+          </div>
+        </article>
+
+        <article class='site__item site__item--alt reveal'>
+          <div class='site__img'>
+            <img src='assets/images/harbour.jpg' alt='Harbour view with buildings and waterfront at Vikaneset' loading='lazy' style='object-position: 32% 45%;'>
+          </div>
+          <div class='site__copy wrap'>
+            <h3 class='site__item-title' data-i18n='site2Title'>Harbour and outbuildings</h3>
+            <p class='site__body' data-i18n='site2Body'>
+              The property has harbour access with a pontoon, several brygge structures of different age and use, along with a naust and fjøs. Several structures are SEFRAK registered.
+            </p>
+          </div>
+        </article>
+
+        <article class='site__item reveal'>
+          <div class='site__img'>
+            <img src='assets/images/amphitheatre.jpg' alt='Stone terraced amphitheatre at Vikaneset' loading='lazy' style='object-position: 36% 70%;'>
+          </div>
+          <div class='site__copy wrap'>
+            <h3 class='site__item-title'>Amfi</h3>
+            <p class='site__body' data-i18n='site3Body'>
+              Outdoor gathering space with stone terraced seating facing the water. Completed in 2008.
+            </p>
+            <p class='site__detail' data-i18n='site3Detail'>1,800 m² · Completed 2008</p>
+          </div>
+        </article>
+
+        <article class='site__item site__item--alt reveal'>
+          <div class='site__img'>
+            <img src='assets/images/sauna.jpg' alt='Sauna building and rocky shoreline at Vikaneset' loading='lazy' style='object-position: center 50%;'>
+          </div>
+          <div class='site__copy wrap'>
+            <h3 class='site__item-title' data-i18n='site4Title'>Shore and sauna</h3>
+            <p class='site__body' data-i18n='site4Body'>
+              The site has sea access on three sides, with rocky shoreline and a sauna building as part of the wider setting.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class='gallery' id='gallery' aria-labelledby='gallery-title'>
+      <div class='wrap'>
+        <div class='gallery__header reveal'>
+          <h2 class='section-title' id='gallery-title' data-i18n='galleryTitle'>Gallery</h2>
+          <p class='section-intro' data-i18n='galleryIntro'>
+            Additional views from across the property.
+          </p>
+        </div>
+
+        <div class='gallery__carousel reveal'>
+          <button class='gallery__btn gallery__btn--prev' id='galleryPrev' aria-label='Previous image'>&larr;</button>
+
+          <div class='gallery__viewport' id='galleryViewport'>
+            <div class='gallery__track' id='galleryTrack'>
+              <figure class='gallery__slide'><img src='assets/images/gallery1.jpg' alt='Gallery view 1 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide'><img src='assets/images/gallery2.jpg' alt='Gallery view 2 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide'><img src='assets/images/gallery3.jpg' alt='Gallery view 3 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide'><img src='assets/images/gallery4.jpg' alt='Gallery view 4 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide'><img src='assets/images/gallery5.jpg' alt='Gallery view 5 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide'><img src='assets/images/gallery6.jpg' alt='Gallery view 6 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide'><img src='assets/images/gallery7.jpg' alt='Gallery view 7 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide'><img src='assets/images/gallery8.jpg' alt='Gallery view 8 at Vikaneset' loading='lazy'></figure>
+            </div>
+          </div>
+
+          <button class='gallery__btn gallery__btn--next' id='galleryNext' aria-label='Next image'>&rarr;</button>
+        </div>
+      </div>
+    </section>
+        <section class='practical' id='practical' aria-labelledby='practical-title'>
+      <div class='wrap'>
+        <div class='practical__header reveal'>
+          <h2 class='section-title' id='practical-title' data-i18n='practicalTitle'>Practical</h2>
+        </div>
+
+        <div class='practical__grid reveal'>
+          <div>
+            <p class='pblock__title' data-i18n='locationTitle'>Location</p>
+            <dl class='dl'>
+              <dt data-i18n='addressLabel'>Address</dt>
+              <dd data-i18n='addressValue'>Kjørvegen 31, 6520 Frei, Kristiansund municipality, Norway</dd>
+
+              <dt data-i18n='airLabel'>By air</dt>
+              <dd data-i18n='airValue'>Kristiansund Airport Kvernberget, KSU. Approximately 10 km. Domestic routes from Oslo and Bergen.</dd>
+
+              <dt data-i18n='carLabel'>By car</dt>
+              <dd data-i18n='carValue'>4.4 km south of Kristiansund city centre. Parking on site, free of charge for guests.</dd>
+
+              <dt data-i18n='busLabel'>By bus</dt>
+              <dd data-i18n='busValue'>Line 813. Stop Vadsteinsvik. Approximately 400 m from the property.</dd>
+
+              <dt data-i18n='groceryLabel'>Grocery</dt>
+              <dd data-i18n='groceryValue'>Kiwi Rensvik about 9 minutes. Bunnpris Rensvik about 11 minutes.</dd>
+            </dl>
+          </div>
+
+          <div>
+            <p class='pblock__title' data-i18n='arrivalTitle'>Arrival</p>
+            <dl class='dl' style='margin-bottom: 2.5rem;'>
+              <dt data-i18n='checkInLabel'>Check in</dt>
+              <dd data-i18n='checkInValue'>From 16:00</dd>
+
+              <dt data-i18n='checkOutLabel'>Check out</dt>
+              <dd data-i18n='checkOutValue'>By 11:00</dd>
+            </dl>
+
+            <p class='pblock__title' style='margin-top: 2.5rem;' data-i18n='includedTitle'>Included</p>
+            <ul class='incl' aria-label='Included in each unit'>
+              <li data-i18n='included1'>Kitchen or kitchenette</li>
+              <li data-i18n='included2'>Bedding and towels</li>
+              <li data-i18n='included3'>WiFi</li>
+              <li data-i18n='included4'>Parking on site</li>
+              <li data-i18n='included5'>Harbour and pontoon access</li>
+              <li data-i18n='included6'>Sauna and shore access</li>
+              <li data-i18n='included7'>Shared laundry</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='information' id='information' aria-labelledby='information-title'>
+      <div class='wrap'>
+        <div class='information__header reveal'>
+          <h2 class='section-title' id='information-title' data-i18n='informationTitle'>Further information</h2>
+          <p class='section-intro' data-i18n='informationIntro'>
+            Property documentation and a short film can be viewed below.
+          </p>
+        </div>
+
+        <div class='information__grid reveal'>
+          <div class='card'>
+            <div>
+              <h3 class='card__title' data-i18n='pdfTitle'>Download PDF</h3>
+              <p class='card__body' data-i18n='pdfBody'>
+                A short property overview with practical information, accommodation details and selected images.
+              </p>
+            </div>
+
+            <div>
+              <a class='button-link' href='assets/docs/vikaneset-prospectus.pdf' download data-i18n='pdfButton'>Download PDF</a>
+              <p class='card__meta' data-i18n='pdfMeta'>PDF document · Property overview</p>
+            </div>
+          </div>
+
+          <div class='card'>
+            <div>
+              <h3 class='card__title' data-i18n='videoTitle'>Video</h3>
+              <p class='card__body' data-i18n='videoBody'>
+                A short introduction to the property and its setting.
+              </p>
+            </div>
+
+            <video controls playsinline width='100%'>
+              <source src='assets/video/vikaneset-film.mp4' type='video/mp4'>
+              <source src='assets/video/vikaneset-film.mov' type='video/quicktime'>
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='contact' id='contact' aria-labelledby='contact-title'>
+      <div class='wrap'>
+        <div class='contact__header reveal'>
+          <h2 class='section-title' id='contact-title' data-i18n='contactTitle'>Contact</h2>
+        </div>
+
+        <div class='contact__grid reveal'>
+          <div class='contact__details'>
+            <div>
+              <p class='cinfo__label' data-i18n='emailLabel'>Email</p>
+              <p class='cinfo__value'>
+                <a href='mailto:anette@vikaneset.com'>anette@vikaneset.com</a>
+              </p>
+            </div>
+
+            <div>
+              <p class='cinfo__label' data-i18n='phoneLabel'>Phone</p>
+              <p class='cinfo__value'>
+                <a href='tel:+4748257960'>+47 482 57 960</a>
+              </p>
+            </div>
+          </div>
+
+          <form class='form' action='mailto:anette@vikaneset.com' method='post' enctype='text/plain' aria-label='Enquiry form'>
+            <div class='form__row'>
+              <div class='field'>
+                <label for='f-name' data-i18n='formName'>Name</label>
+                <input type='text' id='f-name' name='name' autocomplete='name' required>
+              </div>
+
+              <div class='field'>
+                <label for='f-email' data-i18n='formEmail'>Email</label>
+                <input type='email' id='f-email' name='email' autocomplete='email' required>
+              </div>
+            </div>
+
+            <div class='field'>
+              <label for='f-msg' data-i18n='formMessage'>Message</label>
+              <textarea id='f-msg' name='message' required></textarea>
+            </div>
+
+            <button class='form__btn' type='submit' data-i18n='formButton'>Send enquiry</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+    <footer class='footer' aria-label='Site footer'>
+    <div class='footer__brand'>
+      <img class='footer__logo' src='assets/images/logo.svg' alt='Vikaneset logo'>
+      <div class='footer__text'>
+        <span class='footer__name'>Vikaneset</span>
+        <span class='footer__sub'>Havhotell</span>
+      </div>
+    </div>
+
+    <p class='footer__loc' data-i18n='footerLocation'>Kjørvegen 31 · Frei · Kristiansund</p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById('nav');
+      if (!nav) return;
+
+      function updateNavBackground() {
+        nav.classList.toggle('scrolled', window.scrollY > 80);
+      }
+
+      window.addEventListener('scroll', updateNavBackground, { passive: true });
+      updateNavBackground();
+    }());
+
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));
+      var ids = ['accommodation', 'site', 'practical', 'gallery', 'information', 'contact'];
+      var sections = ids.map(function (id) {
+        return document.getElementById(id);
+      }).filter(Boolean);
+
+      function updateActiveLink() {
+        var scrollY = window.scrollY + 130;
+        var current = null;
+
+        sections.forEach(function (section) {
+          if (section.offsetTop <= scrollY) current = section;
+        });
+
+        links.forEach(function (link) {
+          link.classList.toggle('active', !!(current && link.getAttribute('href') === '#' + current.id));
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveLink, { passive: true });
+      updateActiveLink();
+    }());
+
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var close = document.getElementById('navClose');
+      var menu = document.getElementById('navMobile');
+      if (!toggle || !menu) return;
+
+      function openMenu() {
+        menu.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        if (close) close.focus();
+      }
+
+      function closeMenu() {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        toggle.focus();
+      }
+
+      toggle.addEventListener('click', openMenu);
+
+      if (close) {
+        close.addEventListener('click', closeMenu);
+      }
+
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && menu.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+    }());
+
+    (function () {
+      var items = document.querySelectorAll('.reveal');
+
+      if (!items.length || !('IntersectionObserver' in window)) {
+        Array.prototype.forEach.call(items, function (item) {
+          item.classList.add('is-visible');
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      Array.prototype.forEach.call(items, function (item) {
+        observer.observe(item);
+      });
+    }());
+
+    (function () {
+      var viewport = document.getElementById('galleryViewport');
+      var track = document.getElementById('galleryTrack');
+      var prev = document.getElementById('galleryPrev');
+      var next = document.getElementById('galleryNext');
+      if (!viewport || !track || !prev || !next) return;
+
+      var slides = Array.prototype.slice.call(track.children);
+      var index = 0;
+      var positions = [];
+
+      function getGap() {
+        var styles = window.getComputedStyle(track);
+        var gap = parseFloat(styles.columnGap || styles.gap || 0);
+        return isNaN(gap) ? 0 : gap;
+      }
+
+      function measurePositions() {
+        var gap = getGap();
+        var running = 0;
+
+        positions = slides.map(function (slide, i) {
+          var pos = running;
+          running += slide.offsetWidth;
+          if (i < slides.length - 1) {
+            running += gap;
+          }
+          return pos;
+        });
+      }
+
+      function updateGallery() {
+        if (!positions.length) return;
+        track.style.transform = 'translateX(-' + positions[index] + 'px)';
+      }
+
+      function moveNext() {
+        if (index < slides.length - 1) {
+          index += 1;
+        } else {
+          index = 0;
+        }
+        updateGallery();
+      }
+
+      function movePrev() {
+        if (index > 0) {
+          index -= 1;
+        } else {
+          index = slides.length - 1;
+        }
+        updateGallery();
+      }
+
+      prev.addEventListener('click', movePrev);
+      next.addEventListener('click', moveNext);
+
+      window.addEventListener('resize', function () {
+        measurePositions();
+        updateGallery();
+      });
+
+      window.addEventListener('load', function () {
+        measurePositions();
+        updateGallery();
+      });
+
+      slides.forEach(function (slide) {
+        var img = slide.querySelector('img');
+        if (img) {
+          if (img.complete) {
+            measurePositions();
+            updateGallery();
+          } else {
+            img.addEventListener('load', function () {
+              measurePositions();
+              updateGallery();
+            });
+          }
+        }
+      });
+
+      measurePositions();
+      updateGallery();
+    }());
+
+    (function () {
+      var translations = {
+        en: {
+          navAccommodation: 'Accommodation',
+          navSite: 'The site',
+          navPractical: 'Practical',
+          navGallery: 'Gallery',
+          navInformation: 'Information',
+          navContact: 'Contact',
+
+          heroGeo: 'Frei · Kristiansund · Norway',
+          heroNote: 'Vikaneset lies by the sea on Frei, with accommodation, historic buildings and access to the water.',
+
+          introLead: 'Several buildings of different age and use, gathered around a harbour on the south side of Kristiansund.',
+
+          accommodationTitle: 'Accommodation',
+          accommodationCount: '8 self catering units across two buildings',
+          unit1Meta: '5 units · Waterfront',
+          unit1Desc: 'Five self catering units on the waterfront. Each unit has a kitchen, bathroom and sleeping loft, with direct harbour access and its own balcony.',
+          unit2Meta: '3 units',
+          unit2Desc: 'Three self catering units in the main building, each with its own kitchen and bathroom.',
+
+          siteTitle: 'The site',
+          siteIntro: 'A sequence of spaces across the property, from the main brygge hall to the harbour, shoreline and outdoor gathering area.',
+          site1Body: 'Brygge building dating to approximately 1900 and renovated between 2006 and 2009. The main hall has exposed timber trusses, wooden floors and a stone fireplace, and is used for dining and events.',
+          site1Detail: '860 m² · Three storeys',
+          site2Title: 'Harbour and outbuildings',
+          site2Body: 'The property has harbour access with a pontoon, several brygge structures of different age and use, along with a naust and fjøs. Several structures are SEFRAK registered.',
+          site3Body: 'Outdoor gathering space with stone terraced seating facing the water. Completed in 2008.',
+          site3Detail: '1,800 m² · Completed 2008',
+          site4Title: 'Shore and sauna',
+          site4Body: 'The site has sea access on three sides, with rocky shoreline and a sauna building as part of the wider setting.',
+
+          practicalTitle: 'Practical',
+          locationTitle: 'Location',
+          addressLabel: 'Address',
+          addressValue: 'Kjørvegen 31, 6520 Frei, Kristiansund municipality, Norway',
+          airLabel: 'By air',
+          airValue: 'Kristiansund Airport Kvernberget, KSU. Approximately 10 km. Domestic routes from Oslo and Bergen.',
+          carLabel: 'By car',
+          carValue: '4.4 km south of Kristiansund city centre. Parking on site, free of charge for guests.',
+          busLabel: 'By bus',
+          busValue: 'Line 813. Stop Vadsteinsvik. Approximately 400 m from the property.',
+          groceryLabel: 'Grocery',
+          groceryValue: 'Kiwi Rensvik about 9 minutes. Bunnpris Rensvik about 11 minutes.',
+          arrivalTitle: 'Arrival',
+          checkInLabel: 'Check in',
+          checkInValue: 'From 16:00',
+          checkOutLabel: 'Check out',
+          checkOutValue: 'By 11:00',
+          includedTitle: 'Included',
+          included1: 'Kitchen or kitchenette',
+          included2: 'Bedding and towels',
+          included3: 'WiFi',
+          included4: 'Parking on site',
+          included5: 'Harbour and pontoon access',
+          included6: 'Sauna and shore access',
+          included7: 'Shared laundry',
+
+          galleryTitle: 'Gallery',
+          galleryIntro: 'Additional views from across the property.',
+
+          informationTitle: 'Further information',
+          informationIntro: 'Property documentation and a short film can be viewed below.',
+          pdfTitle: 'Download PDF',
+          pdfBody: 'A short property overview with practical information, accommodation details and selected images.',
+          pdfButton: 'Download PDF',
+          pdfMeta: 'PDF document · Property overview',
+          videoTitle: 'Video',
+          videoBody: 'A short introduction to the property and its setting.',
+
+          contactTitle: 'Contact',
+          emailLabel: 'Email',
+          phoneLabel: 'Phone',
+          formName: 'Name',
+          formEmail: 'Email',
+          formMessage: 'Message',
+          formButton: 'Send enquiry',
+
+          footerLocation: 'Kjørvegen 31 · Frei · Kristiansund'
+        },
+
+        no: {
+          navAccommodation: 'Overnatting',
+          navSite: 'Om stedet',
+          navPractical: 'Praktisk',
+          navGallery: 'Galleri',
+          navInformation: 'Informasjon',
+          navContact: 'Kontakt',
+
+          heroGeo: 'Frei · Kristiansund · Norge',
+          heroNote: 'Vikaneset ligger ved sjøen på Frei, med overnatting, historiske bygg og tilgang til havet.',
+
+          introLead: 'Flere bygninger av ulik alder og bruk, samlet rundt en havn på sørsiden av Kristiansund.',
+
+          accommodationTitle: 'Overnatting',
+          accommodationCount: '8 selvhusholdsenheter fordelt på to bygg',
+          unit1Meta: '5 enheter · Ved vannkanten',
+          unit1Desc: 'Fem selvhusholdsenheter ved vannkanten. Hver enhet har kjøkken, bad og sovehems, med direkte tilgang til havna og egen balkong.',
+          unit2Meta: '3 enheter',
+          unit2Desc: 'Tre selvhusholdsenheter i hovedbygget, hver med eget kjøkken og bad.',
+
+          siteTitle: 'Om stedet',
+          siteIntro: 'Eiendommen rommer flere ulike steder, fra hovedhallen i brygga til havna, strandlinjen og uteområdet for samlinger.',
+          site1Body: 'Bryggebygning fra rundt 1900, restaurert mellom 2006 og 2009. Hovedhallen har synlige trekonstruksjoner, tregulv og peis i stein, og brukes til servering og arrangementer.',
+          site1Detail: '860 m² · Tre etasjer',
+          site2Title: 'Havn og uthus',
+          site2Body: 'Eiendommen har havnetilgang med flytebrygge, flere bryggebygg av ulik alder og bruk, samt naust og fjøs. Flere bygninger er SEFRAK registrert.',
+          site3Body: 'Utendørs samlingsområde med steinlagt amfi vendt mot sjøen. Ferdigstilt i 2008.',
+          site3Detail: '1 800 m² · Ferdigstilt 2008',
+          site4Title: 'Strand og sauna',
+          site4Body: 'Stedet har sjøtilgang på tre sider, med svaberg og sauna som del av helheten.',
+
+          practicalTitle: 'Praktisk',
+          locationTitle: 'Beliggenhet',
+          addressLabel: 'Adresse',
+          addressValue: 'Kjørvegen 31, 6520 Frei, Kristiansund kommune, Norge',
+          airLabel: 'Med fly',
+          airValue: 'Kristiansund lufthavn Kvernberget, KSU. Omtrent 10 km. Innenriksruter fra Oslo og Bergen.',
+          carLabel: 'Med bil',
+          carValue: '4,4 km sør for Kristiansund sentrum. Parkering på eiendommen, uten ekstra kostnad for gjester.',
+          busLabel: 'Med buss',
+          busValue: 'Linje 813. Holdeplass Vadsteinsvik. Omtrent 400 m fra eiendommen.',
+          groceryLabel: 'Dagligvare',
+          groceryValue: 'Kiwi Rensvik cirka 9 minutter. Bunnpris Rensvik cirka 11 minutter.',
+          arrivalTitle: 'Ankomst',
+          checkInLabel: 'Innsjekk',
+          checkInValue: 'Fra 16:00',
+          checkOutLabel: 'Utsjekk',
+          checkOutValue: 'Innen 11:00',
+          includedTitle: 'Inkludert',
+          included1: 'Kjøkken eller kjøkkenkrok',
+          included2: 'Sengetøy og håndklær',
+          included3: 'WiFi',
+          included4: 'Parkering på stedet',
+          included5: 'Tilgang til havn og flytebrygge',
+          included6: 'Tilgang til sauna og strand',
+          included7: 'Felles vaskerom',
+
+          galleryTitle: 'Galleri',
+          galleryIntro: 'Flere inntrykk fra eiendommen og omgivelsene.',
+
+          informationTitle: 'Mer informasjon',
+          informationIntro: 'Eiendomsdokumentasjon og en kort film kan sees nedenfor.',
+          pdfTitle: 'Last ned PDF',
+          pdfBody: 'En kort oversikt over eiendommen med praktisk informasjon, overnatting og utvalgte bilder.',
+          pdfButton: 'Last ned PDF',
+          pdfMeta: 'PDF dokument · Eiendomsoversikt',
+          videoTitle: 'Video',
+          videoBody: 'En kort introduksjon til eiendommen og omgivelsene.',
+
+          contactTitle: 'Kontakt',
+          emailLabel: 'E post',
+          phoneLabel: 'Telefon',
+          formName: 'Navn',
+          formEmail: 'E post',
+          formMessage: 'Melding',
+          formButton: 'Send forespørsel',
+
+          footerLocation: 'Kjørvegen 31 · Frei · Kristiansund'
+        }
+      };
+
+      var currentLanguage = localStorage.getItem('vikanesetLanguage') || 'en';
+
+      function setLanguage(lang) {
+        currentLanguage = lang;
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          var key = element.getAttribute('data-i18n');
+          if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+          }
+        });
+
+        document.querySelectorAll('[data-lang]').forEach(function (button) {
+          button.classList.toggle('is-active', button.getAttribute('data-lang') === lang);
+        });
+
+        localStorage.setItem('vikanesetLanguage', lang);
+      }
+
+      document.querySelectorAll('[data-lang]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          setLanguage(button.getAttribute('data-lang'));
+        });
+      });
+
+      setLanguage(currentLanguage);
+    }());
+  </script>
+</body>
+</html>
