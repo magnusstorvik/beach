@@ -2433,6 +2433,80 @@
       line-height: 1.7;
     }
 
+    .site__features {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1.25rem, 2.5vw, 2rem);
+    }
+
+    .site__feature {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.75fr);
+      min-height: 430px;
+      overflow: hidden;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.62);
+      box-shadow: 0 22px 65px rgba(16,42,56,0.09);
+    }
+
+    .site__feature--reverse {
+      grid-template-columns: minmax(17rem, 0.75fr) minmax(0, 1.45fr);
+    }
+
+    .site__feature--reverse .site__feature-media {
+      order: 2;
+    }
+
+    .site__feature--reverse .site__feature-copy {
+      order: 1;
+    }
+
+    .site__feature-media {
+      min-width: 0;
+      min-height: 430px;
+      background: #d9ddd9;
+    }
+
+    .site__feature-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .site__feature-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(2rem, 5vw, 4.25rem);
+      background: rgba(255,255,255,0.42);
+      backdrop-filter: blur(18px) saturate(115%);
+      -webkit-backdrop-filter: blur(18px) saturate(115%);
+    }
+
+    .site__feature-number {
+      margin-bottom: 1.1rem;
+      color: var(--brass);
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+    }
+
+    .site__feature-title {
+      margin-bottom: 0.8rem;
+      color: var(--navy);
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    .site__feature-body {
+      color: var(--text-mid);
+      font-size: 0.94rem;
+      line-height: 1.72;
+    }
+
     .practical {
       position: relative;
       z-index: 0;
@@ -2505,9 +2579,198 @@
       .site__copy, .site__item--alt .site__copy { width: 100%; margin: 0; padding: 1.1rem 0.15rem 0; }
       .site__img, .site__img.mini-carousel--full .mini-carousel__viewport { border-radius: 18px; }
 
+      .site__features { gap: 1.25rem; }
+      .site__feature,
+      .site__feature--reverse {
+        display: flex;
+        min-height: 0;
+        flex-direction: column;
+        border-radius: 20px;
+      }
+      .site__feature--reverse .site__feature-media,
+      .site__feature--reverse .site__feature-copy { order: initial; }
+      .site__feature-media {
+        min-height: 0;
+        aspect-ratio: 4 / 3;
+      }
+      .site__feature-copy {
+        min-height: 0;
+        padding: 1.5rem 1.35rem 1.7rem;
+      }
+      .site__feature-number { margin-bottom: 0.7rem; }
+      .site__feature-title { font-size: 1.65rem; }
+
       .practical__grid > div,
       .contact__details,
       .form { border-radius: 18px; }
+    }
+
+    /* Organic balance and section contrast */
+    .aerial,
+    .unit,
+    .site__header,
+    .site__feature,
+    .site__feature--reverse,
+    .site__feature-media,
+    .practical__grid > div,
+    .card,
+    .contact__details,
+    .form {
+      border-radius: 14px;
+    }
+
+    .intro__aside {
+      border-radius: 16px;
+    }
+
+    .gallery__carousel {
+      border-radius: 18px;
+    }
+
+    .gallery__viewport,
+    .gallery__carousel::after {
+      border-radius: 13px;
+    }
+
+    .site__feature-action {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      gap: 0.55rem;
+      margin-top: 1.35rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(161,132,83,0.58);
+      color: var(--navy);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .site__feature-action::after {
+      content: '\2197';
+      color: var(--brass);
+      font-size: 0.95rem;
+      transition: transform 0.25s ease;
+    }
+
+    .site__feature-action:hover {
+      color: var(--blue-deep);
+      opacity: 1;
+    }
+
+    .site__feature-action:hover::after {
+      transform: translate(2px, -2px);
+    }
+
+    .gallery {
+      background: linear-gradient(145deg, #e2e9e8 0%, #f2f0ea 72%);
+      color: var(--text);
+    }
+
+    .gallery .section-title {
+      color: var(--navy);
+    }
+
+    .gallery .section-intro {
+      color: rgba(16,42,56,0.68);
+    }
+
+    .gallery .section-eyebrow {
+      color: var(--brass);
+    }
+
+    .gallery__carousel {
+      background: rgba(12,39,52,0.82);
+      box-shadow: 0 30px 80px rgba(16,42,56,0.18), inset 0 1px 0 rgba(255,255,255,0.16);
+    }
+
+    .intro,
+    .site,
+    .practical,
+    .gallery {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .intro::before,
+    .intro::after,
+    .site::before,
+    .practical::before,
+    .gallery::before {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: -1;
+      width: 220px;
+      height: 70px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 72'%3E%3Cpath d='M3 40c27-28 53-28 80 0s53 28 80 0 48-24 74-2' fill='none' stroke='%23ffffff' stroke-opacity='.10' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+      pointer-events: none;
+    }
+
+    .intro::before {
+      left: 4%;
+      top: 18%;
+      width: 270px;
+      transform: rotate(-7deg);
+    }
+
+    .intro::after {
+      right: 7%;
+      bottom: 26%;
+      width: 160px;
+      transform: rotate(9deg) scaleX(-1);
+    }
+
+    .site::before,
+    .gallery::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 72'%3E%3Cpath d='M3 40c27-28 53-28 80 0s53 28 80 0 48-24 74-2' fill='none' stroke='%23102a38' stroke-opacity='.055' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+
+    .site::before {
+      right: 3%;
+      top: 11%;
+      width: 185px;
+      transform: rotate(8deg);
+    }
+
+    .practical::before {
+      left: 3%;
+      bottom: 9%;
+      width: 145px;
+      transform: rotate(-11deg);
+    }
+
+    .gallery::before {
+      right: 4%;
+      top: 12%;
+      width: 245px;
+      transform: rotate(-6deg) scaleX(-1);
+    }
+
+    @media (max-width: 760px) {
+      .aerial,
+      .unit,
+      .site__header,
+      .site__feature,
+      .site__feature--reverse,
+      .site__feature-media,
+      .practical__grid > div,
+      .card,
+      .contact__details,
+      .form { border-radius: 10px; }
+
+      .intro__aside,
+      .gallery__carousel { border-radius: 12px; }
+
+      .gallery__viewport,
+      .gallery__carousel::after { border-radius: 9px; }
+
+      .intro::before { width: 150px; left: -12%; top: 10%; }
+      .intro::after { width: 105px; right: -8%; bottom: 33%; }
+      .site::before { width: 120px; right: -8%; }
+      .practical::before { width: 100px; left: -10%; }
+      .gallery::before { width: 135px; right: -10%; }
     }
 
   </style>
@@ -2646,7 +2909,7 @@
           </div>
         </div>
 
-        <a class='button-link reveal' href='https://www.booking.com' target='_blank' rel='noopener noreferrer' data-i18n='bookingButton' style='margin-top: 1.5rem;'>Check availability</a>
+        <a class='button-link reveal' href='https://www.booking.com/hotel/no/vikaneset-havhotell-kristiansund1.html' target='_blank' rel='noopener noreferrer' data-i18n='bookingButton' style='margin-top: 1.5rem;'>Check availability</a>
       </div>
     </section>
 
@@ -2663,84 +2926,50 @@
         </div>
       </div>
 
-      <div class='site__items'>
-        <article class='site__item reveal' id='restaurant'>
-          <div class='site__img mini-carousel mini-carousel--full'>
-            <div class='mini-carousel__viewport'>
-              <div class='mini-carousel__track'>
-                <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-01.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga interior with timber trusses and bay windows' loading='lazy' style='object-position: center 35%;'></figure>
-                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='restaurant-klippfiskbrygga-02.jpg'><img src='assets/images/gallery3.jpg' alt='Temporary Klippfiskbrygga photo' loading='lazy'></figure>
-                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='restaurant-klippfiskbrygga-03.jpg'><img src='assets/images/gallery4.jpg' alt='Temporary Klippfiskbrygga photo' loading='lazy'></figure>
-              </div>
-            </div>
-            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
-            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
-          </div>
-          <div class='site__copy wrap'>
-            <h3 class='site__item-title'>Klippfiskbrygga</h3>
-            <p class='site__body' data-i18n='site1Body'>
-              Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.
-            </p>
+      <div class='site__features wrap'>
+        <article class='site__feature reveal' id='restaurant'>
+          <figure class='site__feature-media' data-photo-slot='restaurant-klippfiskbrygga-01.jpg'>
+            <img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga at Vikaneset' loading='lazy'>
+          </figure>
+          <div class='site__feature-copy'>
+            <span class='site__feature-number'>01</span>
+            <h3 class='site__feature-title'>Klippfiskbrygga</h3>
+            <p class='site__feature-body' data-i18n='site1Body'>Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.</p>
+            <a class='site__feature-action' href='https://lokalkokken.no/' target='_blank' rel='noopener noreferrer' data-i18n='site1LinkText'>Visit Lokalkokken</a>
           </div>
         </article>
 
-        <article class='site__item site__item--alt reveal' id='sauna'>
-          <div class='site__img mini-carousel mini-carousel--full'>
-            <div class='mini-carousel__viewport'>
-              <div class='mini-carousel__track'>
-                <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-01.jpg'><img src='assets/images/sauna.jpg' alt='Sauna building by the sandy beach at Vikaneset' loading='lazy' style='object-position: center 50%;'></figure>
-                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='sauna-strand-02.jpg'><img src='assets/images/gallery7.jpg' alt='Temporary sauna and beach photo' loading='lazy'></figure>
-                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='sauna-strand-03.jpg'><img src='assets/images/gallery8.jpg' alt='Temporary sauna and beach photo' loading='lazy'></figure>
-              </div>
-            </div>
-            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
-            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
-          </div>
-          <div class='site__copy wrap'>
-            <h3 class='site__item-title' data-i18n='site4Title'>Sauna and beach</h3>
-            <p class='site__body' data-i18n='site4Body'>
-              Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna's warmth and cool off in the fresh sea water.
-            </p>
+        <article class='site__feature site__feature--reverse reveal' id='sauna'>
+          <figure class='site__feature-media' data-photo-slot='sauna-strand-01.jpg'>
+            <img src='assets/images/sauna.jpg' alt='Sauna and sandy beach at Vikaneset' loading='lazy'>
+          </figure>
+          <div class='site__feature-copy'>
+            <span class='site__feature-number'>02</span>
+            <h3 class='site__feature-title' data-i18n='site4Title'>Sauna and beach</h3>
+            <p class='site__feature-body' data-i18n='site4Body'>Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna's warmth and cool off in the fresh sea water.</p>
+            <a class='site__feature-action' href='mailto:anette@vikaneset.com?subject=Sauna%20reservation%20at%20Vikaneset' data-i18n='site4LinkText'>Reserve the sauna</a>
           </div>
         </article>
 
-        <article class='site__item reveal'>
-          <div class='site__img mini-carousel mini-carousel--full'>
-            <div class='mini-carousel__viewport'>
-              <div class='mini-carousel__track'>
-                <figure class='mini-carousel__slide' data-photo-slot='havn-01.jpg'><img src='assets/images/harbour.jpg' alt='Harbour view with buildings and waterfront at Vikaneset' loading='lazy' style='object-position: 32% 45%;'></figure>
-                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='havn-02.jpg'><img src='assets/images/gallery5.jpg' alt='Temporary harbour photo' loading='lazy'></figure>
-                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='havn-03.jpg'><img src='assets/images/gallery6.jpg' alt='Temporary harbour photo' loading='lazy'></figure>
-              </div>
-            </div>
-            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
-            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
-          </div>
-          <div class='site__copy wrap'>
-            <h3 class='site__item-title' data-i18n='site2Title'>The harbour</h3>
-            <p class='site__body' data-i18n='site2Body'>
-              Vikaneset has its own harbour with berths for visiting boats. Kayaks and canoes are available to rent here.
-            </p>
+        <article class='site__feature reveal'>
+          <figure class='site__feature-media' data-photo-slot='havn-01.jpg'>
+            <img src='assets/images/harbour.jpg' alt='The harbour at Vikaneset' loading='lazy'>
+          </figure>
+          <div class='site__feature-copy'>
+            <span class='site__feature-number'>03</span>
+            <h3 class='site__feature-title' data-i18n='site2Title'>The harbour</h3>
+            <p class='site__feature-body' data-i18n='site2Body'>Vikaneset has its own harbour with berths for visiting boats. Kayaks and canoes are available to rent here.</p>
           </div>
         </article>
 
-        <article class='site__item site__item--alt reveal'>
-          <div class='site__img mini-carousel mini-carousel--full'>
-            <div class='mini-carousel__viewport'>
-              <div class='mini-carousel__track'>
-                <figure class='mini-carousel__slide' data-photo-slot='amfi-01.jpg'><img src='assets/images/amphitheatre.jpg' alt='Amphitheatre at Vikaneset' loading='lazy' style='object-position: 36% 70%;'></figure>
-                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='amfi-02.jpg'><img src='assets/images/gallery1.jpg' alt='Temporary amphitheatre photo' loading='lazy'></figure>
-                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='amfi-03.jpg'><img src='assets/images/gallery3.jpg' alt='Temporary amphitheatre photo' loading='lazy'></figure>
-              </div>
-            </div>
-            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
-            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
-          </div>
-          <div class='site__copy wrap'>
-            <h3 class='site__item-title'>Amfi</h3>
-            <p class='site__body' data-i18n='site3Body'>
-              Vikaneset has an amphitheatre with 1,500 seats. It was completed in 2008, when it hosted the world premiere of the &laquo;klippfisk opera&raquo; Donna Bacalao, staged by the Opera in Kristiansund.
-            </p>
+        <article class='site__feature site__feature--reverse reveal'>
+          <figure class='site__feature-media' data-photo-slot='amfi-01.jpg'>
+            <img src='assets/images/amphitheatre.jpg' alt='The amphitheatre at Vikaneset' loading='lazy'>
+          </figure>
+          <div class='site__feature-copy'>
+            <span class='site__feature-number'>04</span>
+            <h3 class='site__feature-title'>Amfi</h3>
+            <p class='site__feature-body' data-i18n='site3Body'>Vikaneset has an amphitheatre with 1,500 seats. It was completed in 2008, when it hosted the world premiere of the &laquo;klippfisk opera&raquo; Donna Bacalao, staged by the Opera in Kristiansund.</p>
           </div>
         </article>
       </div>
