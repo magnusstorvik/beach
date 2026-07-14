@@ -2773,6 +2773,93 @@
       .gallery::before { width: 135px; right: -10%; }
     }
 
+    /* Unified translucent controls and fine brass detail */
+    .mini-carousel__btn,
+    .gallery__btn {
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(9,31,42,0.5);
+      color: rgba(255,255,255,0.92);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        inset 0 -1px 0 rgba(161,132,83,0.18),
+        0 10px 28px rgba(4,18,25,0.16);
+      backdrop-filter: blur(16px) saturate(135%);
+      -webkit-backdrop-filter: blur(16px) saturate(135%);
+    }
+
+    .mini-carousel__btn {
+      border-radius: 10px;
+    }
+
+    .gallery__btn {
+      border-radius: 50%;
+      background: rgba(225,240,247,0.16);
+    }
+
+    .mini-carousel__btn:hover,
+    .gallery__btn:hover {
+      border-color: rgba(194,163,104,0.58);
+      background: rgba(18,55,70,0.68);
+      color: #fff;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.25),
+        0 12px 30px rgba(4,18,25,0.2),
+        0 0 0 1px rgba(161,132,83,0.08);
+      transform: translateY(-50%) scale(1.03);
+    }
+
+    .button-link,
+    .form__btn {
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(22,62,79,0.88), rgba(9,31,42,0.94));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.16),
+        inset 0 -1px 0 rgba(161,132,83,0.24),
+        0 12px 28px rgba(9,31,42,0.14);
+      backdrop-filter: blur(14px) saturate(125%);
+      -webkit-backdrop-filter: blur(14px) saturate(125%);
+    }
+
+    .button-link:hover,
+    .form__btn:hover {
+      border-color: rgba(194,163,104,0.5);
+      background: linear-gradient(135deg, rgba(31,79,98,0.94), rgba(13,43,56,0.98));
+      transform: translateY(-1px);
+    }
+
+    .unit__meta,
+    .site__feature-number,
+    .gallery__status {
+      color: #a98b57;
+    }
+
+    .site__header {
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.11),
+        inset 3px 0 0 rgba(161,132,83,0.38),
+        0 22px 60px rgba(9,31,42,0.14);
+    }
+
+    .intro__aside {
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.15),
+        inset 2px 0 0 rgba(161,132,83,0.32),
+        0 18px 48px rgba(0,0,0,0.1);
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: rgba(181,148,88,0.75);
+      box-shadow: 0 0 0 3px rgba(161,132,83,0.13);
+    }
+
+    @media (max-width: 760px) {
+      .mini-carousel__btn,
+      .button-link,
+      .form__btn { border-radius: 8px; }
+    }
+
   </style>
 </head>
 <body>
@@ -2935,7 +3022,7 @@
             <span class='site__feature-number'>01</span>
             <h3 class='site__feature-title'>Klippfiskbrygga</h3>
             <p class='site__feature-body' data-i18n='site1Body'>Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.</p>
-            <a class='site__feature-action' href='https://lokalkokken.no/' target='_blank' rel='noopener noreferrer' data-i18n='site1LinkText'>Visit Lokalkokken</a>
+            <a class='site__feature-action' href='https://www.google.com/search?q=Lokalkokken+Vikaneset+Kristiansund' target='_blank' rel='noopener noreferrer' data-i18n='site1LinkText'>Find Lokalkokken</a>
           </div>
         </article>
 
@@ -2947,7 +3034,7 @@
             <span class='site__feature-number'>02</span>
             <h3 class='site__feature-title' data-i18n='site4Title'>Sauna and beach</h3>
             <p class='site__feature-body' data-i18n='site4Body'>Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna's warmth and cool off in the fresh sea water.</p>
-            <a class='site__feature-action' href='mailto:anette@vikaneset.com?subject=Sauna%20reservation%20at%20Vikaneset' data-i18n='site4LinkText'>Reserve the sauna</a>
+            <a class='site__feature-action' href='https://www.google.com/search?q=Vikaneset+sauna+booking+Kristiansund' target='_blank' rel='noopener noreferrer' data-i18n='site4LinkText'>Find sauna booking</a>
           </div>
         </article>
 
@@ -3395,7 +3482,7 @@
           siteIntro2: 'Today the old klippfisk warehouse houses a restaurant and function and course rooms, and the property has 16 apartments let to both holiday guests and permanent residents. Vikaneset has its own sauna and sandy beach, berths for visiting boats and a deep water quay.',
           site1Body: 'Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.',
           site1Detail: '1,000 m² · Bar, restaurant and function rooms',
-          site1LinkText: 'Visit Lokalkokken',
+          site1LinkText: 'Find Lokalkokken',
           site2Title: 'The harbour',
           site2Body: 'Vikaneset has its own harbour with berths for visiting boats. Kayaks and canoes are available to rent here.',
           site2Detail: 'Watch for fish and crabs in the clear water',
@@ -3403,7 +3490,7 @@
           site3Detail: '1,500 seats · Completed 2008',
           site4Title: 'Sauna and beach',
           site4Body: 'Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna\'s warmth and cool off in the fresh sea water.',
-          site4LinkText: 'Reserve the sauna',
+          site4LinkText: 'Find sauna booking',
 
           practicalTitle: 'Practical',
           locationTitle: 'Location',
@@ -3479,7 +3566,7 @@
           siteIntro2: 'I dag er det restaurant, selskaps- og kurslokaler i den gamle klippfiskbrygga. I tillegg er det 16 leiligheter som leies ut både til feriegjester og til fastboende. På Vikaneset har vi egen sauna og sandstrand. Vi har bryggeplass for tilreisende båter og dypvannskai.',
           site1Body: 'Brygge fra rundt år 1900, restaurert rundt år 2006–2009. Den består av ca 1.000 kvm med bar, restaurant og lokaler til selskaper og kurs. Restauranten drives av Lokalkokken.',
           site1Detail: '1.000 m² · Bar, restaurant og selskapslokaler',
-          site1LinkText: 'Besøk Lokalkokken',
+          site1LinkText: 'Finn Lokalkokken',
           site2Title: 'Havna',
           site2Body: 'Vikaneset har egen havn med bryggeplass til besøkende. Her kan du leie kano og kajakk.',
           site2Detail: 'Se etter fisk og krabbe i det klare vannet',
@@ -3487,7 +3574,7 @@
           site3Detail: '1 500 sitteplasser · Ferdigstilt 2008',
           site4Title: 'Sauna og strand',
           site4Body: 'Vikaneset har sauna som ligger rett ved sandstranden vår. Her kan man nyte saunaens varme og boltre seg i det friske sjøvannet.',
-          site4LinkText: 'Reserver saunaen',
+          site4LinkText: 'Finn saunareservasjon',
 
           practicalTitle: 'Praktisk',
           locationTitle: 'Beliggenhet',
