@@ -3618,6 +3618,121 @@
       }
     }
 
+    /* Tonal depth, wave wallpaper and simplified booking icon */
+    :root {
+      --wave-wallpaper-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='360' viewBox='0 0 560 360'%3E%3Cg fill='none' stroke='%23102a38' stroke-opacity='.032' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M-18 72c34-29 68-27 101 5s68 31 103-2'/%3E%3Cpath d='M328 43c22-18 44-16 67 4s47 21 72 0' transform='rotate(8 398 52)'/%3E%3Cpath d='M72 244c43-35 87-33 130 5s84 37 126 2' transform='rotate(-7 200 250)'/%3E%3Cpath d='M402 301c19-15 39-14 58 2s39 17 59 1' transform='rotate(13 460 306)'/%3E%3C/g%3E%3C/svg%3E");
+      --wave-wallpaper-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='360' viewBox='0 0 560 360'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.038' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M-18 72c34-29 68-27 101 5s68 31 103-2'/%3E%3Cpath d='M328 43c22-18 44-16 67 4s47 21 72 0' transform='rotate(8 398 52)'/%3E%3Cpath d='M72 244c43-35 87-33 130 5s84 37 126 2' transform='rotate(-7 200 250)'/%3E%3Cpath d='M402 301c19-15 39-14 58 2s39 17 59 1' transform='rotate(13 460 306)'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .accommodation {
+      background-image:
+        var(--wave-wallpaper-dark),
+        radial-gradient(ellipse at 8% 18%, rgba(16,42,56,0.065), transparent 42%),
+        radial-gradient(ellipse at 92% 82%, rgba(153,119,64,0.045), transparent 38%),
+        linear-gradient(180deg, #f2f1ec, #ecece6);
+      background-size: 560px 360px, 100% 100%, 100% 100%, 100% 100%;
+    }
+
+    .site {
+      background-image:
+        var(--wave-wallpaper-dark),
+        radial-gradient(ellipse at 88% 14%, rgba(16,42,56,0.055), transparent 40%),
+        radial-gradient(ellipse at 12% 76%, rgba(153,119,64,0.04), transparent 42%);
+      background-color: #f4f3ee;
+      background-size: 560px 360px, 100% 100%, 100% 100%;
+    }
+
+    .intro,
+    .practical,
+    .contact,
+    .footer {
+      background-image:
+        var(--wave-wallpaper-light),
+        radial-gradient(ellipse at 10% 12%, rgba(255,255,255,0.055), transparent 37%),
+        radial-gradient(ellipse at 88% 84%, rgba(0,0,0,0.17), transparent 46%);
+      background-size: 560px 360px, 100% 100%, 100% 100%;
+    }
+
+    .intro { background-color: #19343a; }
+    .practical { background-color: #0d2b39; }
+    .contact, .footer { background-color: #091f2a; }
+
+    .gallery {
+      background-image:
+        var(--wave-wallpaper-dark),
+        radial-gradient(ellipse at 90% 10%, rgba(65,103,115,0.085), transparent 38%),
+        radial-gradient(ellipse at 7% 88%, rgba(154,122,67,0.055), transparent 42%),
+        linear-gradient(145deg, #e3e9e7, #f0eee8);
+      background-size: 560px 360px, 100% 100%, 100% 100%, 100% 100%;
+    }
+
+    .information {
+      background-image:
+        var(--wave-wallpaper-dark),
+        radial-gradient(ellipse at 12% 18%, rgba(16,42,56,0.055), transparent 39%),
+        radial-gradient(ellipse at 90% 84%, rgba(154,122,67,0.05), transparent 42%),
+        linear-gradient(145deg, #e9e6de, #e2e0d8);
+      background-size: 560px 360px, 100% 100%, 100% 100%, 100% 100%;
+    }
+
+    .unit,
+    .unit:nth-child(even),
+    .site__feature,
+    .site__feature--reverse,
+    .gallery__carousel,
+    .card--film,
+    .practical__grid > div:first-child,
+    .practical__grid > div:last-child,
+    .contact__details,
+    .contact .form {
+      box-shadow: none;
+    }
+
+    .unit,
+    .site__feature {
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 48%);
+    }
+
+    .gallery__viewport,
+    .card--film video {
+      box-shadow: inset 18px 0 45px -38px rgba(0,0,0,0.42), inset -12px -8px 42px -36px rgba(0,0,0,0.36);
+    }
+
+    .booking-action__icon {
+      width: 22px;
+      height: 28px;
+      flex-basis: 22px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .booking-action__icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    @keyframes booking-icon-breathe {
+      0%, 78%, 100% { opacity: 0.78; transform: scale(1); }
+      88% { opacity: 1; transform: scale(1.045); }
+    }
+
+    @media (max-width: 760px) {
+      .accommodation,
+      .site,
+      .intro,
+      .practical,
+      .gallery,
+      .information,
+      .contact,
+      .footer {
+        background-size: 430px 276px, 100% 100%, 100% 100%, 100% 100%;
+      }
+    }
+
   </style>
 </head>
 <body>
