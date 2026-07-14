@@ -29,6 +29,10 @@
       --timber: #7E7B74;
       --brass: #9A7A43;
       --brass-soft: rgba(154, 122, 67, 0.62);
+      --glass-light: rgba(255, 255, 255, 0.58);
+      --glass-dark: rgba(9, 29, 40, 0.58);
+      --glass-line: rgba(255, 255, 255, 0.38);
+      --glass-blur: blur(22px) saturate(135%);
       --line: rgba(26, 58, 74, 0.10);
       --line-soft: rgba(26, 58, 74, 0.07);
       --shadow: 0 18px 40px rgba(14, 36, 48, 0.08);
@@ -2030,6 +2034,216 @@
       }
     }
 
+    /* Responsive glass composition */
+    .nav.scrolled {
+      background: rgba(9, 29, 40, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 12px 34px rgba(4, 17, 24, 0.14);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+    }
+
+    .site__item {
+      min-width: 0;
+      background: transparent;
+    }
+
+    .site__img.mini-carousel--full,
+    .site__img.mini-carousel--full .mini-carousel__viewport,
+    .site__img.mini-carousel--full .mini-carousel__track,
+    .site__img.mini-carousel--full .mini-carousel__slide,
+    .site__img.mini-carousel--full .mini-carousel__slide img {
+      height: auto;
+    }
+
+    .site__img.mini-carousel--full .mini-carousel__viewport,
+    .site__img.mini-carousel--full .mini-carousel__track,
+    .site__img.mini-carousel--full .mini-carousel__slide {
+      aspect-ratio: 4 / 3;
+    }
+
+    .site__img.mini-carousel--full .mini-carousel__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .site__copy,
+    .unit__text,
+    .practical__grid > div,
+    .card,
+    .contact__details,
+    .form {
+      border: 1px solid rgba(255, 255, 255, 0.44);
+      background: var(--glass-light);
+      box-shadow: 0 18px 50px rgba(14, 36, 48, 0.08), inset 0 1px 0 rgba(255,255,255,0.55);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+    }
+
+    .site__copy {
+      position: relative;
+      z-index: 3;
+      width: calc(100% - 1.5rem);
+      margin: -2.2rem auto 0;
+      padding: 1.35rem 1.4rem 1.5rem;
+      border-radius: 18px;
+    }
+
+    .unit {
+      align-items: stretch;
+      border-bottom: 0;
+    }
+
+    .unit__text {
+      justify-content: center;
+      padding: 1.35rem 1.5rem;
+      border-radius: 18px;
+    }
+
+    .practical__grid > div {
+      padding: clamp(1.4rem, 3vw, 2rem);
+      border-color: rgba(255, 255, 255, 0.15);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.075);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 24px 60px rgba(0,0,0,0.12);
+    }
+
+    .contact__details,
+    .form {
+      padding: clamp(1.4rem, 3vw, 2rem);
+      border-color: rgba(255,255,255,0.15);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.075);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 24px 60px rgba(0,0,0,0.12);
+    }
+
+    .field input,
+    .field textarea {
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.9);
+      border-radius: 12px;
+    }
+
+    .gallery {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 15%, rgba(111,168,206,0.22), transparent 34%),
+        radial-gradient(circle at 86% 82%, rgba(154,122,67,0.14), transparent 32%),
+        linear-gradient(145deg, #102d3d, #071c27 72%);
+      color: #fff;
+    }
+
+    .gallery .section-title { color: #fff; }
+    .gallery .section-intro { color: rgba(255,255,255,0.68); }
+    .gallery .section-eyebrow { color: #9bc1d8; }
+
+    .gallery__carousel {
+      max-width: 1040px;
+      padding: clamp(0.55rem, 1.5vw, 0.9rem);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 28px;
+      background: rgba(255,255,255,0.09);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.18);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+    }
+
+    .gallery__viewport {
+      height: auto;
+      aspect-ratio: 16 / 10;
+      border-radius: 21px;
+      background: #071923;
+    }
+
+    .gallery__slide img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: cover;
+    }
+
+    .gallery__carousel::after {
+      content: '';
+      position: absolute;
+      inset: clamp(0.55rem, 1.5vw, 0.9rem);
+      z-index: 1;
+      border-radius: 21px;
+      background: linear-gradient(to bottom, transparent 58%, rgba(3,14,20,0.52));
+      pointer-events: none;
+    }
+
+    .gallery__btn {
+      z-index: 3;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      background: rgba(225,240,247,0.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 8px 24px rgba(0,0,0,0.18);
+      backdrop-filter: blur(16px) saturate(140%);
+    }
+
+    .gallery__status {
+      position: absolute;
+      right: 2rem;
+      bottom: 1.65rem;
+      z-index: 3;
+      color: rgba(255,255,255,0.82);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+    }
+
+    @media (max-width: 760px) {
+      :root { --gutter: 1.05rem; }
+
+      .nav { padding-top: 0.8rem; padding-bottom: 0.8rem; }
+      .nav__logo { width: 52px; height: 32px; }
+
+      .hero { min-height: 78svh; }
+      .hero__content { padding: 6rem var(--gutter) 2.2rem; }
+      .hero__name { font-size: clamp(3.8rem, 21vw, 6.5rem); }
+
+      .intro { padding-top: 2.25rem; }
+      .intro__text { padding-bottom: 2.5rem; }
+      .intro__lead { font-size: clamp(1.65rem, 8vw, 2.25rem); }
+      .intro__aside { font-size: 1rem; margin: 0; }
+      .aerial { height: 56vw; min-height: 250px; }
+
+      .accommodation,
+      .site,
+      .practical,
+      .gallery,
+      .information,
+      .contact { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+
+      .unit { padding: 0 0 1.5rem; }
+      .unit__media .mini-carousel__slide img { height: auto; aspect-ratio: 4 / 3; }
+      .unit__text { margin-top: -1.15rem; width: calc(100% - 1rem); align-self: center; }
+
+      .site__header { padding: 1.5rem 1.25rem 1.7rem; border-radius: 20px; }
+      .site__items { gap: 2.8rem; }
+      .site__copy { width: calc(100% - 0.8rem); margin-top: -1.6rem; padding: 1.2rem; }
+      .site__body { font-size: 0.92rem; line-height: 1.65; }
+      .site__item-title { font-size: 1.35rem; }
+      .site__img.mini-carousel--full .mini-carousel__btn { width: 40px; height: 40px; }
+
+      .practical__grid { gap: 1rem; }
+      .dl { grid-template-columns: 1fr; gap: 0.25rem; }
+      .dl dd { margin-bottom: 0.85rem; font-size: 0.9rem; }
+
+      .gallery__header { margin-bottom: 1.75rem; }
+      .gallery__carousel { width: 100%; padding: 0.4rem; border-radius: 22px; }
+      .gallery__viewport { aspect-ratio: 4 / 5; border-radius: 17px; }
+      .gallery__carousel::after { inset: 0.4rem; border-radius: 17px; }
+      .gallery__btn { width: 42px; height: 42px; }
+      .gallery__btn--prev { left: 0.8rem; }
+      .gallery__btn--next { right: 0.8rem; }
+      .gallery__status { right: 1.3rem; bottom: 1.1rem; }
+
+      .contact__grid { gap: 1rem; }
+      .contact__details, .form { padding: 1.25rem; border-radius: 20px; }
+    }
+
   </style>
 </head>
 <body>
@@ -2177,7 +2391,7 @@
           <h2 class='section-title' id='site-title' data-i18n='siteTitle'>The site</h2>
           <div class='site__intro-text'>
             <p class='section-intro' data-i18n='siteIntro1'>
-              Once a centre for receiving and drying klippfisk and producing cod-liver oil, Vikaneset is now a place for coastal stays, gatherings and experiences by the sea.
+              Vikaneset is a historic coastal gem. Klippfisk was received, produced and dried here, and the site was also used for cod-liver oil production.
             </p>
           </div>
         </div>
@@ -2332,7 +2546,7 @@
     <section class='information' id='information' aria-labelledby='information-title'>
       <div class='wrap'>
         <div class='information__header reveal'>
-          <span class='section-eyebrow'>04</span>
+          <span class='section-eyebrow'>05</span>
           <h2 class='section-title' id='information-title' data-i18n='informationTitle'>Film</h2>
           <p class='section-intro' data-i18n='informationIntro'>
             A short introduction to Vikaneset and its coastal setting.
@@ -2361,7 +2575,7 @@
     <section class='contact' id='contact' aria-labelledby='contact-title'>
       <div class='wrap'>
         <div class='contact__header reveal'>
-          <span class='section-eyebrow'>05</span>
+          <span class='section-eyebrow'>06</span>
           <h2 class='section-title' id='contact-title' data-i18n='contactTitle'>Contact</h2>
         </div>
 
@@ -2409,7 +2623,7 @@
     <section class='gallery' id='gallery' aria-labelledby='gallery-title'>
       <div class='wrap'>
         <div class='gallery__header reveal'>
-          <span class='section-eyebrow'>06</span>
+          <span class='section-eyebrow'>04</span>
           <h2 class='section-title' id='gallery-title' data-i18n='galleryTitle'>Gallery</h2>
           <p class='section-intro' data-i18n='galleryIntro'>
             Additional views from across the property.
@@ -2439,6 +2653,7 @@
           </div>
 
           <button class='gallery__btn gallery__btn--next' id='galleryNext' aria-label='Next image'>&rarr;</button>
+          <p class='gallery__status' id='galleryStatus' aria-live='polite'>01 / 14</p>
         </div>
       </div>
     </section>
@@ -2577,13 +2792,20 @@
       var track = document.getElementById('galleryTrack');
       var prev = document.getElementById('galleryPrev');
       var next = document.getElementById('galleryNext');
+      var viewport = document.getElementById('galleryViewport');
+      var status = document.getElementById('galleryStatus');
       if (!track || !prev || !next) return;
 
       var slides = Array.prototype.slice.call(track.children);
       var index = 0;
+      var timer = null;
+      var touchStart = 0;
 
       function update() {
         track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        if (status) {
+          status.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+        }
       }
 
       function moveNext() {
@@ -2596,9 +2818,36 @@
         update();
       }
 
-      prev.addEventListener('click', movePrev);
-      next.addEventListener('click', moveNext);
+      function stopAutoPlay() {
+        if (timer) window.clearInterval(timer);
+        timer = null;
+      }
+
+      function startAutoPlay() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        stopAutoPlay();
+        timer = window.setInterval(moveNext, 5500);
+      }
+
+      prev.addEventListener('click', function () { movePrev(); startAutoPlay(); });
+      next.addEventListener('click', function () { moveNext(); startAutoPlay(); });
+
+      if (viewport) {
+        viewport.addEventListener('mouseenter', stopAutoPlay);
+        viewport.addEventListener('mouseleave', startAutoPlay);
+        viewport.addEventListener('touchstart', function (event) {
+          touchStart = event.changedTouches[0].clientX;
+          stopAutoPlay();
+        }, { passive: true });
+        viewport.addEventListener('touchend', function (event) {
+          var distance = event.changedTouches[0].clientX - touchStart;
+          if (Math.abs(distance) > 45) distance < 0 ? moveNext() : movePrev();
+          startAutoPlay();
+        }, { passive: true });
+      }
+
       update();
+      startAutoPlay();
     }());
 
     (function () {
@@ -2648,7 +2897,7 @@
           introLeadMain: '16 kilometres outside Kristiansund lies Vikaneset.',
           introLeadAccent: 'Idyllically placed by the sea, surrounded by lush nature.',
 
-          accommodationTitle: 'Book',
+          accommodationTitle: 'Stay',
           accommodationCount: '10 self catering units across two buildings',
           unit1Meta: '5 units · Waterfront',
           unit1Desc: 'Five self catering units by the water. Each unit has an open plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own balcony and terrace.',
@@ -2657,7 +2906,7 @@
           bookingButton: 'Check availability',
 
           siteTitle: 'The site',
-          siteIntro1: 'Once a centre for receiving and drying klippfisk and producing cod-liver oil, Vikaneset is now a place for coastal stays, gatherings and experiences by the sea.',
+          siteIntro1: 'Vikaneset is a historic coastal gem. Klippfisk was received, produced and dried here, and the site was also used for cod-liver oil production.',
           siteIntro2: 'Today the old klippfisk warehouse houses a restaurant and function and course rooms, and the property has 16 apartments let to both holiday guests and permanent residents. Vikaneset has its own sauna and sandy beach, berths for visiting boats and a deep water quay.',
           site1Body: 'Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.',
           site1Detail: '1,000 m² · Bar, restaurant and function rooms',
@@ -2732,7 +2981,7 @@
           introLeadMain: '16 kilometer utenfor Kristiansund ligger Vikaneset.',
           introLeadAccent: 'Idyllisk plassert ved havet og frodig natur omkring.',
 
-          accommodationTitle: 'Book',
+          accommodationTitle: 'Overnatting',
           accommodationCount: '10 selvhusholdsenheter fordelt på to bygg',
           unit1Meta: '5 enheter · Ved vannkanten',
           unit1Desc: 'Fem selvhusholdsenheter ved vannkanten. Hver enhet har kjøkken og stue i åpen løsning, bad og 2 soverom med sengeplass til 2 i hvert rom. Hvert sjøhus har balkong og terrasse.',
@@ -2741,7 +2990,7 @@
           bookingButton: 'Sjekk tilgjengelighet',
 
           siteTitle: 'Om stedet',
-          siteIntro1: 'Vikaneset var tidligere et senter for mottak og tørking av klippfisk og produksjon av tran. I dag er stedet tilrettelagt for kystnære opphold, sammenkomster og opplevelser ved sjøen.',
+          siteIntro1: 'Vikaneset er en historisk kystperle. Her ble det drevet klippfiskmottak, produksjon og tørking av klippfisk samt tranbrenneri.',
           siteIntro2: 'I dag er det restaurant, selskaps- og kurslokaler i den gamle klippfiskbrygga. I tillegg er det 16 leiligheter som leies ut både til feriegjester og til fastboende. På Vikaneset har vi egen sauna og sandstrand. Vi har bryggeplass for tilreisende båter og dypvannskai.',
           site1Body: 'Brygge fra rundt år 1900, restaurert rundt år 2006–2009. Den består av ca 1.000 kvm med bar, restaurant og lokaler til selskaper og kurs. Restauranten drives av Lokalkokken.',
           site1Detail: '1.000 m² · Bar, restaurant og selskapslokaler',
