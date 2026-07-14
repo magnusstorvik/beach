@@ -1967,16 +1967,72 @@
       }
     }
 
+    /* Final content hierarchy */
+    main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero { order: 1; }
+    .intro { order: 2; }
+    .accommodation { order: 3; }
+    .site { order: 4; }
+    .practical { order: 5; }
+    .gallery { order: 6; }
+    .information { order: 7; }
+    .contact { order: 8; }
+
+    .site__items {
+      width: min(calc(100% - (2 * var(--gutter))), var(--max));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 3.5rem);
+    }
+
+    .site__img {
+      width: 100%;
+      left: auto;
+      transform: none;
+      aspect-ratio: 4 / 3;
+    }
+
+    .site__copy,
+    .site__item--alt .site__copy {
+      width: 100%;
+      padding: 1.2rem 0 0;
+      align-items: flex-start;
+    }
+
+    .site__copy > *,
+    .site__item--alt .site__copy > * {
+      max-width: 29rem;
+      margin-left: 0;
+    }
+
+    .information__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .review-notice,
+    .placeholder-copy::after,
+    .placeholder-media::after {
+      display: none;
+    }
+
+    .placeholder-copy {
+      padding-top: 0;
+    }
+
+    @media (max-width: 760px) {
+      .site__items {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 <body>
-
-  <aside class='review-notice' aria-label='Development review notice'>
-    <div class='review-notice__inner'>
-      <strong>Review version</strong>
-      <span>Images and selected copy marked ‘Placeholder’ are temporary and will be replaced before launch.</span>
-    </div>
-  </aside>
 
   <nav class='nav' id='nav' aria-label='Main navigation'>
     <a href='#top' class='nav__brand' aria-label='Vikaneset home'>
@@ -1989,9 +2045,9 @@
 
     <div class='nav__menu'>
       <ul class='nav__links' role='list'>
-        <li><a href='#accommodation' data-i18n='navAccommodation'>Book</a></li>
-        <li><a href='#sauna' data-i18n='navSauna'>Sauna</a></li>
-        <li><a href='#contact' data-i18n='navContact'>Contact</a></li>
+        <li><a href='#accommodation' data-i18n='navAccommodation'>Stay</a></li>
+        <li><a href='#restaurant' data-i18n='navRestaurant'>Restaurant</a></li>
+        <li><a href='#sauna' data-i18n='navSauna'>Sauna &amp; beach</a></li>
       </ul>
 
       <div class='lang-switch' aria-label='Language switch'>
@@ -2007,9 +2063,9 @@
 
   <div class='nav__mobile' id='navMobile' role='dialog' aria-modal='true' aria-label='Navigation'>
     <button class='nav__mobile-close' id='navClose' aria-label='Close menu'>&#x2715;</button>
-    <a href='#accommodation' data-i18n='navAccommodation'>Book</a>
-    <a href='#sauna' data-i18n='navSauna'>Sauna</a>
-    <a href='#contact' data-i18n='navContact'>Contact</a>
+    <a href='#accommodation' data-i18n='navAccommodation'>Stay</a>
+    <a href='#restaurant' data-i18n='navRestaurant'>Restaurant</a>
+    <a href='#sauna' data-i18n='navSauna'>Sauna &amp; beach</a>
 
     <div class='nav__mobile-lang'>
       <button type='button' data-lang='en'>EN</button>
@@ -2028,9 +2084,6 @@
 
           <h1 class='hero__name'>Vikaneset</h1>
 
-          <p class='hero__note placeholder-copy' data-placeholder='Placeholder copy' data-i18n='heroNote'>
-            Vikaneset lies by the sea on Frei, with accommodation, historic buildings and space for stays, gatherings and access to the water.
-          </p>
         </div>
       </div>
 
@@ -2074,9 +2127,9 @@
             <div class='unit__media mini-carousel'>
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
-                  <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery1.jpg' alt='Placeholder photo, replace with a Sjøhus photo' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery3.jpg' alt='Placeholder photo, replace with a Sjøhus photo' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery5.jpg' alt='Placeholder photo, replace with a Sjøhus photo' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-01.jpg'><img src='assets/images/gallery1.jpg' alt='Temporary Sjøhus photo' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-02.jpg'><img src='assets/images/gallery3.jpg' alt='Temporary Sjøhus photo' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-03.jpg'><img src='assets/images/gallery5.jpg' alt='Temporary Sjøhus photo' loading='lazy'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
@@ -2095,9 +2148,9 @@
             <div class='unit__media mini-carousel'>
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
-                  <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery2.jpg' alt='Placeholder photo, replace with a Leiligheter photo' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery4.jpg' alt='Placeholder photo, replace with a Leiligheter photo' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery6.jpg' alt='Placeholder photo, replace with a Leiligheter photo' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-01.jpg'><img src='assets/images/gallery2.jpg' alt='Temporary apartment photo' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-02.jpg'><img src='assets/images/gallery4.jpg' alt='Temporary apartment photo' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-03.jpg'><img src='assets/images/gallery6.jpg' alt='Temporary apartment photo' loading='lazy'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
@@ -2124,23 +2177,20 @@
           <h2 class='section-title' id='site-title' data-i18n='siteTitle'>The site</h2>
           <div class='site__intro-text'>
             <p class='section-intro' data-i18n='siteIntro1'>
-              Vikaneset is a historic coastal gem. It was once used for klippfisk (dried cod) receiving, production and drying, along with a train oil refinery.
-            </p>
-            <p class='section-intro' data-i18n='siteIntro2'>
-              Today the old klippfisk warehouse houses a restaurant and function and course rooms, and the property has 16 apartments let to both holiday guests and permanent residents. Vikaneset has its own sauna and sandy beach, berths for visiting boats and a deep water quay.
+              Once a centre for receiving and drying klippfisk and producing cod-liver oil, Vikaneset is now a place for coastal stays, gatherings and experiences by the sea.
             </p>
           </div>
         </div>
       </div>
 
       <div class='site__items'>
-        <article class='site__item reveal'>
+        <article class='site__item reveal' id='restaurant'>
           <div class='site__img mini-carousel mini-carousel--full'>
             <div class='mini-carousel__viewport'>
               <div class='mini-carousel__track'>
-                <figure class='mini-carousel__slide'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga interior with timber trusses and bay windows' loading='lazy' style='object-position: center 35%;'></figure>
-                <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery3.jpg' alt='Placeholder photo, replace with a Klippfiskbrygga photo' loading='lazy'></figure>
-                <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery4.jpg' alt='Placeholder photo, replace with a Klippfiskbrygga photo' loading='lazy'></figure>
+                <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-01.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga interior with timber trusses and bay windows' loading='lazy' style='object-position: center 35%;'></figure>
+                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='restaurant-klippfiskbrygga-02.jpg'><img src='assets/images/gallery3.jpg' alt='Temporary Klippfiskbrygga photo' loading='lazy'></figure>
+                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='restaurant-klippfiskbrygga-03.jpg'><img src='assets/images/gallery4.jpg' alt='Temporary Klippfiskbrygga photo' loading='lazy'></figure>
               </div>
             </div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
@@ -2156,10 +2206,6 @@
             <p class='site__body' data-i18n='site1Body'>
               Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.
             </p>
-            <p class='site__detail' data-i18n='site1Detail'>1,000 m² · Bar, restaurant and function rooms</p>
-            <div class='site__link-wrap'>
-              <a class='site__link' href='#' data-i18n='site1LinkText'>Visit Lokalkokken</a>
-            </div>
           </div>
         </article>
 
@@ -2167,9 +2213,9 @@
           <div class='site__img mini-carousel mini-carousel--full'>
             <div class='mini-carousel__viewport'>
               <div class='mini-carousel__track'>
-                <figure class='mini-carousel__slide'><img src='assets/images/sauna.jpg' alt='Sauna building by the sandy beach at Vikaneset' loading='lazy' style='object-position: center 50%;'></figure>
-                <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery7.jpg' alt='Placeholder photo, replace with a beach and sauna photo' loading='lazy'></figure>
-                <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery8.jpg' alt='Placeholder photo, replace with a beach and sauna photo' loading='lazy'></figure>
+                <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-01.jpg'><img src='assets/images/sauna.jpg' alt='Sauna building by the sandy beach at Vikaneset' loading='lazy' style='object-position: center 50%;'></figure>
+                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='sauna-strand-02.jpg'><img src='assets/images/gallery7.jpg' alt='Temporary sauna and beach photo' loading='lazy'></figure>
+                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='sauna-strand-03.jpg'><img src='assets/images/gallery8.jpg' alt='Temporary sauna and beach photo' loading='lazy'></figure>
               </div>
             </div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
@@ -2185,7 +2231,6 @@
             <p class='site__body' data-i18n='site4Body'>
               Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna's warmth and cool off in the fresh sea water.
             </p>
-            <a class='site__link' href='#' data-i18n='site4LinkText'>Reserve the sauna</a>
           </div>
         </article>
 
@@ -2193,20 +2238,19 @@
           <div class='site__img mini-carousel mini-carousel--full'>
             <div class='mini-carousel__viewport'>
               <div class='mini-carousel__track'>
-                <figure class='mini-carousel__slide'><img src='assets/images/harbour.jpg' alt='Harbour view with buildings and waterfront at Vikaneset' loading='lazy' style='object-position: 32% 45%;'></figure>
-                <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery5.jpg' alt='Placeholder photo, replace with a guest harbour photo' loading='lazy'></figure>
-                <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery6.jpg' alt='Placeholder photo, replace with a guest harbour photo' loading='lazy'></figure>
+                <figure class='mini-carousel__slide' data-photo-slot='havn-01.jpg'><img src='assets/images/harbour.jpg' alt='Harbour view with buildings and waterfront at Vikaneset' loading='lazy' style='object-position: 32% 45%;'></figure>
+                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='havn-02.jpg'><img src='assets/images/gallery5.jpg' alt='Temporary harbour photo' loading='lazy'></figure>
+                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='havn-03.jpg'><img src='assets/images/gallery6.jpg' alt='Temporary harbour photo' loading='lazy'></figure>
               </div>
             </div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
           </div>
           <div class='site__copy wrap'>
-            <h3 class='site__item-title' data-i18n='site2Title'>Guest harbour</h3>
+            <h3 class='site__item-title' data-i18n='site2Title'>The harbour</h3>
             <p class='site__body' data-i18n='site2Body'>
               Vikaneset has its own harbour with berths for visiting boats. Kayaks and canoes are available to rent here.
             </p>
-            <p class='site__detail' data-i18n='site2Detail'>Watch for fish and crabs in the clear water</p>
           </div>
         </article>
 
@@ -2214,9 +2258,9 @@
           <div class='site__img mini-carousel mini-carousel--full'>
             <div class='mini-carousel__viewport'>
               <div class='mini-carousel__track'>
-                <figure class='mini-carousel__slide'><img src='assets/images/amphitheatre.jpg' alt='Amphitheatre at Vikaneset' loading='lazy' style='object-position: 36% 70%;'></figure>
-                <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery1.jpg' alt='Placeholder photo, replace with an amphitheatre photo' loading='lazy'></figure>
-                <figure class='mini-carousel__slide placeholder-media'><img src='assets/images/gallery3.jpg' alt='Placeholder photo, replace with an amphitheatre photo' loading='lazy'></figure>
+                <figure class='mini-carousel__slide' data-photo-slot='amfi-01.jpg'><img src='assets/images/amphitheatre.jpg' alt='Amphitheatre at Vikaneset' loading='lazy' style='object-position: 36% 70%;'></figure>
+                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='amfi-02.jpg'><img src='assets/images/gallery1.jpg' alt='Temporary amphitheatre photo' loading='lazy'></figure>
+                <figure class='mini-carousel__slide placeholder-media' data-photo-slot='amfi-03.jpg'><img src='assets/images/gallery3.jpg' alt='Temporary amphitheatre photo' loading='lazy'></figure>
               </div>
             </div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
@@ -2227,7 +2271,6 @@
             <p class='site__body' data-i18n='site3Body'>
               Vikaneset has an amphitheatre with 1,500 seats. It was completed in 2008, when it hosted the world premiere of the &laquo;klippfisk opera&raquo; Donna Bacalao, staged by the Opera in Kristiansund.
             </p>
-            <p class='site__detail' data-i18n='site3Detail'>1,500 seats · Completed 2008</p>
           </div>
         </article>
       </div>
@@ -2290,27 +2333,13 @@
       <div class='wrap'>
         <div class='information__header reveal'>
           <span class='section-eyebrow'>04</span>
-          <h2 class='section-title' id='information-title' data-i18n='informationTitle'>Further information</h2>
+          <h2 class='section-title' id='information-title' data-i18n='informationTitle'>Film</h2>
           <p class='section-intro' data-i18n='informationIntro'>
-            Property documentation and a short film can be viewed below.
+            A short introduction to Vikaneset and its coastal setting.
           </p>
         </div>
 
         <div class='information__grid reveal'>
-          <div class='card'>
-            <div>
-              <h3 class='card__title' data-i18n='pdfTitle'>Download PDF</h3>
-              <p class='card__body' data-i18n='pdfBody'>
-                A short property overview with practical information, accommodation details and selected images.
-              </p>
-            </div>
-
-            <div>
-              <a class='button-link' href='assets/docs/vikaneset-prospectus.pdf' download data-i18n='pdfButton'>Download PDF</a>
-              <p class='card__meta' data-i18n='pdfMeta'>PDF document · Property overview</p>
-            </div>
-          </div>
-
           <div class='card'>
             <div>
               <h3 class='card__title' data-i18n='videoTitle'>Video</h3>
@@ -2392,20 +2421,20 @@
 
           <div class='gallery__viewport' id='galleryViewport'>
             <div class='gallery__track' id='galleryTrack'>
-              <figure class='gallery__slide'><img src='assets/images/gallery1.jpg' alt='Gallery view 1 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide'><img src='assets/images/gallery2.jpg' alt='Gallery view 2 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide'><img src='assets/images/gallery3.jpg' alt='Gallery view 3 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide'><img src='assets/images/gallery4.jpg' alt='Gallery view 4 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide'><img src='assets/images/gallery5.jpg' alt='Gallery view 5 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide'><img src='assets/images/gallery6.jpg' alt='Gallery view 6 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide'><img src='assets/images/gallery7.jpg' alt='Gallery view 7 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide'><img src='assets/images/gallery8.jpg' alt='Gallery view 8 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media'><img src='assets/images/hero.jpg' alt='Placeholder photo, replace with an additional gallery image' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media'><img src='assets/images/aerial.jpg' alt='Placeholder photo, replace with an additional gallery image' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media'><img src='assets/images/harbour.jpg' alt='Placeholder photo, replace with an additional gallery image' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media'><img src='assets/images/klippfiskbrygga.jpg' alt='Placeholder photo, replace with an additional gallery image' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media'><img src='assets/images/amphitheatre.jpg' alt='Placeholder photo, replace with an additional gallery image' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media'><img src='assets/images/sauna.jpg' alt='Placeholder photo, replace with an additional gallery image' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/gallery1.jpg' alt='Gallery view 1 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-02.jpg'><img src='assets/images/gallery2.jpg' alt='Gallery view 2 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-03.jpg'><img src='assets/images/gallery3.jpg' alt='Gallery view 3 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-04.jpg'><img src='assets/images/gallery4.jpg' alt='Gallery view 4 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-05.jpg'><img src='assets/images/gallery5.jpg' alt='Gallery view 5 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-06.jpg'><img src='assets/images/gallery6.jpg' alt='Gallery view 6 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery7.jpg' alt='Gallery view 7 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery8.jpg' alt='Gallery view 8 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-09.jpg'><img src='assets/images/hero.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-10.jpg'><img src='assets/images/aerial.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-13.jpg'><img src='assets/images/amphitheatre.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-14.jpg'><img src='assets/images/sauna.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
             </div>
           </div>
 
@@ -2442,7 +2471,7 @@
 
     (function () {
       var links = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));
-      var ids = ['accommodation', 'sauna', 'contact'];
+      var ids = ['accommodation', 'restaurant', 'sauna'];
       var sections = ids.map(function (id) {
         return document.getElementById(id);
       }).filter(Boolean);
@@ -2527,6 +2556,23 @@
       });
     }());
 
+    // A correctly named file in assets/images/carousels automatically replaces
+    // the temporary image currently shown in that carousel slot.
+    (function () {
+      document.querySelectorAll('[data-photo-slot]').forEach(function (slot) {
+        var image = slot.querySelector('img');
+        var filename = slot.getAttribute('data-photo-slot');
+        if (!image || !filename) return;
+
+        var replacement = new Image();
+        replacement.onload = function () {
+          image.src = replacement.src;
+          slot.classList.remove('placeholder-media');
+        };
+        replacement.src = 'assets/images/carousels/' + filename;
+      });
+    }());
+
     (function () {
       var track = document.getElementById('galleryTrack');
       var prev = document.getElementById('galleryPrev');
@@ -2590,8 +2636,9 @@
     (function () {
       var translations = {
         en: {
-          navAccommodation: 'Book',
-          navSauna: 'Sauna',
+          navAccommodation: 'Stay',
+          navRestaurant: 'Restaurant',
+          navSauna: 'Sauna & beach',
           navContact: 'Contact',
 
           heroGeo: 'Frei · Kristiansund · Norway',
@@ -2610,12 +2657,12 @@
           bookingButton: 'Check availability',
 
           siteTitle: 'The site',
-          siteIntro1: 'Vikaneset is a historic coastal gem. It was once used for klippfisk (dried cod) receiving, production and drying, along with a train oil refinery.',
+          siteIntro1: 'Once a centre for receiving and drying klippfisk and producing cod-liver oil, Vikaneset is now a place for coastal stays, gatherings and experiences by the sea.',
           siteIntro2: 'Today the old klippfisk warehouse houses a restaurant and function and course rooms, and the property has 16 apartments let to both holiday guests and permanent residents. Vikaneset has its own sauna and sandy beach, berths for visiting boats and a deep water quay.',
           site1Body: 'Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.',
           site1Detail: '1,000 m² · Bar, restaurant and function rooms',
           site1LinkText: 'Visit Lokalkokken',
-          site2Title: 'Guest harbour',
+          site2Title: 'The harbour',
           site2Body: 'Vikaneset has its own harbour with berths for visiting boats. Kayaks and canoes are available to rent here.',
           site2Detail: 'Watch for fish and crabs in the clear water',
           site3Body: 'Vikaneset has an amphitheatre with 1,500 seats. It was completed in 2008, when it hosted the world premiere of the «klippfisk opera» Donna Bacalao, staged by the Opera in Kristiansund.',
@@ -2651,8 +2698,8 @@
           galleryTitle: 'Gallery',
           galleryIntro: 'Additional views from across the property.',
 
-          informationTitle: 'Further information',
-          informationIntro: 'Property documentation and a short film can be viewed below.',
+          informationTitle: 'Film',
+          informationIntro: 'A short introduction to Vikaneset and its coastal setting.',
           pdfTitle: 'Download PDF',
           pdfBody: 'A short property overview with practical information and accommodation details.',
           pdfButton: 'Download PDF',
@@ -2673,8 +2720,9 @@
         },
 
         no: {
-          navAccommodation: 'Book',
-          navSauna: 'Sauna',
+          navAccommodation: 'Bo',
+          navRestaurant: 'Restaurant',
+          navSauna: 'Sauna og strand',
           navContact: 'Kontakt',
 
           heroGeo: 'Frei · Kristiansund · Norge',
@@ -2693,12 +2741,12 @@
           bookingButton: 'Sjekk tilgjengelighet',
 
           siteTitle: 'Om stedet',
-          siteIntro1: 'Vikaneset er et historisk kystperle. Her ble det drevet klippfiskmottak og produksjon og tørking av klippfisk samt tranbrenneri.',
+          siteIntro1: 'Vikaneset var tidligere et senter for mottak og tørking av klippfisk og produksjon av tran. I dag er stedet tilrettelagt for kystnære opphold, sammenkomster og opplevelser ved sjøen.',
           siteIntro2: 'I dag er det restaurant, selskaps- og kurslokaler i den gamle klippfiskbrygga. I tillegg er det 16 leiligheter som leies ut både til feriegjester og til fastboende. På Vikaneset har vi egen sauna og sandstrand. Vi har bryggeplass for tilreisende båter og dypvannskai.',
           site1Body: 'Brygge fra rundt år 1900, restaurert rundt år 2006–2009. Den består av ca 1.000 kvm med bar, restaurant og lokaler til selskaper og kurs. Restauranten drives av Lokalkokken.',
           site1Detail: '1.000 m² · Bar, restaurant og selskapslokaler',
           site1LinkText: 'Besøk Lokalkokken',
-          site2Title: 'Gjestehavn',
+          site2Title: 'Havna',
           site2Body: 'Vikaneset har egen havn med bryggeplass til besøkende. Her kan du leie kano og kajakk.',
           site2Detail: 'Se etter fisk og krabbe i det klare vannet',
           site3Body: 'Vikaneset har amfi med 1500 sitteplasser. Amfiet ble ferdigstilt i 2008. Da var det urpremiære på «klippfisk-operaen» Donna Bacalao i regi av Operaen i Kristiansund.',
@@ -2734,8 +2782,8 @@
           galleryTitle: 'Galleri',
           galleryIntro: 'Flere inntrykk fra eiendommen og omgivelsene.',
 
-          informationTitle: 'Mer informasjon',
-          informationIntro: 'Eiendomsdokumentasjon og en kort film kan sees nedenfor.',
+          informationTitle: 'Film',
+          informationIntro: 'En kort introduksjon til Vikaneset og omgivelsene ved sjøen.',
           pdfTitle: 'Last ned PDF',
           pdfBody: 'En kort oversikt over eiendommen med praktisk informasjon og overnatting.',
           pdfButton: 'Last ned PDF',
