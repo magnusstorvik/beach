@@ -8,7 +8,7 @@
 
   <link rel='preconnect' href='https://fonts.googleapis.com'>
   <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-  <link href='https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;display=swap' rel='stylesheet'>
 
   <style>
     :root {
@@ -254,7 +254,7 @@
     }
 
     .nav__links a.active {
-      color: var(--blue-bright);
+      color: #d1b47f;
       opacity: 1;
     }
 
@@ -1328,7 +1328,7 @@
 
     .footer__loc {
       font-size: 0.72rem;
-      color: rgba(240, 236, 229, 0.38);
+      color: rgba(240, 236, 229, 0.6);
       letter-spacing: 0.05em;
     }
 
@@ -1976,15 +1976,6 @@
       display: flex;
       flex-direction: column;
     }
-
-    .hero { order: 1; }
-    .intro { order: 2; }
-    .accommodation { order: 3; }
-    .site { order: 4; }
-    .practical { order: 5; }
-    .gallery { order: 6; }
-    .information { order: 7; }
-    .contact { order: 8; }
 
     .site__items {
       width: min(calc(100% - (2 * var(--gutter))), var(--max));
@@ -4269,12 +4260,12 @@
       </ul>
 
       <div class='lang-switch' aria-label='Language switch'>
-        <button class='lang-switch__btn is-active' type='button' data-lang='en'>EN</button>
-        <button class='lang-switch__btn' type='button' data-lang='no'>NO</button>
+        <button class='lang-switch__btn is-active' type='button' data-lang='en' aria-pressed='true'>EN</button>
+        <button class='lang-switch__btn' type='button' data-lang='no' aria-pressed='false'>NO</button>
       </div>
     </div>
 
-    <button class='nav__toggle' id='navToggle' aria-label='Open menu' aria-expanded='false'>
+    <button class='nav__toggle' id='navToggle' aria-label='Open menu' aria-expanded='false' aria-controls='navMobile'>
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -4286,8 +4277,8 @@
     <a href='#sauna' data-i18n='navSauna'>Sauna &amp; beach</a>
 
     <div class='nav__mobile-lang'>
-      <button type='button' data-lang='en'>EN</button>
-      <button type='button' data-lang='no'>NO</button>
+      <button type='button' data-lang='en' aria-pressed='true'>EN</button>
+      <button type='button' data-lang='no' aria-pressed='false'>NO</button>
     </div>
   </div>
 
@@ -4353,9 +4344,9 @@
             <div class='unit__media mini-carousel'>
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-01.jpg'><img src='assets/images/gallery1.jpg' alt='Temporary Sjøhus photo' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-02.jpg'><img src='assets/images/gallery3.jpg' alt='Temporary Sjøhus photo' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-03.jpg'><img src='assets/images/gallery5.jpg' alt='Temporary Sjøhus photo' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-01.jpg'><img src='assets/images/gallery1.jpg' alt='Sjøhus at Vikaneset' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-02.jpg'><img src='assets/images/gallery3.jpg' alt='Sjøhus at Vikaneset' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-03.jpg'><img src='assets/images/gallery5.jpg' alt='Sjøhus at Vikaneset' loading='lazy'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
@@ -4374,9 +4365,9 @@
             <div class='unit__media mini-carousel'>
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-01.jpg'><img src='assets/images/gallery2.jpg' alt='Temporary apartment photo' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-02.jpg'><img src='assets/images/gallery4.jpg' alt='Temporary apartment photo' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-03.jpg'><img src='assets/images/gallery6.jpg' alt='Temporary apartment photo' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-01.jpg'><img src='assets/images/gallery2.jpg' alt='Leiligheter at Vikaneset' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-02.jpg'><img src='assets/images/gallery4.jpg' alt='Leiligheter at Vikaneset' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-03.jpg'><img src='assets/images/gallery6.jpg' alt='Leiligheter at Vikaneset' loading='lazy'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
@@ -4549,6 +4540,46 @@
       </div>
     </section>
 
+    <section class='gallery' id='gallery' aria-labelledby='gallery-title'>
+      <span class='ambient-wave ambient-wave--a' aria-hidden='true'></span>
+      <span class='ambient-wave ambient-wave--b' aria-hidden='true'></span>
+      <div class='wrap'>
+        <div class='gallery__header reveal'>
+          <span class='section-eyebrow'>04</span>
+          <h2 class='section-title' id='gallery-title' data-i18n='galleryTitle'>Gallery</h2>
+          <p class='section-intro' data-i18n='galleryIntro'>
+            Additional views from across the property.
+          </p>
+        </div>
+
+        <div class='gallery__carousel reveal'>
+          <button class='gallery__btn gallery__btn--prev' id='galleryPrev' aria-label='Previous image'>&larr;</button>
+
+          <div class='gallery__viewport' id='galleryViewport'>
+            <div class='gallery__track' id='galleryTrack'>
+              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/gallery1.jpg' alt='Gallery view 1 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-02.jpg'><img src='assets/images/gallery2.jpg' alt='Gallery view 2 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-03.jpg'><img src='assets/images/gallery3.jpg' alt='Gallery view 3 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-04.jpg'><img src='assets/images/gallery4.jpg' alt='Gallery view 4 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-05.jpg'><img src='assets/images/gallery5.jpg' alt='Gallery view 5 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-06.jpg'><img src='assets/images/gallery6.jpg' alt='Gallery view 6 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery7.jpg' alt='Gallery view 7 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery8.jpg' alt='Gallery view 8 at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-09.jpg'><img src='assets/images/hero.jpg' alt='View of Vikaneset by the sea' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-10.jpg'><img src='assets/images/aerial.jpg' alt='Aerial view of Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='The harbour at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-13.jpg'><img src='assets/images/amphitheatre.jpg' alt='The amphitheatre at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-14.jpg'><img src='assets/images/sauna.jpg' alt='Sauna at Vikaneset' loading='lazy'></figure>
+            </div>
+          </div>
+
+          <button class='gallery__btn gallery__btn--next' id='galleryNext' aria-label='Next image'>&rarr;</button>
+          <p class='gallery__status' id='galleryStatus' aria-live='polite'>01 / 14</p>
+        </div>
+      </div>
+    </section>
+
     <section class='information' id='information' aria-labelledby='information-title'>
       <span class='ambient-wave ambient-wave--a' aria-hidden='true'></span>
       <span class='ambient-wave ambient-wave--b' aria-hidden='true'></span>
@@ -4565,7 +4596,6 @@
           <div class='card card--film'>
             <video controls playsinline width='100%'>
               <source src='assets/video/vikaneset-film.mp4' type='video/mp4'>
-              <source src='assets/video/vikaneset-film.mov' type='video/quicktime'>
               Your browser does not support the video tag.
             </video>
           </div>
@@ -4623,45 +4653,6 @@
       </div>
     </section>
 
-    <section class='gallery' id='gallery' aria-labelledby='gallery-title'>
-      <span class='ambient-wave ambient-wave--a' aria-hidden='true'></span>
-      <span class='ambient-wave ambient-wave--b' aria-hidden='true'></span>
-      <div class='wrap'>
-        <div class='gallery__header reveal'>
-          <span class='section-eyebrow'>04</span>
-          <h2 class='section-title' id='gallery-title' data-i18n='galleryTitle'>Gallery</h2>
-          <p class='section-intro' data-i18n='galleryIntro'>
-            Additional views from across the property.
-          </p>
-        </div>
-
-        <div class='gallery__carousel reveal'>
-          <button class='gallery__btn gallery__btn--prev' id='galleryPrev' aria-label='Previous image'>&larr;</button>
-
-          <div class='gallery__viewport' id='galleryViewport'>
-            <div class='gallery__track' id='galleryTrack'>
-              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/gallery1.jpg' alt='Gallery view 1 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-02.jpg'><img src='assets/images/gallery2.jpg' alt='Gallery view 2 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-03.jpg'><img src='assets/images/gallery3.jpg' alt='Gallery view 3 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-04.jpg'><img src='assets/images/gallery4.jpg' alt='Gallery view 4 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-05.jpg'><img src='assets/images/gallery5.jpg' alt='Gallery view 5 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-06.jpg'><img src='assets/images/gallery6.jpg' alt='Gallery view 6 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery7.jpg' alt='Gallery view 7 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery8.jpg' alt='Gallery view 8 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-09.jpg'><img src='assets/images/hero.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-10.jpg'><img src='assets/images/aerial.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-13.jpg'><img src='assets/images/amphitheatre.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-14.jpg'><img src='assets/images/sauna.jpg' alt='Temporary gallery photo' loading='lazy'></figure>
-            </div>
-          </div>
-
-          <button class='gallery__btn gallery__btn--next' id='galleryNext' aria-label='Next image'>&rarr;</button>
-          <p class='gallery__status' id='galleryStatus' aria-live='polite'>01 / 14</p>
-        </div>
-      </div>
-    </section>
   </main>
   <footer class='footer' aria-label='Site footer'>
     <span class='ambient-wave ambient-wave--a' aria-hidden='true'></span>
@@ -4707,7 +4698,13 @@
         });
 
         links.forEach(function (link) {
-          link.classList.toggle('active', !!(current && link.getAttribute('href') === '#' + current.id));
+          var isActive = !!(current && link.getAttribute('href') === '#' + current.id);
+          link.classList.toggle('active', isActive);
+          if (isActive) {
+            link.setAttribute('aria-current', 'location');
+          } else {
+            link.removeAttribute('aria-current');
+          }
         });
       }
 
@@ -4898,7 +4895,6 @@
           navContact: 'Contact',
 
           heroGeo: 'Frei · Kristiansund · Norway',
-          heroNote: 'Vikaneset lies by the sea on Frei, with accommodation, historic buildings and access to the water.',
 
           introKicker: 'By the sea on Nordmøre',
           introLeadMain: 'A quiet coastal setting, surrounded by lush nature.',
@@ -4957,12 +4953,6 @@
 
           informationTitle: 'Film',
           informationIntro: 'A short introduction to Vikaneset and its coastal setting.',
-          pdfTitle: 'Download PDF',
-          pdfBody: 'A short property overview with practical information and accommodation details.',
-          pdfButton: 'Download PDF',
-          pdfMeta: 'PDF document · Property overview',
-          videoTitle: 'Video',
-          videoBody: 'A short introduction to Vikaneset and its setting.',
 
           contactTitle: 'Contact',
           emailLabel: 'Email',
@@ -4983,7 +4973,6 @@
           navContact: 'Kontakt',
 
           heroGeo: 'Frei · Kristiansund · Norge',
-          heroNote: 'Vikaneset ligger ved sjøen på Frei, med overnatting, historiske bygg og tilgang til havet.',
 
           introKicker: 'Ved havet på Nordmøre',
           introLeadMain: 'Et rolig kystmiljø, omgitt av frodig natur.',
@@ -5042,12 +5031,6 @@
 
           informationTitle: 'Film',
           informationIntro: 'En kort introduksjon til Vikaneset og omgivelsene ved sjøen.',
-          pdfTitle: 'Last ned PDF',
-          pdfBody: 'En kort oversikt over eiendommen med praktisk informasjon og overnatting.',
-          pdfButton: 'Last ned PDF',
-          pdfMeta: 'PDF dokument · Eiendomsoversikt',
-          videoTitle: 'Video',
-          videoBody: 'En kort introduksjon til Vikaneset og omgivelsene.',
 
           contactTitle: 'Kontakt',
           emailLabel: 'E post',
@@ -5062,7 +5045,14 @@
         }
       };
 
-      var currentLanguage = localStorage.getItem('vikanesetLanguage') || 'en';
+      var storedLanguage = null;
+      try {
+        storedLanguage = localStorage.getItem('vikanesetLanguage');
+      } catch (error) {
+        storedLanguage = null;
+      }
+
+      var currentLanguage = translations[storedLanguage] ? storedLanguage : 'en';
 
       function setLanguage(lang) {
         currentLanguage = lang;
@@ -5076,10 +5066,16 @@
         });
 
         document.querySelectorAll('[data-lang]').forEach(function (button) {
-          button.classList.toggle('is-active', button.getAttribute('data-lang') === lang);
+          var isActive = button.getAttribute('data-lang') === lang;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
 
-        localStorage.setItem('vikanesetLanguage', lang);
+        try {
+          localStorage.setItem('vikanesetLanguage', lang);
+        } catch (error) {
+          // The language switch still works when storage is unavailable.
+        }
       }
 
       document.querySelectorAll('[data-lang]').forEach(function (button) {
