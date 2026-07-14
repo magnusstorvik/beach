@@ -3448,6 +3448,176 @@
       .booking-action__arrow { margin-left: auto; }
     }
 
+    /* Spacing, natural-ratio media, tonal fades and directional depth */
+    .booking-action {
+      gap: 0.58rem;
+      margin-top: 2.25rem !important;
+      padding: 0.56rem 0.72rem 0.56rem 0.58rem !important;
+      border-color: rgba(183,151,91,0.3) !important;
+      border-radius: 8px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.11),
+        -7px 11px 24px rgba(9,31,42,0.12) !important;
+    }
+
+    .booking-action__icon {
+      width: 28px;
+      height: 28px;
+      flex-basis: 28px;
+      border-radius: 6px;
+      border-color: rgba(214,183,124,0.24);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .booking-action__icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .booking-action__label {
+      font-size: 0.68rem;
+      letter-spacing: 0.095em;
+    }
+
+    .booking-action__arrow {
+      font-size: 0.88rem;
+      opacity: 0.78;
+    }
+
+    .gallery__viewport {
+      height: min(76vh, 760px);
+      min-height: 480px;
+      aspect-ratio: auto;
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,0.08), transparent 38%),
+        rgba(9,31,42,0.94);
+    }
+
+    .gallery__track,
+    .gallery__slide {
+      height: 100%;
+    }
+
+    .gallery__slide {
+      background: transparent;
+    }
+
+    .gallery__slide img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .gallery__carousel::after {
+      background: linear-gradient(to bottom, transparent 72%, rgba(3,14,20,0.38));
+    }
+
+    .intro::before,
+    .intro::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: clamp(45px, 7vw, 95px);
+      pointer-events: none;
+    }
+
+    .intro::before {
+      top: 0;
+      background: linear-gradient(to bottom, rgba(8,26,33,0.52), transparent);
+    }
+
+    .intro::after {
+      bottom: 0;
+      background: linear-gradient(to top, rgba(7,25,32,0.42), transparent);
+    }
+
+    .intro__text,
+    .aerial {
+      position: relative;
+      z-index: 2;
+    }
+
+    .unit {
+      box-shadow: -13px 21px 52px rgba(16,42,56,0.09);
+    }
+
+    .unit:nth-child(even) {
+      box-shadow: 14px 23px 56px rgba(16,42,56,0.085);
+    }
+
+    .site__feature {
+      box-shadow: -16px 24px 62px rgba(16,42,56,0.095);
+    }
+
+    .site__feature--reverse {
+      box-shadow: 17px 26px 64px rgba(16,42,56,0.09);
+    }
+
+    .practical__grid > div:first-child {
+      box-shadow: -10px 18px 44px rgba(0,0,0,0.13), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .practical__grid > div:last-child {
+      box-shadow: 12px 21px 48px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .gallery__carousel {
+      box-shadow: 18px 28px 72px rgba(16,42,56,0.17);
+    }
+
+    .card--film {
+      box-shadow: -15px 25px 66px rgba(16,42,56,0.16);
+    }
+
+    .information {
+      background: linear-gradient(145deg, #e9e6de, #e2e0d8 72%);
+    }
+
+    .contact__details {
+      box-shadow: -9px 17px 42px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .contact .form {
+      box-shadow: 13px 21px 50px rgba(0,0,0,0.13), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .ambient-wave {
+      color: rgba(16,42,56,0.055);
+    }
+
+    .hero .ambient-wave,
+    .intro .ambient-wave,
+    .practical .ambient-wave,
+    .contact .ambient-wave,
+    .footer .ambient-wave {
+      color: rgba(255,255,255,0.068);
+    }
+
+    @media (max-width: 760px) {
+      .booking-action {
+        width: auto;
+        max-width: 100%;
+        margin-top: 1.6rem !important;
+      }
+
+      .gallery__viewport {
+        height: 72svh;
+        min-height: 420px;
+      }
+
+      .unit,
+      .unit:nth-child(even),
+      .site__feature,
+      .site__feature--reverse {
+        box-shadow: 8px 18px 42px rgba(16,42,56,0.085);
+      }
+    }
+
   </style>
 </head>
 <body>
