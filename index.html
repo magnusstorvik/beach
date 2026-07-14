@@ -2560,6 +2560,10 @@
       background-color: #091f2a;
     }
 
+    .contact .ambient-wave {
+      color: rgba(16,42,56,0.052);
+    }
+
     @media (max-width: 760px) {
       .intro__text { grid-template-columns: 1fr; gap: 1.4rem; }
       .intro__aside { max-width: none; }
@@ -2658,6 +2662,9 @@
       color: var(--blue-deep);
       opacity: 1;
     }
+
+    .intro::before { bottom: auto; }
+    .intro::after { top: auto; }
 
     .site__feature-action:hover::after {
       transform: translate(2px, -2px);
@@ -3733,6 +3740,514 @@
       }
     }
 
+    /* Clear inherited intro artefact and restore restrained component depth */
+    .intro::before,
+    .intro::after {
+      right: auto;
+      border: 0;
+      border-radius: 0;
+      transform: none;
+      opacity: 1;
+    }
+
+    .unit {
+      box-shadow:
+        7px 11px 30px rgba(16,42,56,0.055),
+        inset 0 1px 0 rgba(255,255,255,0.68);
+    }
+
+    .unit:nth-child(even) {
+      box-shadow:
+        -6px 12px 32px rgba(16,42,56,0.05),
+        inset 0 1px 0 rgba(255,255,255,0.68);
+    }
+
+    .site__feature {
+      box-shadow:
+        8px 13px 34px rgba(16,42,56,0.055),
+        inset 0 1px 0 rgba(255,255,255,0.72);
+    }
+
+    .site__feature--reverse {
+      box-shadow:
+        -7px 14px 36px rgba(16,42,56,0.052),
+        inset 0 1px 0 rgba(255,255,255,0.72);
+    }
+
+    .practical__grid > div:first-child,
+    .contact__details {
+      box-shadow:
+        6px 10px 26px rgba(0,0,0,0.075),
+        inset 0 1px 0 rgba(255,255,255,0.095);
+    }
+
+    .practical__grid > div:last-child,
+    .contact .form {
+      box-shadow:
+        -5px 11px 28px rgba(0,0,0,0.07),
+        inset 0 1px 0 rgba(255,255,255,0.095);
+    }
+
+    .gallery__viewport {
+      box-shadow:
+        8px 13px 34px rgba(16,42,56,0.07),
+        inset 18px 0 45px -38px rgba(0,0,0,0.34),
+        inset -12px -8px 42px -36px rgba(0,0,0,0.3);
+    }
+
+    .card--film video {
+      box-shadow:
+        -7px 12px 32px rgba(16,42,56,0.075),
+        inset 14px 0 40px -36px rgba(0,0,0,0.3);
+    }
+
+    .site__header {
+      text-shadow: 5px 8px 22px rgba(16,42,56,0.045);
+    }
+
+    @media (max-width: 760px) {
+      .unit,
+      .unit:nth-child(even),
+      .site__feature,
+      .site__feature--reverse {
+        box-shadow:
+          5px 9px 24px rgba(16,42,56,0.05),
+          inset 0 1px 0 rgba(255,255,255,0.65);
+      }
+    }
+
+    /* Frosted palette, stronger hierarchy and separated contact close */
+    .section-title,
+    .site__feature-title,
+    .unit__name,
+    .card__title,
+    .pblock__title,
+    .contact__header .section-title {
+      font-weight: 600;
+    }
+
+    .section-eyebrow,
+    .intro__kicker,
+    .unit__meta,
+    .intro__aside-label,
+    .cinfo__label,
+    .field label {
+      font-weight: 700;
+    }
+
+    .section-intro,
+    .accommodation__count {
+      font-weight: 600;
+    }
+
+    .intro__aside {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .intro__aside strong {
+      order: 1;
+    }
+
+    .intro__aside-label {
+      order: 2;
+      margin: 0.15rem 0 0;
+    }
+
+    .accommodation {
+      background-image:
+        var(--wave-wallpaper-dark),
+        radial-gradient(ellipse at 8% 18%, rgba(49,82,92,0.055), transparent 42%),
+        radial-gradient(ellipse at 92% 82%, rgba(107,139,145,0.045), transparent 38%),
+        linear-gradient(180deg, #e9eeee, #e1e8e9);
+    }
+
+    .site {
+      background-color: #e7edec;
+      background-image:
+        var(--wave-wallpaper-dark),
+        radial-gradient(ellipse at 88% 14%, rgba(44,79,90,0.05), transparent 40%),
+        radial-gradient(ellipse at 12% 76%, rgba(119,147,150,0.045), transparent 42%);
+    }
+
+    .gallery {
+      background-image:
+        var(--wave-wallpaper-dark),
+        radial-gradient(ellipse at 90% 10%, rgba(65,103,115,0.07), transparent 38%),
+        radial-gradient(ellipse at 7% 88%, rgba(112,143,148,0.045), transparent 42%),
+        linear-gradient(145deg, #dfe7e7, #edf1ef);
+    }
+
+    .information {
+      background-image:
+        var(--wave-wallpaper-dark),
+        radial-gradient(ellipse at 12% 18%, rgba(46,80,90,0.05), transparent 39%),
+        radial-gradient(ellipse at 90% 84%, rgba(111,141,145,0.04), transparent 42%),
+        linear-gradient(145deg, #e5ebea, #dce5e5);
+    }
+
+    .unit,
+    .site__feature,
+    .site__feature--reverse {
+      border: 1px solid rgba(255,255,255,0.48);
+      background-color: rgba(255,255,255,0.38);
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.19), rgba(255,255,255,0.025));
+      backdrop-filter: blur(20px) saturate(108%);
+      -webkit-backdrop-filter: blur(20px) saturate(108%);
+    }
+
+    .unit__text,
+    .site__feature-copy {
+      background: rgba(249,252,251,0.34);
+      backdrop-filter: blur(18px) saturate(106%);
+      -webkit-backdrop-filter: blur(18px) saturate(106%);
+    }
+
+    .practical__grid > div {
+      background: rgba(224,238,240,0.075);
+      backdrop-filter: blur(22px) saturate(105%);
+      -webkit-backdrop-filter: blur(22px) saturate(105%);
+    }
+
+    .gallery__viewport {
+      border: 1px solid rgba(255,255,255,0.42);
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,0.17), transparent 40%),
+        rgba(34,66,75,0.2);
+      box-shadow:
+        7px 12px 30px rgba(16,42,56,0.055),
+        inset 0 1px 0 rgba(255,255,255,0.24),
+        inset 15px 0 40px -38px rgba(0,0,0,0.2);
+      backdrop-filter: blur(24px) saturate(104%);
+      -webkit-backdrop-filter: blur(24px) saturate(104%);
+    }
+
+    .gallery__slide {
+      background: transparent;
+    }
+
+    .contact {
+      background-color: #d6e0e1;
+      background-image:
+        var(--wave-wallpaper-dark),
+        radial-gradient(ellipse at 8% 12%, rgba(255,255,255,0.32), transparent 38%),
+        radial-gradient(ellipse at 92% 86%, rgba(46,78,86,0.09), transparent 44%);
+    }
+
+    .contact .section-title {
+      color: var(--navy);
+    }
+
+    .contact .section-eyebrow,
+    .contact .cinfo__label {
+      color: #7d683f;
+    }
+
+    .contact .cinfo__value,
+    .contact .field label {
+      color: var(--navy);
+    }
+
+    .contact__details,
+    .contact .form {
+      border: 1px solid rgba(255,255,255,0.46);
+      background: rgba(255,255,255,0.31);
+      box-shadow:
+        6px 11px 28px rgba(16,42,56,0.055),
+        inset 0 1px 0 rgba(255,255,255,0.52);
+      backdrop-filter: blur(22px) saturate(106%);
+      -webkit-backdrop-filter: blur(22px) saturate(106%);
+    }
+
+    .contact .field input,
+    .contact .field textarea {
+      border-color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.56);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .contact .form__btn {
+      border-color: rgba(16,42,56,0.22);
+      background: rgba(16,42,56,0.82);
+    }
+
+    .footer {
+      background-color: #091f2a;
+    }
+
+    @media (max-width: 760px) {
+      .unit,
+      .site__feature,
+      .site__feature--reverse,
+      .contact__details,
+      .contact .form {
+        backdrop-filter: blur(16px) saturate(105%);
+        -webkit-backdrop-filter: blur(16px) saturate(105%);
+      }
+    }
+
+    /* Consolidated finishing rules */
+    .intro {
+      background-color: #19343a;
+      background-image:
+        linear-gradient(to bottom, rgba(7,24,31,0.46), transparent 16%, transparent 82%, rgba(7,24,31,0.4)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 72'%3E%3Cpath d='M3 40c27-28 53-28 80 0s53 28 80 0 48-24 74-2' fill='none' stroke='%23ffffff' stroke-opacity='.065' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at 12% 20%, rgba(255,255,255,0.045), transparent 40%),
+        radial-gradient(ellipse at 88% 80%, rgba(0,0,0,0.14), transparent 46%);
+      background-repeat: no-repeat;
+      background-position: center, 94% 24%, center, center;
+      background-size: 100% 100%, 180px 54px, 100% 100%, 100% 100%;
+    }
+
+    .intro::before,
+    .intro::after,
+    .intro .ambient-wave {
+      display: none !important;
+    }
+
+    .intro__text {
+      padding-top: clamp(0.75rem, 2vw, 1.5rem);
+      padding-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .intro__kicker {
+      color: rgba(203,175,122,0.78);
+    }
+
+    .intro__aside {
+      border-left-color: rgba(192,158,94,0.52);
+    }
+
+    .booking-action {
+      width: max-content;
+      min-width: 265px;
+      margin: 2.5rem auto 0 !important;
+      justify-content: center;
+      padding: 0.66rem 0.9rem 0.66rem 0.78rem !important;
+      border-color: rgba(190,157,96,0.42) !important;
+      background:
+        linear-gradient(135deg, rgba(48,78,80,0.94), rgba(20,49,57,0.98)) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.14),
+        inset 0 -1px 0 rgba(190,157,96,0.22),
+        5px 10px 24px rgba(16,42,56,0.08) !important;
+    }
+
+    .booking-action__icon,
+    .booking-action__arrow {
+      color: #c4a36a;
+    }
+
+    .section-eyebrow,
+    .site__feature-action::after,
+    .gallery__status {
+      color: #9f814c;
+    }
+
+    .site__feature-action {
+      border-bottom-color: rgba(159,129,76,0.44);
+    }
+
+    .lang-switch__btn.is-active {
+      border-color: rgba(196,163,106,0.72);
+      background: rgba(196,163,106,0.1);
+      color: #d1b47f;
+    }
+
+    ::selection {
+      background: rgba(181,145,81,0.28);
+      color: var(--navy-deep);
+    }
+
+    @media (max-width: 760px) {
+      .intro {
+        background-position: center, 108% 18%, center, center;
+        background-size: 100% 100%, 125px 38px, 100% 100%, 100% 100%;
+      }
+
+      .booking-action {
+        width: min(100%, 330px);
+        min-width: 0;
+        margin-top: 2rem !important;
+      }
+    }
+
+    /* Media-safe frosting, denser waves and restored editorial details */
+    :root {
+      --wave-wallpaper-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='240' viewBox='0 0 360 240'%3E%3Cg fill='none' stroke='%23102a38' stroke-opacity='.027' stroke-width='1.35' stroke-linecap='round'%3E%3Cpath d='M-12 35c18-15 36-14 54 2s37 16 56 0'/%3E%3Cpath d='M183 27c14-11 28-10 42 2s29 12 44 0' transform='rotate(7 226 31)'/%3E%3Cpath d='M285 73c11-9 22-8 33 1s23 10 35 1' transform='rotate(-9 320 76)'/%3E%3Cpath d='M44 142c22-18 44-17 66 3s43 19 64 1' transform='rotate(-6 109 147)'/%3E%3Cpath d='M235 184c17-13 34-12 51 2s34 15 52 1' transform='rotate(10 286 188)'/%3E%3Cpath d='M-15 222c12-10 24-9 36 1s25 11 38 1'/%3E%3C/g%3E%3C/svg%3E");
+      --wave-wallpaper-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='240' viewBox='0 0 360 240'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.03' stroke-width='1.35' stroke-linecap='round'%3E%3Cpath d='M-12 35c18-15 36-14 54 2s37 16 56 0'/%3E%3Cpath d='M183 27c14-11 28-10 42 2s29 12 44 0' transform='rotate(7 226 31)'/%3E%3Cpath d='M285 73c11-9 22-8 33 1s23 10 35 1' transform='rotate(-9 320 76)'/%3E%3Cpath d='M44 142c22-18 44-17 66 3s43 19 64 1' transform='rotate(-6 109 147)'/%3E%3Cpath d='M235 184c17-13 34-12 51 2s34 15 52 1' transform='rotate(10 286 188)'/%3E%3Cpath d='M-15 222c12-10 24-9 36 1s25 11 38 1'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .accommodation,
+    .site,
+    .gallery,
+    .information,
+    .contact,
+    .intro,
+    .practical,
+    .footer {
+      background-size: 360px 240px, 100% 100%, 100% 100%, 100% 100%;
+    }
+
+    .intro {
+      background-image:
+        var(--wave-wallpaper-light),
+        linear-gradient(to bottom, rgba(7,24,31,0.46), transparent 16%, transparent 82%, rgba(7,24,31,0.4)),
+        radial-gradient(ellipse at 12% 20%, rgba(255,255,255,0.045), transparent 40%),
+        radial-gradient(ellipse at 88% 80%, rgba(0,0,0,0.14), transparent 46%);
+      background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+      background-position: 0 0, center, center, center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background-image: var(--wave-wallpaper-light);
+      background-size: 360px 240px;
+      pointer-events: none;
+    }
+
+    .aerial {
+      background-image:
+        linear-gradient(
+          to bottom,
+          rgba(25,52,58,0.96) 0%,
+          rgba(25,52,58,0.5) 6%,
+          transparent 16%,
+          transparent 82%,
+          rgba(233,238,238,0.52) 94%,
+          rgba(233,238,238,0.98) 100%
+        ),
+        url('assets/images/aerial.jpg');
+      background-size: cover;
+      background-position: center 70%;
+      filter: none;
+    }
+
+    .aerial::after {
+      display: none;
+    }
+
+    .unit__text,
+    .site__feature-copy,
+    .practical__grid > div,
+    .contact__details,
+    .contact .form {
+      background: rgba(244,249,248,0.26);
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.44),
+        5px 9px 24px rgba(16,42,56,0.045);
+      backdrop-filter: blur(22px) saturate(105%);
+      -webkit-backdrop-filter: blur(22px) saturate(105%);
+    }
+
+    .practical__grid > div {
+      background: rgba(224,238,240,0.065);
+      border-color: rgba(255,255,255,0.11);
+    }
+
+    .gallery__carousel {
+      padding: 0.48rem;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(244,249,248,0.18);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.42),
+        7px 12px 30px rgba(16,42,56,0.05);
+      backdrop-filter: blur(24px) saturate(104%);
+      -webkit-backdrop-filter: blur(24px) saturate(104%);
+    }
+
+    .gallery__carousel::after {
+      inset: 0.48rem;
+    }
+
+    .gallery__slide img,
+    .mini-carousel__slide img,
+    .site__feature-media img,
+    .unit__media img,
+    .card--film video {
+      opacity: 1;
+      filter: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .unit__name {
+      font-size: clamp(1.55rem, 2.4vw, 2rem);
+      line-height: 1.1;
+    }
+
+    .unit__desc,
+    .site__feature-body {
+      font-size: 0.96rem;
+      line-height: 1.7;
+    }
+
+    .site__feature-detail {
+      margin-top: 1.15rem;
+      color: #887044;
+      font-size: 0.69rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .site__intro-text .section-intro + .section-intro {
+      margin-top: 0.85rem;
+    }
+
+    .hero__scroll-cue {
+      animation: skarv-glide 5.6s ease-in-out infinite;
+      transform-origin: 50% 50%;
+    }
+
+    .hero__scroll-cue-wing {
+      transform-origin: 22px 18px;
+      animation: skarv-wing 5.6s ease-in-out infinite;
+    }
+
+    @keyframes skarv-glide {
+      0%, 100% { transform: translateX(-50%) translateY(0) rotate(-1deg); opacity: 0.68; }
+      35% { transform: translateX(-50%) translateY(-5px) rotate(1deg); opacity: 0.92; }
+      68% { transform: translateX(-50%) translateY(-2px) rotate(0deg); opacity: 0.78; }
+    }
+
+    @keyframes skarv-wing {
+      0%, 26%, 100% { transform: rotate(0deg) translateY(0); }
+      34% { transform: rotate(-2.2deg) translateY(-0.8px); }
+      42% { transform: rotate(1.2deg) translateY(0.5px); }
+      50% { transform: rotate(0deg) translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__scroll-cue,
+      .hero__scroll-cue-wing { animation: none; }
+    }
+
+    @media (max-width: 760px) {
+      .accommodation,
+      .site,
+      .gallery,
+      .information,
+      .contact,
+      .intro,
+      .practical,
+      .footer {
+        background-size: 285px 190px, 100% 100%, 100% 100%, 100% 100%;
+      }
+
+      .hero::before { background-size: 285px 190px; }
+      .gallery__carousel { padding: 0.32rem; }
+      .gallery__carousel::after { inset: 0.32rem; }
+      .unit__name { font-size: 1.55rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -3749,7 +4264,7 @@
     <div class='nav__menu'>
       <ul class='nav__links' role='list'>
         <li><a href='#accommodation' data-i18n='navAccommodation'>Stay</a></li>
-        <li><a href='#restaurant' data-i18n='navRestaurant'>Restaurant</a></li>
+        <li><a href='#site' data-i18n='navRestaurant'>Explore</a></li>
         <li><a href='#sauna' data-i18n='navSauna'>Sauna &amp; beach</a></li>
       </ul>
 
@@ -3767,7 +4282,7 @@
   <div class='nav__mobile' id='navMobile' role='dialog' aria-modal='true' aria-label='Navigation'>
     <button class='nav__mobile-close' id='navClose' aria-label='Close menu'>&#x2715;</button>
     <a href='#accommodation' data-i18n='navAccommodation'>Stay</a>
-    <a href='#restaurant' data-i18n='navRestaurant'>Restaurant</a>
+    <a href='#site' data-i18n='navRestaurant'>Explore</a>
     <a href='#sauna' data-i18n='navSauna'>Sauna &amp; beach</a>
 
     <div class='nav__mobile-lang'>
@@ -3815,8 +4330,8 @@
             </p>
           </div>
           <div class='intro__aside'>
-            <span class='intro__aside-label' data-i18n='introDistanceLabel'>From Kristiansund</span>
             <strong data-i18n='introLeadAccent'>16 kilometres</strong>
+            <span class='intro__aside-label' data-i18n='introDistanceLabel'>From Kristiansund</span>
           </div>
         </div>
       </div>
@@ -3901,6 +4416,9 @@
             <p class='section-intro' data-i18n='siteIntro1'>
               Vikaneset is a historic coastal gem. Klippfisk was received, produced and dried here, and the site was also used for cod-liver oil production.
             </p>
+            <p class='section-intro' data-i18n='siteIntro2'>
+              Today the old klippfisk warehouse houses a restaurant and rooms for functions and courses. The property also has 16 apartments for holiday guests and permanent residents.
+            </p>
           </div>
         </div>
       </div>
@@ -3953,6 +4471,7 @@
           <div class='site__feature-copy'>
             <h3 class='site__feature-title' data-i18n='site2Title'>The harbour</h3>
             <p class='site__feature-body' data-i18n='site2Body'>Vikaneset has its own harbour with berths for visiting boats. Kayaks and canoes are available to rent here.</p>
+            <p class='site__feature-detail' data-i18n='site2Detail'>Watch for fish and crabs in the clear water</p>
           </div>
         </article>
 
@@ -3969,6 +4488,7 @@
           <div class='site__feature-copy'>
             <h3 class='site__feature-title'>Amfi</h3>
             <p class='site__feature-body' data-i18n='site3Body'>Vikaneset has an amphitheatre with 1,500 seats. It was completed in 2008, when it hosted the world premiere of the &laquo;klippfisk opera&raquo; Donna Bacalao, staged by the Opera in Kristiansund.</p>
+            <p class='site__feature-detail' data-i18n='site3Detail'>1,500 seats · Completed 2008</p>
           </div>
         </article>
       </div>
@@ -4173,17 +4693,17 @@
 
     (function () {
       var links = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));
-      var ids = ['accommodation', 'restaurant', 'sauna'];
+      var ids = ['accommodation', 'site', 'sauna'];
       var sections = ids.map(function (id) {
         return document.getElementById(id);
       }).filter(Boolean);
 
       function updateActiveLink() {
-        var scrollY = window.scrollY + 130;
         var current = null;
 
         sections.forEach(function (section) {
-          if (section.offsetTop <= scrollY) current = section;
+          var bounds = section.getBoundingClientRect();
+          if (bounds.top <= 150 && bounds.bottom > 150) current = section;
         });
 
         links.forEach(function (link) {
@@ -4373,7 +4893,7 @@
       var translations = {
         en: {
           navAccommodation: 'Stay',
-          navRestaurant: 'Restaurant',
+          navRestaurant: 'Explore',
           navSauna: 'Sauna & beach',
           navContact: 'Contact',
 
@@ -4395,7 +4915,7 @@
 
           siteTitle: 'The site',
           siteIntro1: 'Vikaneset is a historic coastal gem. Klippfisk was received, produced and dried here, and the site was also used for cod-liver oil production.',
-          siteIntro2: 'Today the old klippfisk warehouse houses a restaurant and function and course rooms, and the property has 16 apartments let to both holiday guests and permanent residents. Vikaneset has its own sauna and sandy beach, berths for visiting boats and a deep water quay.',
+          siteIntro2: 'Today the old klippfisk warehouse houses a restaurant and rooms for functions and courses. The property also has 16 apartments for holiday guests and permanent residents.',
           site1Body: 'Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.',
           site1Detail: '1,000 m² · Bar, restaurant and function rooms',
           site1LinkText: 'Find Lokalkokken',
@@ -4458,7 +4978,7 @@
 
         no: {
           navAccommodation: 'Bo',
-          navRestaurant: 'Restaurant',
+          navRestaurant: 'Opplev',
           navSauna: 'Sauna og strand',
           navContact: 'Kontakt',
 
@@ -4480,7 +5000,7 @@
 
           siteTitle: 'Om stedet',
           siteIntro1: 'Vikaneset er en historisk kystperle. Her ble det drevet klippfiskmottak, produksjon og tørking av klippfisk samt tranbrenneri.',
-          siteIntro2: 'I dag er det restaurant, selskaps- og kurslokaler i den gamle klippfiskbrygga. I tillegg er det 16 leiligheter som leies ut både til feriegjester og til fastboende. På Vikaneset har vi egen sauna og sandstrand. Vi har bryggeplass for tilreisende båter og dypvannskai.',
+          siteIntro2: 'I dag er det restaurant, selskaps- og kurslokaler i den gamle klippfiskbrygga. Eiendommen har også 16 leiligheter som leies ut til feriegjester og fastboende.',
           site1Body: 'Brygge fra rundt år 1900, restaurert rundt år 2006–2009. Den består av ca 1.000 kvm med bar, restaurant og lokaler til selskaper og kurs. Restauranten drives av Lokalkokken.',
           site1Detail: '1.000 m² · Bar, restaurant og selskapslokaler',
           site1LinkText: 'Finn Lokalkokken',
