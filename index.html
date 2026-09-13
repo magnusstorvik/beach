@@ -3,12 +3,32 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <meta name='description' content='Vikaneset. Harbour property on Frei island, Kristiansund municipality. Self catering accommodation. Kjørvegen 31, 6520 Frei.'>
+  <meta name='description' content='Vikaneset. Harbour property on Frei island, Kristiansund municipality. Self-catering accommodation. Kjørvegen 31, 6520 Frei.'>
+  <meta name='theme-color' content='#102a38'>
   <title>Vikaneset Havhotell</title>
+
+  <meta property='og:type' content='website'>
+  <meta property='og:site_name' content='Vikaneset Havhotell'>
+  <meta property='og:title' content='Vikaneset Havhotell'>
+  <meta property='og:description' content='Harbour property on Frei island, Kristiansund municipality. Self-catering accommodation by the sea.'>
+  <meta property='og:locale' content='en_GB'>
+  <meta property='og:locale:alternate' content='nb_NO'>
+
+  <link rel='icon' type='image/png' sizes='64x64' href='assets/images/favicon.png'>
+  <link rel='apple-touch-icon' sizes='180x180' href='assets/images/apple-touch-icon.png'>
+  <link rel='preload' as='image' href='assets/images/hero.jpg' fetchpriority='high'>
 
   <link rel='preconnect' href='https://fonts.googleapis.com'>
   <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-  <link href='https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;display=swap' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&amp;display=swap' rel='stylesheet'>
+
+  <noscript>
+    <style>
+      .reveal,
+      .hero__inner .hero__geo,
+      .hero__inner .hero__name { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
 
   <style>
     :root {
@@ -4239,13 +4259,95 @@
       .unit__name { font-size: 1.55rem; }
     }
 
+    /* Launch fixes: stable carousel frames, mobile overflow, menu layering, legibility */
+    .site,
+    .practical {
+      overflow-x: clip;
+    }
+
+    .nav__mobile {
+      z-index: 101;
+    }
+
+    .nav__logo,
+    .footer__logo {
+      width: 52px;
+      height: 38px;
+    }
+
+    .unit__meta,
+    .site__feature-detail {
+      color: #7d683f;
+    }
+
+    /* Carousel frames keep a fixed 4:3 shape (as on mobile) instead of growing
+       to the tallest photo in the set, so portrait and landscape photos can be
+       mixed freely once the real photography is in. */
+    @media (min-width: 761px) {
+      .unit__media.mini-carousel,
+      .site__feature-media.mini-carousel {
+        position: relative;
+        align-self: stretch;
+        height: auto;
+        aspect-ratio: 4 / 3;
+      }
+
+      .unit__media.mini-carousel {
+        min-height: 285px;
+      }
+
+      .unit__media .mini-carousel__viewport,
+      .site__feature-media .mini-carousel__viewport {
+        position: absolute;
+        inset: 0;
+        height: auto;
+        min-height: 0;
+      }
+
+      .unit__media .mini-carousel__track,
+      .unit__media .mini-carousel__slide,
+      .unit__media .mini-carousel__slide img,
+      .site__feature-media .mini-carousel__track,
+      .site__feature-media .mini-carousel__slide,
+      .site__feature-media .mini-carousel__slide img {
+        height: 100%;
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav__logo {
+        width: 44px;
+        height: 32px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal,
+      .hero__inner .hero__geo,
+      .hero__inner .hero__name {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .mini-carousel__track,
+      .gallery__track {
+        transition: none;
+      }
+    }
+
   </style>
 </head>
 <body>
 
-  <nav class='nav' id='nav' aria-label='Main navigation'>
-    <a href='#top' class='nav__brand' aria-label='Vikaneset home'>
-      <img class='nav__logo' src='assets/images/logo.svg' alt='Vikaneset logo'>
+  <nav class='nav' id='nav' aria-label='Main navigation' data-i18n-aria='ariaMainNav'>
+    <a href='#top' class='nav__brand' aria-label='Vikaneset home' data-i18n-aria='ariaHome'>
+      <img class='nav__logo' src='assets/images/logo-mark-light.png' alt='' width='157' height='114'>
       <div class='nav__text'>
         <span class='nav__name'>Vikaneset</span>
         <span class='nav__sub'>Havhotell</span>
@@ -4259,19 +4361,19 @@
         <li><a href='#sauna' data-i18n='navSauna'>Sauna &amp; beach</a></li>
       </ul>
 
-      <div class='lang-switch' aria-label='Language switch'>
+      <div class='lang-switch' role='group' aria-label='Language' data-i18n-aria='ariaLangSwitch'>
         <button class='lang-switch__btn is-active' type='button' data-lang='en' aria-pressed='true'>EN</button>
         <button class='lang-switch__btn' type='button' data-lang='no' aria-pressed='false'>NO</button>
       </div>
     </div>
 
-    <button class='nav__toggle' id='navToggle' aria-label='Open menu' aria-expanded='false' aria-controls='navMobile'>
+    <button class='nav__toggle' id='navToggle' aria-label='Open menu' data-i18n-aria='ariaOpenMenu' aria-expanded='false' aria-controls='navMobile'>
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <div class='nav__mobile' id='navMobile' role='dialog' aria-modal='true' aria-label='Navigation'>
-    <button class='nav__mobile-close' id='navClose' aria-label='Close menu'>&#x2715;</button>
+  <div class='nav__mobile' id='navMobile' role='dialog' aria-modal='true' aria-label='Navigation' data-i18n-aria='ariaMenu'>
+    <button class='nav__mobile-close' id='navClose' aria-label='Close menu' data-i18n-aria='ariaCloseMenu'>&#x2715;</button>
     <a href='#accommodation' data-i18n='navAccommodation'>Stay</a>
     <a href='#site' data-i18n='navRestaurant'>Explore</a>
     <a href='#sauna' data-i18n='navSauna'>Sauna &amp; beach</a>
@@ -4286,7 +4388,7 @@
     <section class='hero' aria-label='Vikaneset'>
       <span class='ambient-wave ambient-wave--a' aria-hidden='true'></span>
       <span class='ambient-wave ambient-wave--b' aria-hidden='true'></span>
-      <div class='hero__bg' role='img' aria-label='View of Vikaneset'></div>
+      <div class='hero__bg' role='img' aria-label='View of Vikaneset' data-i18n-aria='ariaHeroImage'></div>
       <div class='hero__scrim' aria-hidden='true'></div>
 
       <div class='hero__content'>
@@ -4326,7 +4428,7 @@
           </div>
         </div>
       </div>
-      <div class='aerial reveal' role='img' aria-label='Aerial view of Vikaneset'></div>
+      <div class='aerial reveal' role='img' aria-label='Aerial view of Vikaneset' data-i18n-aria='ariaAerialImage'></div>
     </section>
 
     <section class='accommodation' id='accommodation' aria-labelledby='accommodation-title'>
@@ -4335,8 +4437,8 @@
       <div class='wrap'>
         <div class='accommodation__header reveal'>
           <span class='section-eyebrow'>01</span>
-          <h2 class='section-title' id='accommodation-title' data-i18n='accommodationTitle'>Book</h2>
-          <p class='accommodation__count' data-i18n='accommodationCount'>10 self catering units across two buildings</p>
+          <h2 class='section-title' id='accommodation-title' data-i18n='accommodationTitle'>Stay</h2>
+          <p class='accommodation__count' data-i18n='accommodationCount'>10 self-catering units across two buildings</p>
         </div>
 
         <div class='units reveal' role='list'>
@@ -4349,14 +4451,14 @@
                   <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-03.jpg'><img src='assets/images/gallery5.jpg' alt='Sjøhus at Vikaneset' loading='lazy'></figure>
                 </div>
               </div>
-              <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
-              <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
+              <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
+              <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
             </div>
             <div class='unit__text'>
-              <p class='unit__name'>Sjøhus</p>
+              <h3 class='unit__name'>Sjøhus</h3>
               <p class='unit__meta' data-i18n='unit1Meta'>5 units · Waterfront</p>
               <p class='unit__desc' data-i18n='unit1Desc'>
-                Five self catering units by the water. Each unit has an open plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own balcony and terrace.
+                Five self-catering units by the water. Each unit has an open-plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own balcony and terrace.
               </p>
             </div>
           </div>
@@ -4370,14 +4472,14 @@
                   <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-03.jpg'><img src='assets/images/gallery6.jpg' alt='Leiligheter at Vikaneset' loading='lazy'></figure>
                 </div>
               </div>
-              <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
-              <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
+              <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
+              <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
             </div>
             <div class='unit__text'>
-              <p class='unit__name'>Leiligheter</p>
+              <h3 class='unit__name'>Leiligheter</h3>
               <p class='unit__meta' data-i18n='unit2Meta'>5 units · Innerholmen</p>
               <p class='unit__desc' data-i18n='unit2Desc'>
-                Five self catering apartments in Innerholmen. Each unit has an open plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own veranda.
+                Five self-catering apartments in Innerholmen. Each unit has an open-plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own veranda.
               </p>
             </div>
           </div>
@@ -4422,8 +4524,8 @@
               <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-02.jpg'><img src='assets/images/gallery3.jpg' alt='Klippfiskbrygga detail' loading='lazy'></figure>
               <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-03.jpg'><img src='assets/images/gallery4.jpg' alt='Klippfiskbrygga surroundings' loading='lazy'></figure>
             </div></div>
-            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
-            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
+            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
+            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
           </div>
           <div class='site__feature-copy'>
             <h3 class='site__feature-title'>Klippfiskbrygga</h3>
@@ -4439,13 +4541,13 @@
               <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-02.jpg'><img src='assets/images/gallery7.jpg' alt='Sauna surroundings' loading='lazy'></figure>
               <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-03.jpg'><img src='assets/images/gallery8.jpg' alt='Beach at Vikaneset' loading='lazy'></figure>
             </div></div>
-            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
-            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
+            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
+            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
           </div>
           <div class='site__feature-copy'>
             <h3 class='site__feature-title' data-i18n='site4Title'>Sauna and beach</h3>
             <p class='site__feature-body' data-i18n='site4Body'>Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna's warmth and cool off in the fresh sea water.</p>
-            <a class='site__feature-action' href='https://www.google.com/search?q=Vikaneset+sauna+booking+Kristiansund' target='_blank' rel='noopener noreferrer' data-i18n='site4LinkText'>Find sauna booking</a>
+            <a class='site__feature-action' href='https://www.google.com/search?q=Vikaneset+sauna+booking+Kristiansund' target='_blank' rel='noopener noreferrer' data-i18n='site4LinkText'>Sauna reservations</a>
           </div>
         </article>
 
@@ -4456,8 +4558,8 @@
               <figure class='mini-carousel__slide' data-photo-slot='havn-02.jpg'><img src='assets/images/gallery5.jpg' alt='Harbour detail' loading='lazy'></figure>
               <figure class='mini-carousel__slide' data-photo-slot='havn-03.jpg'><img src='assets/images/gallery6.jpg' alt='Waterfront at Vikaneset' loading='lazy'></figure>
             </div></div>
-            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
-            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
+            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
+            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
           </div>
           <div class='site__feature-copy'>
             <h3 class='site__feature-title' data-i18n='site2Title'>The harbour</h3>
@@ -4473,12 +4575,12 @@
               <figure class='mini-carousel__slide' data-photo-slot='amfi-02.jpg'><img src='assets/images/gallery1.jpg' alt='Amphitheatre surroundings' loading='lazy'></figure>
               <figure class='mini-carousel__slide' data-photo-slot='amfi-03.jpg'><img src='assets/images/gallery3.jpg' alt='View from the amphitheatre' loading='lazy'></figure>
             </div></div>
-            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo'>&larr;</button>
-            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo'>&rarr;</button>
+            <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
+            <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
           </div>
           <div class='site__feature-copy'>
             <h3 class='site__feature-title'>Amfi</h3>
-            <p class='site__feature-body' data-i18n='site3Body'>Vikaneset has an amphitheatre with 1,500 seats. It was completed in 2008, when it hosted the world premiere of the &laquo;klippfisk opera&raquo; Donna Bacalao, staged by the Opera in Kristiansund.</p>
+            <p class='site__feature-body' data-i18n='site3Body'>Vikaneset has an amphitheatre with 1,500 seats. It was completed in 2008, when it hosted the world premiere of the &ldquo;klippfisk opera&rdquo; Donna Bacalao, staged by the Opera in Kristiansund.</p>
             <p class='site__feature-detail' data-i18n='site3Detail'>1,500 seats · Completed 2008</p>
           </div>
         </article>
@@ -4515,15 +4617,15 @@
           <div>
             <p class='pblock__title' data-i18n='arrivalTitle'>Arrival</p>
             <dl class='dl' style='margin-bottom: 2.5rem;'>
-              <dt data-i18n='checkInLabel'>Check in</dt>
+              <dt data-i18n='checkInLabel'>Check-in</dt>
               <dd data-i18n='checkInValue'>From 16:00</dd>
 
-              <dt data-i18n='checkOutLabel'>Check out</dt>
+              <dt data-i18n='checkOutLabel'>Check-out</dt>
               <dd data-i18n='checkOutValue'>By 11:00</dd>
             </dl>
 
             <p class='pblock__title' style='margin-top: 2.5rem;' data-i18n='includedTitle'>Included</p>
-            <ul class='incl' aria-label='Included in each unit'>
+            <ul class='incl' aria-label='Included in each unit' data-i18n-aria='ariaIncluded'>
               <li data-i18n='included1'>Kitchen or kitchenette</li>
               <li data-i18n='included2'>Bedding and towels</li>
               <li data-i18n='included4'>Parking on site</li>
@@ -4531,7 +4633,7 @@
             </ul>
 
             <p class='pblock__title' style='margin-top: 2.5rem;' data-i18n='extrasTitle'>Available for a fee</p>
-            <ul class='incl' aria-label='Available for an additional fee'>
+            <ul class='incl' aria-label='Available for an additional fee' data-i18n-aria='ariaExtras'>
               <li data-i18n='extras1'>Sauna access</li>
               <li data-i18n='extras2'>Laundry</li>
             </ul>
@@ -4553,7 +4655,7 @@
         </div>
 
         <div class='gallery__carousel reveal'>
-          <button class='gallery__btn gallery__btn--prev' id='galleryPrev' aria-label='Previous image'>&larr;</button>
+          <button class='gallery__btn gallery__btn--prev' id='galleryPrev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
 
           <div class='gallery__viewport' id='galleryViewport'>
             <div class='gallery__track' id='galleryTrack'>
@@ -4574,8 +4676,8 @@
             </div>
           </div>
 
-          <button class='gallery__btn gallery__btn--next' id='galleryNext' aria-label='Next image'>&rarr;</button>
-          <p class='gallery__status' id='galleryStatus' aria-live='polite'>01 / 14</p>
+          <button class='gallery__btn gallery__btn--next' id='galleryNext' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
+          <p class='gallery__status' id='galleryStatus' aria-live='off'>01 / 14</p>
         </div>
       </div>
     </section>
@@ -4594,9 +4696,9 @@
 
         <div class='information__grid reveal'>
           <div class='card card--film'>
-            <video controls playsinline width='100%'>
-              <source src='assets/video/vikaneset-film.mp4' type='video/mp4'>
-              Your browser does not support the video tag.
+            <video controls playsinline preload='metadata' aria-labelledby='information-title'>
+              <source src='assets/video/vikaneset-film.mp4#t=0.1' type='video/mp4'>
+              <p data-i18n='videoFallback'>Your browser does not support the video tag.</p>
             </video>
           </div>
         </div>
@@ -4629,7 +4731,7 @@
             </div>
           </div>
 
-          <form class='form' action='mailto:anette@vikaneset.com' method='post' enctype='text/plain' aria-label='Enquiry form'>
+          <form class='form' action='mailto:anette@vikaneset.com' method='post' enctype='text/plain' aria-label='Enquiry form' data-i18n-aria='ariaForm'>
             <div class='form__row'>
               <div class='field'>
                 <label for='f-name' data-i18n='formName'>Name</label>
@@ -4654,11 +4756,11 @@
     </section>
 
   </main>
-  <footer class='footer' aria-label='Site footer'>
+  <footer class='footer'>
     <span class='ambient-wave ambient-wave--a' aria-hidden='true'></span>
     <span class='ambient-wave ambient-wave--b' aria-hidden='true'></span>
     <div class='footer__brand'>
-      <img class='footer__logo' src='assets/images/logo.svg' alt='Vikaneset logo'>
+      <img class='footer__logo' src='assets/images/logo-mark-light.png' alt='' width='157' height='114'>
       <div class='footer__text'>
         <span class='footer__name'>Vikaneset</span>
         <span class='footer__sub'>Havhotell</span>
@@ -4734,6 +4836,22 @@
 
       toggle.addEventListener('click', openMenu);
 
+      // Keep keyboard focus inside the open menu, since it covers the page.
+      menu.addEventListener('keydown', function (event) {
+        if (event.key !== 'Tab') return;
+        var focusable = menu.querySelectorAll('a, button');
+        if (!focusable.length) return;
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+
       if (close) {
         close.addEventListener('click', closeMenu);
       }
@@ -4776,23 +4894,37 @@
     }());
 
     // A correctly named file in assets/images/carousels automatically replaces
-    // the temporary image currently shown in that carousel slot.
+    // the temporary image currently shown in that carousel slot. Each slot asks
+    // for its replacement first (still lazily) and falls back to the temporary
+    // image when the file is missing, so no photo is downloaded twice or early.
     (function () {
       document.querySelectorAll('[data-photo-slot]').forEach(function (slot) {
         var image = slot.querySelector('img');
         var filename = slot.getAttribute('data-photo-slot');
         if (!image || !filename) return;
 
-        var replacement = new Image();
-        replacement.onload = function () {
-          image.src = replacement.src;
-          slot.classList.remove('placeholder-media');
-        };
-        replacement.src = 'assets/images/carousels/' + filename;
+        var fallback = image.getAttribute('src');
+        var replacement = 'assets/images/carousels/' + filename;
+
+        // Hide the alt text while a missing replacement falls back.
+        image.style.color = 'transparent';
+
+        image.addEventListener('load', function () {
+          image.style.color = '';
+          if (image.getAttribute('src') === replacement) slot.classList.remove('placeholder-media');
+        });
+
+        image.addEventListener('error', function onError() {
+          image.removeEventListener('error', onError);
+          image.src = fallback;
+        });
+
+        image.src = replacement;
       });
     }());
 
     (function () {
+      var carousel = document.querySelector('.gallery__carousel');
       var track = document.getElementById('galleryTrack');
       var prev = document.getElementById('galleryPrev');
       var next = document.getElementById('galleryNext');
@@ -4803,7 +4935,11 @@
       var slides = Array.prototype.slice.call(track.children);
       var index = 0;
       var timer = null;
-      var touchStart = 0;
+      var touchStartX = 0;
+      var touchStartY = 0;
+      var inView = !('IntersectionObserver' in window);
+      var userControlled = false;
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       function update() {
         track.style.transform = 'translateX(-' + (index * 100) + '%)';
@@ -4827,28 +4963,63 @@
         timer = null;
       }
 
+      // Autoplay only while the gallery is on screen, and stop for good once
+      // the visitor starts browsing it themselves.
       function startAutoPlay() {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (reducedMotion || userControlled || !inView || document.hidden) return;
         stopAutoPlay();
         timer = window.setInterval(moveNext, 5500);
       }
 
-      prev.addEventListener('click', function () { movePrev(); startAutoPlay(); });
-      next.addEventListener('click', function () { moveNext(); startAutoPlay(); });
+      // The counter is only announced to screen readers for visitor-driven moves.
+      function takeControl() {
+        userControlled = true;
+        stopAutoPlay();
+        if (status) status.setAttribute('aria-live', 'polite');
+      }
+
+      prev.addEventListener('click', function () { takeControl(); movePrev(); });
+      next.addEventListener('click', function () { takeControl(); moveNext(); });
+
+      if (carousel) {
+        carousel.addEventListener('mouseenter', stopAutoPlay);
+        carousel.addEventListener('mouseleave', startAutoPlay);
+        carousel.addEventListener('focusin', stopAutoPlay);
+        carousel.addEventListener('focusout', startAutoPlay);
+        carousel.addEventListener('keydown', function (event) {
+          if (event.key === 'ArrowRight') { takeControl(); moveNext(); }
+          if (event.key === 'ArrowLeft') { takeControl(); movePrev(); }
+        });
+      }
 
       if (viewport) {
-        viewport.addEventListener('mouseenter', stopAutoPlay);
-        viewport.addEventListener('mouseleave', startAutoPlay);
         viewport.addEventListener('touchstart', function (event) {
-          touchStart = event.changedTouches[0].clientX;
+          touchStartX = event.changedTouches[0].clientX;
+          touchStartY = event.changedTouches[0].clientY;
           stopAutoPlay();
         }, { passive: true });
         viewport.addEventListener('touchend', function (event) {
-          var distance = event.changedTouches[0].clientX - touchStart;
-          if (Math.abs(distance) > 45) distance < 0 ? moveNext() : movePrev();
-          startAutoPlay();
+          var dx = event.changedTouches[0].clientX - touchStartX;
+          var dy = event.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+            takeControl();
+            if (dx < 0) moveNext(); else movePrev();
+          } else {
+            startAutoPlay();
+          }
         }, { passive: true });
       }
+
+      if (carousel && 'IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          inView = entries[0].isIntersecting;
+          if (inView) startAutoPlay(); else stopAutoPlay();
+        }, { threshold: 0.35 }).observe(carousel);
+      }
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stopAutoPlay(); else startAutoPlay();
+      });
 
       update();
       startAutoPlay();
@@ -4878,8 +5049,25 @@
           update();
         }
 
+        var touchStartX = 0;
+        var touchStartY = 0;
+
         prev.addEventListener('click', movePrev);
         next.addEventListener('click', moveNext);
+
+        root.addEventListener('touchstart', function (event) {
+          touchStartX = event.changedTouches[0].clientX;
+          touchStartY = event.changedTouches[0].clientY;
+        }, { passive: true });
+
+        root.addEventListener('touchend', function (event) {
+          var dx = event.changedTouches[0].clientX - touchStartX;
+          var dy = event.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+            if (dx < 0) moveNext(); else movePrev();
+          }
+        }, { passive: true });
+
         update();
       }
 
@@ -4892,7 +5080,6 @@
           navAccommodation: 'Stay',
           navRestaurant: 'Explore',
           navSauna: 'Sauna & beach',
-          navContact: 'Contact',
 
           heroGeo: 'Frei · Kristiansund · Norway',
 
@@ -4902,23 +5089,22 @@
           introLeadAccent: '16 kilometres',
 
           accommodationTitle: 'Stay',
-          accommodationCount: '10 self catering units across two buildings',
+          accommodationCount: '10 self-catering units across two buildings',
           unit1Meta: '5 units · Waterfront',
-          unit1Desc: 'Five self catering units by the water. Each unit has an open plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own balcony and terrace.',
+          unit1Desc: 'Five self-catering units by the water. Each unit has an open-plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own balcony and terrace.',
           unit2Meta: '5 units · Innerholmen',
-          unit2Desc: 'Five self catering apartments in Innerholmen. Each unit has an open plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own veranda.',
+          unit2Desc: 'Five self-catering apartments in Innerholmen. Each unit has an open-plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own veranda.',
           bookingButton: 'Check availability',
 
           siteTitle: 'The site',
           siteIntro1: 'Vikaneset is a historic coastal gem. Klippfisk was received, produced and dried here, and the site was also used for cod-liver oil production.',
           siteIntro2: 'Today the old klippfisk warehouse houses a restaurant and rooms for functions and courses. The property also has 16 apartments for holiday guests and permanent residents.',
           site1Body: 'Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.',
-          site1Detail: '1,000 m² · Bar, restaurant and function rooms',
           site1LinkText: 'Find Lokalkokken',
           site2Title: 'The harbour',
           site2Body: 'Vikaneset has its own harbour with berths for visiting boats. Kayaks and canoes are available to rent here.',
           site2Detail: 'Watch for fish and crabs in the clear water',
-          site3Body: 'Vikaneset has an amphitheatre with 1,500 seats. It was completed in 2008, when it hosted the world premiere of the «klippfisk opera» Donna Bacalao, staged by the Opera in Kristiansund.',
+          site3Body: 'Vikaneset has an amphitheatre with 1,500 seats. It was completed in 2008, when it hosted the world premiere of the “klippfisk opera” Donna Bacalao, staged by the Opera in Kristiansund.',
           site3Detail: '1,500 seats · Completed 2008',
           site4Title: 'Sauna and beach',
           site4Body: 'Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna\'s warmth and cool off in the fresh sea water.',
@@ -4935,9 +5121,9 @@
           groceryLabel: 'Grocery',
           groceryValue: 'Kiwi Rensvik about 9 minutes. Bunnpris Rensvik about 11 minutes.',
           arrivalTitle: 'Arrival',
-          checkInLabel: 'Check in',
+          checkInLabel: 'Check-in',
           checkInValue: 'From 16:00',
-          checkOutLabel: 'Check out',
+          checkOutLabel: 'Check-out',
           checkOutValue: 'By 11:00',
           includedTitle: 'Included',
           included1: 'Kitchen or kitchenette',
@@ -4963,14 +5149,30 @@
           formButton: 'Send enquiry',
 
           footerOpening: 'Opening spring 2027',
-          footerLocation: 'Kjørvegen 31, 6520 Frei, Norway'
+          footerLocation: 'Kjørvegen 31, 6520 Frei, Norway',
+
+          formSubject: 'Website enquiry',
+          videoFallback: 'Your browser does not support the video tag.',
+
+          ariaMainNav: 'Main navigation',
+          ariaHome: 'Vikaneset home',
+          ariaLangSwitch: 'Language',
+          ariaOpenMenu: 'Open menu',
+          ariaCloseMenu: 'Close menu',
+          ariaMenu: 'Navigation',
+          ariaHeroImage: 'View of Vikaneset',
+          ariaAerialImage: 'Aerial view of Vikaneset',
+          ariaPrevPhoto: 'Previous photo',
+          ariaNextPhoto: 'Next photo',
+          ariaIncluded: 'Included in each unit',
+          ariaExtras: 'Available for an additional fee',
+          ariaForm: 'Enquiry form'
         },
 
         no: {
           navAccommodation: 'Bo',
           navRestaurant: 'Opplev',
           navSauna: 'Sauna og strand',
-          navContact: 'Kontakt',
 
           heroGeo: 'Frei · Kristiansund · Norge',
 
@@ -4990,13 +5192,12 @@
           siteTitle: 'Om stedet',
           siteIntro1: 'Vikaneset er en historisk kystperle. Her ble det drevet klippfiskmottak, produksjon og tørking av klippfisk samt tranbrenneri.',
           siteIntro2: 'I dag er det restaurant, selskaps- og kurslokaler i den gamle klippfiskbrygga. Eiendommen har også 16 leiligheter som leies ut til feriegjester og fastboende.',
-          site1Body: 'Brygge fra rundt år 1900, restaurert rundt år 2006–2009. Den består av ca 1.000 kvm med bar, restaurant og lokaler til selskaper og kurs. Restauranten drives av Lokalkokken.',
-          site1Detail: '1.000 m² · Bar, restaurant og selskapslokaler',
+          site1Body: 'Brygge fra rundt år 1900, restaurert rundt år 2006–2009. Den består av ca. 1 000 kvm med bar, restaurant og lokaler til selskaper og kurs. Restauranten drives av Lokalkokken.',
           site1LinkText: 'Finn Lokalkokken',
           site2Title: 'Havna',
           site2Body: 'Vikaneset har egen havn med bryggeplass til besøkende. Her kan du leie kano og kajakk.',
           site2Detail: 'Se etter fisk og krabbe i det klare vannet',
-          site3Body: 'Vikaneset har amfi med 1500 sitteplasser. Amfiet ble ferdigstilt i 2008. Da var det urpremiære på «klippfisk-operaen» Donna Bacalao i regi av Operaen i Kristiansund.',
+          site3Body: 'Vikaneset har amfi med 1 500 sitteplasser. Amfiet ble ferdigstilt i 2008. Da var det urpremiære på «klippfisk-operaen» Donna Bacalao i regi av Operaen i Kristiansund.',
           site3Detail: '1 500 sitteplasser · Ferdigstilt 2008',
           site4Title: 'Sauna og strand',
           site4Body: 'Vikaneset har sauna som ligger rett ved sandstranden vår. Her kan man nyte saunaens varme og boltre seg i det friske sjøvannet.',
@@ -5033,15 +5234,32 @@
           informationIntro: 'En kort introduksjon til Vikaneset og omgivelsene ved sjøen.',
 
           contactTitle: 'Kontakt',
-          emailLabel: 'E post',
+          emailLabel: 'E-post',
           phoneLabel: 'Telefon',
           formName: 'Navn',
-          formEmail: 'E post',
+          formEmail: 'E-post',
           formMessage: 'Melding',
           formButton: 'Send forespørsel',
 
           footerOpening: 'Åpner våren 2027',
-          footerLocation: 'Kjørvegen 31, 6520 Frei, Norge'
+          footerLocation: 'Kjørvegen 31, 6520 Frei, Norge',
+
+          formSubject: 'Forespørsel fra nettsiden',
+          videoFallback: 'Nettleseren din kan ikke spille av denne videoen.',
+
+          ariaMainNav: 'Hovednavigasjon',
+          ariaHome: 'Vikaneset forside',
+          ariaLangSwitch: 'Språk',
+          ariaOpenMenu: 'Åpne meny',
+          ariaCloseMenu: 'Lukk meny',
+          ariaMenu: 'Navigasjon',
+          ariaHeroImage: 'Utsikt over Vikaneset',
+          ariaAerialImage: 'Vikaneset sett fra luften',
+          ariaPrevPhoto: 'Forrige bilde',
+          ariaNextPhoto: 'Neste bilde',
+          ariaIncluded: 'Inkludert i hver enhet',
+          ariaExtras: 'Tilgjengelig mot betaling',
+          ariaForm: 'Kontaktskjema'
         }
       };
 
@@ -5052,7 +5270,18 @@
         storedLanguage = null;
       }
 
-      var currentLanguage = translations[storedLanguage] ? storedLanguage : 'en';
+      var urlLanguage = null;
+      try {
+        urlLanguage = new URLSearchParams(window.location.search).get('lang');
+      } catch (error) {
+        urlLanguage = null;
+      }
+
+      var browserLanguage = /^(nb|nn|no)\b/i.test(navigator.language || '') ? 'no' : 'en';
+
+      var currentLanguage = translations[urlLanguage]
+        ? urlLanguage
+        : (translations[storedLanguage] ? storedLanguage : browserLanguage);
 
       function setLanguage(lang) {
         currentLanguage = lang;
@@ -5062,6 +5291,13 @@
           var key = element.getAttribute('data-i18n');
           if (translations[lang] && translations[lang][key]) {
             element.textContent = translations[lang][key];
+          }
+        });
+
+        document.querySelectorAll('[data-i18n-aria]').forEach(function (element) {
+          var key = element.getAttribute('data-i18n-aria');
+          if (translations[lang] && translations[lang][key]) {
+            element.setAttribute('aria-label', translations[lang][key]);
           }
         });
 
@@ -5083,6 +5319,23 @@
           setLanguage(button.getAttribute('data-lang'));
         });
       });
+
+      // Open the visitor's mail app with the enquiry already written out, which
+      // works more reliably than posting a form straight to a mailto: address.
+      var form = document.querySelector('.form');
+      if (form) {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          var name = form.querySelector('#f-name').value.trim();
+          var email = form.querySelector('#f-email').value.trim();
+          var message = form.querySelector('#f-msg').value.trim();
+          var subject = translations[currentLanguage].formSubject + ', ' + name;
+          var body = message + '\n\n' + name + '\n' + email;
+          window.location.href = form.getAttribute('action') +
+            '?subject=' + encodeURIComponent(subject) +
+            '&body=' + encodeURIComponent(body);
+        });
+      }
 
       setLanguage(currentLanguage);
     }());
