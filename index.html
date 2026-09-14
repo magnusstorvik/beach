@@ -32,34 +32,24 @@
 
   <style>
     :root {
-      --navy: #0E2430;
-      --navy-deep: #0A1D28;
-      --navy-soft: #163646;
       --navy-mist: rgba(14, 36, 48, 0.06);
       --navy-line: rgba(14, 36, 48, 0.14);
       --blue: #2F6690;
       --blue-deep: #1D4E70;
       --blue-soft: #3E7FAE;
       --blue-bright: #6FA8CE;
-      --stone: #E7EAEA;
-      --stone-deep: #DBE2E4;
       --white: #FFFFFF;
-      --text: #202020;
-      --text-mid: #565350;
       --timber: #7E7B74;
-      --brass: #9A7A43;
       --brass-soft: rgba(154, 122, 67, 0.62);
       --glass-light: rgba(255, 255, 255, 0.58);
       --glass-dark: rgba(9, 29, 40, 0.58);
       --glass-line: rgba(255, 255, 255, 0.38);
       --glass-blur: blur(22px) saturate(135%);
-      --line: rgba(26, 58, 74, 0.10);
       --line-soft: rgba(26, 58, 74, 0.07);
       --shadow: 0 18px 40px rgba(14, 36, 48, 0.08);
       --shadow-soft: 0 12px 28px rgba(14, 36, 48, 0.06);
       --font-serif: 'Spectral', Georgia, serif;
       --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      --max: 1160px;
       --gutter: clamp(1.25rem, 4vw, 3rem);
       --texture-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='64' viewBox='0 0 96 64'%3E%3Cg fill='none' stroke='rgba(14,36,48,0.038)' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M4 12c4-3.8 8-3.8 12 0s8 3.8 12 0'/%3E%3Cpath d='M51 23c6-4.4 12-4.4 18 0s12 4.4 18 0'/%3E%3Cpath d='M18 49c3-3 6-3 9 0s6 3 9 0'/%3E%3C/g%3E%3C/svg%3E");
       --texture-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='64' viewBox='0 0 96 64'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.052)' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M4 12c4-3.8 8-3.8 12 0s8 3.8 12 0'/%3E%3Cpath d='M51 23c6-4.4 12-4.4 18 0s12 4.4 18 0'/%3E%3Cpath d='M18 49c3-3 6-3 9 0s6 3 9 0'/%3E%3C/g%3E%3C/svg%3E");
@@ -77,7 +67,6 @@
     }
 
     body {
-      background: var(--stone);
       color: var(--text);
       font-family: var(--font-sans);
       line-height: 1.6;
@@ -113,29 +102,19 @@
     .section-eyebrow {
       display: block;
       font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 0.65rem;
     }
 
     .section-title {
       font-family: var(--font-serif);
-      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
       color: var(--navy);
-      font-weight: 400;
       line-height: 1.2;
       position: relative;
     }
 
     .section-title::after {
       content: '';
-      display: block;
-      width: 108px;
-      height: 1.5px;
       margin-top: 0.85rem;
-      background: var(--blue);
     }
 
     .section-intro {
@@ -146,18 +125,9 @@
       line-height: 1.72;
     }
 
-    .site__intro-text {
-      max-width: 36rem;
-    }
-
-    .site__intro-text .section-intro + .section-intro {
-      margin-top: 1.1rem;
-    }
-
     .reveal {
       opacity: 0;
       transform: translateY(16px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
     }
 
     .reveal.is-visible {
@@ -186,22 +156,15 @@
       transition: background 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .nav.scrolled {
-      background: rgba(14, 36, 48, 0.96);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-    }
-
     .nav__brand {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   flex-shrink: 0;
-}   
+}
 
     .nav__logo,
 .footer__logo {
-  width: 62px;
-  height: 38px;
   flex-shrink: 0;
   object-fit: contain;
 }
@@ -237,14 +200,6 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       line-height: 1;
-    }
-
-    .nav__sub {
-      color: rgba(255, 255, 255, 0.45);
-    }
-
-    .footer__sub {
-      color: rgba(236, 233, 227, 0.45);
     }
 
     .nav__menu {
@@ -305,9 +260,6 @@
     }
 
     .lang-switch__btn.is-active {
-      background: rgba(111, 168, 206, 0.14);
-      border-color: var(--blue-bright);
-      color: var(--blue-bright);
       opacity: 1;
     }
 
@@ -332,7 +284,6 @@
       position: fixed;
       inset: 0;
       background: var(--navy);
-      z-index: 99;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -413,30 +364,10 @@
       }
     }
 
-    .wave-mark {
-      display: block;
-      width: 46px;
-      height: 16px;
-      color: var(--blue);
-    }
-
-    .wave-mark path {
-      stroke: currentColor;
-      stroke-width: 1.4;
-      fill: none;
-      stroke-linecap: round;
-    }
-
     .hero__scroll-cue {
       position: absolute;
-      left: 50%;
       bottom: 1.8rem;
       transform: translateX(-50%);
-      z-index: 1;
-      width: 38px;
-      height: 28px;
-      color: var(--blue-bright);
-      animation: bird-bob 3.4s ease-in-out infinite;
     }
 
     .hero__scroll-cue path,
@@ -450,28 +381,6 @@
     .hero__scroll-cue-head {
       fill: currentColor;
       stroke: none;
-    }
-
-    .hero__scroll-cue-body,
-    .hero__scroll-cue-wing,
-    .hero__scroll-cue-neck {
-      stroke-width: 1.35;
-    }
-
-    .hero__scroll-cue-feather {
-      stroke-width: 0.65;
-      opacity: 0.42;
-    }
-
-    @keyframes bird-bob {
-      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.82; }
-      50% { transform: translateX(-50%) translateY(-4px); opacity: 1; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero__scroll-cue {
-        animation: none;
-      }
     }
 
     @media (max-width: 640px) {
@@ -490,7 +399,6 @@
 
     .hero__content {
       position: relative;
-      z-index: 1;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -510,8 +418,7 @@
 }
 
 .hero__inner .hero__geo,
-.hero__inner .hero__name,
-.hero__inner .hero__note {
+.hero__inner .hero__name {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.7s ease, transform 0.7s ease;
@@ -525,13 +432,8 @@
   transition-delay: 0.2s;
 }
 
-.hero__inner.is-visible .hero__note {
-  transition-delay: 0.38s;
-}
-
 .hero__inner.is-visible .hero__geo,
-.hero__inner.is-visible .hero__name,
-.hero__inner.is-visible .hero__note {
+.hero__inner.is-visible .hero__name {
   opacity: 1;
   transform: translateY(0);
 }
@@ -557,60 +459,17 @@
   text-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
 }
 
-    .hero__note {
-      max-width: 25rem;
-      font-size: 1rem;
-      color: rgba(255, 255, 255, 0.88);
-      line-height: 1.72;
-    }
-
-    .intro {
-      background-image: var(--texture-dark), linear-gradient(to bottom, var(--blue-deep) 0%, var(--navy) 100%);
-      background-repeat: repeat, no-repeat;
-      background-size: 96px 64px, 100% 100%;
-      padding: clamp(2.25rem, 4.5vw, 3.5rem) 0 0;
-    }
-
-    .intro__mark {
-      margin-bottom: 1.5rem;
-      color: var(--blue-bright);
-    }
-
-    .intro__text {
-      max-width: 35rem;
-    }
-
     .intro__lead {
       font-family: var(--font-serif);
-      font-size: clamp(1.35rem, 2.6vw, 1.95rem);
       color: #fff;
-      line-height: 1.5;
       font-weight: 400;
     }
 
-    .intro__lead em {
-      display: block;
-      margin-top: 0.35rem;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 0.86em;
-    }
-
     .aerial {
-      margin-top: clamp(1rem, 1.5vw, 1.5rem);
-      height: clamp(340px, 48vw, 620px);
-      background-image: url('assets/images/aerial.jpg');
-      background-size: cover;
-      background-position: center 72%;
       background-color: var(--navy);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
     }
 
     .accommodation {
-      background-color: var(--stone);
-      background-image: var(--texture-light);
-      background-repeat: repeat;
-      background-size: 96px 64px;
       padding: clamp(3.5rem, 6vw, 5.5rem) 0 clamp(2rem, 3vw, 2.75rem);
     }
 
@@ -624,21 +483,12 @@
       color: var(--text-mid);
     }
 
-    .units {
-      border-top: 1px solid var(--line);
-    }
-
     .unit {
       display: flex;
-      gap: 2rem;
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--line-soft);
-      align-items: flex-start;
     }
 
     .unit__media {
       flex: 0 0 360px;
-      width: 360px;
     }
 
     .unit__text {
@@ -647,28 +497,21 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      padding-top: 0.2rem;
     }
 
     .unit__name {
       font-family: var(--font-serif);
-      font-size: 1.06rem;
       color: var(--navy);
-      font-weight: 400;
     }
 
     .unit__meta {
       font-size: 0.72rem;
-      font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--blue);
     }
 
     .unit__desc {
-      font-size: 0.84rem;
       color: var(--text-mid);
-      line-height: 1.65;
     }
 
     .mini-carousel {
@@ -703,17 +546,12 @@
       transform: translateY(-50%);
       width: 34px;
       height: 34px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      background: rgba(14, 36, 48, 0.62);
-      color: #fff;
       font-size: 0.8rem;
       cursor: pointer;
-      backdrop-filter: blur(4px);
       z-index: 2;
     }
 
     .mini-carousel__btn:hover {
-      background: var(--blue);
       opacity: 1;
     }
 
@@ -725,115 +563,12 @@
       right: 0.6rem;
     }
 
-    .mini-carousel--full {
-      height: 100%;
-    }
-
-    .mini-carousel--full .mini-carousel__viewport,
-    .mini-carousel--full .mini-carousel__track,
-    .mini-carousel--full .mini-carousel__slide,
-    .mini-carousel--full .mini-carousel__slide img {
-      height: 100%;
-    }
-
-    .mini-carousel--full .mini-carousel__btn {
-      width: 52px;
-      height: 52px;
-      font-size: 1rem;
-    }
-
-    .mini-carousel--full .mini-carousel__btn--prev {
-      left: 1rem;
-    }
-
-    .mini-carousel--full .mini-carousel__btn--next {
-      right: 1rem;
-    }
-
     .site {
-      background-color: var(--stone);
-      background-image: var(--texture-light);
-      background-repeat: repeat;
-      background-size: 96px 64px;
       padding: clamp(2.5rem, 4vw, 3.5rem) 0 clamp(3.5rem, 6vw, 5rem);
-      overflow-x: clip;
-    }
-
-    .site__header {
-      background-color: var(--blue-deep);
-      background-image: var(--texture-dark);
-      background-repeat: repeat;
-      background-size: 96px 64px;
-      padding: 2.25rem 2rem 2.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .site__header .section-title {
-      color: #fff;
     }
 
     .site__header .section-title::after {
       background: var(--blue-bright);
-    }
-
-    .site__header .section-eyebrow {
-      color: var(--blue-bright);
-    }
-
-    .site__header .section-intro {
-      color: rgba(255, 255, 255, 0.82);
-    }
-
-    .site__mark {
-      margin-bottom: 1.5rem;
-    }
-
-    .site__items {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(4.5rem, 8vw, 6.4rem);
-    }
-
-    .site__item {
-      display: block;
-    }
-
-    .site__img {
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-      aspect-ratio: 3 / 2;
-      max-height: 680px;
-      overflow: hidden;
-      background: var(--stone);
-    }
-
-    .site__img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.55s ease;
-    }
-
-    .site__item:hover .site__img img {
-      transform: scale(1.02);
-    }
-
-    .site__img::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, rgba(47, 102, 144, 0.26), rgba(14, 36, 48, 0) 55%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .site__item:hover .site__img::after {
-      opacity: 1;
     }
 
     .unit__media .mini-carousel__viewport {
@@ -854,86 +589,7 @@
       opacity: 1;
     }
 
-    .site__copy {
-      padding-top: 1.2rem;
-    }
-
-    .site__copy > * {
-      max-width: 23rem;
-    }
-
-    .site__item--alt .site__copy > * {
-      margin-left: auto;
-    }
-
-    .site__item-mark {
-      margin-bottom: 0.9rem;
-    }
-
-    .site__item-title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.08rem, 1.8vw, 1.45rem);
-      color: var(--navy);
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 0.75rem;
-    }
-
-    .site__body {
-      font-size: 0.84rem;
-      color: var(--text-mid);
-      line-height: 1.72;
-    }
-
-    .site__detail {
-      margin-top: 1rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--blue);
-    }
-
-    .site__link-wrap {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .site__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      margin-top: 0.85rem;
-      padding: 0.35rem 0.6rem;
-      font-family: var(--font-serif);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--blue);
-      background: rgba(47, 102, 144, 0.09);
-      border-bottom: 2px solid var(--blue);
-    }
-
-    .site__link::after {
-      content: '\2192';
-      transition: transform 0.25s ease;
-    }
-
-    .site__link:hover::after {
-      transform: translateX(3px);
-    }
-
-    .site__link:hover {
-      opacity: 1;
-      color: var(--blue-soft);
-      border-color: var(--blue-soft);
-      background: rgba(47, 102, 144, 0.15);
-    }
-
     .practical {
-      background-color: var(--navy);
-      background-image: var(--texture-dark);
-      background-repeat: repeat;
-      background-size: 96px 64px;
       padding: clamp(3.5rem, 6vw, 5.5rem) 0;
     }
 
@@ -950,7 +606,6 @@
     }
 
     .practical .pblock__title {
-      color: var(--blue-bright);
       border-bottom-color: rgba(255, 255, 255, 0.18);
     }
 
@@ -982,13 +637,8 @@
 
     .pblock__title {
       font-size: 0.68rem;
-      font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--timber);
-      padding-bottom: 0.85rem;
-      border-bottom: 1px solid rgba(122, 114, 104, 0.3);
-      margin-bottom: 1.5rem;
     }
 
     .dl {
@@ -1037,11 +687,7 @@
     }
 
     .gallery {
-      background-image: var(--texture-light), linear-gradient(to bottom, #DEE4E5 0%, var(--stone) 100%);
-      background-repeat: repeat, no-repeat;
-      background-size: 96px 64px, 100% 100%;
       padding: clamp(3.5rem, 6vw, 5.5rem) 0;
-      border-top: 1px solid var(--line);
     }
 
     .gallery__header {
@@ -1050,40 +696,28 @@
 
     .gallery__carousel {
       position: relative;
-      max-width: 760px;
       margin: 0 auto;
     }
 
     .gallery__viewport {
       overflow: hidden;
-      background: rgba(14, 36, 48, 0.05);
-      box-shadow: var(--shadow);
-      height: clamp(320px, 42vw, 460px);
     }
 
     .gallery__track {
       display: flex;
-      height: 100%;
       transition: transform 0.55s ease;
       will-change: transform;
     }
 
     .gallery__slide {
       flex: 0 0 100%;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(14, 36, 48, 0.04);
     }
 
     .gallery__slide img {
       display: block;
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: contain;
     }
 
     .gallery__btn {
@@ -1092,19 +726,11 @@
       transform: translateY(-50%);
       width: 52px;
       height: 52px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(14, 36, 48, 0.72);
-      color: #fff;
       font-size: 1rem;
       cursor: pointer;
-      z-index: 2;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 10px 24px rgba(14, 36, 48, 0.16);
     }
 
     .gallery__btn:hover {
-      background: var(--blue);
-      border-color: var(--blue-bright);
       opacity: 1;
     }
 
@@ -1117,21 +743,10 @@
     }
 
     .information {
-      background-color: var(--stone);
-      background-image: var(--texture-light);
-      background-repeat: repeat;
-      background-size: 96px 64px;
       padding: clamp(3rem, 5vw, 4.5rem) 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .information__header {
-      margin-bottom: 2.5rem;
     }
 
     .information__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
       gap: 2rem;
       align-items: stretch;
     }
@@ -1140,52 +755,22 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(14, 36, 48, 0.055) 0%, rgba(14, 36, 48, 0.025) 100%);
-      border: 1px solid rgba(14, 36, 48, 0.11);
       padding: 1.45rem;
-      box-shadow: var(--shadow-soft);
       min-height: 100%;
-    }
-
-    .card__title {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      color: var(--navy);
-      font-weight: 400;
-      margin-bottom: 0.55rem;
-    }
-
-    .card__body {
-      font-size: 0.84rem;
-      color: var(--text-mid);
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-
-    .card__meta {
-      margin-top: 0.85rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.05em;
-      color: var(--timber);
     }
 
     .button-link {
       display: inline-block;
-      background: var(--navy);
       color: #fff;
-      border: 1px solid var(--navy);
       padding: 0.8rem 1.3rem;
       font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       align-self: flex-start;
-      box-shadow: 0 10px 24px rgba(14, 36, 48, 0.10);
     }
 
     .button-link:hover {
-      background: var(--blue);
-      border-color: var(--blue);
       opacity: 1;
     }
 
@@ -1198,23 +783,12 @@
     }
 
     .contact {
-      background-color: var(--navy);
-      background-image: var(--texture-dark);
       background-repeat: repeat;
-      background-size: 96px 64px;
       padding: clamp(3.5rem, 6vw, 5.5rem) 0;
-    }
-
-    .contact .section-title {
-      color: #fff;
     }
 
     .contact .section-title::after {
       background: var(--blue-bright);
-    }
-
-    .contact .section-eyebrow {
-      color: var(--blue-bright);
     }
 
     .contact__header {
@@ -1236,7 +810,6 @@
 
     .cinfo__label {
       font-size: 0.68rem;
-      font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--blue-bright);
@@ -1276,7 +849,6 @@
 
     .field label {
       font-size: 0.68rem;
-      font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #fff;
@@ -1284,7 +856,6 @@
 
     .field input,
     .field textarea {
-      background: var(--white);
       border: 1px solid rgba(26, 58, 74, 0.18);
       padding: 0.78rem 0.9rem;
       font-family: var(--font-sans);
@@ -1298,8 +869,6 @@
     .field input:focus,
     .field textarea:focus {
       outline: none;
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(47, 102, 144, 0.12);
     }
 
     .field textarea {
@@ -1309,9 +878,7 @@
 
     .form__btn {
       align-self: flex-start;
-      background: var(--blue);
       color: #fff;
-      border: none;
       padding: 0.85rem 1.8rem;
       font-family: var(--font-sans);
       font-size: 0.72rem;
@@ -1319,25 +886,17 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 10px 24px rgba(14, 36, 48, 0.10);
     }
 
     .form__btn:hover {
-      background: var(--blue-soft);
       opacity: 1;
     }
 
     .footer {
-      background-color: var(--navy);
-      background-image: var(--texture-dark);
       background-repeat: repeat;
-      background-size: 96px 64px;
-      padding: 3rem var(--gutter);
-      display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .footer__brand {
@@ -1352,7 +911,6 @@
       letter-spacing: 0.05em;
     }
 
-
     /* Final layout refinements */
     .site__header {
       display: grid;
@@ -1362,7 +920,6 @@
         'title intro';
       column-gap: clamp(2.5rem, 7vw, 6rem);
       align-items: start;
-      padding: clamp(2rem, 4vw, 3rem);
     }
 
     .site__header > .section-eyebrow { grid-area: eyebrow; }
@@ -1372,14 +929,6 @@
       grid-area: intro;
       max-width: none;
       padding-top: 0.05rem;
-    }
-
-    .site__intro-text .section-intro { max-width: 48rem; }
-
-    .gallery__carousel { max-width: 980px; }
-
-    .gallery__viewport {
-      height: clamp(400px, 52vw, 600px);
     }
 
     .footer {
@@ -1407,11 +956,9 @@
 
     .mini-carousel__viewport,
     .gallery__viewport,
-    .site__img,
     .site__header,
     .card,
     .button-link,
-    .site__link,
     .lang-switch__btn,
     .mini-carousel__btn,
     .gallery__btn,
@@ -1421,7 +968,6 @@
       border-radius: 3px;
     }
 
-    .site__img img,
     .mini-carousel__slide img {
       border-radius: inherit;
     }
@@ -1432,23 +978,6 @@
       .contact__grid {
         grid-template-columns: 1fr;
         gap: 2.5rem 0;
-      }
-
-      .unit {
-        gap: 1.5rem;
-      }
-
-      .unit__media {
-        flex-basis: 220px;
-        width: 220px;
-      }
-
-      .unit__media .mini-carousel__slide img {
-        height: 180px;
-      }
-
-      .site__item--alt .site__copy > * {
-        margin-left: 0;
       }
 
       .site__header {
@@ -1487,22 +1016,6 @@
         display: block;
       }
 
-      .gallery__viewport {
-        height: clamp(280px, 52vw, 380px);
-      }
-
-      .gallery__btn {
-        width: 46px;
-        height: 46px;
-      }
-
-      .gallery__btn--prev {
-        left: 0.7rem;
-      }
-
-      .gallery__btn--next {
-        right: 0.7rem;
-      }
     }
 
     @media (max-width: 640px) {
@@ -1522,190 +1035,41 @@
         font-size: clamp(4rem, 22vw, 8rem);
       }
 
-      .hero__note {
-        max-width: 22rem;
-      }
-
       .unit {
         flex-direction: column;
-        gap: 1rem;
-        padding: 1.5rem 0;
-      }
-
-      .unit__media {
-        width: 100%;
-        flex-basis: auto;
-      }
-
-      .unit__media .mini-carousel__slide img {
-        height: 220px;
       }
 
       .form__row {
         grid-template-columns: 1fr;
       }
     }
-  
-    /* Site section composition fix */
-    .site__items {
-      gap: 0;
-    }
 
-    .site__item {
-      background-color: var(--stone);
-      background-image: var(--texture-light);
-      background-repeat: repeat;
-      background-size: 96px 64px;
-    }
-
-    .site__copy {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
-      padding-top: clamp(1.5rem, 2.4vw, 2rem);
-      padding-bottom: clamp(1.8rem, 3vw, 2.5rem);
-    }
-
-    .site__copy > * {
-      width: 100%;
-      max-width: 34rem;
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    .site__item--alt .site__copy {
-      align-items: flex-end;
-    }
-
-    .site__item--alt .site__copy > * {
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    .site__item-mark-wrap {
-      margin-bottom: 0;
-    }
-
-    .site__item-title {
-      margin-top: 0;
-    }
-
-    .site__link-wrap {
-      display: flex;
-      justify-content: flex-start;
-      width: 100%;
-      max-width: 34rem;
-    }
-
-    .site__item--alt .site__link-wrap {
-      justify-content: flex-start;
-    }
-
-    .site__link {
-      display: flex;
-      width: max-content;
-      margin-top: 1rem;
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    .site__item--alt .site__copy > .site__link {
-      align-self: flex-start;
-    }
-
-    .site__detail {
-      margin-top: 0.9rem;
-    }
-
-    @media (max-width: 960px) {
-      .site__item--alt .site__copy {
-        align-items: flex-start;
-      }
-    }
-
-  
     /* Editorial refinement */
     .intro {
-      position: relative;
       overflow: hidden;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.012), rgba(255,255,255,0.012)),
-        var(--texture-dark),
-        linear-gradient(112deg, #173E55 0%, #123246 58%, #0E2939 100%);
       padding: clamp(2.6rem, 5vw, 4.6rem) 0 0;
-    }
-
-    .intro::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(154,122,67,0.52), transparent);
-      opacity: 0.72;
     }
 
     .intro__text {
       max-width: none;
       display: grid;
-      grid-template-columns: 4.5rem minmax(0, 1.25fr) minmax(15rem, 0.75fr);
-      gap: clamp(1.5rem, 4vw, 4.5rem);
-      align-items: end;
-      padding-left: clamp(1.4rem, 3vw, 2.8rem);
-      padding-bottom: clamp(2.3rem, 4vw, 3.9rem);
-    }
-
-    .intro__ornament {
-      align-self: start;
-      padding-top: 0.45rem;
-    }
-
-    .intro__mark {
-      width: 72px;
-      height: 18px;
-      margin: 0;
-      color: var(--brass-soft);
-      transform: translateX(-0.15rem);
-    }
-
-    .intro__mark path {
-      stroke-width: 1.05;
-      opacity: 0.88;
     }
 
     .intro__kicker {
       margin-bottom: 0.85rem;
       font-size: 0.68rem;
-      font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.56);
     }
 
     .intro__lead {
-      font-size: clamp(1.75rem, 3.15vw, 2.75rem);
-      line-height: 1.25;
       letter-spacing: -0.018em;
-      max-width: 34rem;
     }
 
     .intro__aside {
-      max-width: 21rem;
-      padding: 0 0 0.3rem clamp(1.2rem, 3vw, 2.6rem);
-      border-left: 1px solid rgba(154,122,67,0.46);
       font-family: var(--font-serif);
       font-size: clamp(1rem, 1.55vw, 1.22rem);
       line-height: 1.58;
-      font-style: italic;
-      color: rgba(255,255,255,0.72);
-    }
-
-    .aerial {
-      margin-top: 0;
-      border-radius: 10px 10px 0 0;
-      overflow: hidden;
     }
 
     .hero__scroll-cue {
@@ -1728,15 +1092,8 @@
     .site__header,
     .card,
     .gallery__viewport,
-    .mini-carousel__viewport,
-    .site__img {
+    .mini-carousel__viewport {
       border-radius: 10px;
-    }
-
-    .button-link,
-    .site__link,
-    .form__btn {
-      border-radius: 2px;
     }
 
     .section-title::after {
@@ -1746,80 +1103,23 @@
       opacity: 0.75;
     }
 
-    .site__item-mark {
-      color: var(--brass);
-      opacity: 0.78;
-    }
-
     @media (max-width: 820px) {
-      .intro::before {
-        display: none;
-      }
-
-      .intro__text {
-        grid-template-columns: 1fr;
-        gap: 1.1rem;
-        padding-left: 0;
-      }
-
-      .intro__ornament {
-        order: 1;
-      }
-
       .intro__statement {
         order: 2;
       }
 
       .intro__aside {
         order: 3;
-        padding-left: 1rem;
-        max-width: 28rem;
       }
     }
 
-  
     /* Employer review and composition refinement */
-    .review-notice {
-      position: fixed;
-      left: 50%;
-      bottom: 1rem;
-      z-index: 250;
-      width: min(calc(100% - 2rem), 760px);
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
 
-    .review-notice__inner {
-      display: flex;
-      gap: 0.65rem;
-      align-items: baseline;
-      padding: 0.72rem 0.95rem;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 6px;
-      background: rgba(10, 29, 40, 0.92);
-      color: rgba(255, 255, 255, 0.74);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-      backdrop-filter: blur(12px);
-      font-size: 0.76rem;
-      line-height: 1.45;
-    }
-
-    .review-notice__inner strong {
-      color: #fff;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .placeholder-copy,
     .placeholder-media {
       position: relative;
     }
 
-    .placeholder-copy::after,
     .placeholder-media::after {
-      content: attr(data-placeholder);
       position: absolute;
       top: 0.55rem;
       right: 0.55rem;
@@ -1838,77 +1138,21 @@
       pointer-events: none;
     }
 
-    .placeholder-copy {
-      padding-top: 1.15rem;
-    }
-
-    .placeholder-copy::after {
-      top: 0;
-      right: auto;
-      left: 0;
-    }
-
     .placeholder-media::after {
       content: 'Placeholder image';
     }
 
-    .intro {
-      background-image:
-        linear-gradient(108deg, rgba(255,255,255,0.018), rgba(255,255,255,0) 42%),
-        var(--texture-dark),
-        linear-gradient(118deg, #173D53 0%, #113246 56%, #0D2838 100%);
-    }
-
-    .intro::after {
-      content: '';
-      position: absolute;
-      left: -4vw;
-      top: 28%;
-      width: min(38vw, 520px);
-      height: 150px;
-      border: 15px solid rgba(255, 255, 255, 0.055);
-      border-color: rgba(255, 255, 255, 0.055) transparent transparent transparent;
-      border-radius: 50%;
-      transform: rotate(5deg);
-      pointer-events: none;
-    }
-
-    .intro__text {
-      grid-template-columns: minmax(0, 1.35fr) minmax(14rem, 0.65fr);
-      gap: clamp(3rem, 8vw, 8rem);
-      align-items: end;
-      padding-left: clamp(0.6rem, 2vw, 1.5rem);
-      padding-bottom: clamp(2.8rem, 5vw, 4.5rem);
-    }
-
     .intro__statement {
       max-width: 38rem;
-      transform: translateX(clamp(-0.4rem, -0.8vw, -0.8rem));
     }
 
     .intro__lead {
-      max-width: 31rem;
-      font-size: clamp(2rem, 3.55vw, 3.25rem);
       line-height: 1.22;
     }
 
     .intro__aside {
       align-self: end;
-      margin-bottom: 0.45rem;
-      transform: translateX(clamp(-1.2rem, -2.2vw, -2.5rem));
       max-width: 19rem;
-      border-left-color: rgba(154,122,67,0.34);
-    }
-
-    .aerial {
-      position: relative;
-      z-index: 2;
-      margin-top: -2.8rem;
-      width: calc(100% - clamp(1rem, 3vw, 3rem));
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 8px 8px 0 0;
-      box-shadow: 0 -16px 36px rgba(8, 25, 35, 0.22);
     }
 
     .hero__scroll-cue {
@@ -1916,17 +1160,6 @@
       opacity: 0.72;
     }
 
-    .hero__scroll-cue-wing:first-of-type {
-      transform: translateY(0.6px) rotate(0.8deg);
-      transform-origin: 22px 18px;
-    }
-
-    .hero__scroll-cue-wing:nth-of-type(2) {
-      transform: translateY(1.5px) rotate(-1.2deg);
-      transform-origin: 22px 18px;
-    }
-
-    .site__img img,
     .mini-carousel__slide img,
     .gallery__slide img {
       transition:
@@ -1934,12 +1167,10 @@
         filter 0.45s ease;
     }
 
-    .site__item:hover .site__img img,
     .unit:hover .mini-carousel__slide img {
       transform: scale(1.015);
     }
 
-    .site__link,
     .button-link,
     .form__btn,
     .gallery__btn,
@@ -1952,43 +1183,10 @@
         box-shadow 0.28s ease;
     }
 
-    .site__link:hover,
-    .button-link:hover,
-    .form__btn:hover {
-      transform: translateY(-1px);
-    }
-
     .reveal {
       transition:
         opacity 0.85s cubic-bezier(.22,.61,.36,1),
         transform 0.85s cubic-bezier(.22,.61,.36,1);
-    }
-
-    @media (max-width: 820px) {
-      .review-notice {
-        bottom: 0.65rem;
-      }
-
-      .review-notice__inner {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 0.25rem;
-      }
-
-      .intro__text {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .intro__statement,
-      .intro__aside {
-        transform: none;
-      }
-
-      .aerial {
-        margin-top: -1.2rem;
-        width: calc(100% - 1rem);
-      }
     }
 
     /* Final content hierarchy */
@@ -1997,52 +1195,12 @@
       flex-direction: column;
     }
 
-    .site__items {
-      width: min(calc(100% - (2 * var(--gutter))), var(--max));
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 3.5rem);
-    }
-
-    .site__img {
-      width: 100%;
-      left: auto;
-      transform: none;
-      aspect-ratio: 4 / 3;
-    }
-
-    .site__copy,
-    .site__item--alt .site__copy {
-      width: 100%;
-      padding: 1.2rem 0 0;
-      align-items: flex-start;
-    }
-
-    .site__copy > *,
-    .site__item--alt .site__copy > * {
-      max-width: 29rem;
-      margin-left: 0;
-    }
-
     .information__grid {
       grid-template-columns: 1fr;
     }
 
-    .review-notice,
-    .placeholder-copy::after,
     .placeholder-media::after {
       display: none;
-    }
-
-    .placeholder-copy {
-      padding-top: 0;
-    }
-
-    @media (max-width: 760px) {
-      .site__items {
-        grid-template-columns: 1fr;
-      }
     }
 
     /* Responsive glass composition */
@@ -2054,79 +1212,30 @@
       -webkit-backdrop-filter: var(--glass-blur);
     }
 
-    .site__item {
-      min-width: 0;
-      background: transparent;
-    }
-
-    .site__img.mini-carousel--full,
-    .site__img.mini-carousel--full .mini-carousel__viewport,
-    .site__img.mini-carousel--full .mini-carousel__track,
-    .site__img.mini-carousel--full .mini-carousel__slide,
-    .site__img.mini-carousel--full .mini-carousel__slide img {
-      height: auto;
-    }
-
-    .site__img.mini-carousel--full .mini-carousel__viewport,
-    .site__img.mini-carousel--full .mini-carousel__track,
-    .site__img.mini-carousel--full .mini-carousel__slide {
-      aspect-ratio: 4 / 3;
-    }
-
-    .site__img.mini-carousel--full .mini-carousel__slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .site__copy,
     .unit__text,
     .practical__grid > div,
     .card,
     .contact__details,
     .form {
-      border: 1px solid rgba(255, 255, 255, 0.44);
-      background: var(--glass-light);
-      box-shadow: 0 18px 50px rgba(14, 36, 48, 0.08), inset 0 1px 0 rgba(255,255,255,0.55);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
     }
 
-    .site__copy {
-      position: relative;
-      z-index: 3;
-      width: calc(100% - 1.5rem);
-      margin: -2.2rem auto 0;
-      padding: 1.35rem 1.4rem 1.5rem;
-      border-radius: 18px;
-    }
-
     .unit {
       align-items: stretch;
-      border-bottom: 0;
     }
 
     .unit__text {
       justify-content: center;
-      padding: 1.35rem 1.5rem;
-      border-radius: 18px;
     }
 
     .practical__grid > div {
       padding: clamp(1.4rem, 3vw, 2rem);
-      border-color: rgba(255, 255, 255, 0.15);
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.075);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 24px 60px rgba(0,0,0,0.12);
     }
 
     .contact__details,
     .form {
       padding: clamp(1.4rem, 3vw, 2rem);
-      border-color: rgba(255,255,255,0.15);
-      border-radius: 22px;
-      background: rgba(255,255,255,0.075);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 24px 60px rgba(0,0,0,0.12);
     }
 
     .field input,
@@ -2137,61 +1246,18 @@
     }
 
     .gallery {
-      position: relative;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 18% 15%, rgba(111,168,206,0.22), transparent 34%),
-        radial-gradient(circle at 86% 82%, rgba(154,122,67,0.14), transparent 32%),
-        linear-gradient(145deg, #102d3d, #071c27 72%);
-      color: #fff;
-    }
-
-    .gallery .section-title { color: #fff; }
-    .gallery .section-intro { color: rgba(255,255,255,0.68); }
-    .gallery .section-eyebrow { color: #9bc1d8; }
-
-    .gallery__carousel {
-      max-width: 1040px;
-      padding: clamp(0.55rem, 1.5vw, 0.9rem);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 28px;
-      background: rgba(255,255,255,0.09);
-      box-shadow: 0 30px 90px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.18);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-    }
-
-    .gallery__viewport {
-      height: auto;
-      aspect-ratio: 16 / 10;
-      border-radius: 21px;
-      background: #071923;
-    }
-
-    .gallery__slide img {
-      width: 100%;
-      height: 100%;
-      max-height: none;
-      object-fit: cover;
     }
 
     .gallery__carousel::after {
       content: '';
       position: absolute;
-      inset: clamp(0.55rem, 1.5vw, 0.9rem);
       z-index: 1;
-      border-radius: 21px;
-      background: linear-gradient(to bottom, transparent 58%, rgba(3,14,20,0.52));
       pointer-events: none;
     }
 
     .gallery__btn {
       z-index: 3;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      background: rgba(225,240,247,0.18);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 8px 24px rgba(0,0,0,0.18);
-      backdrop-filter: blur(16px) saturate(140%);
     }
 
     .gallery__status {
@@ -2199,7 +1265,6 @@
       right: 2rem;
       bottom: 1.65rem;
       z-index: 3;
-      color: rgba(255,255,255,0.82);
       font-size: 0.7rem;
       letter-spacing: 0.15em;
     }
@@ -2208,17 +1273,14 @@
       :root { --gutter: 1.05rem; }
 
       .nav { padding-top: 0.8rem; padding-bottom: 0.8rem; }
-      .nav__logo { width: 52px; height: 32px; }
 
       .hero { min-height: 78svh; }
       .hero__content { padding: 6rem var(--gutter) 2.2rem; }
       .hero__name { font-size: clamp(3.8rem, 21vw, 6.5rem); }
 
       .intro { padding-top: 2.25rem; }
-      .intro__text { padding-bottom: 2.5rem; }
-      .intro__lead { font-size: clamp(1.65rem, 8vw, 2.25rem); }
-      .intro__aside { font-size: 1rem; margin: 0; }
-      .aerial { height: 56vw; min-height: 250px; }
+
+      .intro__aside { font-size: 1rem;  }
 
       .accommodation,
       .site,
@@ -2227,32 +1289,22 @@
       .information,
       .contact { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 
-      .unit { padding: 0 0 1.5rem; }
-      .unit__media .mini-carousel__slide img { height: auto; aspect-ratio: 4 / 3; }
-      .unit__text { margin-top: -1.15rem; width: calc(100% - 1rem); align-self: center; }
-
-      .site__header { padding: 1.5rem 1.25rem 1.7rem; border-radius: 20px; }
-      .site__items { gap: 2.8rem; }
-      .site__copy { width: calc(100% - 0.8rem); margin-top: -1.6rem; padding: 1.2rem; }
-      .site__body { font-size: 0.92rem; line-height: 1.65; }
-      .site__item-title { font-size: 1.35rem; }
-      .site__img.mini-carousel--full .mini-carousel__btn { width: 40px; height: 40px; }
+      .unit__text {   align-self: center; }
 
       .practical__grid { gap: 1rem; }
       .dl { grid-template-columns: 1fr; gap: 0.25rem; }
       .dl dd { margin-bottom: 0.85rem; font-size: 0.9rem; }
 
       .gallery__header { margin-bottom: 1.75rem; }
-      .gallery__carousel { width: 100%; padding: 0.4rem; border-radius: 22px; }
-      .gallery__viewport { aspect-ratio: 4 / 5; border-radius: 17px; }
-      .gallery__carousel::after { inset: 0.4rem; border-radius: 17px; }
+      .gallery__carousel { width: 100%;   }
+
       .gallery__btn { width: 42px; height: 42px; }
       .gallery__btn--prev { left: 0.8rem; }
       .gallery__btn--next { right: 0.8rem; }
       .gallery__status { right: 1.3rem; bottom: 1.1rem; }
 
       .contact__grid { gap: 1rem; }
-      .contact__details, .form { padding: 1.25rem; border-radius: 20px; }
+      .contact__details, .form { padding: 1.25rem;  }
     }
 
     /* Balanced visual system: quiet surfaces, selective glass */
@@ -2272,17 +1324,6 @@
       background: var(--stone);
     }
 
-    .accommodation,
-    .site,
-    .information,
-    .gallery,
-    .practical,
-    .contact,
-    .footer,
-    .site__item {
-      background-image: none;
-    }
-
     .section-title::after,
     .practical .section-title::after,
     .contact .section-title::after,
@@ -2292,7 +1333,6 @@
 
     .section-eyebrow {
       margin-bottom: 0.8rem;
-      color: var(--brass);
       letter-spacing: 0.22em;
     }
 
@@ -2301,19 +1341,8 @@
       letter-spacing: -0.025em;
     }
 
-    .intro {
-      background: linear-gradient(135deg, #15394a 0%, #0d2a38 58%, #091f2a 100%);
-    }
-
-    .intro::before,
-    .intro::after {
-      display: none;
-    }
-
     .intro__text {
-      grid-template-columns: minmax(0, 1.25fr) minmax(15rem, 0.62fr);
       gap: clamp(2rem, 7vw, 7rem);
-      align-items: center;
       padding-left: 0;
     }
 
@@ -2323,22 +1352,7 @@
 
     .intro__aside {
       margin: 0;
-      padding: 1.2rem 1.35rem;
       transform: none;
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 22px;
-      background: rgba(255,255,255,0.09);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 18px 48px rgba(0,0,0,0.1);
-      color: rgba(255,255,255,0.76);
-      backdrop-filter: blur(20px) saturate(125%);
-      -webkit-backdrop-filter: blur(20px) saturate(125%);
-    }
-
-    .aerial {
-      width: min(calc(100% - (2 * var(--gutter))), 1320px);
-      margin: -1.5rem auto 0;
-      border-radius: 24px 24px 0 0;
-      box-shadow: 0 -18px 55px rgba(3,17,24,0.22);
     }
 
     .accommodation {
@@ -2355,9 +1369,7 @@
       padding: 0;
       gap: 0;
       overflow: hidden;
-      border-radius: 24px;
       background: rgba(255,255,255,0.5);
-      box-shadow: 0 20px 55px rgba(16,42,56,0.08);
     }
 
     .unit__media {
@@ -2374,13 +1386,8 @@
     }
 
     .unit__text {
-      border: 0;
       border-radius: 0;
       padding: clamp(1.5rem, 4vw, 3rem);
-      background: rgba(255,255,255,0.38);
-      box-shadow: inset 1px 0 0 rgba(255,255,255,0.7);
-      backdrop-filter: blur(18px) saturate(115%);
-      -webkit-backdrop-filter: blur(18px) saturate(115%);
     }
 
     .site {
@@ -2391,57 +1398,6 @@
 
     .site__header {
       border: 0;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(20,60,78,0.96), rgba(9,31,42,0.98));
-      box-shadow: 0 22px 60px rgba(9,31,42,0.14);
-    }
-
-    .site__items {
-      align-items: start;
-      gap: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 4vw, 3.5rem);
-    }
-
-    .site__item {
-      display: flex;
-      min-height: 0;
-      flex-direction: column;
-      padding-bottom: 0.5rem;
-    }
-
-    .site__img,
-    .site__img.mini-carousel--full .mini-carousel__viewport {
-      border-radius: 24px;
-    }
-
-    .site__copy,
-    .site__item--alt .site__copy {
-      position: static;
-      width: 100%;
-      min-height: 0;
-      margin: 0;
-      padding: 1.35rem 0.25rem 0;
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    .site__item-mark-wrap,
-    .site__item-mark {
-      display: none;
-    }
-
-    .site__item-title {
-      margin-bottom: 0.5rem;
-      font-size: clamp(1.45rem, 2.2vw, 1.9rem);
-    }
-
-    .site__body {
-      max-width: 32rem;
-      font-size: 0.94rem;
-      line-height: 1.7;
     }
 
     .site__features {
@@ -2455,9 +1411,7 @@
       grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.75fr);
       min-height: 430px;
       overflow: hidden;
-      border-radius: 26px;
       background: rgba(255,255,255,0.62);
-      box-shadow: 0 22px 65px rgba(16,42,56,0.09);
     }
 
     .site__feature--reverse {
@@ -2490,17 +1444,6 @@
       flex-direction: column;
       justify-content: center;
       padding: clamp(2rem, 5vw, 4.25rem);
-      background: rgba(255,255,255,0.42);
-      backdrop-filter: blur(18px) saturate(115%);
-      -webkit-backdrop-filter: blur(18px) saturate(115%);
-    }
-
-    .site__feature-number {
-      margin-bottom: 1.1rem;
-      color: var(--brass);
-      font-size: 0.67rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
     }
 
     .site__feature-title {
@@ -2508,18 +1451,14 @@
       color: var(--navy);
       font-family: var(--font-serif);
       font-size: clamp(1.7rem, 3vw, 2.35rem);
-      font-weight: 400;
       line-height: 1.08;
     }
 
     .site__feature-body {
       color: var(--text-mid);
-      font-size: 0.94rem;
-      line-height: 1.72;
     }
 
     .practical {
-      position: relative;
       z-index: 0;
       background: linear-gradient(140deg, #102f3e, #091f2a);
     }
@@ -2539,20 +1478,6 @@
       color: rgba(197,218,228,0.82);
     }
 
-    .gallery {
-      background: linear-gradient(145deg, #102f3e, #071c27 72%);
-    }
-
-    .gallery__carousel {
-      border: 0;
-      background: rgba(255,255,255,0.1);
-      box-shadow: 0 35px 90px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.16);
-    }
-
-    .information {
-      background: #eeede8;
-    }
-
     .gallery,
     .information,
     .footer {
@@ -2561,38 +1486,21 @@
 
     .card {
       border: 0;
-      border-radius: 24px;
       background: rgba(255,255,255,0.55);
       box-shadow: 0 22px 60px rgba(16,42,56,0.08), inset 0 1px 0 rgba(255,255,255,0.8);
     }
 
-    .contact,
-    .footer {
-      background-color: #091f2a;
-    }
-
-    .contact .ambient-wave {
-      color: rgba(16,42,56,0.052);
-    }
-
     @media (max-width: 760px) {
-      .intro__text { grid-template-columns: 1fr; gap: 1.4rem; }
       .intro__aside { max-width: none; }
-      .aerial { width: calc(100% - 1rem); margin-top: -0.7rem; border-radius: 18px 18px 0 0; }
 
       .units { gap: 1rem; }
-      .unit { flex-direction: column; border-radius: 20px; }
+      .unit { flex-direction: column;  }
       .unit__media { width: 100%; flex-basis: auto; }
       .unit__media .mini-carousel__viewport,
       .unit__media .mini-carousel__track,
       .unit__media .mini-carousel__slide,
       .unit__media .mini-carousel__slide img { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
-      .unit__text { width: 100%; margin: 0; padding: 1.3rem; box-shadow: inset 0 1px 0 rgba(255,255,255,0.8); }
-
-      .site__items { gap: 3.25rem; }
-      .site__item { display: flex; padding-bottom: 0; }
-      .site__copy, .site__item--alt .site__copy { width: 100%; margin: 0; padding: 1.1rem 0.15rem 0; }
-      .site__img, .site__img.mini-carousel--full .mini-carousel__viewport { border-radius: 18px; }
+      .unit__text { width: 100%; margin: 0; padding: 1.3rem;  }
 
       .site__features { gap: 1.25rem; }
       .site__feature,
@@ -2600,7 +1508,6 @@
         display: flex;
         min-height: 0;
         flex-direction: column;
-        border-radius: 20px;
       }
       .site__feature--reverse .site__feature-media,
       .site__feature--reverse .site__feature-copy { order: initial; }
@@ -2612,12 +1519,7 @@
         min-height: 0;
         padding: 1.5rem 1.35rem 1.7rem;
       }
-      .site__feature-number { margin-bottom: 0.7rem; }
-      .site__feature-title { font-size: 1.65rem; }
 
-      .practical__grid > div,
-      .contact__details,
-      .form { border-radius: 18px; }
     }
 
     /* Organic balance and section contrast */
@@ -2632,19 +1534,6 @@
     .contact__details,
     .form {
       border-radius: 14px;
-    }
-
-    .intro__aside {
-      border-radius: 16px;
-    }
-
-    .gallery__carousel {
-      border-radius: 18px;
-    }
-
-    .gallery__viewport,
-    .gallery__carousel::after {
-      border-radius: 13px;
     }
 
     .site__feature-action {
@@ -2664,7 +1553,6 @@
 
     .site__feature-action::after {
       content: '\2197';
-      color: var(--brass);
       font-size: 0.95rem;
       transition: transform 0.25s ease;
     }
@@ -2694,15 +1582,6 @@
       color: rgba(16,42,56,0.68);
     }
 
-    .gallery .section-eyebrow {
-      color: var(--brass);
-    }
-
-    .gallery__carousel {
-      background: rgba(12,39,52,0.82);
-      box-shadow: 0 30px 80px rgba(16,42,56,0.18), inset 0 1px 0 rgba(255,255,255,0.16);
-    }
-
     .intro,
     .site,
     .practical,
@@ -2717,27 +1596,10 @@
     .practical::before,
     .gallery::before {
       content: '';
-      display: block;
       position: absolute;
-      z-index: -1;
-      width: 220px;
       height: 70px;
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 72'%3E%3Cpath d='M3 40c27-28 53-28 80 0s53 28 80 0 48-24 74-2' fill='none' stroke='%23ffffff' stroke-opacity='.10' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
       pointer-events: none;
-    }
-
-    .intro::before {
-      left: 4%;
-      top: 18%;
-      width: 270px;
-      transform: rotate(-7deg);
-    }
-
-    .intro::after {
-      right: 7%;
-      bottom: 26%;
-      width: 160px;
-      transform: rotate(9deg) scaleX(-1);
     }
 
     .site::before,
@@ -2778,14 +1640,6 @@
       .contact__details,
       .form { border-radius: 10px; }
 
-      .intro__aside,
-      .gallery__carousel { border-radius: 12px; }
-
-      .gallery__viewport,
-      .gallery__carousel::after { border-radius: 9px; }
-
-      .intro::before { width: 150px; left: -12%; top: 10%; }
-      .intro::after { width: 105px; right: -8%; bottom: 33%; }
       .site::before { width: 120px; right: -8%; }
       .practical::before { width: 100px; left: -10%; }
       .gallery::before { width: 135px; right: -10%; }
@@ -2811,7 +1665,6 @@
 
     .gallery__btn {
       border-radius: 50%;
-      background: rgba(225,240,247,0.16);
     }
 
     .mini-carousel__btn:hover,
@@ -2846,26 +1699,6 @@
       transform: translateY(-1px);
     }
 
-    .unit__meta,
-    .site__feature-number,
-    .gallery__status {
-      color: #a98b57;
-    }
-
-    .site__header {
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.11),
-        inset 3px 0 0 rgba(161,132,83,0.38),
-        0 22px 60px rgba(9,31,42,0.14);
-    }
-
-    .intro__aside {
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.15),
-        inset 2px 0 0 rgba(161,132,83,0.32),
-        0 18px 48px rgba(0,0,0,0.1);
-    }
-
     .field input:focus,
     .field textarea:focus {
       border-color: rgba(181,148,88,0.75);
@@ -2884,21 +1717,12 @@
     }
 
     .intro__aside {
-      border-color: rgba(216,195,157,0.22);
-      background: linear-gradient(135deg, rgba(118,105,80,0.2), rgba(255,255,255,0.07));
       color: rgba(247,241,229,0.8);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.13),
-        inset 2px 0 0 rgba(184,148,82,0.42),
-        0 18px 48px rgba(4,17,21,0.13);
     }
 
     .aerial {
-      position: relative;
       isolation: isolate;
       overflow: hidden;
-      filter: saturate(0.9) contrast(1.035) brightness(0.985);
-      box-shadow: 0 -18px 55px rgba(3,17,24,0.18);
     }
 
     .aerial::after {
@@ -2955,7 +1779,6 @@
     .footer::before {
       content: '';
       position: absolute;
-      width: 210px;
       height: 72px;
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 72'%3E%3Cpath d='M3 40c27-28 53-28 80 0s53 28 80 0 48-24 74-2' fill='none' stroke='%23102a38' stroke-opacity='.052' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
       pointer-events: none;
@@ -3029,17 +1852,10 @@
       display: block;
       width: 210px;
       height: 72px;
-      color: rgba(16,42,56,0.085);
       background: currentColor;
       -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 72'%3E%3Cpath d='M3 40c27-28 53-28 80 0s53 28 80 0 48-24 74-2' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
       mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 72'%3E%3Cpath d='M3 40c27-28 53-28 80 0s53 28 80 0 48-24 74-2' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
       pointer-events: none;
-    }
-
-    .intro .ambient-wave,
-    .practical .ambient-wave,
-    .contact .ambient-wave {
-      color: rgba(255,255,255,0.095);
     }
 
     .ambient-wave--a { left: 3%; top: 17%; transform: rotate(-8deg); }
@@ -3058,13 +1874,8 @@
     .contact .ambient-wave--a { left: auto; right: 3%; top: 10%; width: 190px; transform: rotate(11deg); }
     .contact .ambient-wave--b { right: auto; left: 2%; bottom: 7%; width: 130px; transform: rotate(-9deg); }
 
-    .intro {
-      padding-bottom: clamp(3rem, 6vw, 5.25rem);
-    }
-
     .intro__text {
       align-items: center;
-      padding-bottom: 0;
     }
 
     .intro__lead {
@@ -3073,9 +1884,6 @@
     }
 
     .intro__aside {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
       font-style: normal;
     }
 
@@ -3083,7 +1891,6 @@
       color: rgba(247,241,229,0.58);
       font-family: var(--font-sans);
       font-size: 0.64rem;
-      font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
@@ -3097,40 +1904,10 @@
 
     .accommodation .button-link {
       padding: 0.9rem 1.45rem;
-      border-color: rgba(117,88,42,0.3);
-      background: linear-gradient(135deg, #b79a66, #967641);
-      color: #102a38;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.38),
-        0 14px 32px rgba(112,82,37,0.2);
-    }
-
-    .accommodation .button-link:hover {
-      border-color: rgba(99,71,31,0.48);
-      background: linear-gradient(135deg, #c2a872, #a1814b);
-      color: #071c27;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.42),
-        0 17px 38px rgba(112,82,37,0.25);
-    }
-
-    .information {
-      background: linear-gradient(145deg, #ded8cc, #e9e5dc 72%);
-    }
-
-    .card--film {
-      padding: clamp(0.55rem, 1.3vw, 0.9rem);
-      border-radius: 16px;
-      background: linear-gradient(145deg, #1d343a, #102832);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.12),
-        0 28px 70px rgba(16,42,56,0.19);
     }
 
     .card--film video {
       margin: 0;
-      border-radius: 10px;
-      box-shadow: none;
     }
 
     @media (max-width: 760px) {
@@ -3138,24 +1915,12 @@
       .ambient-wave--a { left: -8%; }
       .ambient-wave--b { right: -8%; width: 105px; }
       .intro__text { gap: 1.6rem; }
-      .intro__aside { width: min(100%, 20rem); }
-      .card--film { padding: 0.4rem; border-radius: 11px; }
-      .card--film video { border-radius: 7px; }
+
     }
 
     /* Editorial realignment and restored feature carousels */
     :root {
       --max: 1280px;
-    }
-
-    .ambient-wave {
-      color: rgba(16,42,56,0.045);
-    }
-
-    .intro .ambient-wave,
-    .practical .ambient-wave,
-    .contact .ambient-wave {
-      color: rgba(255,255,255,0.06);
     }
 
     .intro {
@@ -3164,11 +1929,9 @@
 
     .intro__text {
       grid-template-columns: minmax(0, 1.35fr) minmax(13rem, 0.55fr);
-      padding-bottom: clamp(2.5rem, 5vw, 4.25rem);
     }
 
     .intro__aside {
-      display: block;
       padding: 0 0 0 1.25rem;
       border: 0;
       border-left: 1px solid rgba(184,148,82,0.48);
@@ -3181,7 +1944,6 @@
 
     .intro__aside-label {
       display: block;
-      margin-bottom: 0.3rem;
     }
 
     .aerial {
@@ -3189,9 +1951,7 @@
       height: clamp(310px, 43vw, 650px);
       margin: 0;
       border-radius: 0;
-      filter: saturate(0.9) contrast(1.035) brightness(0.985);
       box-shadow: none;
-      background-position: center 70%;
     }
 
     .site__header {
@@ -3233,10 +1993,6 @@
       object-fit: cover;
     }
 
-    .site__feature-number {
-      display: none;
-    }
-
     .accommodation .button-link {
       border: 1px solid rgba(176,143,82,0.5);
       background: linear-gradient(135deg, rgba(22,62,79,0.94), rgba(9,31,42,0.98));
@@ -3258,21 +2014,12 @@
 
     .gallery__carousel {
       max-width: 1060px;
-      padding: 0;
       border-radius: 10px;
-      background: transparent;
-      box-shadow: 0 25px 70px rgba(16,42,56,0.16);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
     }
 
     .gallery__viewport,
     .gallery__carousel::after {
       border-radius: 10px;
-    }
-
-    .gallery__carousel::after {
-      inset: 0;
     }
 
     .information .wrap {
@@ -3297,7 +2044,6 @@
       padding: 0;
       border-radius: 10px;
       background: transparent;
-      box-shadow: 0 25px 70px rgba(16,42,56,0.17);
     }
 
     .card--film video {
@@ -3329,15 +2075,6 @@
     /* Availability action and complete ambient wave layer */
     .ambient-wave {
       background-color: currentColor;
-      color: rgba(16,42,56,0.06);
-    }
-
-    .hero .ambient-wave,
-    .intro .ambient-wave,
-    .practical .ambient-wave,
-    .contact .ambient-wave,
-    .footer .ambient-wave {
-      color: rgba(255,255,255,0.072);
     }
 
     .hero .ambient-wave {
@@ -3379,14 +2116,8 @@
 
     .booking-action {
       position: relative;
-      display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
       overflow: hidden;
-      padding: 0.68rem 0.85rem 0.68rem 0.72rem !important;
-      border-color: rgba(183,151,91,0.46) !important;
-      background:
-        linear-gradient(135deg, rgba(25,65,80,0.96), rgba(9,31,42,0.98)) !important;
       color: rgba(255,255,255,0.94) !important;
       isolation: isolate;
     }
@@ -3408,23 +2139,12 @@
 
     .booking-action__icon {
       display: grid;
-      width: 34px;
-      height: 34px;
       flex: 0 0 34px;
       place-items: center;
-      border: 1px solid rgba(214,183,124,0.35);
-      border-radius: 8px;
-      background: rgba(255,255,255,0.08);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.14);
-      color: #c5a66d;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       animation: booking-icon-breathe 4.2s ease-in-out infinite;
     }
 
     .booking-action__icon svg {
-      width: 18px;
-      height: 18px;
       fill: none;
       stroke: currentColor;
       stroke-width: 1.6;
@@ -3432,24 +2152,13 @@
       stroke-linejoin: round;
     }
 
-    .booking-action__label {
-      letter-spacing: 0.12em;
-    }
-
     .booking-action__arrow {
       padding-left: 0.15rem;
-      color: #c5a66d;
-      font-size: 1rem;
       transition: transform 0.28s ease;
     }
 
     .booking-action:hover .booking-action__arrow {
       transform: translateX(3px);
-    }
-
-    @keyframes booking-icon-breathe {
-      0%, 78%, 100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 0 0 0 rgba(183,151,91,0); }
-      88% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 0 5px rgba(183,151,91,0.08); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -3462,34 +2171,14 @@
       .hero .ambient-wave--b { right: -12%; width: 170px; }
       .footer .ambient-wave--a { left: -8%; }
       .footer .ambient-wave--b { right: -12%; width: 140px; }
-      .booking-action { width: 100%; justify-content: flex-start; }
+
       .booking-action__arrow { margin-left: auto; }
     }
 
     /* Spacing, natural-ratio media, tonal fades and directional depth */
     .booking-action {
       gap: 0.58rem;
-      margin-top: 2.25rem !important;
-      padding: 0.56rem 0.72rem 0.56rem 0.58rem !important;
-      border-color: rgba(183,151,91,0.3) !important;
       border-radius: 8px;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.11),
-        -7px 11px 24px rgba(9,31,42,0.12) !important;
-    }
-
-    .booking-action__icon {
-      width: 28px;
-      height: 28px;
-      flex-basis: 28px;
-      border-radius: 6px;
-      border-color: rgba(214,183,124,0.24);
-      background: rgba(255,255,255,0.055);
-    }
-
-    .booking-action__icon svg {
-      width: 15px;
-      height: 15px;
     }
 
     .booking-action__label {
@@ -3506,18 +2195,11 @@
       height: min(76vh, 760px);
       min-height: 480px;
       aspect-ratio: auto;
-      background:
-        radial-gradient(circle at 35% 28%, rgba(255,255,255,0.08), transparent 38%),
-        rgba(9,31,42,0.94);
     }
 
     .gallery__track,
     .gallery__slide {
       height: 100%;
-    }
-
-    .gallery__slide {
-      background: transparent;
     }
 
     .gallery__slide img {
@@ -3535,7 +2217,6 @@
     .intro::before,
     .intro::after {
       content: '';
-      display: block;
       position: absolute;
       left: 0;
       z-index: 1;
@@ -3560,48 +2241,8 @@
       z-index: 2;
     }
 
-    .unit {
-      box-shadow: -13px 21px 52px rgba(16,42,56,0.09);
-    }
-
-    .unit:nth-child(even) {
-      box-shadow: 14px 23px 56px rgba(16,42,56,0.085);
-    }
-
-    .site__feature {
-      box-shadow: -16px 24px 62px rgba(16,42,56,0.095);
-    }
-
-    .site__feature--reverse {
-      box-shadow: 17px 26px 64px rgba(16,42,56,0.09);
-    }
-
-    .practical__grid > div:first-child {
-      box-shadow: -10px 18px 44px rgba(0,0,0,0.13), inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-
-    .practical__grid > div:last-child {
-      box-shadow: 12px 21px 48px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-
-    .gallery__carousel {
-      box-shadow: 18px 28px 72px rgba(16,42,56,0.17);
-    }
-
-    .card--film {
-      box-shadow: -15px 25px 66px rgba(16,42,56,0.16);
-    }
-
     .information {
       background: linear-gradient(145deg, #e9e6de, #e2e0d8 72%);
-    }
-
-    .contact__details {
-      box-shadow: -9px 17px 42px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-
-    .contact .form {
-      box-shadow: 13px 21px 50px rgba(0,0,0,0.13), inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
     .ambient-wave {
@@ -3618,47 +2259,12 @@
 
     @media (max-width: 760px) {
       .booking-action {
-        width: auto;
         max-width: 100%;
-        margin-top: 1.6rem !important;
       }
 
-      .gallery__viewport {
-        height: 72svh;
-        min-height: 420px;
-      }
-
-      .unit,
-      .unit:nth-child(even),
-      .site__feature,
-      .site__feature--reverse {
-        box-shadow: 8px 18px 42px rgba(16,42,56,0.085);
-      }
     }
 
     /* Tonal depth, wave wallpaper and simplified booking icon */
-    :root {
-      --wave-wallpaper-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='360' viewBox='0 0 560 360'%3E%3Cg fill='none' stroke='%23102a38' stroke-opacity='.032' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M-18 72c34-29 68-27 101 5s68 31 103-2'/%3E%3Cpath d='M328 43c22-18 44-16 67 4s47 21 72 0' transform='rotate(8 398 52)'/%3E%3Cpath d='M72 244c43-35 87-33 130 5s84 37 126 2' transform='rotate(-7 200 250)'/%3E%3Cpath d='M402 301c19-15 39-14 58 2s39 17 59 1' transform='rotate(13 460 306)'/%3E%3C/g%3E%3C/svg%3E");
-      --wave-wallpaper-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='360' viewBox='0 0 560 360'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.038' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M-18 72c34-29 68-27 101 5s68 31 103-2'/%3E%3Cpath d='M328 43c22-18 44-16 67 4s47 21 72 0' transform='rotate(8 398 52)'/%3E%3Cpath d='M72 244c43-35 87-33 130 5s84 37 126 2' transform='rotate(-7 200 250)'/%3E%3Cpath d='M402 301c19-15 39-14 58 2s39 17 59 1' transform='rotate(13 460 306)'/%3E%3C/g%3E%3C/svg%3E");
-    }
-
-    .accommodation {
-      background-image:
-        var(--wave-wallpaper-dark),
-        radial-gradient(ellipse at 8% 18%, rgba(16,42,56,0.065), transparent 42%),
-        radial-gradient(ellipse at 92% 82%, rgba(153,119,64,0.045), transparent 38%),
-        linear-gradient(180deg, #f2f1ec, #ecece6);
-      background-size: 560px 360px, 100% 100%, 100% 100%, 100% 100%;
-    }
-
-    .site {
-      background-image:
-        var(--wave-wallpaper-dark),
-        radial-gradient(ellipse at 88% 14%, rgba(16,42,56,0.055), transparent 40%),
-        radial-gradient(ellipse at 12% 76%, rgba(153,119,64,0.04), transparent 42%);
-      background-color: #f4f3ee;
-      background-size: 560px 360px, 100% 100%, 100% 100%;
-    }
 
     .intro,
     .practical,
@@ -3668,30 +2274,9 @@
         var(--wave-wallpaper-light),
         radial-gradient(ellipse at 10% 12%, rgba(255,255,255,0.055), transparent 37%),
         radial-gradient(ellipse at 88% 84%, rgba(0,0,0,0.17), transparent 46%);
-      background-size: 560px 360px, 100% 100%, 100% 100%;
     }
 
-    .intro { background-color: #19343a; }
     .practical { background-color: #0d2b39; }
-    .contact, .footer { background-color: #091f2a; }
-
-    .gallery {
-      background-image:
-        var(--wave-wallpaper-dark),
-        radial-gradient(ellipse at 90% 10%, rgba(65,103,115,0.085), transparent 38%),
-        radial-gradient(ellipse at 7% 88%, rgba(154,122,67,0.055), transparent 42%),
-        linear-gradient(145deg, #e3e9e7, #f0eee8);
-      background-size: 560px 360px, 100% 100%, 100% 100%, 100% 100%;
-    }
-
-    .information {
-      background-image:
-        var(--wave-wallpaper-dark),
-        radial-gradient(ellipse at 12% 18%, rgba(16,42,56,0.055), transparent 39%),
-        radial-gradient(ellipse at 90% 84%, rgba(154,122,67,0.05), transparent 42%),
-        linear-gradient(145deg, #e9e6de, #e2e0d8);
-      background-size: 560px 360px, 100% 100%, 100% 100%, 100% 100%;
-    }
 
     .unit,
     .unit:nth-child(even),
@@ -3704,16 +2289,6 @@
     .contact__details,
     .contact .form {
       box-shadow: none;
-    }
-
-    .unit,
-    .site__feature {
-      background-image: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 48%);
-    }
-
-    .gallery__viewport,
-    .card--film video {
-      box-shadow: inset 18px 0 45px -38px rgba(0,0,0,0.42), inset -12px -8px 42px -36px rgba(0,0,0,0.36);
     }
 
     .booking-action__icon {
@@ -3736,19 +2311,6 @@
     @keyframes booking-icon-breathe {
       0%, 78%, 100% { opacity: 0.78; transform: scale(1); }
       88% { opacity: 1; transform: scale(1.045); }
-    }
-
-    @media (max-width: 760px) {
-      .accommodation,
-      .site,
-      .intro,
-      .practical,
-      .gallery,
-      .information,
-      .contact,
-      .footer {
-        background-size: 430px 276px, 100% 100%, 100% 100%, 100% 100%;
-      }
     }
 
     /* Clear inherited intro artefact and restore restrained component depth */
@@ -3799,13 +2361,6 @@
         inset 0 1px 0 rgba(255,255,255,0.095);
     }
 
-    .gallery__viewport {
-      box-shadow:
-        8px 13px 34px rgba(16,42,56,0.07),
-        inset 18px 0 45px -38px rgba(0,0,0,0.34),
-        inset -12px -8px 42px -36px rgba(0,0,0,0.3);
-    }
-
     .card--film video {
       box-shadow:
         -7px 12px 32px rgba(16,42,56,0.075),
@@ -3831,7 +2386,6 @@
     .section-title,
     .site__feature-title,
     .unit__name,
-    .card__title,
     .pblock__title,
     .contact__header .section-title {
       font-weight: 600;
@@ -3908,19 +2462,6 @@
       -webkit-backdrop-filter: blur(20px) saturate(108%);
     }
 
-    .unit__text,
-    .site__feature-copy {
-      background: rgba(249,252,251,0.34);
-      backdrop-filter: blur(18px) saturate(106%);
-      -webkit-backdrop-filter: blur(18px) saturate(106%);
-    }
-
-    .practical__grid > div {
-      background: rgba(224,238,240,0.075);
-      backdrop-filter: blur(22px) saturate(105%);
-      -webkit-backdrop-filter: blur(22px) saturate(105%);
-    }
-
     .gallery__viewport {
       border: 1px solid rgba(255,255,255,0.42);
       background:
@@ -3950,25 +2491,9 @@
       color: var(--navy);
     }
 
-    .contact .section-eyebrow,
-    .contact .cinfo__label {
-      color: #7d683f;
-    }
-
     .contact .cinfo__value,
     .contact .field label {
       color: var(--navy);
-    }
-
-    .contact__details,
-    .contact .form {
-      border: 1px solid rgba(255,255,255,0.46);
-      background: rgba(255,255,255,0.31);
-      box-shadow:
-        6px 11px 28px rgba(16,42,56,0.055),
-        inset 0 1px 0 rgba(255,255,255,0.52);
-      backdrop-filter: blur(22px) saturate(106%);
-      -webkit-backdrop-filter: blur(22px) saturate(106%);
     }
 
     .contact .field input,
@@ -3977,11 +2502,6 @@
       background: rgba(255,255,255,0.56);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-    }
-
-    .contact .form__btn {
-      border-color: rgba(16,42,56,0.22);
-      background: rgba(16,42,56,0.82);
     }
 
     .footer {
@@ -4002,14 +2522,6 @@
     /* Consolidated finishing rules */
     .intro {
       background-color: #19343a;
-      background-image:
-        linear-gradient(to bottom, rgba(7,24,31,0.46), transparent 16%, transparent 82%, rgba(7,24,31,0.4)),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 72'%3E%3Cpath d='M3 40c27-28 53-28 80 0s53 28 80 0 48-24 74-2' fill='none' stroke='%23ffffff' stroke-opacity='.065' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"),
-        radial-gradient(ellipse at 12% 20%, rgba(255,255,255,0.045), transparent 40%),
-        radial-gradient(ellipse at 88% 80%, rgba(0,0,0,0.14), transparent 46%);
-      background-repeat: no-repeat;
-      background-position: center, 94% 24%, center, center;
-      background-size: 100% 100%, 180px 54px, 100% 100%, 100% 100%;
     }
 
     .intro::before,
@@ -4021,10 +2533,6 @@
     .intro__text {
       padding-top: clamp(0.75rem, 2vw, 1.5rem);
       padding-bottom: clamp(3rem, 6vw, 5rem);
-    }
-
-    .intro__kicker {
-      color: rgba(203,175,122,0.78);
     }
 
     .intro__aside {
@@ -4064,7 +2572,6 @@
     .lang-switch__btn.is-active {
       border-color: rgba(196,163,106,0.72);
       background: rgba(196,163,106,0.1);
-      color: #d1b47f;
     }
 
     ::selection {
@@ -4073,11 +2580,6 @@
     }
 
     @media (max-width: 760px) {
-      .intro {
-        background-position: center, 108% 18%, center, center;
-        background-size: 100% 100%, 125px 38px, 100% 100%, 100% 100%;
-      }
-
       .booking-action {
         width: min(100%, 330px);
         min-width: 0;
@@ -4201,7 +2703,6 @@
 
     .site__feature-detail {
       margin-top: 1.15rem;
-      color: #887044;
       font-size: 0.69rem;
       font-weight: 700;
       letter-spacing: 0.11em;
@@ -4322,6 +2823,29 @@
       }
     }
 
+    /* Gallery: a soft, blurred copy of each photo fills the frame around it,
+       so portrait and landscape photos both sit in a finished frame. */
+    .gallery__slide {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery__slide::before {
+      content: '';
+      position: absolute;
+      inset: -30px;
+      background-image: var(--slide-photo, none);
+      background-position: center;
+      background-size: cover;
+      filter: blur(28px) saturate(1.05) brightness(0.9);
+      opacity: 0.6;
+    }
+
+    .gallery__slide img {
+      position: relative;
+      z-index: 1;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
@@ -4338,6 +2862,147 @@
       .mini-carousel__track,
       .gallery__track {
         transition: none;
+      }
+    }
+
+    /* Second pass: legibility, rhythm and proportion */
+    .gallery__slide::before {
+      pointer-events: none;
+    }
+
+    .gallery__status {
+      padding: 0.32rem 0.62rem;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      background: rgba(9, 31, 42, 0.64);
+      color: rgba(255, 255, 255, 0.94);
+      line-height: 1;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .gallery__btn {
+      background: rgba(9, 31, 42, 0.5);
+    }
+
+    .accommodation .section-eyebrow,
+    .site .section-eyebrow,
+    .gallery .section-eyebrow,
+    .information .section-eyebrow,
+    .contact .section-eyebrow,
+    .contact .cinfo__label {
+      color: #725e38;
+    }
+
+    .contact .cinfo__value a:hover {
+      color: var(--blue-deep);
+    }
+
+    .contact .field input,
+    .contact .field textarea {
+      border-bottom-color: rgba(16, 42, 56, 0.5);
+    }
+
+    .contact .field input:focus,
+    .contact .field textarea:focus {
+      border-color: rgba(125, 104, 63, 0.85);
+      box-shadow: 0 0 0 3px rgba(161, 132, 83, 0.3);
+    }
+
+    .lang-switch__btn.is-active {
+      color: #eeddba;
+    }
+
+    .nav__mobile-lang button.is-active {
+      border-color: rgba(196, 163, 106, 0.72);
+      background: rgba(196, 163, 106, 0.1);
+      color: #d1b47f;
+    }
+
+    .intro__kicker {
+      color: #cbaf7a;
+    }
+
+    .practical .pblock__title {
+      color: #8cbede;
+    }
+
+    .nav__sub {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .footer__sub {
+      color: rgba(236, 233, 227, 0.62);
+    }
+
+    .booking-action {
+      display: flex;
+    }
+
+    .form__btn {
+      border-radius: 8px;
+    }
+
+    .contact .form__btn {
+      border-color: rgba(190, 157, 96, 0.42);
+      background: linear-gradient(135deg, rgba(48, 78, 80, 0.94), rgba(20, 49, 57, 0.98));
+    }
+
+    .site__intro-text .section-intro {
+      max-width: 36rem;
+    }
+
+    .gallery__viewport {
+      min-height: min(480px, calc(100svh - 7rem));
+    }
+
+    #sauna {
+      scroll-margin-top: 92px;
+    }
+
+    .hero.is-offscreen .hero__bg,
+    .hero.is-offscreen .hero__scroll-cue,
+    .hero.is-offscreen .hero__scroll-cue-wing {
+      animation-play-state: paused;
+    }
+
+    @media (min-width: 761px) {
+      .accommodation {
+        padding-bottom: clamp(3rem, 5vw, 4.5rem);
+      }
+
+      .site__feature {
+        grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 0.85fr);
+      }
+
+      .site__feature--reverse {
+        grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.3fr);
+      }
+
+      .site__feature-copy {
+        padding: clamp(2rem, 3.6vw, 3.25rem);
+      }
+
+      .site__feature-title {
+        font-size: clamp(1.55rem, 2.4vw, 2rem);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .site__feature-title {
+        font-size: 1.55rem;
+      }
+
+      .gallery__viewport {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        max-height: calc(100svh - 6rem);
+        aspect-ratio: 3 / 4;
+      }
+
+      #sauna {
+        scroll-margin-top: 76px;
       }
     }
 
@@ -4446,9 +3111,9 @@
             <div class='unit__media mini-carousel'>
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-01.jpg'><img src='assets/images/gallery1.jpg' alt='Sjøhus at Vikaneset' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-02.jpg'><img src='assets/images/gallery3.jpg' alt='Sjøhus at Vikaneset' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-03.jpg'><img src='assets/images/gallery5.jpg' alt='Sjøhus at Vikaneset' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-01.jpg'><img src='assets/images/gallery1.jpg' alt='Sjøhus at Vikaneset' data-i18n-alt='altSjohus' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-02.jpg'><img data-src='assets/images/gallery3.jpg' alt='Sjøhus at Vikaneset' data-i18n-alt='altSjohus' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-03.jpg'><img data-src='assets/images/gallery5.jpg' alt='Sjøhus at Vikaneset' data-i18n-alt='altSjohus' loading='lazy'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
@@ -4467,9 +3132,9 @@
             <div class='unit__media mini-carousel'>
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-01.jpg'><img src='assets/images/gallery2.jpg' alt='Leiligheter at Vikaneset' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-02.jpg'><img src='assets/images/gallery4.jpg' alt='Leiligheter at Vikaneset' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-03.jpg'><img src='assets/images/gallery6.jpg' alt='Leiligheter at Vikaneset' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-01.jpg'><img src='assets/images/gallery2.jpg' alt='Leiligheter at Vikaneset' data-i18n-alt='altLeiligheter' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-02.jpg'><img data-src='assets/images/gallery4.jpg' alt='Leiligheter at Vikaneset' data-i18n-alt='altLeiligheter' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-03.jpg'><img data-src='assets/images/gallery6.jpg' alt='Leiligheter at Vikaneset' data-i18n-alt='altLeiligheter' loading='lazy'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
@@ -4520,9 +3185,9 @@
         <article class='site__feature reveal' id='restaurant'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-              <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-01.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga at Vikaneset' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-02.jpg'><img src='assets/images/gallery3.jpg' alt='Klippfiskbrygga detail' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-03.jpg'><img src='assets/images/gallery4.jpg' alt='Klippfiskbrygga surroundings' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-01.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga at Vikaneset' data-i18n-alt='altKlippfisk' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-02.jpg'><img data-src='assets/images/gallery3.jpg' alt='Klippfiskbrygga detail' data-i18n-alt='altKlippfiskDetail' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-03.jpg'><img data-src='assets/images/gallery4.jpg' alt='Klippfiskbrygga surroundings' data-i18n-alt='altKlippfiskSurroundings' loading='lazy'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -4537,9 +3202,9 @@
         <article class='site__feature site__feature--reverse reveal' id='sauna'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-              <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-01.jpg'><img src='assets/images/sauna.jpg' alt='Sauna and sandy beach at Vikaneset' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-02.jpg'><img src='assets/images/gallery7.jpg' alt='Sauna surroundings' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-03.jpg'><img src='assets/images/gallery8.jpg' alt='Beach at Vikaneset' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-01.jpg'><img src='assets/images/sauna.jpg' alt='Sauna and sandy beach at Vikaneset' data-i18n-alt='altSaunaBeach' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-02.jpg'><img data-src='assets/images/gallery7.jpg' alt='Sauna surroundings' data-i18n-alt='altSaunaSurroundings' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-03.jpg'><img data-src='assets/images/gallery8.jpg' alt='Beach at Vikaneset' data-i18n-alt='altBeach' loading='lazy'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -4554,9 +3219,9 @@
         <article class='site__feature reveal'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-              <figure class='mini-carousel__slide' data-photo-slot='havn-01.jpg'><img src='assets/images/harbour.jpg' alt='The harbour at Vikaneset' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='havn-02.jpg'><img src='assets/images/gallery5.jpg' alt='Harbour detail' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='havn-03.jpg'><img src='assets/images/gallery6.jpg' alt='Waterfront at Vikaneset' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='havn-01.jpg'><img src='assets/images/harbour.jpg' alt='The harbour at Vikaneset' data-i18n-alt='altHarbour' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='havn-02.jpg'><img data-src='assets/images/gallery5.jpg' alt='Harbour detail' data-i18n-alt='altHarbourDetail' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='havn-03.jpg'><img data-src='assets/images/gallery6.jpg' alt='Waterfront at Vikaneset' data-i18n-alt='altWaterfront' loading='lazy'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -4571,9 +3236,9 @@
         <article class='site__feature site__feature--reverse reveal'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-              <figure class='mini-carousel__slide' data-photo-slot='amfi-01.jpg'><img src='assets/images/amphitheatre.jpg' alt='The amphitheatre at Vikaneset' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='amfi-02.jpg'><img src='assets/images/gallery1.jpg' alt='Amphitheatre surroundings' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='amfi-03.jpg'><img src='assets/images/gallery3.jpg' alt='View from the amphitheatre' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='amfi-01.jpg'><img src='assets/images/amphitheatre.jpg' alt='The amphitheatre at Vikaneset' data-i18n-alt='altAmfi' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='amfi-02.jpg'><img data-src='assets/images/gallery1.jpg' alt='Amphitheatre surroundings' data-i18n-alt='altAmfiSurroundings' loading='lazy'></figure>
+              <figure class='mini-carousel__slide' data-photo-slot='amfi-03.jpg'><img data-src='assets/images/gallery3.jpg' alt='View from the amphitheatre' data-i18n-alt='altAmfiView' loading='lazy'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -4598,7 +3263,7 @@
 
         <div class='practical__grid reveal'>
           <div>
-            <p class='pblock__title' data-i18n='locationTitle'>Location</p>
+            <h3 class='pblock__title' data-i18n='locationTitle'>Location</h3>
             <dl class='dl'>
               <dt data-i18n='addressLabel'>Address</dt>
               <dd data-i18n='addressValue'>Kjørvegen 31, 6520 Frei, Kristiansund municipality, Norway</dd>
@@ -4615,7 +3280,7 @@
           </div>
 
           <div>
-            <p class='pblock__title' data-i18n='arrivalTitle'>Arrival</p>
+            <h3 class='pblock__title' data-i18n='arrivalTitle'>Arrival</h3>
             <dl class='dl' style='margin-bottom: 2.5rem;'>
               <dt data-i18n='checkInLabel'>Check-in</dt>
               <dd data-i18n='checkInValue'>From 16:00</dd>
@@ -4624,7 +3289,7 @@
               <dd data-i18n='checkOutValue'>By 11:00</dd>
             </dl>
 
-            <p class='pblock__title' style='margin-top: 2.5rem;' data-i18n='includedTitle'>Included</p>
+            <h3 class='pblock__title' style='margin-top: 2.5rem;' data-i18n='includedTitle'>Included</h3>
             <ul class='incl' aria-label='Included in each unit' data-i18n-aria='ariaIncluded'>
               <li data-i18n='included1'>Kitchen or kitchenette</li>
               <li data-i18n='included2'>Bedding and towels</li>
@@ -4632,7 +3297,7 @@
               <li data-i18n='included5'>Harbour and pontoon access</li>
             </ul>
 
-            <p class='pblock__title' style='margin-top: 2.5rem;' data-i18n='extrasTitle'>Available for a fee</p>
+            <h3 class='pblock__title' style='margin-top: 2.5rem;' data-i18n='extrasTitle'>Available for a fee</h3>
             <ul class='incl' aria-label='Available for an additional fee' data-i18n-aria='ariaExtras'>
               <li data-i18n='extras1'>Sauna access</li>
               <li data-i18n='extras2'>Laundry</li>
@@ -4659,20 +3324,20 @@
 
           <div class='gallery__viewport' id='galleryViewport'>
             <div class='gallery__track' id='galleryTrack'>
-              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/gallery1.jpg' alt='Gallery view 1 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-02.jpg'><img src='assets/images/gallery2.jpg' alt='Gallery view 2 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-03.jpg'><img src='assets/images/gallery3.jpg' alt='Gallery view 3 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-04.jpg'><img src='assets/images/gallery4.jpg' alt='Gallery view 4 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-05.jpg'><img src='assets/images/gallery5.jpg' alt='Gallery view 5 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-06.jpg'><img src='assets/images/gallery6.jpg' alt='Gallery view 6 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery7.jpg' alt='Gallery view 7 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery8.jpg' alt='Gallery view 8 at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-09.jpg'><img src='assets/images/hero.jpg' alt='View of Vikaneset by the sea' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-10.jpg'><img src='assets/images/aerial.jpg' alt='Aerial view of Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='The harbour at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-13.jpg'><img src='assets/images/amphitheatre.jpg' alt='The amphitheatre at Vikaneset' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-14.jpg'><img src='assets/images/sauna.jpg' alt='Sauna at Vikaneset' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/gallery1.jpg' alt='Gallery view 1 at Vikaneset' data-i18n-alt='altGallery1' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-02.jpg'><img src='assets/images/gallery2.jpg' alt='Gallery view 2 at Vikaneset' data-i18n-alt='altGallery2' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-03.jpg'><img src='assets/images/gallery3.jpg' alt='Gallery view 3 at Vikaneset' data-i18n-alt='altGallery3' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-04.jpg'><img src='assets/images/gallery4.jpg' alt='Gallery view 4 at Vikaneset' data-i18n-alt='altGallery4' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-05.jpg'><img src='assets/images/gallery5.jpg' alt='Gallery view 5 at Vikaneset' data-i18n-alt='altGallery5' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-06.jpg'><img src='assets/images/gallery6.jpg' alt='Gallery view 6 at Vikaneset' data-i18n-alt='altGallery6' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery7.jpg' alt='Gallery view 7 at Vikaneset' data-i18n-alt='altGallery7' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery8.jpg' alt='Gallery view 8 at Vikaneset' data-i18n-alt='altGallery8' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-09.jpg'><img src='assets/images/hero.jpg' alt='View of Vikaneset by the sea' data-i18n-alt='altSea' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-10.jpg'><img src='assets/images/aerial.jpg' alt='Aerial view of Vikaneset' data-i18n-alt='ariaAerialImage' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='The harbour at Vikaneset' data-i18n-alt='altHarbour' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga at Vikaneset' data-i18n-alt='altKlippfisk' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-13.jpg'><img src='assets/images/amphitheatre.jpg' alt='The amphitheatre at Vikaneset' data-i18n-alt='altAmfi' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-14.jpg'><img src='assets/images/sauna.jpg' alt='Sauna at Vikaneset' data-i18n-alt='altSauna' loading='lazy'></figure>
             </div>
           </div>
 
@@ -4865,6 +3530,21 @@
           closeMenu();
         }
       });
+
+      // If the screen widens to the desktop layout (e.g. a tablet is rotated)
+      // while the menu is open, close it and release the page scroll.
+      var desktopQuery = window.matchMedia('(min-width: 761px)');
+      function closeForDesktop(event) {
+        if (!event.matches || !menu.classList.contains('open')) return;
+        var hadFocus = menu.contains(document.activeElement);
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        var firstLink = document.querySelector('.nav__links a');
+        if (hadFocus && firstLink) firstLink.focus();
+      }
+      if (desktopQuery.addEventListener) desktopQuery.addEventListener('change', closeForDesktop);
+      else if (desktopQuery.addListener) desktopQuery.addListener(closeForDesktop);
     }());
 
     (function () {
@@ -4893,6 +3573,15 @@
       });
     }());
 
+    // Pause the hero's looping animations while the hero is scrolled out of view.
+    (function () {
+      var hero = document.querySelector('.hero');
+      if (!hero || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function (entries) {
+        hero.classList.toggle('is-offscreen', !entries[0].isIntersecting);
+      }).observe(hero);
+    }());
+
     // A correctly named file in assets/images/carousels automatically replaces
     // the temporary image currently shown in that carousel slot. Each slot asks
     // for its replacement first (still lazily) and falls back to the temporary
@@ -4903,7 +3592,7 @@
         var filename = slot.getAttribute('data-photo-slot');
         if (!image || !filename) return;
 
-        var fallback = image.getAttribute('src');
+        var fallback = image.getAttribute('src') || image.getAttribute('data-src');
         var replacement = 'assets/images/carousels/' + filename;
 
         // Hide the alt text while a missing replacement falls back.
@@ -4918,6 +3607,18 @@
           image.removeEventListener('error', onError);
           image.src = fallback;
         });
+
+        // Photos in hidden carousel slides wait until the visitor reaches for that carousel.
+        if (!image.getAttribute('src') && image.hasAttribute('data-src')) {
+          var carousel = slot.closest('.mini-carousel');
+          var start = function () {
+            if (!image.getAttribute('src')) image.src = replacement;
+          };
+          ['pointerenter', 'focusin', 'touchstart'].forEach(function (type) {
+            carousel.addEventListener(type, start, { once: true, passive: true });
+          });
+          return;
+        }
 
         image.src = replacement;
       });
@@ -4936,9 +3637,23 @@
       var index = 0;
       var timer = null;
       var touchStartX = 0;
+
+      // Fill the frame around each photo with a blurred copy of the same file
+      // (already downloaded, so this costs no extra request).
+      slides.forEach(function (slide) {
+        var img = slide.querySelector('img');
+        if (!img) return;
+        function setPhoto() {
+          if (img.currentSrc) slide.style.setProperty('--slide-photo', 'url("' + img.currentSrc + '")');
+        }
+        img.addEventListener('load', setPhoto);
+        if (img.complete) setPhoto();
+      });
       var touchStartY = 0;
       var inView = !('IntersectionObserver' in window);
       var userControlled = false;
+      var hovered = false;
+      var focused = false;
       var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       function update() {
@@ -4966,7 +3681,7 @@
       // Autoplay only while the gallery is on screen, and stop for good once
       // the visitor starts browsing it themselves.
       function startAutoPlay() {
-        if (reducedMotion || userControlled || !inView || document.hidden) return;
+        if (reducedMotion || userControlled || !inView || document.hidden || hovered || focused) return;
         stopAutoPlay();
         timer = window.setInterval(moveNext, 5500);
       }
@@ -4982,10 +3697,14 @@
       next.addEventListener('click', function () { takeControl(); moveNext(); });
 
       if (carousel) {
-        carousel.addEventListener('mouseenter', stopAutoPlay);
-        carousel.addEventListener('mouseleave', startAutoPlay);
-        carousel.addEventListener('focusin', stopAutoPlay);
-        carousel.addEventListener('focusout', startAutoPlay);
+        carousel.addEventListener('mouseenter', function () { hovered = true; stopAutoPlay(); });
+        carousel.addEventListener('mouseleave', function () { hovered = false; startAutoPlay(); });
+        carousel.addEventListener('focusin', function () { focused = true; stopAutoPlay(); });
+        carousel.addEventListener('focusout', function (event) {
+          if (carousel.contains(event.relatedTarget)) return;
+          focused = false;
+          startAutoPlay();
+        });
         carousel.addEventListener('keydown', function (event) {
           if (event.key === 'ArrowRight') { takeControl(); moveNext(); }
           if (event.key === 'ArrowLeft') { takeControl(); movePrev(); }
@@ -5166,7 +3885,32 @@
           ariaNextPhoto: 'Next photo',
           ariaIncluded: 'Included in each unit',
           ariaExtras: 'Available for an additional fee',
-          ariaForm: 'Enquiry form'
+          ariaForm: 'Enquiry form',
+
+          altSjohus: 'Sjøhus at Vikaneset',
+          altLeiligheter: 'Leiligheter at Vikaneset',
+          altKlippfisk: 'Klippfiskbrygga at Vikaneset',
+          altKlippfiskDetail: 'Klippfiskbrygga detail',
+          altKlippfiskSurroundings: 'Klippfiskbrygga surroundings',
+          altSaunaBeach: 'Sauna and sandy beach at Vikaneset',
+          altSaunaSurroundings: 'Sauna surroundings',
+          altBeach: 'Beach at Vikaneset',
+          altSauna: 'Sauna at Vikaneset',
+          altHarbour: 'The harbour at Vikaneset',
+          altHarbourDetail: 'Harbour detail',
+          altWaterfront: 'Waterfront at Vikaneset',
+          altAmfi: 'The amphitheatre at Vikaneset',
+          altAmfiSurroundings: 'Amphitheatre surroundings',
+          altAmfiView: 'View from the amphitheatre',
+          altSea: 'View of Vikaneset by the sea',
+          altGallery1: 'Gallery view 1 at Vikaneset',
+          altGallery2: 'Gallery view 2 at Vikaneset',
+          altGallery3: 'Gallery view 3 at Vikaneset',
+          altGallery4: 'Gallery view 4 at Vikaneset',
+          altGallery5: 'Gallery view 5 at Vikaneset',
+          altGallery6: 'Gallery view 6 at Vikaneset',
+          altGallery7: 'Gallery view 7 at Vikaneset',
+          altGallery8: 'Gallery view 8 at Vikaneset'
         },
 
         no: {
@@ -5259,7 +4003,32 @@
           ariaNextPhoto: 'Neste bilde',
           ariaIncluded: 'Inkludert i hver enhet',
           ariaExtras: 'Tilgjengelig mot betaling',
-          ariaForm: 'Kontaktskjema'
+          ariaForm: 'Kontaktskjema',
+
+          altSjohus: 'Sjøhus på Vikaneset',
+          altLeiligheter: 'Leiligheter på Vikaneset',
+          altKlippfisk: 'Klippfiskbrygga på Vikaneset',
+          altKlippfiskDetail: 'Detalj fra Klippfiskbrygga',
+          altKlippfiskSurroundings: 'Omgivelsene rundt Klippfiskbrygga',
+          altSaunaBeach: 'Sauna og sandstrand på Vikaneset',
+          altSaunaSurroundings: 'Omgivelsene rundt saunaen',
+          altBeach: 'Stranden på Vikaneset',
+          altSauna: 'Saunaen på Vikaneset',
+          altHarbour: 'Havna på Vikaneset',
+          altHarbourDetail: 'Detalj fra havna',
+          altWaterfront: 'Sjøkanten på Vikaneset',
+          altAmfi: 'Amfiet på Vikaneset',
+          altAmfiSurroundings: 'Omgivelsene rundt amfiet',
+          altAmfiView: 'Utsikt fra amfiet',
+          altSea: 'Vikaneset ved sjøen',
+          altGallery1: 'Galleribilde 1 fra Vikaneset',
+          altGallery2: 'Galleribilde 2 fra Vikaneset',
+          altGallery3: 'Galleribilde 3 fra Vikaneset',
+          altGallery4: 'Galleribilde 4 fra Vikaneset',
+          altGallery5: 'Galleribilde 5 fra Vikaneset',
+          altGallery6: 'Galleribilde 6 fra Vikaneset',
+          altGallery7: 'Galleribilde 7 fra Vikaneset',
+          altGallery8: 'Galleribilde 8 fra Vikaneset'
         }
       };
 
@@ -5301,6 +4070,13 @@
           }
         });
 
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (element) {
+          var key = element.getAttribute('data-i18n-alt');
+          if (translations[lang] && translations[lang][key]) {
+            element.setAttribute('alt', translations[lang][key]);
+          }
+        });
+
         document.querySelectorAll('[data-lang]').forEach(function (button) {
           var isActive = button.getAttribute('data-lang') === lang;
           button.classList.toggle('is-active', isActive);
@@ -5316,7 +4092,18 @@
 
       document.querySelectorAll('[data-lang]').forEach(function (button) {
         button.addEventListener('click', function () {
-          setLanguage(button.getAttribute('data-lang'));
+          var lang = button.getAttribute('data-lang');
+          setLanguage(lang);
+          // Keep a ?lang= link in step with the choice, so a reload keeps it.
+          try {
+            var url = new URL(window.location.href);
+            if (url.searchParams.has('lang')) {
+              url.searchParams.set('lang', lang);
+              window.history.replaceState(null, '', url.href);
+            }
+          } catch (error) {
+            // Older browsers simply keep the URL as it is.
+          }
         });
       });
 
