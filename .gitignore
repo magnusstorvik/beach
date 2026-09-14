@@ -1,0 +1,5 @@
+# Personal documents kept in this folder are not part of the website
+/*.pdf
+/*.docx
+/*.doc
+.DS_Store
