@@ -3,9 +3,9 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <meta name='description' content='Vikaneset. Harbour property on Frei island, Kristiansund municipality. Self-catering accommodation. Kjørvegen 31, 6520 Frei.'>
+  <meta name='description' content='Self-catering accommodation by the sea on Frei, 16 km from Kristiansund. Ten units, own harbour, sauna, sandy beach and amphitheatre. Opening spring 2027.'>
   <meta name='theme-color' content='#102a38'>
-  <title>Vikaneset Havhotell</title>
+  <title>Vikaneset Havhotell · Self-catering by the sea near Kristiansund</title>
 
   <meta property='og:type' content='website'>
   <meta property='og:site_name' content='Vikaneset Havhotell'>
@@ -13,6 +13,46 @@
   <meta property='og:description' content='Harbour property on Frei island, Kristiansund municipality. Self-catering accommodation by the sea.'>
   <meta property='og:locale' content='en_GB'>
   <meta property='og:locale:alternate' content='nb_NO'>
+  <meta property='og:url' content='https://magnusstorvik.github.io/beach/'>
+  <meta property='og:image' content='https://magnusstorvik.github.io/beach/assets/images/hero.jpg'>
+  <meta property='og:image:width' content='2800'>
+  <meta property='og:image:height' content='2100'>
+  <meta property='og:image:alt' content='View of Vikaneset by the sea'>
+  <meta name='twitter:card' content='summary_large_image'>
+
+  <link rel='alternate' hreflang='en' href='https://magnusstorvik.github.io/beach/?lang=en'>
+  <link rel='alternate' hreflang='no' href='https://magnusstorvik.github.io/beach/?lang=no'>
+  <link rel='alternate' hreflang='x-default' href='https://magnusstorvik.github.io/beach/'>
+
+  <script type='application/ld+json'>
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Vikaneset Havhotell",
+    "alternateName": "Vikaneset",
+    "description": "Self-catering accommodation by the sea on Frei, 16 km from Kristiansund.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kjørvegen 31",
+      "postalCode": "6520",
+      "addressLocality": "Frei",
+      "addressCountry": "NO"
+    },
+    "telephone": "+47 482 57 960",
+    "email": "anette@vikaneset.com",
+    "checkinTime": "16:00",
+    "checkoutTime": "11:00",
+    "numberOfRooms": 10,
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Kitchen or kitchenette", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Bedding and towels", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Parking on site", "value": true, "description": "Free of charge for guests" },
+      { "@type": "LocationFeatureSpecification", "name": "Harbour and pontoon access", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Sauna access", "value": true, "description": "Available for a fee" },
+      { "@type": "LocationFeatureSpecification", "name": "Laundry", "value": true, "description": "Available for a fee" }
+    ]
+  }
+  </script>
 
   <link rel='icon' type='image/png' sizes='64x64' href='assets/images/favicon.png'>
   <link rel='apple-touch-icon' sizes='180x180' href='assets/images/apple-touch-icon.png'>
@@ -27,6 +67,11 @@
       .reveal,
       .hero__inner .hero__geo,
       .hero__inner .hero__name { opacity: 1 !important; transform: none !important; }
+      .mini-carousel__btn,
+      .gallery__btn,
+      .gallery__status,
+      .lang-switch,
+      .nav__toggle { display: none !important; }
     </style>
   </noscript>
 
@@ -332,6 +377,7 @@
 
     .hero {
       position: relative;
+      min-height: 100vh;
       min-height: 100svh;
       display: flex;
       align-items: stretch;
@@ -1274,7 +1320,7 @@
 
       .nav { padding-top: 0.8rem; padding-bottom: 0.8rem; }
 
-      .hero { min-height: 78svh; }
+      .hero { min-height: 78vh; min-height: 78svh; }
       .hero__content { padding: 6rem var(--gutter) 2.2rem; }
       .hero__name { font-size: clamp(3.8rem, 21vw, 6.5rem); }
 
@@ -3006,6 +3052,91 @@
       }
     }
 
+    /* Third pass: touch targets, focus visibility, small-screen polish */
+    main :is(a, button, input, textarea, video) {
+      scroll-margin-top: 5.5rem;
+    }
+
+    .form__note {
+      margin-top: 0.2rem;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: var(--text-mid);
+    }
+
+    @supports not (overflow: clip) {
+      .site,
+      .practical {
+        overflow: hidden;
+      }
+    }
+
+    @media (min-width: 761px) {
+      .site__feature,
+      .site__feature-media {
+        min-height: 0;
+      }
+
+      .nav__links a {
+        display: inline-block;
+        padding-block: 0.9rem;
+        margin-block: -0.9rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      main :is(a, button, input, textarea, video) {
+        scroll-margin-top: 4.5rem;
+      }
+
+      .field input,
+      .field textarea {
+        font-size: 16px;
+      }
+
+      .nav__toggle {
+        padding: 10px 11px;
+      }
+
+      .nav__mobile .nav__mobile-close {
+        min-width: 44px;
+        min-height: 44px;
+      }
+
+      .mini-carousel__btn::after {
+        content: '';
+        position: absolute;
+        inset: -6px;
+      }
+
+      .booking-action__label,
+      .field label,
+      .form__btn {
+        font-size: 0.75rem;
+      }
+
+      .footer__loc {
+        font-size: 0.8rem;
+      }
+
+      .intro__aside-label {
+        font-size: 0.72rem;
+      }
+
+      .site {
+        padding-bottom: 3.5rem;
+      }
+    }
+
+    @media (max-width: 760px) and (orientation: landscape) {
+      .unit,
+      .site__feature {
+        width: 100%;
+        max-width: calc((100svh - 5rem) * 4 / 3);
+        margin-inline: auto;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -3027,8 +3158,8 @@
       </ul>
 
       <div class='lang-switch' role='group' aria-label='Language' data-i18n-aria='ariaLangSwitch'>
-        <button class='lang-switch__btn is-active' type='button' data-lang='en' aria-pressed='true'>EN</button>
-        <button class='lang-switch__btn' type='button' data-lang='no' aria-pressed='false'>NO</button>
+        <button class='lang-switch__btn is-active' type='button' data-lang='en' lang='en' aria-label='English' aria-pressed='true'>EN</button>
+        <button class='lang-switch__btn' type='button' data-lang='no' lang='no' aria-label='Norsk' aria-pressed='false'>NO</button>
       </div>
     </div>
 
@@ -3044,8 +3175,8 @@
     <a href='#sauna' data-i18n='navSauna'>Sauna &amp; beach</a>
 
     <div class='nav__mobile-lang'>
-      <button type='button' data-lang='en' aria-pressed='true'>EN</button>
-      <button type='button' data-lang='no' aria-pressed='false'>NO</button>
+      <button type='button' data-lang='en' lang='en' aria-label='English' aria-pressed='true'>EN</button>
+      <button type='button' data-lang='no' lang='no' aria-label='Norsk' aria-pressed='false'>NO</button>
     </div>
   </div>
 
@@ -3150,7 +3281,7 @@
           </div>
         </div>
 
-        <a class='button-link booking-action reveal' href='https://www.booking.com/hotel/no/vikaneset-havhotell-kristiansund1.html' target='_blank' rel='noopener noreferrer'>
+        <a class='button-link booking-action reveal' href='https://www.booking.com/hotel/no/vikaneset-havhotell-kristiansund1.html' target='_blank' rel='noopener noreferrer' aria-describedby='newTabNote'>
           <span class='booking-action__icon' aria-hidden='true'>
             <svg viewBox='0 0 24 24'>
               <path d='M7 3v3M17 3v3M4.5 9h15M6 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z'/>
@@ -3194,8 +3325,8 @@
           </div>
           <div class='site__feature-copy'>
             <h3 class='site__feature-title'>Klippfiskbrygga</h3>
-            <p class='site__feature-body' data-i18n='site1Body'>Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.</p>
-            <a class='site__feature-action' href='https://www.google.com/search?q=Lokalkokken+Vikaneset+Kristiansund' target='_blank' rel='noopener noreferrer' data-i18n='site1LinkText'>Find Lokalkokken</a>
+            <p class='site__feature-body' data-i18n='site1Body'>Wharf building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant, function and course rooms. The restaurant is run by Lokalkokken.</p>
+            <a class='site__feature-action' href='https://www.google.com/search?q=Lokalkokken+Vikaneset+Kristiansund' target='_blank' rel='noopener noreferrer' aria-describedby='newTabNote' data-i18n='site1LinkText'>Find Lokalkokken</a>
           </div>
         </article>
 
@@ -3212,7 +3343,7 @@
           <div class='site__feature-copy'>
             <h3 class='site__feature-title' data-i18n='site4Title'>Sauna and beach</h3>
             <p class='site__feature-body' data-i18n='site4Body'>Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna's warmth and cool off in the fresh sea water.</p>
-            <a class='site__feature-action' href='https://www.google.com/search?q=Vikaneset+sauna+booking+Kristiansund' target='_blank' rel='noopener noreferrer' data-i18n='site4LinkText'>Sauna reservations</a>
+            <a class='site__feature-action' href='https://www.google.com/search?q=Vikaneset+sauna+booking+Kristiansund' target='_blank' rel='noopener noreferrer' aria-describedby='newTabNote' data-i18n='site4LinkText'>Find sauna booking</a>
           </div>
         </article>
 
@@ -3363,7 +3494,7 @@
           <div class='card card--film'>
             <video controls playsinline preload='metadata' aria-labelledby='information-title'>
               <source src='assets/video/vikaneset-film.mp4#t=0.1' type='video/mp4'>
-              <p data-i18n='videoFallback'>Your browser does not support the video tag.</p>
+              <p data-i18n='videoFallback'>Your browser cannot play this video.</p>
             </video>
           </div>
         </div>
@@ -3415,11 +3546,13 @@
             </div>
 
             <button class='form__btn' type='submit' data-i18n='formButton'>Send enquiry</button>
+            <p class='form__note' role='status' data-i18n='formFallback' hidden>If your email app did not open, write to anette@vikaneset.com.</p>
           </form>
         </div>
       </div>
     </section>
 
+    <span id='newTabNote' hidden data-i18n='newTabNote'>Opens in a new tab</span>
   </main>
   <footer class='footer'>
     <span class='ambient-wave ambient-wave--a' aria-hidden='true'></span>
@@ -3611,10 +3744,16 @@
         // Photos in hidden carousel slides wait until the visitor reaches for that carousel.
         if (!image.getAttribute('src') && image.hasAttribute('data-src')) {
           var carousel = slot.closest('.mini-carousel');
+          if (!carousel) {
+            image.src = replacement;
+            return;
+          }
           var start = function () {
-            if (!image.getAttribute('src')) image.src = replacement;
+            if (image.getAttribute('src')) return;
+            image.loading = 'eager';
+            image.src = replacement;
           };
-          ['pointerenter', 'focusin', 'touchstart'].forEach(function (type) {
+          ['pointerenter', 'focusin', 'touchstart', 'click'].forEach(function (type) {
             carousel.addEventListener(type, start, { once: true, passive: true });
           });
           return;
@@ -3658,6 +3797,9 @@
 
       function update() {
         track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        slides.forEach(function (slide, i) {
+          slide.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+        });
         if (status) {
           status.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
         }
@@ -3755,7 +3897,15 @@
         var index = 0;
 
         function update() {
+          var img = slides[index].querySelector('img');
+          if (img && !img.getAttribute('src') && img.hasAttribute('data-src')) {
+            img.loading = 'eager';
+            img.src = 'assets/images/carousels/' + slides[index].getAttribute('data-photo-slot');
+          }
           track.style.transform = 'translateX(-' + (index * 100) + '%)';
+          slides.forEach(function (slide, i) {
+            slide.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+          });
         }
 
         function moveNext() {
@@ -3818,7 +3968,7 @@
           siteTitle: 'The site',
           siteIntro1: 'Vikaneset is a historic coastal gem. Klippfisk was received, produced and dried here, and the site was also used for cod-liver oil production.',
           siteIntro2: 'Today the old klippfisk warehouse houses a restaurant and rooms for functions and courses. The property also has 16 apartments for holiday guests and permanent residents.',
-          site1Body: 'Brygge building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant and function and course rooms. The restaurant is run by Lokalkokken.',
+          site1Body: 'Wharf building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000 m² of bar, restaurant, function and course rooms. The restaurant is run by Lokalkokken.',
           site1LinkText: 'Find Lokalkokken',
           site2Title: 'The harbour',
           site2Body: 'Vikaneset has its own harbour with berths for visiting boats. Kayaks and canoes are available to rent here.',
@@ -3827,7 +3977,7 @@
           site3Detail: '1,500 seats · Completed 2008',
           site4Title: 'Sauna and beach',
           site4Body: 'Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna\'s warmth and cool off in the fresh sea water.',
-          site4LinkText: 'Sauna reservations',
+          site4LinkText: 'Find sauna booking',
 
           practicalTitle: 'Practical',
           locationTitle: 'Location',
@@ -3871,7 +4021,7 @@
           footerLocation: 'Kjørvegen 31, 6520 Frei, Norway',
 
           formSubject: 'Website enquiry',
-          videoFallback: 'Your browser does not support the video tag.',
+          videoFallback: 'Your browser cannot play this video.',
 
           ariaMainNav: 'Main navigation',
           ariaHome: 'Vikaneset home',
@@ -3886,6 +4036,10 @@
           ariaIncluded: 'Included in each unit',
           ariaExtras: 'Available for an additional fee',
           ariaForm: 'Enquiry form',
+          newTabNote: 'Opens in a new tab',
+          formFallback: 'If your email app did not open, write to anette@vikaneset.com.',
+          pageTitle: 'Vikaneset Havhotell · Self-catering by the sea near Kristiansund',
+          metaDescription: 'Self-catering accommodation by the sea on Frei, 16 km from Kristiansund. Ten units, own harbour, sauna, sandy beach and amphitheatre. Opening spring 2027.',
 
           altSjohus: 'Sjøhus at Vikaneset',
           altLeiligheter: 'Leiligheter at Vikaneset',
@@ -3928,24 +4082,24 @@
           accommodationTitle: 'Overnatting',
           accommodationCount: '10 selvhusholdsenheter fordelt på to bygg',
           unit1Meta: '5 enheter · Ved vannkanten',
-          unit1Desc: 'Fem selvhusholdsenheter ved vannkanten. Hver enhet har kjøkken og stue i åpen løsning, bad og 2 soverom med sengeplass til 2 i hvert rom. Hvert sjøhus har balkong og terrasse.',
+          unit1Desc: 'Fem selvhusholdsenheter ved vannkanten. Hver enhet har kjøkken og stue i åpen løsning, bad og to soverom med sengeplass til to i hvert rom. Hvert sjøhus har balkong og terrasse.',
           unit2Meta: '5 enheter · Innerholmen',
-          unit2Desc: 'Fem selvhusholdsleiligheter i Innerholmen. Hver enhet har kjøkken og stue i åpen løsning, bad og 2 soverom med sengeplass til 2 i hvert rom. Hver leilighet har veranda.',
+          unit2Desc: 'Fem selvhusholdsleiligheter i Innerholmen. Hver enhet har kjøkken og stue i åpen løsning, bad og to soverom med sengeplass til to i hvert rom. Hver leilighet har veranda.',
           bookingButton: 'Sjekk tilgjengelighet',
 
           siteTitle: 'Om stedet',
           siteIntro1: 'Vikaneset er en historisk kystperle. Her ble det drevet klippfiskmottak, produksjon og tørking av klippfisk samt tranbrenneri.',
           siteIntro2: 'I dag er det restaurant, selskaps- og kurslokaler i den gamle klippfiskbrygga. Eiendommen har også 16 leiligheter som leies ut til feriegjester og fastboende.',
-          site1Body: 'Brygge fra rundt år 1900, restaurert rundt år 2006–2009. Den består av ca. 1 000 kvm med bar, restaurant og lokaler til selskaper og kurs. Restauranten drives av Lokalkokken.',
+          site1Body: 'Brygge fra rundt år 1900, restaurert mellom 2006 og 2009. Den består av ca. 1 000 kvm med bar, restaurant og lokaler til selskaper og kurs. Restauranten drives av Lokalkokken.',
           site1LinkText: 'Finn Lokalkokken',
           site2Title: 'Havna',
           site2Body: 'Vikaneset har egen havn med bryggeplass til besøkende. Her kan du leie kano og kajakk.',
           site2Detail: 'Se etter fisk og krabbe i det klare vannet',
-          site3Body: 'Vikaneset har amfi med 1 500 sitteplasser. Amfiet ble ferdigstilt i 2008. Da var det urpremiære på «klippfisk-operaen» Donna Bacalao i regi av Operaen i Kristiansund.',
+          site3Body: 'Vikaneset har amfi med 1 500 sitteplasser. Amfiet ble ferdigstilt i 2008. Da var det urpremiære på «klippfiskoperaen» Donna Bacalao i regi av Operaen i Kristiansund.',
           site3Detail: '1 500 sitteplasser · Ferdigstilt 2008',
           site4Title: 'Sauna og strand',
           site4Body: 'Vikaneset har sauna som ligger rett ved sandstranden vår. Her kan man nyte saunaens varme og boltre seg i det friske sjøvannet.',
-          site4LinkText: 'Reserver sauna',
+          site4LinkText: 'Finn saunabooking',
 
           practicalTitle: 'Praktisk',
           locationTitle: 'Beliggenhet',
@@ -4004,6 +4158,10 @@
           ariaIncluded: 'Inkludert i hver enhet',
           ariaExtras: 'Tilgjengelig mot betaling',
           ariaForm: 'Kontaktskjema',
+          newTabNote: 'Åpnes i ny fane',
+          formFallback: 'Åpnet ikke e-postprogrammet? Skriv til anette@vikaneset.com.',
+          pageTitle: 'Vikaneset Havhotell · Selvhushold ved sjøen på Frei, Kristiansund',
+          metaDescription: 'Selvhusholdsenheter ved sjøen på Frei, 16 km fra Kristiansund. Ti enheter, egen havn, sauna, sandstrand og amfi. Åpner våren 2027.',
 
           altSjohus: 'Sjøhus på Vikaneset',
           altLeiligheter: 'Leiligheter på Vikaneset',
@@ -4048,13 +4206,22 @@
 
       var browserLanguage = /^(nb|nn|no)\b/i.test(navigator.language || '') ? 'no' : 'en';
 
-      var currentLanguage = translations[urlLanguage]
+      function isLanguage(lang) {
+        return lang === 'en' || lang === 'no';
+      }
+
+      var currentLanguage = isLanguage(urlLanguage)
         ? urlLanguage
-        : (translations[storedLanguage] ? storedLanguage : browserLanguage);
+        : (isLanguage(storedLanguage) ? storedLanguage : browserLanguage);
 
       function setLanguage(lang) {
+        if (!isLanguage(lang)) lang = 'en';
         currentLanguage = lang;
         document.documentElement.lang = lang;
+
+        document.title = translations[lang].pageTitle;
+        var description = document.querySelector('meta[name="description"]');
+        if (description) description.setAttribute('content', translations[lang].metaDescription);
 
         document.querySelectorAll('[data-i18n]').forEach(function (element) {
           var key = element.getAttribute('data-i18n');
@@ -4121,6 +4288,8 @@
           window.location.href = form.getAttribute('action') +
             '?subject=' + encodeURIComponent(subject) +
             '&body=' + encodeURIComponent(body);
+          var note = form.querySelector('.form__note');
+          if (note) note.hidden = false;
         });
       }
 
