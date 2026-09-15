@@ -58,9 +58,7 @@
   <link rel='apple-touch-icon' sizes='180x180' href='assets/images/apple-touch-icon.png'>
   <link rel='preload' as='image' href='assets/images/hero.jpg' fetchpriority='high'>
 
-  <link rel='preconnect' href='https://fonts.googleapis.com'>
-  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-  <link href='https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&amp;display=swap' rel='stylesheet'>
+  <link rel='preload' href='assets/fonts/spectral-400.woff2' as='font' type='font/woff2' crossorigin>
 
   <noscript>
     <style>
@@ -3132,6 +3130,34 @@
       }
     }
 
+    /* Spectral, self-hosted (latin subset, SIL Open Font License) */
+    @font-face {
+      font-family: 'Spectral';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/spectral-400-italic.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Spectral';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/spectral-400.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Spectral';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('assets/fonts/spectral-600.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
   </style>
 </head>
 <body>
@@ -3301,7 +3327,7 @@
               Vikaneset is a historic coastal gem. Klippfisk was received, produced and dried here, and the site was also used for cod-liver oil production.
             </p>
             <p class='section-intro' data-i18n='siteIntro2'>
-              Today the old klippfisk warehouse houses a restaurant and rooms for functions and courses. The property also has 16 apartments for holiday guests and permanent residents.
+              Today the old klippfisk warehouse houses a restaurant and rooms for functions and courses. The property also has 16 apartments in total, for holiday guests and permanent residents.
             </p>
           </div>
         </div>
@@ -3962,7 +3988,7 @@
 
           siteTitle: 'The site',
           siteIntro1: 'Vikaneset is a historic coastal gem. Klippfisk was received, produced and dried here, and the site was also used for cod-liver oil production.',
-          siteIntro2: 'Today the old klippfisk warehouse houses a restaurant and rooms for functions and courses. The property also has 16 apartments for holiday guests and permanent residents.',
+          siteIntro2: 'Today the old klippfisk warehouse houses a restaurant and rooms for functions and courses. The property also has 16 apartments in total, for holiday guests and permanent residents.',
           site1Body: 'Wharf building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000\u00a0m² of bar, restaurant, function and course rooms. The restaurant is run by Lokalkokken.',
           site1LinkText: 'Find Lokalkokken',
           site2Title: 'The harbour',
@@ -4084,7 +4110,7 @@
 
           siteTitle: 'Om stedet',
           siteIntro1: 'Vikaneset er en historisk kystperle. Her ble det drevet klippfiskmottak, produksjon og tørking av klippfisk samt tranbrenneri.',
-          siteIntro2: 'I dag er det restaurant, selskaps- og kurslokaler i den gamle klippfiskbrygga. Eiendommen har også 16 leiligheter som leies ut til feriegjester og fastboende.',
+          siteIntro2: 'I dag er det restaurant, selskaps- og kurslokaler i den gamle klippfiskbrygga. Eiendommen har også 16 leiligheter totalt, som leies ut til feriegjester og fastboende.',
           site1Body: 'Brygge fra rundt år 1900, restaurert mellom 2006 og 2009. Den består av ca. 1\u00a0000\u00a0kvm med bar, restaurant og lokaler til selskaper og kurs. Restauranten drives av Lokalkokken.',
           site1LinkText: 'Finn Lokalkokken',
           site2Title: 'Havna',
