@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='robots' content='noindex'>
+  <meta name='theme-color' content='#102a38'>
+  <title>Page not found · Vikaneset Havhotell</title>
+  <link rel='icon' type='image/png' sizes='64x64' href='/beach/assets/images/favicon.png'>
+  <style>
+    @font-face {
+      font-family: 'Spectral';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/beach/assets/fonts/spectral-400.woff2') format('woff2');
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 2rem 1.25rem;
+      background:
+        radial-gradient(ellipse at 12% 18%, rgba(255, 255, 255, 0.05), transparent 42%),
+        radial-gradient(ellipse at 88% 84%, rgba(0, 0, 0, 0.2), transparent 46%),
+        linear-gradient(145deg, #15394a, #091f2a 72%);
+      color: rgba(255, 255, 255, 0.86);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      width: min(100%, 30rem);
+      text-align: center;
+    }
+
+    .mark {
+      display: block;
+      width: 64px;
+      height: auto;
+      margin: 0 auto 1.6rem;
+    }
+
+    .eyebrow {
+      margin-bottom: 0.9rem;
+      color: #cbaf7a;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+    }
+
+    h1 {
+      margin-bottom: 0.4rem;
+      color: #fff;
+      font-family: 'Spectral', Georgia, serif;
+      font-size: clamp(1.7rem, 5vw, 2.3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      text-wrap: balance;
+    }
+
+    .alt {
+      margin-bottom: 2rem;
+      color: rgba(255, 255, 255, 0.72);
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+
+    .home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.2rem;
+      border: 1px solid rgba(190, 157, 96, 0.42);
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(48, 78, 80, 0.94), rgba(20, 49, 57, 0.98));
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .home:hover,
+    .home:focus-visible {
+      border-color: rgba(194, 163, 104, 0.72);
+      background: linear-gradient(135deg, rgba(58, 92, 94, 0.96), rgba(24, 58, 66, 1));
+    }
+
+    .home:focus-visible {
+      outline: 2px solid #cbaf7a;
+      outline-offset: 3px;
+    }
+
+    .home .arrow {
+      color: #cbaf7a;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img class='mark' src='/beach/assets/images/logo-mark-light.png' alt='' width='157' height='114'>
+    <p class='eyebrow'>404</p>
+    <h1>This page could not be found.</h1>
+    <p class='alt' lang='no'>Denne siden finnes ikke.</p>
+    <a class='home' href='/beach/'><span>Back to Vikaneset · <span lang='no'>Tilbake</span></span> <span class='arrow' aria-hidden='true'>&rarr;</span></a>
+  </main>
+</body>
+</html>
