@@ -3857,6 +3857,25 @@
       }
     }
 
+
+    /* The gallery holds portrait and landscape photographs in one frame, so
+       the frame is square: it is the shape that wastes the least on either.
+       A 3:4 portrait leaves an eighth of the width as mat, a 3:2 landscape a
+       sixth of the height, instead of half the frame going dark. */
+    @media (min-width: 761px) {
+      .gallery__carousel {
+        max-width: min(720px, 100%);
+      }
+
+      .gallery__viewport {
+        aspect-ratio: 1 / 1;
+        height: auto;
+        min-height: 0;
+      }
+
+      .gallery__btn--prev { left: 1rem; }
+      .gallery__btn--next { right: 1rem; }
+    }
   </style>
 </head>
 <body>
