@@ -3319,6 +3319,54 @@
       bottom: 3.4rem;
     }
 
+    /* Gallery fill as an ambient wash, and form fields as hairlines */
+    .gallery__slide::before {
+      inset: -70px;
+      filter: blur(64px) saturate(0.5) brightness(0.92);
+      opacity: 0.3;
+    }
+
+    .field input,
+    .field textarea,
+    .contact .field input,
+    .contact .field textarea {
+      padding-left: 0;
+      padding-right: 0;
+      border: 0;
+      border-bottom: 1px solid rgba(23, 36, 42, 0.28);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .contact .field input:focus,
+    .contact .field textarea:focus {
+      border-bottom-color: #2f5d7a;
+      box-shadow: 0 1px 0 0 #2f5d7a;
+      outline: none;
+    }
+
+    .form__btn,
+    .contact .form__btn {
+      align-self: flex-start;
+      border: 1px solid #27506a;
+      border-radius: 0;
+      background: transparent;
+      color: #27506a;
+      box-shadow: none;
+    }
+
+    .form__btn:hover,
+    .contact .form__btn:hover {
+      background: #27506a;
+      color: #fff;
+      transform: none;
+    }
+
   </style>
 </head>
 <body>
