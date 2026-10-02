@@ -3268,6 +3268,57 @@
       color: rgba(255, 255, 255, 0.92);
     }
 
+    /* Quieter still: no background texture, the booking CTA as a link */
+    :root {
+      --wave-wallpaper-dark: none;
+      --wave-wallpaper-light: none;
+    }
+
+    .ambient-wave,
+    .hero::before {
+      display: none !important;
+    }
+
+    .booking-action {
+      display: inline-flex !important;
+      width: auto !important;
+      min-width: 0 !important;
+      margin: 2.75rem 0 0 !important;
+      padding: 0 0 0.4rem !important;
+      gap: 0.55rem;
+      border: 0 !important;
+      border-bottom: 1px solid #2f5d7a !important;
+      border-radius: 0 !important;
+      background: none !important;
+      box-shadow: none !important;
+      color: #27506a !important;
+    }
+
+    .booking-action::before,
+    .booking-action__icon {
+      display: none !important;
+    }
+
+    .booking-action__label {
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+    }
+
+    .booking-action__arrow {
+      color: #2f5d7a;
+      opacity: 1;
+    }
+
+    .booking-action:hover {
+      border-bottom-color: #27506a !important;
+      color: #27506a !important;
+      transform: none;
+    }
+
+    .hero__scroll-cue {
+      bottom: 3.4rem;
+    }
+
   </style>
 </head>
 <body>
