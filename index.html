@@ -3320,10 +3320,15 @@
     }
 
     /* Gallery fill as an ambient wash, and form fields as hairlines */
+    .gallery__viewport {
+      background: #0e2733 !important;
+      border: 0 !important;
+    }
+
     .gallery__slide::before {
       inset: -70px;
-      filter: blur(64px) saturate(0.5) brightness(0.92);
-      opacity: 0.3;
+      filter: blur(70px) saturate(0.75) brightness(0.5);
+      opacity: 0.6;
     }
 
     .field input,
