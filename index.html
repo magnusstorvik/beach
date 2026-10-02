@@ -3316,7 +3316,8 @@
     }
 
     .hero__scroll-cue {
-      bottom: 3.4rem;
+      bottom: 1.15rem;
+      opacity: 0.55;
     }
 
     /* Gallery fill as an ambient wash, and form fields as hairlines */
@@ -3370,6 +3371,42 @@
       background: #27506a;
       color: #fff;
       transform: none;
+    }
+
+    /* Hero: the photograph leads, the name is a quiet signature */
+    .hero__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: none !important;
+      text-align: center;
+    }
+
+    .hero__name {
+      margin: 0 0 0.9rem !important;
+      font-family: var(--font-sans) !important;
+      font-size: clamp(1.05rem, 2.1vw, 1.55rem) !important;
+      font-weight: 600;
+      letter-spacing: 0.42em !important;
+      text-indent: 0.42em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero__geo {
+      order: 2;
+      margin-bottom: 0;
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+    }
+
+    .hero__content {
+      padding-bottom: clamp(3rem, 6vw, 4.5rem);
+    }
+
+    /* Section headings stand on their own */
+    .section-eyebrow {
+      display: none;
     }
 
   </style>
