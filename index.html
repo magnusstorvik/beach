@@ -3409,6 +3409,52 @@
       display: none;
     }
 
+    /* Translucent chrome (interface only, never content) and serif labels */
+    .nav,
+    .nav.scrolled {
+      background: rgba(9, 31, 42, 0.62) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px) saturate(150%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+    }
+
+    .mini-carousel__btn,
+    .gallery__btn {
+      background: rgba(14, 39, 51, 0.68) !important;
+      backdrop-filter: blur(18px) saturate(140%) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
+    }
+
+    .gallery__status {
+      background: rgba(9, 31, 42, 0.55);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+    }
+
+    .nav__links a,
+    .unit__meta,
+    .site__feature-detail,
+    .cinfo__label,
+    .field label,
+    .pblock__title,
+    .form__btn,
+    .booking-action__label,
+    .gallery__status,
+    .dl dt,
+    .intro__kicker,
+    .intro__aside-label,
+    .lang-switch__btn,
+    .nav__name,
+    .footer__name {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+    }
+
+    .nav__links a { font-size: 0.84rem; }
+    .unit__meta, .site__feature-detail { font-size: 0.76rem; }
+    .field label, .cinfo__label, .pblock__title { font-size: 0.74rem; }
+
   </style>
 </head>
 <body>
