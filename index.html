@@ -69,6 +69,7 @@
       .gallery__btn,
       .gallery__status,
       .lang-switch,
+      .film__play,
       .nav__toggle { display: none !important; }
     </style>
   </noscript>
@@ -3501,6 +3502,361 @@
       }
     }
 
+    /* ==================================================================
+       Second pass, 2026-10-02
+       ------------------------------------------------------------------
+       Five things were reading as unconsidered rather than quiet: running
+       text set in two different faces, section heads that left the right
+       half of the page empty, chrome that turned to grey mud the moment
+       it crossed a pale section, the browser's own video bar, and a bird
+       that only ever sat still.
+       ================================================================== */
+
+    /* Running text is Spectral everywhere. The practical lists and the
+       definition values were still falling through to the system sans,
+       which is why the page read like two sites stitched together. */
+    .dl dd,
+    .incl li,
+    .accommodation__count {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 1.04rem;
+    }
+
+    /* Section heads carry their lede beside the title, on the grid the
+       site section already used. */
+    @media (min-width: 900px) {
+      .accommodation__header,
+      .gallery__header,
+      .practical__header,
+      .contact__header,
+      .information__header {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.62fr) minmax(0, 1.38fr);
+        column-gap: clamp(2.5rem, 7vw, 6rem);
+        align-items: start;
+      }
+
+      /* The film section already sits in its own two-column wrap, so its
+         head keeps the single column it was given. */
+      .information .wrap > .information__header {
+        display: block;
+      }
+
+      .accommodation__header .accommodation__count,
+      .gallery__header .section-intro {
+        max-width: 42ch;
+        margin: 0;
+        padding-top: 0.05rem;
+      }
+
+      .contact__grid {
+        grid-template-columns: minmax(0, 0.64fr) minmax(0, 1.36fr);
+        gap: clamp(2rem, 5vw, 4rem);
+      }
+    }
+
+    /* Section rhythm: sixteen rems of nothing between the film and the
+       contact form read as a gap, not as space. */
+    .accommodation, .site, .practical, .gallery, .information, .contact {
+      padding-top: clamp(4rem, 7vw, 6.5rem);
+      padding-bottom: clamp(4rem, 7vw, 6.5rem);
+    }
+
+    .form textarea {
+      resize: vertical;
+      min-height: 9rem;
+    }
+
+    /* Chrome. At rest over the hero photograph it is nearly absent; over
+       the pale sections it commits to being dark, because a 62% dark film
+       over near-white is neither one thing nor the other. */
+    .nav {
+      background: rgba(9, 31, 42, 0.4) !important;
+      border-bottom-color: rgba(255, 255, 255, 0.07);
+    }
+
+    .nav.scrolled {
+      background: rgba(10, 32, 43, 0.86) !important;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Film. The browser's default control bar was the loudest thing on
+       the page. A poster frame and one play control stand in its place;
+       the native controls return the moment the film starts. */
+    .card--film {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #081b24;
+    }
+
+    .card--film video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .film__play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: linear-gradient(to bottom, rgba(8, 27, 36, 0.08), rgba(8, 27, 36, 0.34));
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .film__play[hidden] { display: none; }
+
+    .film__play-disc {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      background: rgba(14, 39, 51, 0.4);
+      backdrop-filter: blur(16px) saturate(140%);
+      transition: transform 0.35s cubic-bezier(0.33, 0.1, 0.25, 1), background 0.3s ease;
+    }
+
+    .film__play-disc::before {
+      content: '';
+      width: 0;
+      height: 0;
+      margin-left: 5px;
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-left: 15px solid rgba(255, 255, 255, 0.94);
+    }
+
+    .film__play-text {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .film__play:hover {
+      background: linear-gradient(to bottom, rgba(8, 27, 36, 0.06), rgba(8, 27, 36, 0.38));
+    }
+
+    .film__play:hover .film__play-disc,
+    .film__play:focus-visible .film__play-disc {
+      transform: scale(1.07);
+      background: rgba(14, 39, 51, 0.62);
+    }
+
+    .film__play:focus-visible {
+      outline: 2px solid #9dc0d4;
+      outline-offset: -4px;
+    }
+
+    /* ------------------------------------------------------------------
+       The skarv gets the run of the page
+       ------------------------------------------------------------------
+       It sits the hero out on its perch, then takes the right-hand gutter
+       and works its way down: wingbeats while you scroll, a glide when you
+       stop, a plunge into the dark practical band, and it surfaces with
+       something. Driven entirely by scroll position, so there is no script
+       and no timer; browsers without scroll timelines never see it, and
+       neither does anyone who asked for less motion.
+       ------------------------------------------------------------------ */
+
+    @property --sk-flap { syntax: '<number>'; inherits: true; initial-value: 0; }
+    @property --sk-amp { syntax: '<number>'; inherits: true; initial-value: 1; }
+    @property --sk-sweep { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
+    @property --sk-span { syntax: '<number>'; inherits: true; initial-value: 1; }
+    @property --sk-fish { syntax: '<number>'; inherits: true; initial-value: 0; }
+
+    .skarv-flight { display: none; }
+
+    @supports (animation-timeline: scroll()) {
+      /* Only where the margin is genuinely wide enough to hold it: the
+         wrap caps at 1280px, so below 1400px there is no gutter to fly in. */
+      @media (min-width: 1400px) and (prefers-reduced-motion: no-preference) {
+        .skarv-flight {
+          display: block;
+          position: fixed;
+          top: 0;
+          right: clamp(0.5rem, calc((100vw - 1280px) / 2 - 42px), 5rem);
+          z-index: 4;
+          width: 84px;
+          height: 100vh;
+          color: #2f5d7a;
+          opacity: 0;
+          pointer-events: none;
+          animation-name: sk-reveal, sk-tint;
+          animation-timing-function: linear, linear;
+          animation-fill-mode: both, both;
+          animation-timeline: scroll(root block), scroll(root block);
+        }
+
+        .skarv-flight__bird {
+          display: block;
+          width: 84px;
+          height: 48px;
+          overflow: visible;
+          animation-name: sk-path, sk-flap;
+          animation-timing-function: linear, ease-in-out;
+          animation-fill-mode: both, both;
+          animation-iteration-count: 1, 42;
+          animation-timeline: scroll(root block), scroll(root block);
+        }
+
+        .sk-bird {
+          transform-box: fill-box;
+          transform-origin: 50% 50%;
+          animation-name: sk-pitch, sk-shape;
+          animation-timing-function: linear, linear;
+          animation-fill-mode: both, both;
+          animation-timeline: scroll(root block), scroll(root block);
+        }
+
+        .sk-stroke {
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 1.45;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+
+        .sk-wing {
+          transform-box: view-box;
+          transform-origin: 26px 18.6px;
+          rotate: calc(var(--sk-sweep) + 28deg * var(--sk-flap) * var(--sk-amp));
+          scale: var(--sk-span);
+        }
+
+        .sk-wing--far {
+          transform-origin: 25px 19px;
+          rotate: calc(var(--sk-sweep) - 11deg + 22deg * var(--sk-flap) * var(--sk-amp));
+          opacity: 0.45;
+        }
+
+        .sk-fish {
+          transform-box: view-box;
+          transform-origin: 4px 18.6px;
+          scale: var(--sk-fish);
+          opacity: var(--sk-fish);
+        }
+
+        .skarv-flight__splash {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 46px;
+          height: 13px;
+          margin-left: -23px;
+          border: 1px solid currentColor;
+          border-radius: 50%;
+          opacity: 0;
+          animation-name: sk-splash;
+          animation-timing-function: linear;
+          animation-fill-mode: both;
+          animation-timeline: scroll(root block);
+        }
+
+        /* Out of sight until the hero has gone, under the water for a
+           beat, and away again before the footer. */
+        @keyframes sk-reveal {
+          0% { opacity: 0; }
+          8% { opacity: 0; }
+          13% { opacity: 0.66; }
+          68% { opacity: 0.66; }
+          71% { opacity: 0.3; }
+          73% { opacity: 0.1; }
+          76% { opacity: 0.68; }
+          93% { opacity: 0.68; }
+          100% { opacity: 0; }
+        }
+
+        /* Sea blue over the pale sections, pale blue over the dark band. */
+        @keyframes sk-tint {
+          0% { color: #2f5d7a; }
+          56% { color: #2f5d7a; }
+          62% { color: #9dc0d4; }
+          80% { color: #9dc0d4; }
+          86% { color: #2f5d7a; }
+          100% { color: #2f5d7a; }
+        }
+
+        /* The sideways drift stays inside the gutter: at 1400px there are
+           only a few pixels between the bird and the text measure. */
+        @keyframes sk-path {
+          0% { translate: 46px 4vh; }
+          13% { translate: 14px 10vh; }
+          30% { translate: -6px 22vh; }
+          46% { translate: 8px 34vh; }
+          58% { translate: -10px 47vh; }
+          66% { translate: 2px 58vh; }
+          71% { translate: 10px 80vh; }
+          73% { translate: 14px 90vh; }
+          76% { translate: 8px 72vh; }
+          82% { translate: -8px 44vh; }
+          90% { translate: 4px 28vh; }
+          100% { translate: 44px 12vh; }
+        }
+
+        @keyframes sk-pitch {
+          0% { rotate: 4deg; }
+          30% { rotate: 4deg; }
+          46% { rotate: -3deg; }
+          58% { rotate: 5deg; }
+          66% { rotate: 28deg; }
+          71% { rotate: 74deg; }
+          73% { rotate: 78deg; }
+          76% { rotate: -46deg; }
+          82% { rotate: -22deg; }
+          90% { rotate: 2deg; }
+          100% { rotate: 2deg; }
+        }
+
+        /* Wing amplitude, sweep and span: beating, gliding, folded for the
+           plunge, hauling hard on the way back up with the catch. */
+        @keyframes sk-shape {
+          0% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
+          20% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
+          34% { --sk-amp: 0.3; --sk-sweep: -6deg; --sk-span: 1.05; --sk-fish: 0; }
+          46% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
+          58% { --sk-amp: 0.35; --sk-sweep: -8deg; --sk-span: 1.06; --sk-fish: 0; }
+          66% { --sk-amp: 0.9; --sk-sweep: 6deg; --sk-span: 0.92; --sk-fish: 0; }
+          70% { --sk-amp: 0.15; --sk-sweep: 44deg; --sk-span: 0.62; --sk-fish: 0; }
+          73% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 0; }
+          74% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 1; }
+          78% { --sk-amp: 1.25; --sk-sweep: -6deg; --sk-span: 1.08; --sk-fish: 1; }
+          86% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 1; }
+          92% { --sk-amp: 0.7; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
+          100% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
+        }
+
+        @keyframes sk-flap {
+          0% { --sk-flap: -1; }
+          50% { --sk-flap: 1; }
+          100% { --sk-flap: -1; }
+        }
+
+        @keyframes sk-splash {
+          0% { translate: 0 88vh; scale: 0.2; opacity: 0; }
+          70% { translate: 0 88vh; scale: 0.2; opacity: 0; }
+          71.5% { opacity: 0.55; }
+          72% { scale: 0.5; }
+          76% { translate: 0 88vh; scale: 1.5; opacity: 0; }
+          100% { translate: 0 88vh; scale: 1.5; opacity: 0; }
+        }
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -3856,10 +4212,14 @@
 
         <div class='information__grid reveal'>
           <div class='card card--film'>
-            <video controls playsinline preload='metadata' aria-labelledby='information-title'>
-              <source src='assets/video/vikaneset-film.mp4#t=0.1' type='video/mp4'>
+            <video id='filmVideo' controls playsinline preload='metadata' poster='assets/images/film-poster.jpg' aria-labelledby='information-title'>
+              <source src='assets/video/vikaneset-film.mp4' type='video/mp4'>
               <p data-i18n='videoFallback'>Your browser cannot play this video.</p>
             </video>
+            <button class='film__play' type='button' id='filmPlay' aria-label='Play the film' data-i18n-aria='ariaPlayFilm'>
+              <span class='film__play-disc' aria-hidden='true'></span>
+              <span class='film__play-text' data-i18n='playFilm'>Play film</span>
+            </button>
           </div>
         </div>
       </div>
@@ -3889,6 +4249,11 @@
                 <a href='tel:+4748257960'>+47 482 57 960</a>
               </p>
             </div>
+
+            <div>
+              <p class='cinfo__label' data-i18n='addressLabel'>Address</p>
+              <p class='cinfo__value' data-i18n='addressValue'>Kjørvegen 31, 6520 Frei, Kristiansund municipality, Norway</p>
+            </div>
           </div>
 
           <form class='form' action='mailto:anette@vikaneset.com' method='post' enctype='text/plain' aria-label='Enquiry form' data-i18n-aria='ariaForm'>
@@ -3917,6 +4282,25 @@
     </section>
 
     <span id='newTabNote' hidden data-i18n='newTabNote'>Opens in a new tab</span>
+    <div class='skarv-flight' aria-hidden='true'>
+      <svg class='skarv-flight__bird' viewBox='0 0 60 34'>
+        <g class='sk-bird'>
+          <path class='sk-stroke sk-wing sk-wing--far' d='M25 19c2.6-7 7.6-12.4 15-15.2c-3.2 6.4-7.8 11.2-13.6 15'/>
+          <path class='sk-stroke' d='M5.4 14.8c5.1 0 10.6 1.2 16.6 2.8'/>
+          <path class='sk-stroke' d='M22 17.6c6 1.6 12 3.2 18 4.8c5.6 1.5 10.6 2.8 15.4 4'/>
+          <path class='sk-stroke' d='M23 19.8c6 3 12 4.8 18.5 5.6'/>
+          <path class='sk-stroke' d='M55.4 26.4l3.8 0.7'/>
+          <circle class='sk-stroke' cx='7' cy='14.6' r='1.5'/>
+          <path class='sk-stroke' d='M5.5 14.2l-2.3-0.4'/>
+          <path class='sk-stroke sk-wing sk-wing--near' d='M26 18.6c3.6-8.8 10.4-15.2 20.6-17.6c-4 8.2-9.8 14.4-18 17.8'/>
+          <g class='sk-fish'>
+            <path class='sk-stroke' d='M1.6 19.4c1.6-2 4-2.4 6-1.1c-1.4 2.1-3.9 2.6-6 1.1z'/>
+            <path class='sk-stroke' d='M1.6 19.4l-1.2-1.7l-0.2 2.7z'/>
+          </g>
+        </g>
+      </svg>
+      <span class='skarv-flight__splash'></span>
+    </div>
   </main>
   <footer class='footer'>
     <span class='ambient-wave ambient-wave--a' aria-hidden='true'></span>
@@ -4390,7 +4774,9 @@
 
           formSubject: 'Website enquiry',
           videoFallback: 'Your browser cannot play this video.',
+          playFilm: 'Play film',
 
+          ariaPlayFilm: 'Play the film about Vikaneset',
           ariaMainNav: 'Main navigation',
           ariaHome: 'Vikaneset home',
           ariaLangSwitch: 'Language',
@@ -4512,7 +4898,9 @@
 
           formSubject: 'Forespørsel fra nettsiden',
           videoFallback: 'Nettleseren din kan ikke spille av denne videoen.',
+          playFilm: 'Spill av film',
 
+          ariaPlayFilm: 'Spill av filmen om Vikaneset',
           ariaMainNav: 'Hovednavigasjon',
           ariaHome: 'Vikaneset forside',
           ariaLangSwitch: 'Språk',
@@ -4664,6 +5052,19 @@
               note.textContent = translations[currentLanguage].formFallback;
             }, 100);
           }
+        });
+      }
+
+      var filmVideo = document.getElementById('filmVideo');
+      var filmPlay = document.getElementById('filmPlay');
+      if (filmVideo && filmPlay) {
+        filmVideo.controls = false;
+        filmPlay.addEventListener('click', function () {
+          filmVideo.controls = true;
+          filmPlay.hidden = true;
+          var started = filmVideo.play();
+          if (started && started.catch) { started.catch(function () {}); }
+          filmVideo.focus();
         });
       }
 
