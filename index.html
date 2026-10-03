@@ -4,7 +4,7 @@
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <meta name='description' content='Self-catering accommodation by the sea on Frei, 16 km from Kristiansund. Ten units, own harbour, sauna, sandy beach and amphitheatre. Opening spring 2027.'>
-  <meta name='theme-color' content='#102a38'>
+  <meta name='theme-color' content='#0e2733'>
   <title>Vikaneset Havhotell · Self-catering by the sea near Kristiansund</title>
 
   <meta property='og:type' content='website'>
@@ -14,12 +14,13 @@
   <meta property='og:locale' content='en_GB'>
   <meta property='og:locale:alternate' content='nb_NO'>
   <meta property='og:url' content='https://magnusstorvik.github.io/beach/'>
-  <meta property='og:image' content='https://magnusstorvik.github.io/beach/assets/images/hero.jpg'>
-  <meta property='og:image:width' content='2800'>
-  <meta property='og:image:height' content='2100'>
+  <meta property='og:image' content='https://magnusstorvik.github.io/beach/assets/images/og-card.jpg'>
+  <meta property='og:image:width' content='1200'>
+  <meta property='og:image:height' content='630'>
   <meta property='og:image:alt' content='View of Vikaneset by the sea'>
   <meta name='twitter:card' content='summary_large_image'>
 
+  <link rel='canonical' href='https://magnusstorvik.github.io/beach/'>
   <link rel='alternate' hreflang='en' href='https://magnusstorvik.github.io/beach/?lang=en'>
   <link rel='alternate' hreflang='no' href='https://magnusstorvik.github.io/beach/?lang=no'>
   <link rel='alternate' hreflang='x-default' href='https://magnusstorvik.github.io/beach/'>
@@ -30,6 +31,9 @@
     "@type": "LodgingBusiness",
     "name": "Vikaneset Havhotell",
     "alternateName": "Vikaneset",
+    "url": "https://magnusstorvik.github.io/beach/",
+    "image": "https://magnusstorvik.github.io/beach/assets/images/hero.jpg",
+    "sameAs": ["https://www.booking.com/hotel/no/vikaneset-havhotell-kristiansund1.html"],
     "description": "Self-catering accommodation by the sea on Frei, 16 km from Kristiansund.",
     "address": {
       "@type": "PostalAddress",
@@ -71,6 +75,7 @@
       .lang-switch,
       .film__play,
       .nav__toggle { display: none !important; }
+      .nav__links { display: flex !important; }
     </style>
   </noscript>
 
@@ -3490,7 +3495,7 @@
       animation: skarv-dry 22s cubic-bezier(.33, .1, .25, 1) infinite;
     }
 
-    .hero__scroll-cue-wing:nth-of-type(2) {
+    .hero__scroll-cue-wing + .hero__scroll-cue-wing {
       animation-delay: 0.1s;
     }
 
@@ -3522,9 +3527,11 @@
       font-size: 1.04rem;
     }
 
-    /* Section heads carry their lede beside the title, on the grid the
-       site section already used. */
-    @media (min-width: 900px) {
+    /* Section heads carry their lede beside the title, on the grid the site
+       section already used. The threshold is 961px, not 900px, because
+       .site__header is collapsed to one column by a max-width: 960px rule: at
+       900-960 the other heads would go two-column while that one stayed stacked. */
+    @media (min-width: 961px) {
       .accommodation__header,
       .gallery__header,
       .practical__header,
@@ -3565,6 +3572,15 @@
     .form textarea {
       resize: vertical;
       min-height: 9rem;
+    }
+
+    /* iOS Safari zooms the page when a field under 16px takes focus. The phone
+       breakpoint alone did not cover a landscape phone at 844px wide. */
+    @media (pointer: coarse) {
+      .field input,
+      .field textarea {
+        font-size: 16px;
+      }
     }
 
     /* Chrome. At rest over the hero photograph it is nearly absent; over
@@ -3626,6 +3642,7 @@
       border-radius: 50%;
       background: rgba(14, 39, 51, 0.4);
       backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
       transition: transform 0.35s cubic-bezier(0.33, 0.1, 0.25, 1), background 0.3s ease;
     }
 
@@ -3784,10 +3801,10 @@
         /* Sea blue over the pale sections, pale blue over the dark band. */
         @keyframes sk-tint {
           0% { color: #2f5d7a; }
-          56% { color: #2f5d7a; }
-          62% { color: #9dc0d4; }
-          80% { color: #9dc0d4; }
-          86% { color: #2f5d7a; }
+          63% { color: #2f5d7a; }
+          66% { color: #9dc0d4; }
+          72% { color: #9dc0d4; }
+          75% { color: #2f5d7a; }
           100% { color: #2f5d7a; }
         }
 
@@ -3871,6 +3888,8 @@
         aspect-ratio: 1 / 1;
         height: auto;
         min-height: 0;
+        max-height: calc(100vh - 6rem);
+        max-height: calc(100svh - 6rem);
       }
 
       .gallery__btn--prev { left: 1rem; }
@@ -3990,7 +4009,7 @@
               <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
             </div>
             <div class='unit__text'>
-              <h3 class='unit__name'>Sjøhus</h3>
+              <h3 lang='no' class='unit__name'>Sjøhus</h3>
               <p class='unit__meta' data-i18n='unit1Meta'>5 units · Waterfront</p>
               <p class='unit__desc' data-i18n='unit1Desc'>
                 Five self-catering units by the water. Each unit has an open-plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own balcony and terrace.
@@ -4011,7 +4030,7 @@
               <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
             </div>
             <div class='unit__text'>
-              <h3 class='unit__name'>Leiligheter</h3>
+              <h3 lang='no' class='unit__name'>Leiligheter</h3>
               <p class='unit__meta' data-i18n='unit2Meta'>5 units · Innerholmen</p>
               <p class='unit__desc' data-i18n='unit2Desc'>
                 Five self-catering apartments in Innerholmen. Each unit has an open-plan kitchen and living room, a bathroom and two bedrooms sleeping two each, with its own veranda.
@@ -4063,7 +4082,7 @@
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
           </div>
           <div class='site__feature-copy'>
-            <h3 class='site__feature-title'>Klippfiskbrygga</h3>
+            <h3 lang='no' class='site__feature-title'>Klippfiskbrygga</h3>
             <p class='site__feature-body' data-i18n='site1Body'>Wharf building dating to approximately 1900 and renovated between 2006 and 2009. Around 1,000&nbsp;m² of bar, restaurant, function and course rooms. The restaurant is run by Lokalkokken.</p>
             <a class='site__feature-action' href='https://www.google.com/search?q=Lokalkokken+Vikaneset+Kristiansund' target='_blank' rel='noopener noreferrer' aria-describedby='newTabNote' data-i18n='site1LinkText'>Find Lokalkokken</a>
           </div>
@@ -4081,7 +4100,7 @@
           </div>
           <div class='site__feature-copy'>
             <h3 class='site__feature-title' data-i18n='site4Title'>Sauna and beach</h3>
-            <p class='site__feature-body' data-i18n='site4Body'>Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna's warmth and cool off in the fresh sea water.</p>
+            <p class='site__feature-body' data-i18n='site4Body'>Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna’s warmth and cool off in the fresh sea water.</p>
             <a class='site__feature-action' href='https://www.google.com/search?q=Vikaneset+sauna+booking+Kristiansund' target='_blank' rel='noopener noreferrer' aria-describedby='newTabNote' data-i18n='site4LinkText'>Find sauna booking</a>
           </div>
         </article>
@@ -4114,7 +4133,7 @@
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
           </div>
           <div class='site__feature-copy'>
-            <h3 class='site__feature-title'>Amfi</h3>
+            <h3 lang='no' class='site__feature-title'>Amfi</h3>
             <p class='site__feature-body' data-i18n='site3Body'>Vikaneset has an amphitheatre with 1,500&nbsp;seats. It was completed in 2008, when it hosted the world premiere of the &ldquo;klippfisk opera&rdquo; Donna Bacalao, staged by the Opera in Kristiansund.</p>
             <p class='site__feature-detail' data-i18n='site3Detail'>1,500&nbsp;seats · Completed 2008</p>
           </div>
@@ -4203,7 +4222,7 @@
               <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery7.jpg' alt='Gallery view 7 at Vikaneset' data-i18n-alt='altGallery7' loading='lazy'></figure>
               <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery8.jpg' alt='Gallery view 8 at Vikaneset' data-i18n-alt='altGallery8' loading='lazy'></figure>
               <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-09.jpg'><img src='assets/images/hero.jpg' alt='View of Vikaneset by the sea' data-i18n-alt='altSea' loading='lazy'></figure>
-              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-10.jpg'><img src='assets/images/aerial.jpg' alt='Aerial view of Vikaneset' data-i18n-alt='ariaAerialImage' loading='lazy'></figure>
+              <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-10.jpg'><img src='assets/images/aerial.jpg' alt='Aerial view of Vikaneset' data-i18n-alt='altAerial' loading='lazy'></figure>
               <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='The harbour at Vikaneset' data-i18n-alt='altHarbour' loading='lazy'></figure>
               <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga at Vikaneset' data-i18n-alt='altKlippfisk' loading='lazy'></figure>
               <figure class='gallery__slide placeholder-media' data-photo-slot='galleri-13.jpg'><img src='assets/images/amphitheatre.jpg' alt='The amphitheatre at Vikaneset' data-i18n-alt='altAmfi' loading='lazy'></figure>
@@ -4231,11 +4250,11 @@
 
         <div class='information__grid reveal'>
           <div class='card card--film'>
-            <video id='filmVideo' controls playsinline preload='metadata' poster='assets/images/film-poster.jpg' aria-labelledby='information-title'>
+            <video id='filmVideo' controls playsinline preload='none' poster='assets/images/film-poster.jpg' aria-labelledby='information-title'>
               <source src='assets/video/vikaneset-film.mp4' type='video/mp4'>
               <p data-i18n='videoFallback'>Your browser cannot play this video.</p>
             </video>
-            <button class='film__play' type='button' id='filmPlay' aria-label='Play the film' data-i18n-aria='ariaPlayFilm'>
+            <button class='film__play' type='button' id='filmPlay' aria-label='Play film about Vikaneset' data-i18n-aria='ariaPlayFilm'>
               <span class='film__play-disc' aria-hidden='true'></span>
               <span class='film__play-text' data-i18n='playFilm'>Play film</span>
             </button>
@@ -4503,7 +4522,8 @@
         image.style.color = 'transparent';
 
         image.addEventListener('load', function () {
-          image.style.color = '';
+          // The 1x1 placeholder fires load too; keep the alt text hidden until a real file lands.
+          if (!/^data:/.test(image.getAttribute('src') || '')) image.style.color = '';
           if (image.getAttribute('src') === replacement) slot.classList.remove('placeholder-media');
         });
 
@@ -4747,7 +4767,7 @@
           site3Body: 'Vikaneset has an amphitheatre with 1,500\u00a0seats. It was completed in 2008, when it hosted the world premiere of the “klippfisk opera” Donna Bacalao, staged by the Opera in Kristiansund.',
           site3Detail: '1,500\u00a0seats · Completed 2008',
           site4Title: 'Sauna and beach',
-          site4Body: 'Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna\'s warmth and cool off in the fresh sea water.',
+          site4Body: 'Vikaneset has a sauna right by our sandy beach. Here you can enjoy the sauna’s warmth and cool off in the fresh sea water.',
           site4LinkText: 'Find sauna booking',
 
           practicalTitle: 'Practical',
@@ -4795,7 +4815,7 @@
           videoFallback: 'Your browser cannot play this video.',
           playFilm: 'Play film',
 
-          ariaPlayFilm: 'Play the film about Vikaneset',
+          ariaPlayFilm: 'Play film about Vikaneset',
           ariaMainNav: 'Main navigation',
           ariaHome: 'Vikaneset home',
           ariaLangSwitch: 'Language',
@@ -4829,6 +4849,7 @@
           altAmfi: 'The amphitheatre at Vikaneset',
           altAmfiSurroundings: 'Amphitheatre surroundings',
           altAmfiView: 'View from the amphitheatre',
+          altAerial: 'Aerial view of Vikaneset',
           altSea: 'View of Vikaneset by the sea',
           altGallery1: 'Gallery view 1 at Vikaneset',
           altGallery2: 'Gallery view 2 at Vikaneset',
@@ -4919,7 +4940,7 @@
           videoFallback: 'Nettleseren din kan ikke spille av denne videoen.',
           playFilm: 'Spill av film',
 
-          ariaPlayFilm: 'Spill av filmen om Vikaneset',
+          ariaPlayFilm: 'Spill av film om Vikaneset',
           ariaMainNav: 'Hovednavigasjon',
           ariaHome: 'Vikaneset forside',
           ariaLangSwitch: 'Språk',
@@ -4953,6 +4974,7 @@
           altAmfi: 'Amfiet på Vikaneset',
           altAmfiSurroundings: 'Omgivelsene rundt amfiet',
           altAmfiView: 'Utsikt fra amfiet',
+          altAerial: 'Vikaneset sett fra luften',
           altSea: 'Vikaneset ved sjøen',
           altGallery1: 'Galleribilde 1 fra Vikaneset',
           altGallery2: 'Galleribilde 2 fra Vikaneset',
@@ -4997,6 +5019,17 @@
         document.title = translations[lang].pageTitle;
         var description = document.querySelector('meta[name="description"]');
         if (description) description.setAttribute('content', translations[lang].metaDescription);
+
+        // Keep the sharing card in step with the page it describes: these stayed
+        // English in the Norwegian view, including on the URL hreflang calls Norwegian.
+        var meta = function (property, value) {
+          var tag = document.querySelector('meta[property="' + property + '"]');
+          if (tag) tag.setAttribute('content', value);
+        };
+        meta('og:title', translations[lang].pageTitle);
+        meta('og:description', translations[lang].metaDescription);
+        meta('og:locale', lang === 'no' ? 'nb_NO' : 'en_GB');
+        meta('og:locale:alternate', lang === 'no' ? 'en_GB' : 'nb_NO');
 
         document.querySelectorAll('[data-i18n]').forEach(function (element) {
           var key = element.getAttribute('data-i18n');
