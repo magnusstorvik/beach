@@ -3908,6 +3908,36 @@
       .gallery__btn--prev { left: 1rem; }
       .gallery__btn--next { right: 1rem; }
     }
+
+    /* A text alternative for the film, which carries only a music bed and so has
+       no spoken content to caption, but 85 seconds of visual content that
+       existed nowhere in text (WCAG 1.2.3). */
+    .film__alt {
+      margin-top: 1.1rem;
+      max-width: 60ch;
+    }
+
+    .film__alt summary {
+      cursor: pointer;
+      color: #27506a;
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .film__alt summary:focus-visible {
+      outline: 2px solid #2f5d7a;
+      outline-offset: 3px;
+    }
+
+    .film__alt p {
+      margin-top: 0.75rem;
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
   </style>
 </head>
 <body>
@@ -4272,6 +4302,11 @@
               <span class='film__play-text' data-i18n='playFilm'>Play film</span>
             </button>
           </div>
+
+          <details class='film__alt'>
+            <summary data-i18n='filmAltSummary'>Description of the film</summary>
+            <p data-i18n='filmAltBody'>The film has no narration. It moves between still and slowly panning views of Vikaneset: the stepped concrete amphitheatre running down to the water, the white timber building standing on piles above the rock, the red wharf houses and the quay, a small boat crossing the sound, the shore and its boathouse, and a footbridge through birch woodland. The property is shown from the water and from the land in summer, over a music track.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -4827,6 +4862,8 @@
           formSubject: 'Website enquiry',
           videoFallback: 'Your browser cannot play this video.',
           playFilm: 'Play film',
+          filmAltSummary: 'Description of the film',
+          filmAltBody: 'The film has no narration. It moves between still and slowly panning views of Vikaneset: the stepped concrete amphitheatre running down to the water, the white timber building standing on piles above the rock, the red wharf houses and the quay, a small boat crossing the sound, the shore and its boathouse, and a footbridge through birch woodland. The property is shown from the water and from the land in summer, over a music track.',
 
           ariaPlayFilm: 'Play film about Vikaneset',
           ariaMainNav: 'Main navigation',
@@ -4956,6 +4993,8 @@
           formSubject: 'Forespørsel fra nettsiden',
           videoFallback: 'Nettleseren din kan ikke spille av denne videoen.',
           playFilm: 'Spill av film',
+          filmAltSummary: 'Beskrivelse av filmen',
+          filmAltBody: 'Filmen har ingen fortellerstemme. Den veksler mellom stillestående og langsomt panorerende bilder av Vikaneset: amfiet i betong som går ned mot sjøen, det hvite trehuset som står på påler over svaberget, de røde bryggehusene og kaia, en liten båt som krysser sundet, stranden og naustet, og en gangbru gjennom bjørkeskog. Eiendommen vises fra sjøen og fra land om sommeren, til et musikkspor.',
 
           ariaPlayFilm: 'Spill av film om Vikaneset',
           ariaMainNav: 'Hovednavigasjon',
