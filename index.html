@@ -21,9 +21,10 @@
   <meta name='twitter:card' content='summary_large_image'>
 
   <link rel='canonical' href='https://magnusstorvik.github.io/beach/'>
-  <link rel='alternate' hreflang='en' href='https://magnusstorvik.github.io/beach/?lang=en'>
-  <link rel='alternate' hreflang='no' href='https://magnusstorvik.github.io/beach/?lang=no'>
-  <link rel='alternate' hreflang='x-default' href='https://magnusstorvik.github.io/beach/'>
+  <!-- No hreflang set: GitHub Pages serves byte-identical content for ?lang=en,
+       ?lang=no and the bare URL, and an hreflang target that canonicalises
+       elsewhere is discarded. Real per-language URLs need per-language files;
+       build them when the production domain is settled. -->
 
   <script type='application/ld+json'>
   {
@@ -75,7 +76,20 @@
       .lang-switch,
       .film__play,
       .nav__toggle { display: none !important; }
-      .nav__links { display: flex !important; }
+
+      /* Only phones hide the link list and rely on the hamburger, so only phones
+         need it back; above 760px the bar is already correct and must not wrap. */
+      @media (max-width: 760px) {
+        .nav { flex-wrap: wrap; row-gap: 0.5rem; }
+        .nav__menu { flex: 1 0 100%; justify-content: flex-start; }
+        .nav__links {
+          display: flex !important;
+          flex-wrap: wrap;
+          row-gap: 0.4rem;
+          column-gap: 1.1rem;
+          min-width: 0;
+        }
+      }
     </style>
   </noscript>
 
@@ -716,7 +730,7 @@
     }
 
     .incl li::before {
-      content: '•';
+      content: '•' / '';
       position: absolute;
       left: 0;
       top: 0;
@@ -1586,7 +1600,7 @@
     }
 
     .site__feature-action::after {
-      content: '\2197';
+      content: '\2197' / '';
       font-size: 0.95rem;
       transition: transform 0.25s ease;
     }
@@ -3881,15 +3895,14 @@
        sixth of the height, instead of half the frame going dark. */
     @media (min-width: 761px) {
       .gallery__carousel {
-        max-width: min(720px, 100%);
+        max-width: min(720px, 100%, calc(100vh - 6rem));
+        max-width: min(720px, 100%, calc(100svh - 6rem));
       }
 
       .gallery__viewport {
         aspect-ratio: 1 / 1;
         height: auto;
         min-height: 0;
-        max-height: calc(100vh - 6rem);
-        max-height: calc(100svh - 6rem);
       }
 
       .gallery__btn--prev { left: 1rem; }
@@ -4001,8 +4014,8 @@
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
                   <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-01.jpg'><img src='assets/images/gallery1.jpg' alt='Sjøhus at Vikaneset' data-i18n-alt='altSjohus' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery3.jpg' alt='Sjøhus at Vikaneset' data-i18n-alt='altSjohus' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery5.jpg' alt='Sjøhus at Vikaneset' data-i18n-alt='altSjohus' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery3.jpg' alt='Sjøhus detail' data-i18n-alt='altSjohusDetail' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery5.jpg' alt='Sjøhus surroundings' data-i18n-alt='altSjohusSurroundings' loading='lazy'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
@@ -4022,8 +4035,8 @@
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
                   <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-01.jpg'><img src='assets/images/gallery2.jpg' alt='Leiligheter at Vikaneset' data-i18n-alt='altLeiligheter' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery4.jpg' alt='Leiligheter at Vikaneset' data-i18n-alt='altLeiligheter' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery6.jpg' alt='Leiligheter at Vikaneset' data-i18n-alt='altLeiligheter' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery4.jpg' alt='Leiligheter detail' data-i18n-alt='altLeiligheterDetail' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery6.jpg' alt='Leiligheter surroundings' data-i18n-alt='altLeiligheterSurroundings' loading='lazy'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
@@ -4250,7 +4263,7 @@
 
         <div class='information__grid reveal'>
           <div class='card card--film'>
-            <video id='filmVideo' controls playsinline preload='none' poster='assets/images/film-poster.jpg' aria-labelledby='information-title'>
+            <video id='filmVideo' controls playsinline preload='none' data-poster='assets/images/film-poster.jpg' aria-labelledby='information-title'>
               <source src='assets/video/vikaneset-film.mp4' type='video/mp4'>
               <p data-i18n='videoFallback'>Your browser cannot play this video.</p>
             </video>
@@ -4313,7 +4326,7 @@
             </div>
 
             <button class='form__btn' type='submit' data-i18n='formButton'>Send enquiry</button>
-            <p class='form__note' role='status' data-i18n='formFallback' hidden>If your email app did not open, write to anette@vikaneset.com.</p>
+            <p class='form__note' data-i18n='formFallback' hidden>If your email app did not open, write to anette@vikaneset.com.</p>
           </form>
         </div>
       </div>
@@ -4835,7 +4848,11 @@
           metaDescription: 'Self-catering accommodation by the sea on Frei, 16 km from Kristiansund. Ten units, own harbour, sauna, sandy beach and amphitheatre. Opening spring 2027.',
 
           altSjohus: 'Sjøhus at Vikaneset',
+          altSjohusDetail: 'Sjøhus detail',
+          altSjohusSurroundings: 'Sjøhus surroundings',
           altLeiligheter: 'Leiligheter at Vikaneset',
+          altLeiligheterDetail: 'Leiligheter detail',
+          altLeiligheterSurroundings: 'Leiligheter surroundings',
           altKlippfisk: 'Klippfiskbrygga at Vikaneset',
           altKlippfiskDetail: 'Klippfiskbrygga detail',
           altKlippfiskSurroundings: 'Klippfiskbrygga surroundings',
@@ -4960,7 +4977,11 @@
           metaDescription: 'Selvhusholdsenheter ved sjøen på Frei, 16 km fra Kristiansund. Ti enheter, egen havn, sauna, sandstrand og amfi. Åpner våren 2027.',
 
           altSjohus: 'Sjøhus på Vikaneset',
+          altSjohusDetail: 'Detalj fra Sjøhus',
+          altSjohusSurroundings: 'Omgivelsene rundt Sjøhus',
           altLeiligheter: 'Leiligheter på Vikaneset',
+          altLeiligheterDetail: 'Detalj fra Leilighetene',
+          altLeiligheterSurroundings: 'Omgivelsene rundt Leilighetene',
           altKlippfisk: 'Klippfiskbrygga på Vikaneset',
           altKlippfiskDetail: 'Detalj fra Klippfiskbrygga',
           altKlippfiskSurroundings: 'Omgivelsene rundt Klippfiskbrygga',
@@ -5098,6 +5119,9 @@
             '&body=' + encodeURIComponent(body);
           var note = form.querySelector('.form__note');
           if (note) {
+            // The role goes on only while the note is shown, so that rewriting its
+            // text on a language switch is not announced out of nowhere.
+            note.setAttribute('role', 'status');
             note.textContent = '';
             note.hidden = false;
             setTimeout(function () {
@@ -5111,12 +5135,41 @@
       var filmPlay = document.getElementById('filmPlay');
       if (filmVideo && filmPlay) {
         filmVideo.controls = false;
+
+        // The poster is a full image fetched on first paint for a section nearly
+        // nine viewports down, and preload='none' does not govern it. Fetch it
+        // when the film comes within a screen of the viewport instead.
+        var showPoster = function () {
+          var poster = filmVideo.getAttribute('data-poster');
+          if (poster && !filmVideo.getAttribute('poster')) filmVideo.setAttribute('poster', poster);
+        };
+        if ('IntersectionObserver' in window) {
+          var filmWatcher = new IntersectionObserver(function (entries) {
+            if (entries.some(function (e) { return e.isIntersecting; })) {
+              showPoster();
+              filmWatcher.disconnect();
+            }
+          }, { rootMargin: '100% 0px' });
+          filmWatcher.observe(filmVideo);
+        } else {
+          showPoster();
+        }
+
         filmPlay.addEventListener('click', function () {
           filmVideo.controls = true;
-          filmPlay.hidden = true;
           var started = filmVideo.play();
-          if (started && started.catch) { started.catch(function () {}); }
+          // Focus moves to the player before the button is hidden, so focus is
+          // never left on a hidden element.
           filmVideo.focus();
+          filmPlay.hidden = true;
+          if (started && started.catch) {
+            started.catch(function () {
+              // Autoplay policy, or no data yet: hand the control back rather
+              // than leaving a poster with no way to start the film.
+              filmPlay.hidden = false;
+              filmPlay.focus();
+            });
+          }
         });
       }
 
