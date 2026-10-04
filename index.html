@@ -1942,7 +1942,7 @@
     }
 
     .intro__aside-label {
-      color: rgba(157,192,212,0.58);
+      color: rgba(157,192,212,0.72);
       font-family: var(--font-sans);
       font-size: 0.64rem;
       letter-spacing: 0.16em;
@@ -2986,7 +2986,7 @@
     }
 
     .footer__sub {
-      color: rgba(157,192,212,0.62);
+      color: rgba(157,192,212,0.72);
     }
 
     .booking-action {
@@ -3359,7 +3359,7 @@
       padding-left: 0;
       padding-right: 0;
       border: 0;
-      border-bottom: 1px solid rgba(23, 36, 42, 0.28);
+      border-bottom: 1px solid rgba(23, 36, 42, 0.58);
       border-radius: 0;
       background: transparent;
       box-shadow: none;
@@ -3639,7 +3639,9 @@
       width: 100%;
       padding: 0;
       border: 0;
-      background: linear-gradient(to bottom, rgba(8, 27, 36, 0.08), rgba(8, 27, 36, 0.34));
+      background:
+        radial-gradient(42% 50% at 50% 50%, rgba(8, 27, 36, 0.55) 0%, rgba(8, 27, 36, 0.5) 52%, rgba(8, 27, 36, 0) 80%),
+        linear-gradient(to bottom, rgba(8, 27, 36, 0.1), rgba(8, 27, 36, 0.32));
       color: #fff;
       cursor: pointer;
       transition: background 0.3s ease;
@@ -3691,6 +3693,7 @@
     .film__play:focus-visible {
       outline: 2px solid #9dc0d4;
       outline-offset: -4px;
+      box-shadow: inset 0 0 0 8px rgba(8, 27, 36, 0.9);
     }
 
     /* ------------------------------------------------------------------
@@ -3937,6 +3940,38 @@
       font-family: 'Spectral', Georgia, serif;
       font-size: 0.98rem;
       line-height: 1.7;
+    }
+
+    /* One focus hue for the whole page. Twenty-six of the thirty-one keyboard
+       controls were falling back to Chrome's own blue ring, which is a second
+       accent the palette does not allow — and next to the Send enquiry button's
+       sea-blue border the two blues sat touching. */
+    :focus-visible {
+      outline: 2px solid #2f5d7a;
+      outline-offset: 2px;
+    }
+
+    /* Pale where the ground is dark. */
+    .intro :focus-visible,
+    .practical :focus-visible,
+    .footer :focus-visible {
+      outline-color: #9dc0d4;
+    }
+
+    /* Over photography a pale ring is only 2.8:1 against the chip on a bright
+       frame, so the chips take a white ring inside their own dark fill (5.5:1
+       worst case), and the nav takes a white ring with a dark halo so the pair
+       is legible whatever the hero photograph is doing behind it. */
+    .mini-carousel__btn:focus-visible,
+    .gallery__btn:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: -4px;
+    }
+
+    .nav :focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 5px rgba(8, 27, 36, 0.85);
     }
   </style>
 </head>
@@ -5205,8 +5240,13 @@
             started.catch(function () {
               // Autoplay policy, or no data yet: hand the control back rather
               // than leaving a poster with no way to start the film.
+              filmVideo.controls = false;
               filmPlay.hidden = false;
-              filmPlay.focus();
+              // Only take focus back if it is still on the player; the visitor
+              // may have tabbed away while the request was in flight.
+              if (document.activeElement === filmVideo || document.activeElement === document.body) {
+                filmPlay.focus();
+              }
             });
           }
         });
