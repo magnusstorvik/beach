@@ -3973,6 +3973,49 @@
       outline-offset: 3px;
       box-shadow: 0 0 0 5px rgba(8, 27, 36, 0.85);
     }
+
+    /* ------------------------------------------------------------------
+       Forced colours (Windows High Contrast)
+       ------------------------------------------------------------------
+       The UA replaces author colours with the system palette, drops
+       background-images on non-replaced elements and ignores box-shadow.
+       Anything whose only visual presence is a background-colour becomes
+       Canvas against Canvas, which is to say invisible. Sections flattening
+       to Canvas is this mode working as intended; a control disappearing
+       is not.
+       ------------------------------------------------------------------ */
+    @media (forced-colors: active) {
+      /* The hamburger is three divs with nothing but a background-colour, so
+         in both palettes it rendered page-colour on page-colour. On a phone
+         the link list is hidden, making this the only route into the
+         sections — and it was invisible. */
+      .nav__toggle span {
+        background: CanvasText;
+      }
+
+      /* Which language is selected was carried by a translucent fill alone.
+         Measured in both palettes, the active and inactive buttons came out
+         with identical text and border colours and a fill that composites to
+         Canvas: the pair rendered identically. */
+      .lang-switch__btn.is-active,
+      .nav__mobile-lang button.is-active {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+        border-color: CanvasText;
+      }
+
+      /* The fields' own focus treatment is a coloured underline plus a
+         box-shadow, and this mode drops both. The text caret still marks the
+         insertion point, so this is not a failure, but a ring is a stronger
+         cue for a low-vision reader. Specificity matches the rule that sets
+         outline: none, and this comes later, so it wins. */
+      .contact .field input:focus-visible,
+      .contact .field textarea:focus-visible {
+        outline: 2px solid Highlight;
+        outline-offset: 2px;
+      }
+    }
   </style>
 </head>
 <body>
