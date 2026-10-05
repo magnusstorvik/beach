@@ -113,7 +113,10 @@
 
     html {
       scroll-behavior: smooth;
-      font-size: 16px;
+      /* Not a px value: that pins the rem scale and discards the reader's own
+         browser font-size setting entirely. 100% of the 16px default renders
+         identically, and a reader at 200% now actually gets 200%. */
+      font-size: 100%;
     }
 
     body {
@@ -336,7 +339,9 @@
       background: var(--navy);
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: safe center;
+      overflow-y: auto;
+      overscroll-behavior: contain;
       gap: 1.8rem;
       padding: 2rem;
     }
@@ -4016,6 +4021,106 @@
         outline-offset: 2px;
       }
     }
+
+    /* ------------------------------------------------------------------
+       Print
+       ------------------------------------------------------------------
+       Chrome ships with "Background graphics" off, so the dark bands lose
+       their fill — and Blink does not leave the text white, it substitutes
+       a mid grey. Measured off the real PDF at 600dpi, the Practical
+       section printed at 1.94:1 to 2.30:1: the one section somebody prints
+       this page for was the least legible thing on the sheet. The target
+       here is a black-on-white information sheet, not a facsimile of the
+       design, so everything decorative goes and the facts stay.
+       ------------------------------------------------------------------ */
+    @media print {
+      @page { size: A4; margin: 15mm 16mm; }
+
+      html, body { background: #fff !important; color: #000 !important; font-size: 11pt; }
+
+      .hero, .intro, .accommodation, .site, .practical, .gallery, .information,
+      .contact, .footer, .card, .pblock, .mini-carousel, .gallery__viewport {
+        background: #fff !important;
+        background-image: none !important;
+        box-shadow: none !important;
+        color: #000 !important;
+      }
+
+      /* Forcing both the paper white and the ink black keeps the sheet legible
+         even if the reader does tick "Background graphics". */
+      .hero *, .intro *, .practical *, .footer *, .contact *, .site *,
+      .accommodation *, .gallery *, .information * {
+        color: #000 !important;
+        -webkit-text-fill-color: #000 !important;
+        text-shadow: none !important;
+        opacity: 1 !important;
+      }
+
+      /* Nothing that needs a pointer, and nothing that is only decoration. */
+      .nav, .nav__mobile, .nav__toggle, .lang-switch,
+      .mini-carousel__btn, .gallery__btn, .gallery__status,
+      .film__play, .skarv-flight, .hero__scroll-cue, .ambient-wave,
+      .hero__bg, .hero__scrim, .aerial, .section-eyebrow,
+      .gallery, .information, .form, video, .booking-action__arrow {
+        display: none !important;
+      }
+
+      /* A carousel prints one slide of three and the gallery one of fourteen,
+         which is worse than printing none. */
+      .mini-carousel, .mini-carousel__viewport, .carousel, .card--media,
+      .site__feature-media, figure, img {
+        display: none !important;
+      }
+
+      main, section, .wrap, .practical__grid, .contact__grid {
+        position: static !important;
+        min-height: 0 !important;
+        height: auto !important;
+        max-width: none !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+
+      section { padding-top: 0 !important; padding-bottom: 8mm !important; }
+      .hero { min-height: 0 !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+
+      .section-title { font-size: 15pt !important; margin: 0 0 3mm !important; }
+      .pblock__title {
+        font-size: 11pt !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.06em;
+        margin: 5mm 0 2mm !important;
+      }
+      .dl dt { font-weight: 700 !important; font-size: 9.5pt !important; }
+      .dl dd { margin: 0 0 3mm 0 !important; }
+      .incl li { margin: 0 0 1mm 0 !important; }
+
+      h1, h2, h3, dt, .pblock__title { break-after: avoid-page; page-break-after: avoid; }
+      dd { break-before: avoid-page; page-break-before: avoid; }
+      .dl, .incl li, .practical__grid > div, .contact__details > div,
+      .unit, .site__feature, .site__feature--reverse {
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+      p, li, dd { orphans: 3; widows: 3; }
+      .practical { break-before: page; page-break-before: always; }
+
+      /* On paper a link's text is useless if the destination matters. */
+      a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 8.5pt;
+        font-weight: 400;
+        letter-spacing: 0;
+        text-transform: none;
+        word-break: break-all;
+      }
+      a { text-decoration: none !important; }
+
+      .footer { border-top: 0.5pt solid #000; padding-top: 4mm !important; }
+    }
   </style>
 </head>
 <body>
@@ -4627,15 +4732,22 @@
       }).observe(hero);
     }());
 
-    // A correctly named file in assets/images/carousels automatically replaces
-    // the temporary image currently shown in that carousel slot. Each slot asks
-    // for its replacement first (still lazily) and falls back to the temporary
-    // image when the file is missing, so no photo is downloaded twice or early.
+    // Slot names that have a real file in assets/images/carousels. Kept in step
+    // by tools/photos.py: a name appears here when its photo is placed. While a
+    // slot is absent the page makes no request for it at all, because a probe
+    // for a file that is not there costs a 404 whose body is the whole 404 page.
+    var PHOTO_PRESENT = {};
+
+    // A correctly named file in assets/images/carousels replaces the temporary
+    // image in that carousel slot. The slot asks for its replacement first
+    // (still lazily) and falls back to the temporary image if the file has gone,
+    // so no photo is downloaded twice or early.
     (function () {
       document.querySelectorAll('[data-photo-slot]').forEach(function (slot) {
         var image = slot.querySelector('img');
         var filename = slot.getAttribute('data-photo-slot');
         if (!image || !filename) return;
+        if (!PHOTO_PRESENT[filename]) return;
 
         var fallback = image.getAttribute('data-src') || image.getAttribute('src');
         // A hidden slide still shows its 1x1 placeholder until the visitor reaches for that carousel.
@@ -4655,6 +4767,9 @@
 
         image.addEventListener('error', function onError() {
           image.removeEventListener('error', onError);
+          // The fallback is the last attempt. If that fails too, the alt text is
+          // everything the visitor gets, so stop hiding it.
+          image.addEventListener('error', function () { image.style.color = ''; }, { once: true });
           image.src = fallback;
         });
 
@@ -4816,8 +4931,11 @@
         function update() {
           var img = slides[index].querySelector('img');
           if (img && img.hasAttribute('data-src') && /^data:/.test(img.getAttribute('src') || '')) {
+            var waitingSlot = slides[index].getAttribute('data-photo-slot');
             img.loading = 'eager';
-            img.src = 'assets/images/carousels/' + slides[index].getAttribute('data-photo-slot');
+            img.src = PHOTO_PRESENT[waitingSlot]
+              ? 'assets/images/carousels/' + waitingSlot
+              : img.getAttribute('data-src');
           }
           track.style.transform = 'translateX(-' + (index * 100) + '%)';
           slides.forEach(function (slide, i) {
