@@ -4462,6 +4462,18 @@
       .unit__media { flex: 0 0 52% !important; }
       .unit__text { min-width: 0; }
     }
+
+@media (min-width: 961px) {
+  /* The film is the single best thing on the page and it sat as a 785px
+     thumbnail beside its heading, showing a 1280px source at 0.61x. The
+     heading goes above it and the film takes the full measure. */
+  .information .wrap {
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem !important;
+  }
+  .information__header { max-width: 42ch; }
+}
+
   </style>
 </head>
 <body>
