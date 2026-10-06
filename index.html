@@ -4452,6 +4452,16 @@
     .site__feature-action::after { transition: transform 0.25s var(--ease-move); }
     .hero__inner .hero__name { transition: opacity 0.7s var(--ease-move), transform 0.7s var(--ease-move); }
     .film__play-disc { transition: transform 0.35s var(--ease-move), background 0.3s ease; }
+
+    /* Stay carried the smallest photographs on the page at 509px, while Explore
+       was enlarged to 789 and a full-bleed close. Stay is where people decide to
+       book, so it should not be the timid section. Widening the frame also pulls
+       the description from a 73-character measure down to 60, which is the more
+       comfortable of the two. */
+    @media (min-width: 961px) {
+      .unit__media { flex: 0 0 52% !important; }
+      .unit__text { min-width: 0; }
+    }
   </style>
 </head>
 <body>
