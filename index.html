@@ -4290,6 +4290,66 @@
   }
 }
 
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* The hero is the most looked-at thing on the page and it was inert. The
+       photograph pushes in slowly as you scroll through it, which gives the
+       opening depth without moving anything anyone is reading. Driven by the
+       document's scroll position, over the hero's own share of the page. */
+    .hero__bg {
+      scale: 1;
+      animation: hero-push linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0% 10%;
+      will-change: transform;
+    }
+
+    @keyframes hero-push {
+      from { scale: 1; }
+      to { scale: 1.075; }
+    }
+
+    /* The hero's name and location leave rather than simply vanishing. They are
+       finished being read by the time this runs. */
+    .hero__inner {
+      animation: hero-depart linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 2% 9%;
+    }
+
+    @keyframes hero-depart {
+      from { opacity: 1; translate: 0 0; }
+      to { opacity: 0; translate: 0 -1.4rem; }
+    }
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* .gallery is overflow:hidden and so a scroll container, which pins any
+       view() timeline inside it, exactly as .accommodation was. */
+    .gallery {
+      overflow: visible;
+      overflow-x: clip;
+    }
+
+    /* The gallery settles like the carousels do, at a smaller amplitude: its
+       photographs are object-fit: contain, so a larger scale would crop them
+       against the mat on the way in. */
+    .gallery__carousel {
+      animation: media-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 90%;
+    }
+
+    .gallery__slide img {
+      scale: calc(1 + (var(--media-scale, 1) - 1) * 0.5);
+      will-change: transform;
+    }
+  }
+}
+
   </style>
 </head>
 <body>
