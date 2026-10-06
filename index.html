@@ -4491,6 +4491,31 @@
       opacity: 1;
       transform: none;
     }
+
+    /* The hero bird read as absent: at 0.5 opacity with its dive occupying
+       roughly three seconds of a twenty-two second cycle, most visitors never
+       see it move. It rests a little more present and comes round more often.
+       The dive is still the smaller part of the cycle, which is the point: it
+       is a bird that mostly sits still, not a looping animation. */
+    .hero__scroll-cue {
+      animation-duration: 15s;
+    }
+
+    .hero__scroll-cue-wing {
+      animation-duration: 15s;
+    }
+
+    @keyframes skarv-settle {
+      0%, 58%, 90%, 100% { transform: translateX(-50%) translateY(0) scaleY(1); opacity: 0.66; }
+      62% { transform: translateX(-50%) translateY(-2.5px) scaleY(1); opacity: 0.84; }
+      66% { transform: translateX(-50%) translateY(0.5px) scaleY(1); opacity: 0.74; }
+      71% { transform: translateX(-50%) translateY(1.5px) scaleY(0.94); opacity: 0.74; }
+      74% { transform: translateX(-50%) translateY(-3px) scaleY(1.04); opacity: 0.9; }
+      77% { transform: translateX(-50%) translateY(16px) scaleY(1.1); opacity: 0.26; }
+      79% { transform: translateX(-50%) translateY(26px) scaleY(1.1); opacity: 0; }
+      83% { transform: translateX(-50%) translateY(10px) scaleY(1.02); opacity: 0.34; }
+      86% { transform: translateX(-50%) translateY(-2px) scaleY(1); opacity: 0.74; }
+    }
   </style>
 </head>
 <body>
