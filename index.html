@@ -4512,16 +4512,38 @@
       animation-duration: 15s;
     }
 
+    /* Both loops are written so the scroll-driven takeoff can ride on top of
+       them. Every value the takeoff needs to change travels as a custom
+       property the loop keyframes read, because an animation cannot set a
+       property another animation is already setting on the same element, and
+       because a transform on a wrapper would make it the containing block for
+       the absolutely positioned svg and knock the bird off its perch. */
     @keyframes skarv-settle {
-      0%, 58%, 90%, 100% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 0px)) scaleY(1); opacity: calc(0.66 * var(--cue-fade, 1)); }
-      62% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) - 2.5px)) scaleY(1); opacity: calc(0.84 * var(--cue-fade, 1)); }
-      66% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 0.5px)) scaleY(1); opacity: calc(0.74 * var(--cue-fade, 1)); }
-      71% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 1.5px)) scaleY(0.94); opacity: calc(0.74 * var(--cue-fade, 1)); }
-      74% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) - 3px)) scaleY(1.04); opacity: calc(0.9 * var(--cue-fade, 1)); }
-      77% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 16px)) scaleY(1.1); opacity: calc(0.26 * var(--cue-fade, 1)); }
-      79% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 26px)) scaleY(1.1); opacity: calc(0 * var(--cue-fade, 1)); }
-      83% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 10px)) scaleY(1.02); opacity: calc(0.34 * var(--cue-fade, 1)); }
-      86% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) - 2px)) scaleY(1); opacity: calc(0.74 * var(--cue-fade, 1)); }
+      0%, 58%, 90%, 100% { transform: translateX(calc(-50% + var(--cue-drift, 0px))) translateY(calc(var(--cue-lift, 0px) + 0px)) scale(var(--cue-shrink, 1)) scaleY(1); opacity: calc(0.66 * var(--cue-fade, 1)); }
+      62% { transform: translateX(calc(-50% + var(--cue-drift, 0px))) translateY(calc(var(--cue-lift, 0px) - 2.5px)) scale(var(--cue-shrink, 1)) scaleY(1); opacity: calc(0.84 * var(--cue-fade, 1)); }
+      66% { transform: translateX(calc(-50% + var(--cue-drift, 0px))) translateY(calc(var(--cue-lift, 0px) + 0.5px)) scale(var(--cue-shrink, 1)) scaleY(1); opacity: calc(0.74 * var(--cue-fade, 1)); }
+      71% { transform: translateX(calc(-50% + var(--cue-drift, 0px))) translateY(calc(var(--cue-lift, 0px) + 1.5px)) scale(var(--cue-shrink, 1)) scaleY(0.94); opacity: calc(0.74 * var(--cue-fade, 1)); }
+      74% { transform: translateX(calc(-50% + var(--cue-drift, 0px))) translateY(calc(var(--cue-lift, 0px) - 3px)) scale(var(--cue-shrink, 1)) scaleY(1.04); opacity: calc(0.9 * var(--cue-fade, 1)); }
+      77% { transform: translateX(calc(-50% + var(--cue-drift, 0px))) translateY(calc(var(--cue-lift, 0px) + 16px)) scale(var(--cue-shrink, 1)) scaleY(1.1); opacity: calc(0.26 * var(--cue-fade, 1)); }
+      79% { transform: translateX(calc(-50% + var(--cue-drift, 0px))) translateY(calc(var(--cue-lift, 0px) + 26px)) scale(var(--cue-shrink, 1)) scaleY(1.1); opacity: calc(0 * var(--cue-fade, 1)); }
+      83% { transform: translateX(calc(-50% + var(--cue-drift, 0px))) translateY(calc(var(--cue-lift, 0px) + 10px)) scale(var(--cue-shrink, 1)) scaleY(1.02); opacity: calc(0.34 * var(--cue-fade, 1)); }
+      86% { transform: translateX(calc(-50% + var(--cue-drift, 0px))) translateY(calc(var(--cue-lift, 0px) - 2px)) scale(var(--cue-shrink, 1)) scaleY(1); opacity: calc(0.74 * var(--cue-fade, 1)); }
+    }
+
+    /* The two wings are separate paths either side of the body, so one beat
+       angle has to reach them with opposite signs or they tilt instead of
+       flapping. --cue-beat-dir carries the sign and nothing else. */
+    .hero__scroll-cue-wing { --cue-beat-dir: 1; }
+    .hero__scroll-cue-wing + .hero__scroll-cue-wing { --cue-beat-dir: -1; }
+
+    @keyframes skarv-dry {
+      0%, 58%, 90%, 100% { transform: rotate(calc(var(--cue-beat, 0deg) * var(--cue-beat-dir, 1))) scaleX(1) scaleY(1); }
+      62% { transform: rotate(calc(-1.8deg + var(--cue-beat, 0deg) * var(--cue-beat-dir, 1))) scaleX(1) scaleY(1.07); }
+      66% { transform: rotate(calc(0.9deg + var(--cue-beat, 0deg) * var(--cue-beat-dir, 1))) scaleX(1) scaleY(0.97); }
+      72% { transform: rotate(calc(var(--cue-beat, 0deg) * var(--cue-beat-dir, 1))) scaleX(0.82) scaleY(0.9); }
+      77% { transform: rotate(calc(var(--cue-beat, 0deg) * var(--cue-beat-dir, 1))) scaleX(0.4) scaleY(0.78); }
+      83% { transform: rotate(calc(var(--cue-beat, 0deg) * var(--cue-beat-dir, 1))) scaleX(0.55) scaleY(0.85); }
+      87% { transform: rotate(calc(var(--cue-beat, 0deg) * var(--cue-beat-dir, 1))) scaleX(1.03) scaleY(1.02); }
     }
 
     @property --cue-lift {
@@ -4530,34 +4552,82 @@
       initial-value: 0px;
     }
 
+    @property --cue-drift {
+      syntax: '<length>';
+      inherits: true;
+      initial-value: 0px;
+    }
+
+    @property --cue-shrink {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 1;
+    }
+
     @property --cue-fade {
       syntax: '<number>';
       inherits: true;
       initial-value: 1;
     }
 
+    @property --cue-beat {
+      syntax: '<angle>';
+      inherits: true;
+      initial-value: 0deg;
+    }
+
+    @property --cue-beat-dir {
+      syntax: '<number>';
+      inherits: false;
+      initial-value: 1;
+    }
+
     @supports (animation-timeline: scroll()) {
       @media (prefers-reduced-motion: no-preference) {
         /* One bird, one journey. The perched skarv used to loop on its rock for
-           ever while a separate bird appeared in the gutter further down; now it
-           lifts and fades as you start to scroll, handing over to the flight at
-           the moment that one arrives. The lift travels as a custom property the
-           loop's own keyframes read, because a transform on the wrapper would
-           make it the containing block for the absolutely positioned svg and
-           move the bird off its perch. The wrapper carries only opacity. */
+           ever while a separate bird appeared in the gutter further down. Now
+           the first touch of the wheel sends it off the rock: it crouches,
+           beats four times, and climbs away up and to the right, shrinking as
+           it goes, out of the top of the frame — and the gutter flight is the
+           same bird coming back down once the hero has passed.
+
+           The whole departure is spent inside the first 3.2% of the scroll,
+           about three hundred pixels. That is deliberate. An earlier version
+           ran it over 9% and it read as nothing at all: the bird rose 46px
+           while the page carried it 870px, so the lift was five per cent of
+           the movement and the eye only registered a fade. Here it climbs
+           476px against 305px of page travel, so it visibly outruns the
+           scroll, which is the only thing that makes it read as flight. */
         .hero__scroll-cue {
-          animation-name: skarv-settle, cue-takeoff;
-          animation-duration: 15s, auto;
-          animation-timing-function: cubic-bezier(.33, .1, .25, 1), linear;
-          animation-iteration-count: infinite, 1;
-          animation-fill-mode: none, both;
-          animation-timeline: auto, scroll(root block);
-          animation-range: normal, 0% 9%;
+          animation-name: skarv-settle, cue-takeoff, cue-beat;
+          animation-duration: 15s, auto, auto;
+          animation-timing-function: cubic-bezier(.33, .1, .25, 1), linear, ease-in-out;
+          animation-iteration-count: infinite, 1, 4;
+          animation-fill-mode: none, both, both;
+          animation-timeline: auto, scroll(root block), scroll(root block);
+          animation-range: normal, 0% 3.2%, 0% 3.2%;
         }
 
+        /* --cue-fade is a multiplier on the loop's own opacity, not an
+           opacity, so it is allowed past 1. At rest the bird sits at 0.66 and
+           is meant to be quiet; at the moment it breaks from the rock it
+           briefly reaches 0.89, catches the light, and only then goes. A
+           monotonic fade made the launch the least visible part of it. */
         @keyframes cue-takeoff {
-          from { --cue-lift: 0px; --cue-fade: 1; }
-          to { --cue-lift: -46px; --cue-fade: 0; }
+          0% { --cue-lift: 0px; --cue-drift: 0px; --cue-shrink: 1; --cue-fade: 1; }
+          14% { --cue-lift: 5px; --cue-drift: 0px; --cue-shrink: 1; --cue-fade: 1.15; }
+          42% { --cue-lift: -54px; --cue-drift: 1.4vw; --cue-shrink: 0.93; --cue-fade: 1.35; }
+          72% { --cue-lift: -112px; --cue-drift: 5vw; --cue-shrink: 0.78; --cue-fade: 0.72; }
+          100% { --cue-lift: -19vh; --cue-drift: 9vw; --cue-shrink: 0.5; --cue-fade: 0; }
+        }
+
+        /* Four beats across the climb, the downstroke quicker than the
+           recovery, which is how a cormorant leaves the water. */
+        @keyframes cue-beat {
+          0% { --cue-beat: 0deg; }
+          34% { --cue-beat: -31deg; }
+          68% { --cue-beat: 9deg; }
+          100% { --cue-beat: 0deg; }
         }
       }
     }
