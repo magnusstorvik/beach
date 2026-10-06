@@ -4434,6 +4434,24 @@
   }
 }
 
+
+    /* One movement curve for the whole page. It was carrying three different
+       easings plus eight bare `ease`, which is a motion vocabulary by accident
+       rather than by choice: a carousel slid on one curve, the hero name left on
+       another, an arrow nudged on a third. Everything that moves now decelerates
+       the same way, which is felt even where it is not seen. Colour and opacity
+       fades keep plain `ease`; they read the same either way and rewriting them
+       would be churn. */
+    :root {
+      --ease-move: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .mini-carousel__track { transition: transform 0.5s var(--ease-move); }
+    .gallery__track { transition: transform 0.55s var(--ease-move); }
+    .booking-action__arrow { transition: transform 0.28s var(--ease-move); }
+    .site__feature-action::after { transition: transform 0.25s var(--ease-move); }
+    .hero__inner .hero__name { transition: opacity 0.7s var(--ease-move), transform 0.7s var(--ease-move); }
+    .film__play-disc { transition: transform 0.35s var(--ease-move), background 0.3s ease; }
   </style>
 </head>
 <body>
