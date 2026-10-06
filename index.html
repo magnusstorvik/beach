@@ -4154,6 +4154,91 @@
       }
     }
 
+
+    /* ==================================================================
+       Scale and rhythm, 2026-10-06
+       ------------------------------------------------------------------
+       The page measured as timid, and the numbers said why. Twenty-three
+       distinct type sizes with five of them between 15.7 and 18.2px,
+       which no reader can tell apart: a scale by accident. Every section
+       carrying exactly 100.8px of padding top and bottom, so nothing was
+       weighted. And all four site features built to one geometry —
+       media 716x537, text 468 wide, only the side alternating — which is
+       what made that section drone.
+
+       The brief was the best of both worlds, so this commits harder to
+       what the page already is rather than bolting on what it is not:
+       no new hue, no chrome, no overlays, no motion. Only scale,
+       weight and composition.
+       ================================================================== */
+
+    /* A scale with steps you can tell apart. The top opens up; running
+       text settles on one size instead of five near-identical ones. */
+    .section-title { font-size: clamp(2.6rem, 5.2vw, 3.9rem) !important; }
+
+    .unit__name,
+    .site__feature-title { font-size: clamp(1.7rem, 2.6vw, 2.1rem) !important; }
+
+    .unit__desc,
+    .site__feature-body,
+    .section-intro,
+    .card__body,
+    .intro__aside,
+    .dl dd,
+    .incl li,
+    .accommodation__count,
+    .film__alt p,
+    .cinfo__value,
+    .cinfo__value a { font-size: 1.0625rem !important; }
+
+    /* The four feature rows stop being four of the same rectangle: the
+       wharf building opens the section large, the amphitheatre closes it
+       full-bleed. Photo-agnostic, so it survives the photographs changing. */
+    @media (min-width: 961px) {
+      .site__feature:first-child {
+        grid-template-columns: minmax(0, 1.9fr) minmax(16rem, 0.95fr) !important;
+      }
+
+      .site__feature:last-child {
+        grid-template-columns: 1fr !important;
+        margin-left: calc(50% - 50vw) !important;
+        width: 100vw !important;
+      }
+
+      .site__feature:last-child .site__feature-media { aspect-ratio: 21 / 9 !important; }
+
+      .site__feature:last-child .site__feature-copy {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding-top: 1.5rem !important;
+      }
+
+      /* Full bleed is for the photograph, not the sentence: without this the
+         body runs the whole 1280 and lands on one 120-character line. */
+      .site__feature:last-child .site__feature-body,
+      .site__feature:last-child .site__feature-detail { max-width: 46ch !important; }
+    }
+
+    /* The two dark bands get more room than the light sections, so arriving
+       at one is an event rather than a seam. Only padding-top on .intro: the
+       aerial band sits inside it, and padding-bottom there puts a dark strip
+       under the photograph. */
+    .practical {
+      padding-top: clamp(5.5rem, 10vw, 9rem) !important;
+      padding-bottom: clamp(5.5rem, 10vw, 9rem) !important;
+    }
+
+    .intro { padding-top: clamp(5.5rem, 10vw, 9rem) !important; }
+
+    .accommodation,
+    .gallery,
+    .information {
+      padding-top: clamp(3.5rem, 6vw, 5.5rem) !important;
+      padding-bottom: clamp(3.5rem, 6vw, 5.5rem) !important;
+    }
+
+    /* Two light surfaces one unit of grey apart is an accident, not a system. */
+    .site { background: #f1f4f4 !important; }
   </style>
 </head>
 <body>
