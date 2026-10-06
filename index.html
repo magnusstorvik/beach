@@ -2831,8 +2831,8 @@
 
     .nav__logo,
     .footer__logo {
-      width: 52px;
-      height: 38px;
+      width: 60px;
+      height: 44px;
     }
 
     .unit__meta,
@@ -2877,8 +2877,8 @@
 
     @media (max-width: 760px) {
       .nav__logo {
-        width: 44px;
-        height: 32px;
+        width: 50px;
+        height: 36px;
       }
     }
 
@@ -3723,14 +3723,11 @@
     @supports (animation-timeline: scroll()) {
       /* Only where the margin is genuinely wide enough to hold it: the
          wrap caps at 1280px, so below 1400px there is no gutter to fly in. */
-      @media (min-width: 1400px) and (prefers-reduced-motion: no-preference) {
+      @media (prefers-reduced-motion: no-preference) {
         .skarv-flight {
-          display: block;
           position: fixed;
           top: 0;
-          right: clamp(0.5rem, calc((100vw - 1280px) / 2 - 42px), 5rem);
           z-index: 4;
-          width: 84px;
           height: 100vh;
           color: #2f5d7a;
           opacity: 0;
@@ -3743,8 +3740,6 @@
 
         .skarv-flight__bird {
           display: block;
-          width: 84px;
-          height: 48px;
           overflow: visible;
           animation-name: sk-path, sk-flap;
           animation-timing-function: linear, ease-in-out;
@@ -3893,6 +3888,25 @@
           76% { translate: 0 88vh; scale: 1.5; opacity: 0; }
           100% { translate: 0 88vh; scale: 1.5; opacity: 0; }
         }
+
+        /* The bird needs a gutter it can fly in without crossing the text. The
+           wrap caps at 1280px, so below that the gutter is a fixed 48px and the
+           bird has to be small; above it the gutter grows and the bird with it.
+           Under 1200px there is no room at all and it stays away. */
+        @media (min-width: 1200px) and (max-width: 1399px) {
+          .skarv-flight { display: block; right: 0.2rem; width: 40px; }
+          .skarv-flight__bird { width: 40px; height: 23px; }
+        }
+
+        @media (min-width: 1400px) {
+          .skarv-flight {
+            display: block;
+            right: clamp(0.5rem, calc((100vw - 1280px) / 2 - 42px), 5rem);
+            width: 84px;
+          }
+          .skarv-flight__bird { width: 84px; height: 48px; }
+        }
+
       }
     }
 
@@ -4128,6 +4142,18 @@
       .unit--no-media { justify-content: flex-end; }
       .unit--no-media .unit__text { flex: 0 1 52%; }
     }
+
+    /* The gallery holds both orientations, so the phone frame is square for the
+       same reason the desktop one is: a 3:4 portrait frame gave a landscape
+       photograph bands deeper than a third of its height. */
+    @media (max-width: 760px) {
+      .gallery__viewport {
+        aspect-ratio: 1 / 1;
+        max-height: calc(100vh - 6rem);
+        max-height: calc(100svh - 6rem);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -4233,8 +4259,7 @@
             <div class='unit__media mini-carousel'>
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-01.jpg'><img src='assets/images/gallery1.jpg' alt='Sjøhus seen from its deck, with a table and chairs' data-i18n-alt='altSjohus' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-sjohus-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery3.jpg' alt='The living and dining room inside a Sjøhus unit' data-i18n-alt='altSjohusDetail' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide' data-photo-slot='stay-sjohus-01.jpg'><img src='assets/images/carousels/stay-sjohus-01.jpg' alt='The living and dining room inside a Sjøhus unit' data-i18n-alt='altSjohus' loading='lazy'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
@@ -4249,7 +4274,16 @@
             </div>
           </div>
 
-          <div class='unit unit--no-media' role='listitem'>
+          <div class='unit' role='listitem'>
+            <div class='unit__media mini-carousel'>
+              <div class='mini-carousel__viewport'>
+                <div class='mini-carousel__track'>
+                  <figure class='mini-carousel__slide' data-photo-slot='stay-leilighet-01.jpg'><img src='assets/images/carousels/stay-leilighet-01.jpg' alt='A Leiligheter apartment seen from its deck, with a table and chairs' data-i18n-alt='altLeiligheter' loading='lazy'></figure>
+                </div>
+              </div>
+              <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
+              <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
+            </div>
             <div class='unit__text'>
               <h3 lang='no' class='unit__name'>Leiligheter</h3>
               <p class='unit__meta' data-i18n='unit2Meta'>5 units · Innerholmen</p>
@@ -4295,7 +4329,7 @@
         <article class='site__feature reveal' id='restaurant'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-              <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-01.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga at Vikaneset' data-i18n-alt='altKlippfisk' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-01.jpg'><img src='assets/images/carousels/restaurant-klippfiskbrygga-01.jpg' alt='Klippfiskbrygga, the white wharf building standing out over the water' data-i18n-alt='altKlippfisk' loading='lazy'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -4310,8 +4344,9 @@
         <article class='site__feature site__feature--reverse reveal' id='sauna'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-              <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-01.jpg'><img src='assets/images/sauna.jpg' alt='The sandy beach and its shallow, clear water' data-i18n-alt='altSaunaBeach' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery7.jpg' alt='Inside the sauna, with rolled towels and a robe' data-i18n-alt='altSaunaInside' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-01.jpg'><img src='assets/images/carousels/sauna-strand-01.jpg' alt='The sandy beach and its shallow, clear water' data-i18n-alt='altSaunaBeach' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/sauna-strand-02.jpg' alt='Rocks and sand where the beach meets the shoreline' data-i18n-alt='altBeachRocks' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/sauna-strand-03.jpg' alt='Inside the sauna, with rolled towels and a robe' data-i18n-alt='altSaunaInside' loading='lazy'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -4326,8 +4361,9 @@
         <article class='site__feature reveal'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-              <figure class='mini-carousel__slide' data-photo-slot='havn-01.jpg'><img src='assets/images/harbour.jpg' alt='The gangway down to the floating pier' data-i18n-alt='altHarbour' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='havn-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery5.jpg' alt='Floating pontoons in the harbour at dusk, with a lifebuoy' data-i18n-alt='altHarbourDetail' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='havn-01.jpg'><img src='assets/images/carousels/havn-01.jpg' alt='The harbour, with its boathouses and floating pontoon' data-i18n-alt='altHarbour' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='havn-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/havn-02.jpg' alt='The gangway down to the floating pier' data-i18n-alt='altHarbourGangway' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='havn-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/havn-03.jpg' alt='Floating pontoons at dusk, with a lifebuoy' data-i18n-alt='altHarbourDetail' loading='lazy'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -4342,7 +4378,8 @@
         <article class='site__feature site__feature--reverse reveal'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-              <figure class='mini-carousel__slide' data-photo-slot='amfi-01.jpg'><img src='assets/images/amphitheatre.jpg' alt='The amphitheatre’s stepped seating, with autumn trees above' data-i18n-alt='altAmfi' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='amfi-01.jpg'><img src='assets/images/carousels/amfi-01.jpg' alt='The amphitheatre’s stepped seating, with autumn trees above' data-i18n-alt='altAmfi' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='amfi-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/amfi-02.jpg' alt='The curve of the amphitheatre’s concrete tiers' data-i18n-alt='altAmfiSeating' loading='lazy'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -4428,7 +4465,19 @@
 
           <div class='gallery__viewport' id='galleryViewport'>
             <div class='gallery__track' id='galleryTrack'>
-              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/gallery1.jpg' alt='Benches and standing stones on the shore' data-i18n-alt='altSurroundings' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/carousels/galleri-01.jpg' alt='Benches and standing stones on the shore' data-i18n-alt='altSurroundings' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-02.jpg'><img src='assets/images/amphitheatre.jpg' alt='The wooden edge of the amphitheatre seating' data-i18n-alt='altG02' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-03.jpg'><img src='assets/images/gallery1.jpg' alt='Shallow water running over the rock slabs by the shore' data-i18n-alt='altG03' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-04.jpg'><img src='assets/images/gallery2.jpg' alt='Stones under clear water, with a boathouse behind' data-i18n-alt='altG04' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-05.jpg'><img src='assets/images/gallery3.jpg' alt='Sunlight on the timbers of the old jetty' data-i18n-alt='altG05' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-06.jpg'><img src='assets/images/gallery4.jpg' alt='A mooring chain across a boulder on the shore' data-i18n-alt='altG06' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery5.jpg' alt='Weathered timber posts against the sea and sky' data-i18n-alt='altG07' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery6.jpg' alt='A lifebuoy and driftwood on a yellow boathouse wall' data-i18n-alt='altG08' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-09.jpg'><img src='assets/images/gallery7.jpg' alt='A lifebuoy marked Vikaneset beside a window' data-i18n-alt='altG09' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-10.jpg'><img src='assets/images/gallery8.jpg' alt='A model sailing ship and candles in a window' data-i18n-alt='altG10' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='Underneath a boathouse, its posts standing on the rock' data-i18n-alt='altG11' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga seen past the rocks at the water’s edge' data-i18n-alt='altG12' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-13.jpg'><img src='assets/images/sauna.jpg' alt='Stones and seaweed where the water runs out over the shore' data-i18n-alt='altG13' loading='lazy'></figure>
             </div>
           </div>
 
@@ -4714,11 +4763,16 @@
     // for a file that is not there costs a 404 whose body is the whole 404 page.
     var PHOTO_PRESENT = {
       'amfi-01.jpg': 1,
+      'amfi-02.jpg': 1,
       'galleri-01.jpg': 1,
       'havn-01.jpg': 1,
       'havn-02.jpg': 1,
+      'havn-03.jpg': 1,
+      'restaurant-klippfiskbrygga-01.jpg': 1,
       'sauna-strand-01.jpg': 1,
       'sauna-strand-02.jpg': 1,
+      'sauna-strand-03.jpg': 1,
+      'stay-leilighet-01.jpg': 1,
       'stay-sjohus-01.jpg': 1,
       'stay-sjohus-02.jpg': 1
     };
@@ -5060,6 +5114,30 @@
           filmAltBody: 'The film has no narration. It moves between still and slowly panning views of Vikaneset: the stepped concrete amphitheatre running down to the water, the white timber building standing on piles above the rock, the red wharf houses and the quay, a small boat crossing the sound, the shore and its boathouse, and a footbridge through birch woodland. The property is shown from the water and from the land in summer, over a music track.',
 
           ariaPlayFilm: 'Play film about Vikaneset',
+          altSjohus: 'The living and dining room inside a Sjøhus unit',
+          altLeiligheter: 'A Leiligheter apartment seen from its deck, with a table and chairs',
+          altKlippfisk: 'Klippfiskbrygga, the white wharf building standing out over the water',
+          altSaunaBeach: 'The sandy beach and its shallow, clear water',
+          altBeachRocks: 'Rocks and sand where the beach meets the shoreline',
+          altSaunaInside: 'Inside the sauna, with rolled towels and a robe',
+          altHarbour: 'The harbour, with its boathouses and floating pontoon',
+          altHarbourGangway: 'The gangway down to the floating pier',
+          altHarbourDetail: 'Floating pontoons at dusk, with a lifebuoy',
+          altAmfi: 'The amphitheatre’s stepped seating, with autumn trees above',
+          altAmfiSeating: 'The curve of the amphitheatre’s concrete tiers',
+          altSurroundings: 'Benches and standing stones on the shore',
+          altG02: 'The wooden edge of the amphitheatre seating',
+          altG03: 'Shallow water running over the rock slabs by the shore',
+          altG04: 'Stones under clear water, with a boathouse behind',
+          altG05: 'Sunlight on the timbers of the old jetty',
+          altG06: 'A mooring chain across a boulder on the shore',
+          altG07: 'Weathered timber posts against the sea and sky',
+          altG08: 'A lifebuoy and driftwood on a yellow boathouse wall',
+          altG09: 'A lifebuoy marked Vikaneset beside a window',
+          altG10: 'A model sailing ship and candles in a window',
+          altG11: 'Underneath a boathouse, its posts standing on the rock',
+          altG12: 'Klippfiskbrygga seen past the rocks at the water’s edge',
+          altG13: 'Stones and seaweed where the water runs out over the shore',
           ariaMainNav: 'Main navigation',
           ariaHome: 'Vikaneset home',
           ariaLangSwitch: 'Language',
@@ -5078,15 +5156,6 @@
           pageTitle: 'Vikaneset Havhotell · Self-catering by the sea near Kristiansund',
           metaDescription: 'Self-catering accommodation by the sea on Frei, 16 km from Kristiansund. Ten units, own harbour, sauna, sandy beach and amphitheatre. Opening spring 2027.',
 
-          altSjohus: 'Sjøhus seen from its deck, with a table and chairs',
-          altSjohusDetail: 'The living and dining room inside a Sjøhus unit',
-          altKlippfisk: 'Klippfiskbrygga at Vikaneset',
-          altSaunaBeach: 'The sandy beach and its shallow, clear water',
-          altSaunaInside: 'Inside the sauna, with rolled towels and a robe',
-          altHarbour: 'The gangway down to the floating pier',
-          altHarbourDetail: 'Floating pontoons in the harbour at dusk, with a lifebuoy',
-          altAmfi: 'The amphitheatre’s stepped seating, with autumn trees above',
-          altSurroundings: 'Benches and standing stones on the shore',
         },
 
         no: {
@@ -5171,6 +5240,30 @@
           filmAltBody: 'Filmen har ingen fortellerstemme. Den veksler mellom stillestående og langsomt panorerende bilder av Vikaneset: amfiet i betong som går ned mot sjøen, det hvite trehuset som står på påler over svaberget, de røde bryggehusene og kaia, en liten båt som krysser sundet, stranden og naustet, og en gangbru gjennom bjørkeskog. Eiendommen vises fra sjøen og fra land om sommeren, til et musikkspor.',
 
           ariaPlayFilm: 'Spill av film om Vikaneset',
+          altSjohus: 'Stue og spiseplass i en av enhetene i Sjøhus',
+          altLeiligheter: 'En av leilighetene sett fra terrassen, med bord og stoler',
+          altKlippfisk: 'Klippfiskbrygga, det hvite bryggehuset som står ut over sjøen',
+          altSaunaBeach: 'Sandstranda og det grunne, klare vannet',
+          altBeachRocks: 'Stein og sand der stranda møter svaberget',
+          altSaunaInside: 'Inne i saunaen, med sammenrullede håndklær og badekåpe',
+          altHarbour: 'Havna, med naustene og flytebrygga',
+          altHarbourGangway: 'Landgangen ned til flytebrygga',
+          altHarbourDetail: 'Flytebrygger i skumringen, med livbøye',
+          altAmfi: 'Amfiets trappetrinn, med høsttrær ovenfor',
+          altAmfiSeating: 'Buen i amfiets betongtrinn',
+          altSurroundings: 'Benker og bautasteiner ved sjøen',
+          altG02: 'Trekanten langs amfiets sitterader',
+          altG03: 'Grunt vann som renner over svaberget ved stranda',
+          altG04: 'Stein under klart vann, med et naust bak',
+          altG05: 'Sollys på tømmeret i den gamle brygga',
+          altG06: 'En fortøyningslenke over en stein ved sjøen',
+          altG07: 'Forvitrede trestolper mot sjø og himmel',
+          altG08: 'En livbøye og drivved på en gul naustvegg',
+          altG09: 'En livbøye merket Vikaneset ved et vindu',
+          altG10: 'En modellseilskute og lys i et vindu',
+          altG11: 'Under et naust, med stolpene som står på svaberget',
+          altG12: 'Klippfiskbrygga sett forbi steinene i vannkanten',
+          altG13: 'Stein og tang der vannet renner ut over svaberget',
           ariaMainNav: 'Hovednavigasjon',
           ariaHome: 'Vikaneset forside',
           ariaLangSwitch: 'Språk',
@@ -5189,15 +5282,6 @@
           pageTitle: 'Vikaneset Havhotell · Selvhushold ved sjøen på Frei, Kristiansund',
           metaDescription: 'Selvhusholdsenheter ved sjøen på Frei, 16 km fra Kristiansund. Ti enheter, egen havn, sauna, sandstrand og amfi. Åpner våren 2027.',
 
-          altSjohus: 'Sjøhus sett fra terrassen, med bord og stoler',
-          altSjohusDetail: 'Stue og spiseplass i en av enhetene i Sjøhus',
-          altKlippfisk: 'Klippfiskbrygga på Vikaneset',
-          altSaunaBeach: 'Sandstranda og det grunne, klare vannet',
-          altSaunaInside: 'Inne i saunaen, med sammenrullede håndklær og badekåpe',
-          altHarbour: 'Landgangen ned til flytebrygga',
-          altHarbourDetail: 'Flytebrygger i havna i skumringen, med livbøye',
-          altAmfi: 'Amfiets trappetrinn, med høsttrær ovenfor',
-          altSurroundings: 'Benker og bautasteiner ved sjøen',
         }
       };
 
