@@ -4207,11 +4207,24 @@
 
       .site__feature:last-child .site__feature-media { aspect-ratio: 21 / 9 !important; }
 
+      /* The full-bleed row's copy sits on the page's content column, so its
+         heading lines up with the section title and with the media of the
+         rows above it, rather than floating at a width of its own. */
       .site__feature:last-child .site__feature-copy {
-        max-width: 1280px;
-        margin: 0 auto;
+        width: 100% !important;
+        max-width: 1280px !important;
+        margin-inline: auto !important;
+        justify-self: center !important;
+        /* The same gutter .wrap uses, so the heading lands on the page's own
+           content column at every width rather than on the viewport edge. */
+        padding-inline: clamp(1.05rem, 4vw, 3rem) !important;
         padding-top: 1.5rem !important;
       }
+
+      /* A row whose copy is on the left needs no left padding: it is already
+         against the page's own margin, and the padding pushed its heading 43px
+         out of line with every other heading in the section. */
+      .site__feature--reverse .site__feature-copy { padding-left: 0 !important; }
 
       /* Full bleed is for the photograph, not the sentence: without this the
          body runs the whole 1280 and lands on one 120-character line. */
