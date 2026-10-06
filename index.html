@@ -4474,6 +4474,23 @@
   .information__header { max-width: 42ch; }
 }
 
+
+    /* Where an element now has its own scroll-driven arrival, the generic
+       fade-and-rise is switched off rather than run alongside it. These four
+       were doing both at once: a 16px rise and an opacity fade from the old
+       reveal, plus the settle or pan added later. Two arrival gestures on one
+       element read as indecision, and the settle is the considered one.
+
+       It also makes them robust: a .reveal element sits at opacity 0 until the
+       observer reaches it, so anything that delays the script leaves it blank.
+       These are the four largest things on the page. */
+    .units.reveal,
+    .site__feature.reveal,
+    .gallery__carousel.reveal,
+    .aerial.reveal {
+      opacity: 1;
+      transform: none;
+    }
   </style>
 </head>
 <body>
