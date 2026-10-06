@@ -4284,7 +4284,6 @@
     .unit__media .mini-carousel__slide img,
     .site__feature-media .mini-carousel__slide img {
       scale: var(--media-scale, 1);
-      will-change: transform;
     }
   }
 }
@@ -4358,7 +4357,6 @@
 
     .gallery__slide img {
       scale: calc(1 + (var(--media-scale, 1) - 1) * 0.5);
-      will-change: transform;
     }
   }
 }
@@ -5635,7 +5633,10 @@
               showPoster();
               filmWatcher.disconnect();
             }
-          }, { rootMargin: '100% 0px' });
+            // Three viewports of warning rather than one: the film sits nearly
+            // nine viewports down and a fast scroll outran a single screen of
+            // margin, showing a black box where the poster should be.
+          }, { rootMargin: '300% 0px' });
           filmWatcher.observe(filmVideo);
         } else {
           showPoster();
