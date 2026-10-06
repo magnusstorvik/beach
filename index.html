@@ -4121,6 +4121,13 @@
 
       .footer { border-top: 0.5pt solid #000; padding-top: 4mm !important; }
     }
+
+    /* A unit with no photograph yet keeps its text where the other unit's text
+       sits, so the two still line up instead of one running the full measure. */
+    @media (min-width: 761px) {
+      .unit--no-media { justify-content: flex-end; }
+      .unit--no-media .unit__text { flex: 0 1 52%; }
+    }
   </style>
 </head>
 <body>
@@ -4242,18 +4249,7 @@
             </div>
           </div>
 
-          <div class='unit' role='listitem'>
-            <div class='unit__media mini-carousel'>
-              <div class='mini-carousel__viewport'>
-                <div class='mini-carousel__track'>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-01.jpg'><img src='assets/images/gallery2.jpg' alt='Leiligheter at Vikaneset' data-i18n-alt='altLeiligheter' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery4.jpg' alt='Leiligheter detail' data-i18n-alt='altLeiligheterDetail' loading='lazy'></figure>
-                  <figure class='mini-carousel__slide placeholder-media' data-photo-slot='stay-leilighet-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery6.jpg' alt='Leiligheter surroundings' data-i18n-alt='altLeiligheterSurroundings' loading='lazy'></figure>
-                </div>
-              </div>
-              <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
-              <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
-            </div>
+          <div class='unit unit--no-media' role='listitem'>
             <div class='unit__text'>
               <h3 lang='no' class='unit__name'>Leiligheter</h3>
               <p class='unit__meta' data-i18n='unit2Meta'>5 units · Innerholmen</p>
@@ -4300,8 +4296,6 @@
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
               <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-01.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga at Vikaneset' data-i18n-alt='altKlippfisk' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery3.jpg' alt='Klippfiskbrygga detail' data-i18n-alt='altKlippfiskDetail' loading='lazy'></figure>
-              <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/gallery4.jpg' alt='Klippfiskbrygga surroundings' data-i18n-alt='altKlippfiskSurroundings' loading='lazy'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -5086,12 +5080,7 @@
 
           altSjohus: 'Sjøhus seen from its deck, with a table and chairs',
           altSjohusDetail: 'The living and dining room inside a Sjøhus unit',
-          altLeiligheter: 'Leiligheter at Vikaneset',
-          altLeiligheterDetail: 'Leiligheter detail',
-          altLeiligheterSurroundings: 'Leiligheter surroundings',
           altKlippfisk: 'Klippfiskbrygga at Vikaneset',
-          altKlippfiskDetail: 'Klippfiskbrygga detail',
-          altKlippfiskSurroundings: 'Klippfiskbrygga surroundings',
           altSaunaBeach: 'The sandy beach and its shallow, clear water',
           altSaunaInside: 'Inside the sauna, with rolled towels and a robe',
           altHarbour: 'The gangway down to the floating pier',
@@ -5202,12 +5191,7 @@
 
           altSjohus: 'Sjøhus sett fra terrassen, med bord og stoler',
           altSjohusDetail: 'Stue og spiseplass i en av enhetene i Sjøhus',
-          altLeiligheter: 'Leiligheter på Vikaneset',
-          altLeiligheterDetail: 'Detalj fra Leilighetene',
-          altLeiligheterSurroundings: 'Omgivelsene rundt Leilighetene',
           altKlippfisk: 'Klippfiskbrygga på Vikaneset',
-          altKlippfiskDetail: 'Detalj fra Klippfiskbrygga',
-          altKlippfiskSurroundings: 'Omgivelsene rundt Klippfiskbrygga',
           altSaunaBeach: 'Sandstranda og det grunne, klare vannet',
           altSaunaInside: 'Inne i saunaen, med sammenrullede håndklær og badekåpe',
           altHarbour: 'Landgangen ned til flytebrygga',
