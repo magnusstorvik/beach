@@ -5,11 +5,11 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <meta name='description' content='Self-catering accommodation by the sea on Frei, 16 km from Kristiansund. Ten units, own harbour, sauna, sandy beach and amphitheatre. Opening spring 2027.'>
   <meta name='theme-color' content='#0e2733'>
-  <title>Vikaneset Havhotell · Self-catering by the sea near Kristiansund</title>
+  <title>Vikaneset Retreat · Self-catering by the sea near Kristiansund</title>
 
   <meta property='og:type' content='website'>
-  <meta property='og:site_name' content='Vikaneset Havhotell'>
-  <meta property='og:title' content='Vikaneset Havhotell'>
+  <meta property='og:site_name' content='Vikaneset Retreat'>
+  <meta property='og:title' content='Vikaneset Retreat'>
   <meta property='og:description' content='Harbour property on Frei island, Kristiansund municipality. Self-catering accommodation by the sea.'>
   <meta property='og:locale' content='en_GB'>
   <meta property='og:locale:alternate' content='nb_NO'>
@@ -30,7 +30,7 @@
   {
     "@context": "https://schema.org",
     "@type": "LodgingBusiness",
-    "name": "Vikaneset Havhotell",
+    "name": "Vikaneset Retreat",
     "alternateName": "Vikaneset",
     "url": "https://magnusstorvik.github.io/beach/",
     "image": "https://magnusstorvik.github.io/beach/assets/images/hero.jpg",
@@ -4361,6 +4361,41 @@
   }
 }
 
+
+@property --amfi-pan {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 50%;
+}
+
+@supports (animation-timeline: view()) {
+  /* Only where the row is actually full-bleed; below 961px it is an ordinary
+     4:3 frame with little overflow to pan through. */
+  @media (min-width: 961px) and (prefers-reduced-motion: no-preference) {
+    /* The full-bleed row is the boldest frame on the page and it was static.
+       Its photograph is object-fit: cover in a 21:9 letterbox, so there is a
+       lot of image above and below the crop: the frame pans through it as the
+       row passes, which moves nothing on the page and reveals more of the
+       photograph than a fixed crop ever shows. */
+    .site__feature:last-child {
+      animation-name: media-settle, amfi-pan;
+      animation-timeline: view(), view();
+      animation-range: entry 0% entry 95%, cover 0% cover 100%;
+      animation-timing-function: linear, linear;
+      animation-fill-mode: both, both;
+    }
+
+    @keyframes amfi-pan {
+      from { --amfi-pan: 38%; }
+      to { --amfi-pan: 62%; }
+    }
+
+    .site__feature:last-child .mini-carousel__slide img {
+      object-position: 50% var(--amfi-pan, 50%);
+    }
+  }
+}
+
   </style>
 </head>
 <body>
@@ -4370,7 +4405,7 @@
       <img class='nav__logo' src='assets/images/logo-mark-light.png' alt='' width='157' height='114'>
       <div class='nav__text'>
         <span class='nav__name'>Vikaneset</span>
-        <span class='nav__sub'>Havhotell</span>
+        <span class='nav__sub'>Retreat</span>
       </div>
     </a>
 
@@ -4437,7 +4472,7 @@
       <div class='wrap'>
         <div class='intro__text reveal'>
           <div class='intro__statement'>
-            <p class='intro__kicker' data-i18n='introKicker'>By the sea on Nordmøre</p>
+            <p class='intro__kicker' data-i18n='introKicker'>In and by the sea</p>
             <p class='intro__lead'>
               <span data-i18n='introLeadMain'>A quiet coastal setting, surrounded by lush nature.</span>
             </p>
@@ -4523,7 +4558,7 @@
           <h2 class='section-title' id='site-title' data-i18n='siteTitle'>The site</h2>
           <div class='site__intro-text'>
             <p class='section-intro' data-i18n='siteIntro1'>
-              Vikaneset is a historic coastal gem. Klippfisk was received, produced and dried here, and the site was also used for cod-liver oil production.
+              Vikaneset is a historic coastal gem. Klippfisk was produced and dried here, and the site was also used for cod-liver oil production.
             </p>
             <p class='section-intro' data-i18n='siteIntro2'>
               Today the old klippfisk wharf houses a restaurant and rooms for functions and courses. The property also has 16 apartments in total, for holiday guests and permanent residents.
@@ -4720,7 +4755,7 @@
 
           <details class='film__alt'>
             <summary data-i18n='filmAltSummary'>Description of the film</summary>
-            <p data-i18n='filmAltBody'>The film has no narration. It moves between still and slowly panning views of the property in summer: the row of red boathouses along the stone quay, the white wharf building standing out over the rock on its balconied front, timber cabins above the shore, the quay and its pontoon, a small boat on the water seen through the trees, and a red boathouse on piles beside a long pier with the headland beyond. There is a music track and no speech.</p>
+            <p data-i18n='filmAltBody'>No narration, only music. The film shows the property in summer: the red boathouses along the quay, the white wharf building out over the rock, cabins above the shore, a boat on the water, and the pier.</p>
           </details>
         </div>
       </div>
@@ -4810,7 +4845,7 @@
       <img class='footer__logo' src='assets/images/logo-mark-light.png' alt='' width='157' height='114'>
       <div class='footer__text'>
         <span class='footer__name'>Vikaneset</span>
-        <span class='footer__sub'>Havhotell</span>
+        <span class='footer__sub'>Retreat</span>
       </div>
     </div>
 
@@ -5246,7 +5281,7 @@
 
           heroGeo: 'Frei · Kristiansund · Norway',
 
-          introKicker: 'By the sea on Nordmøre',
+          introKicker: 'In and by the sea',
           introLeadMain: 'A quiet coastal setting, surrounded by lush nature.',
           introDistanceLabel: 'From Kristiansund',
           introLeadAccent: '16 kilometres',
@@ -5260,7 +5295,7 @@
           bookingButton: 'Check availability',
 
           siteTitle: 'The site',
-          siteIntro1: 'Vikaneset is a historic coastal gem. Klippfisk was received, produced and dried here, and the site was also used for cod-liver oil production.',
+          siteIntro1: 'Vikaneset is a historic coastal gem. Klippfisk was produced and dried here, and the site was also used for cod-liver oil production.',
           siteIntro2: 'Today the old klippfisk wharf houses a restaurant and rooms for functions and courses. The property also has 16 apartments in total, for holiday guests and permanent residents.',
           site1Body: 'The wharf building dates to approximately 1900 and was renovated between 2006 and 2009. It holds around 1,000\u00a0m² of bar, restaurant and rooms for functions and courses. The restaurant is run by Lokalkokken.',
           site1LinkText: 'Find Lokalkokken',
@@ -5318,7 +5353,7 @@
           videoFallback: 'Your browser cannot play this video.',
           playFilm: 'Play film',
           filmAltSummary: 'Description of the film',
-          filmAltBody: 'The film has no narration. It moves between still and slowly panning views of the property in summer: the row of red boathouses along the stone quay, the white wharf building standing out over the rock on its balconied front, timber cabins above the shore, the quay and its pontoon, a small boat on the water seen through the trees, and a red boathouse on piles beside a long pier with the headland beyond. There is a music track and no speech.',
+          filmAltBody: 'No narration, only music. The film shows the property in summer: the red boathouses along the quay, the white wharf building out over the rock, cabins above the shore, a boat on the water, and the pier.',
 
           ariaPlayFilm: 'Play film about Vikaneset',
           altSjohus: 'The living and dining room inside a Sjøhus unit',
@@ -5360,7 +5395,7 @@
           ariaForm: 'Enquiry form',
           newTabNote: 'Opens in a new tab',
           formFallback: 'If your email app did not open, write to anette@vikaneset.com.',
-          pageTitle: 'Vikaneset Havhotell · Self-catering by the sea near Kristiansund',
+          pageTitle: 'Vikaneset Retreat · Self-catering by the sea near Kristiansund',
           metaDescription: 'Self-catering accommodation by the sea on Frei, 16 km from Kristiansund. Ten units, own harbour, sauna, sandy beach and amphitheatre. Opening spring 2027.',
 
         },
@@ -5372,7 +5407,7 @@
 
           heroGeo: 'Frei · Kristiansund · Norge',
 
-          introKicker: 'Ved havet på Nordmøre',
+          introKicker: 'I og ved sjøen',
           introLeadMain: 'Et rolig kystmiljø, omgitt av frodig natur.',
           introDistanceLabel: 'Fra Kristiansund',
           introLeadAccent: '16 kilometer',
@@ -5386,7 +5421,7 @@
           bookingButton: 'Sjekk tilgjengelighet',
 
           siteTitle: 'Om stedet',
-          siteIntro1: 'Vikaneset er en historisk kystperle. Her ble det drevet klippfiskmottak, produksjon og tørking av klippfisk samt tranbrenneri.',
+          siteIntro1: 'Vikaneset er en historisk kystperle. Her ble det drevet produksjon og tørking av klippfisk samt tranbrenneri.',
           siteIntro2: 'I dag er det restaurant, selskaps- og kurslokaler i den gamle klippfiskbrygga. Eiendommen har også 16 leiligheter totalt, som leies ut til feriegjester og fastboende.',
           site1Body: 'Brygge fra rundt år 1900, restaurert mellom 2006 og 2009. Den består av ca. 1\u00a0000\u00a0kvm med bar, restaurant og lokaler til selskaper og kurs. Restauranten drives av Lokalkokken.',
           site1LinkText: 'Finn Lokalkokken',
@@ -5444,7 +5479,7 @@
           videoFallback: 'Nettleseren din kan ikke spille av denne videoen.',
           playFilm: 'Spill av film',
           filmAltSummary: 'Beskrivelse av filmen',
-          filmAltBody: 'Filmen har ingen fortellerstemme. Den veksler mellom stillestående og langsomt panorerende bilder av eiendommen om sommeren: rekken av røde naust langs steinkaia, det hvite bryggehuset som står ut over svaberget med altanene sine, tømmerhytter ovenfor stranda, kaia og flytebrygga, en liten båt på vannet sett gjennom trærne, og et rødt naust på påler ved en lang brygge med neset bak. Det er et musikkspor og ingen tale.',
+          filmAltBody: 'Ingen fortellerstemme, bare musikk. Filmen viser eiendommen om sommeren: de røde naustene langs kaia, det hvite bryggehuset ute over svaberget, hytter ovenfor stranda, en båt på vannet og brygga.',
 
           ariaPlayFilm: 'Spill av film om Vikaneset',
           altSjohus: 'Stue og spiseplass i en av enhetene i Sjøhus',
@@ -5486,7 +5521,7 @@
           ariaForm: 'Kontaktskjema',
           newTabNote: 'Åpnes i ny fane',
           formFallback: 'Åpnet ikke e-postprogrammet? Skriv til anette@vikaneset.com.',
-          pageTitle: 'Vikaneset Havhotell · Selvhushold ved sjøen på Frei, Kristiansund',
+          pageTitle: 'Vikaneset Retreat · Selvhushold ved sjøen på Frei, Kristiansund',
           metaDescription: 'Selvhusholdsenheter ved sjøen på Frei, 16 km fra Kristiansund. Ti enheter, egen havn, sauna, sandstrand og amfi. Åpner våren 2027.',
 
         }
