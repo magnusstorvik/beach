@@ -4396,6 +4396,44 @@
   }
 }
 
+
+@property --aerial-pan {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 70%;
+}
+
+@supports (animation-timeline: view()) {
+  @media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
+    /* .intro is overflow:hidden, which is a scroll container and pins any view()
+       timeline inside it. overflow-x: clip clips just as well without creating
+       one, the same treatment .site and the other sections already have. */
+    .intro {
+      overflow: visible;
+      overflow-x: clip;
+    }
+
+    /* The aerial band gets the gesture the full-bleed Amfi row has: it is a
+       cover crop of a 2400px photograph in a 619px band, so most of the image
+       is outside the frame. The band pans through it as it passes.
+
+       The position is declared per layer because this element has two: the
+       gradient that fades its top and bottom edges must stay put, or the fade
+       travels with the photograph and stops meeting the sections either side. */
+    .aerial {
+      background-position: center, 50% var(--aerial-pan, 70%);
+      animation: aerial-pan linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    @keyframes aerial-pan {
+      from { --aerial-pan: 58%; }
+      to { --aerial-pan: 82%; }
+    }
+  }
+}
+
   </style>
 </head>
 <body>
