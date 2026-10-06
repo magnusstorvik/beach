@@ -3830,14 +3830,14 @@
         @keyframes sk-path {
           0% { translate: 46px 4vh; }
           13% { translate: 14px 10vh; }
-          30% { translate: -6px 22vh; }
+          30% { translate: -1px 22vh; }
           46% { translate: 8px 34vh; }
-          58% { translate: -10px 47vh; }
+          58% { translate: -3px 47vh; }
           66% { translate: 2px 58vh; }
           71% { translate: 10px 80vh; }
           73% { translate: 14px 90vh; }
           76% { translate: 8px 72vh; }
-          82% { translate: -8px 44vh; }
+          82% { translate: -2px 44vh; }
           90% { translate: 4px 28vh; }
           100% { translate: 44px 12vh; }
         }
@@ -3905,6 +3905,13 @@
             width: 84px;
           }
           .skarv-flight__bird { width: 84px; height: 48px; }
+        }
+
+        /* Above 1600 the gutter is wide enough that an 84px bird reads as
+           incidental. The text measure caps at 1280 so the room only grows. */
+        @media (min-width: 1600px) {
+          .skarv-flight { width: 112px; }
+          .skarv-flight__bird { width: 112px; height: 64px; }
         }
 
       }
@@ -4506,15 +4513,53 @@
     }
 
     @keyframes skarv-settle {
-      0%, 58%, 90%, 100% { transform: translateX(-50%) translateY(0) scaleY(1); opacity: 0.66; }
-      62% { transform: translateX(-50%) translateY(-2.5px) scaleY(1); opacity: 0.84; }
-      66% { transform: translateX(-50%) translateY(0.5px) scaleY(1); opacity: 0.74; }
-      71% { transform: translateX(-50%) translateY(1.5px) scaleY(0.94); opacity: 0.74; }
-      74% { transform: translateX(-50%) translateY(-3px) scaleY(1.04); opacity: 0.9; }
-      77% { transform: translateX(-50%) translateY(16px) scaleY(1.1); opacity: 0.26; }
-      79% { transform: translateX(-50%) translateY(26px) scaleY(1.1); opacity: 0; }
-      83% { transform: translateX(-50%) translateY(10px) scaleY(1.02); opacity: 0.34; }
-      86% { transform: translateX(-50%) translateY(-2px) scaleY(1); opacity: 0.74; }
+      0%, 58%, 90%, 100% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 0px)) scaleY(1); opacity: calc(0.66 * var(--cue-fade, 1)); }
+      62% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) - 2.5px)) scaleY(1); opacity: calc(0.84 * var(--cue-fade, 1)); }
+      66% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 0.5px)) scaleY(1); opacity: calc(0.74 * var(--cue-fade, 1)); }
+      71% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 1.5px)) scaleY(0.94); opacity: calc(0.74 * var(--cue-fade, 1)); }
+      74% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) - 3px)) scaleY(1.04); opacity: calc(0.9 * var(--cue-fade, 1)); }
+      77% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 16px)) scaleY(1.1); opacity: calc(0.26 * var(--cue-fade, 1)); }
+      79% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 26px)) scaleY(1.1); opacity: calc(0 * var(--cue-fade, 1)); }
+      83% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) + 10px)) scaleY(1.02); opacity: calc(0.34 * var(--cue-fade, 1)); }
+      86% { transform: translateX(-50%) translateY(calc(var(--cue-lift, 0px) - 2px)) scaleY(1); opacity: calc(0.74 * var(--cue-fade, 1)); }
+    }
+
+    @property --cue-lift {
+      syntax: '<length>';
+      inherits: true;
+      initial-value: 0px;
+    }
+
+    @property --cue-fade {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 1;
+    }
+
+    @supports (animation-timeline: scroll()) {
+      @media (prefers-reduced-motion: no-preference) {
+        /* One bird, one journey. The perched skarv used to loop on its rock for
+           ever while a separate bird appeared in the gutter further down; now it
+           lifts and fades as you start to scroll, handing over to the flight at
+           the moment that one arrives. The lift travels as a custom property the
+           loop's own keyframes read, because a transform on the wrapper would
+           make it the containing block for the absolutely positioned svg and
+           move the bird off its perch. The wrapper carries only opacity. */
+        .hero__scroll-cue {
+          animation-name: skarv-settle, cue-takeoff;
+          animation-duration: 15s, auto;
+          animation-timing-function: cubic-bezier(.33, .1, .25, 1), linear;
+          animation-iteration-count: infinite, 1;
+          animation-fill-mode: none, both;
+          animation-timeline: auto, scroll(root block);
+          animation-range: normal, 0% 9%;
+        }
+
+        @keyframes cue-takeoff {
+          from { --cue-lift: 0px; --cue-fade: 1; }
+          to { --cue-lift: -46px; --cue-fade: 0; }
+        }
+      }
     }
   </style>
 </head>
