@@ -4239,6 +4239,57 @@
 
     /* Two light surfaces one unit of grey apart is an accident, not a system. */
     .site { background: #f1f4f4 !important; }
+
+/* Photographs settle as they arrive instead of simply being there.
+
+   The timeline has to be driven from .unit and .site__feature, not from the
+   image: view() resolves against the nearest ancestor scroll container, and
+   both .mini-carousel__viewport and .site__feature are overflow:hidden, so an
+   image inside them never enters or leaves and its progress is pinned at 1.
+   These two elements sit above that, so their timeline is the page. They pass
+   the value down as a registered property, which is what lets it interpolate. */
+@property --media-scale {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .unit,
+    .site__feature {
+      animation: media-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 95%;
+    }
+
+    @keyframes media-settle {
+      from { --media-scale: 1.07; }
+      to { --media-scale: 1; }
+    }
+
+    .unit__media .mini-carousel__slide img,
+    .site__feature-media .mini-carousel__slide img {
+      scale: var(--media-scale, 1);
+      will-change: transform;
+    }
+  }
+}
+
+/* .accommodation was overflow:hidden, which makes it a real scroll container and
+   pins any view() timeline inside it. .site already uses overflow-x: clip, which
+   clips just as well without creating one; match it so the Stay rows animate too. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .accommodation,
+    .information,
+    .contact {
+      overflow: visible;
+      overflow-x: clip;
+    }
+  }
+}
+
   </style>
 </head>
 <body>
