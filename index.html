@@ -3818,6 +3818,24 @@
            down, carries the fish through Explore, swallows it, and dives again
            over Practical. */
 
+        @keyframes sk-reveal {
+          0% { opacity: 0; }
+          5% { opacity: 0; }
+          9% { opacity: 0.68; }
+          28% { opacity: 0.68; }
+          30% { opacity: 0.3; }
+          31.5% { opacity: 0.08; }
+          32.5% { opacity: 0.38; }
+          34% { opacity: 0.7; }
+          71% { opacity: 0.7; }
+          73.5% { opacity: 0.3; }
+          75% { opacity: 0.08; }
+          76% { opacity: 0.38; }
+          77.5% { opacity: 0.7; }
+          95% { opacity: 0.7; }
+          100% { opacity: 0; }
+        }
+
         /* Set from the backdrop actually sampled under the bird at eighteen
            points along its path, not from which section it is nominally over:
            the bird's own height means it is usually in the section below the
@@ -3955,6 +3973,40 @@
           0% { --sk-flap: -1; }
           50% { --sk-flap: 1; }
           100% { --sk-flap: -1; }
+        }
+
+        /* The body was three rigid lines, so the bird beat its wings around a
+           plank. The spine now bows one way and then the other, once per
+           wingbeat, on the same timeline as the flap. Only the control points
+           move -- every path keeps its start and end exactly, so the head stays
+           on the neck and the tail stays on the body, and each pair of paths
+           keeps an identical command sequence, which is what lets the d
+           property interpolate at all. A browser that does not animate d falls
+           back to the d attribute in the markup and gets the bird at rest. */
+        .sk-spine {
+          animation-timing-function: ease-in-out;
+          animation-fill-mode: both;
+          animation-iteration-count: 42;
+          animation-timeline: scroll(root block);
+        }
+
+        .sk-spine--neck { animation-name: sk-spine-neck; }
+        .sk-spine--back { animation-name: sk-spine-back; }
+        .sk-spine--belly { animation-name: sk-spine-belly; }
+
+        @keyframes sk-spine-neck {
+          0%, 100% { d: path('M5.4 14.8c5.1 -1.2 10.6 0.1 16.6 2.8'); }
+          50% { d: path('M5.4 14.8c5.1 1.3 10.6 2.4 16.6 2.8'); }
+        }
+
+        @keyframes sk-spine-back {
+          0%, 100% { d: path('M22 17.6c6 -0.2 12 1.8 18 4.8c5.6 3.1 10.6 4.2 15.4 4'); }
+          50% { d: path('M22 17.6c6 3.5 12 4.7 18 4.8c5.6 0.1 10.6 1.4 15.4 4'); }
+        }
+
+        @keyframes sk-spine-belly {
+          0%, 100% { d: path('M23 19.8c6 1.3 12 3.7 18.5 5.6'); }
+          50% { d: path('M23 19.8c6 4.7 12 6 18.5 5.6'); }
         }
 
         /* One ring per plunge. The scale has to be put back between them or the
@@ -5018,10 +5070,16 @@
       initial-value: #0e2733;
     }
 
-    @property --gal-iris {
+    @property --gal-blade {
       syntax: '<percentage>';
       inherits: true;
-      initial-value: 100%;
+      initial-value: 0%;
+    }
+
+    @property --gal-near {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 1;
     }
 
     @property --gal-lamp {
@@ -5055,14 +5113,14 @@
        The viewport keeps overflow: hidden, because that is what hides the other
        twelve slides. It just has no size and no colour of its own any more.
 
-       The aperture moves onto the photograph with it. Eight vertices, each a
-       linear function of one radius: calc(50% +/- r * cos) and
-       calc(50% +/- r * sin) for the eight angles of a regular octagon, so the
-       whole iris runs off one registered property and interpolates exactly. It
-       has to reach 77% to clear the corners -- an octagon's inradius is
-       cos(22.5deg) of its circumradius -- so it opens to 84. The initial value
-       is 100%, wide open, so a browser with neither @property nor scroll
-       timelines gets the photograph unclipped rather than a shut shutter. */
+       The arrival is a focus pull, not a shape. It was an eight-bladed
+       aperture, and a polygon opening in steps is a hard edge travelling
+       across a photograph however many blades you give it -- it read as a
+       hexagon, which is what it was. A photograph coming into focus has no
+       edge at all, is the one gesture a camera actually makes, and cannot look
+       like a shape because it is not one. Exposure and a slight push travel
+       with it: soft, dim and a little close, resolving to sharp, lit and
+       settled, and back the other way as it leaves. */
     .gallery__carousel {
       max-width: min(1280px, 100%) !important;
       padding: 0 !important;
@@ -5071,11 +5129,15 @@
     .gallery__viewport {
       aspect-ratio: auto !important;
       width: 100% !important;
-      height: min(82vh, 880px) !important;
+      height: min(86vh, 960px) !important;
       min-height: 0 !important;
       max-height: none !important;
       background: transparent !important;
       clip-path: none !important;
+      /* Exposure only. Defocus was on this box too and it blurred the
+         photograph itself, which is the one thing in the room that should
+         always be sharp. */
+      filter: brightness(var(--gal-lamp, 1)) contrast(calc(0.82 + 0.18 * var(--gal-lamp, 1)));
     }
 
     .gallery__track { align-items: center; }
@@ -5087,12 +5149,32 @@
 
     .gallery__slide img {
       width: auto !important;
-      height: 100% !important;
+      /* Deliberately short of the band. The photograph used to be exactly the
+         viewport's height, so its shadow fell on the clip and was sliced off in
+         a hard horizontal line under every photograph -- the awkward border.
+         The band is now 100px taller than the picture, which is more than the
+         shadow reaches. */
+      height: min(78vh, 860px) !important;
       max-width: 100% !important;
       max-height: 100% !important;
       object-fit: contain;
-      filter: brightness(var(--gal-lamp, 1)) contrast(calc(0.82 + 0.18 * var(--gal-lamp, 1)));
       transition: none;
+      scale: var(--gal-near, 1);
+      /* Four blades, one per corner, each a soft-edged half plane on a
+         diagonal. Intersected, what is left is a square aperture standing on
+         its corner; as they draw back it grows to the whole picture, and as
+         they close the gap between them narrows to an X. The edge is a gradient
+         rather than a polygon vertex, so there is no hard line anywhere in it,
+         which is what made the eight-sided version read as a shape rather than
+         as a shutter. Without mask-composite the four simply add up to opaque
+         and the photograph is unmasked, which is the right thing to degrade
+         to. */
+      mask-image:
+        linear-gradient(45deg, transparent var(--gal-blade, 0%), #000 calc(var(--gal-blade, 0%) + 17%)),
+        linear-gradient(135deg, transparent var(--gal-blade, 0%), #000 calc(var(--gal-blade, 0%) + 17%)),
+        linear-gradient(225deg, transparent var(--gal-blade, 0%), #000 calc(var(--gal-blade, 0%) + 17%)),
+        linear-gradient(315deg, transparent var(--gal-blade, 0%), #000 calc(var(--gal-blade, 0%) + 17%));
+      mask-composite: intersect;
       /* The photograph is a print lying on the dark room, not a picture painted
          on it. A shadow is the only thing that says so -- but a shadow needs
          somewhere to fall, which is why the room stops at #070e13 rather than
@@ -5101,20 +5183,14 @@
          weight. Both are inside the clip, and at a 84% radius the octagon
          reaches a quarter of the box past its own edge, so there is room for
          them. */
+      /* No hairline. It drew a rectangle around a photograph that is meant to
+         be lying on the room, and a 1px light line is exactly the "glass panel"
+         look the frame was removed to get rid of. The shadow is smaller than it
+         was so that all of it fits inside the band. */
       box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.6),
-        0 44px 110px rgba(0, 0, 0, 0.85),
-        0 0 0 1px rgba(214, 232, 240, 0.1);
-      clip-path: polygon(
-        calc(50% + var(--gal-iris, 100%) * 0.92388) calc(50% + var(--gal-iris, 100%) * 0.38268),
-        calc(50% + var(--gal-iris, 100%) * 0.38268) calc(50% + var(--gal-iris, 100%) * 0.92388),
-        calc(50% - var(--gal-iris, 100%) * 0.38268) calc(50% + var(--gal-iris, 100%) * 0.92388),
-        calc(50% - var(--gal-iris, 100%) * 0.92388) calc(50% + var(--gal-iris, 100%) * 0.38268),
-        calc(50% - var(--gal-iris, 100%) * 0.92388) calc(50% - var(--gal-iris, 100%) * 0.38268),
-        calc(50% - var(--gal-iris, 100%) * 0.38268) calc(50% - var(--gal-iris, 100%) * 0.92388),
-        calc(50% + var(--gal-iris, 100%) * 0.38268) calc(50% - var(--gal-iris, 100%) * 0.92388),
-        calc(50% + var(--gal-iris, 100%) * 0.92388) calc(50% - var(--gal-iris, 100%) * 0.38268)
-      );
+        0 2px 8px rgba(0, 0, 0, 0.5),
+        0 13px 30px rgba(0, 0, 0, 0.72);
+
     }
 
     @media (max-width: 760px) {
@@ -5175,16 +5251,15 @@
            the lamp comes up as the blades open and goes down as they shut. The
            hold between 28% and 76% is the whole time the gallery is actually
            yours to look at. */
-        /* It stays shut while the frame rises into view and only opens once the
-           frame is actually on the screen -- opening it over the first quarter
-           of the cover range meant the blades had finished while the frame was
-           still half below the fold, so nobody ever saw them move. */
+        /* It holds soft while the frame rises into view and only resolves once
+           the frame is on the screen. Nothing here has an edge: the whole
+           gesture is defocus, exposure and a few per cent of distance. */
         @keyframes gal-iris {
-          0% { --gal-iris: 6%; --gal-lamp: 0.2; }
-          24% { --gal-iris: 8%; --gal-lamp: 0.24; }
-          50% { --gal-iris: 84%; --gal-lamp: 1; }
-          80% { --gal-iris: 84%; --gal-lamp: 1; }
-          100% { --gal-iris: 10%; --gal-lamp: 0.24; }
+          0% { --gal-blade: 56%; --gal-lamp: 0.42; --gal-near: 1.045; }
+          24% { --gal-blade: 50%; --gal-lamp: 0.48; --gal-near: 1.04; }
+          54% { --gal-blade: 0%; --gal-lamp: 1; --gal-near: 1; }
+          80% { --gal-blade: 0%; --gal-lamp: 1; --gal-near: 1; }
+          100% { --gal-blade: 46%; --gal-lamp: 0.55; --gal-near: 1.03; }
         }
       }
     }
@@ -5617,9 +5692,9 @@
       <svg class='skarv-flight__bird' viewBox='0 0 60 34'>
         <g class='sk-bird'>
           <path class='sk-stroke sk-wing sk-wing--far' d='M25 19c2.6-7 7.6-12.4 15-15.2c-3.2 6.4-7.8 11.2-13.6 15'/>
-          <path class='sk-stroke' d='M5.4 14.8c5.1 0 10.6 1.2 16.6 2.8'/>
-          <path class='sk-stroke' d='M22 17.6c6 1.6 12 3.2 18 4.8c5.6 1.5 10.6 2.8 15.4 4'/>
-          <path class='sk-stroke' d='M23 19.8c6 3 12 4.8 18.5 5.6'/>
+          <path class='sk-stroke sk-spine sk-spine--neck' d='M5.4 14.8c5.1 0 10.6 1.2 16.6 2.8'/>
+          <path class='sk-stroke sk-spine sk-spine--back' d='M22 17.6c6 1.6 12 3.2 18 4.8c5.6 1.5 10.6 2.8 15.4 4'/>
+          <path class='sk-stroke sk-spine sk-spine--belly' d='M23 19.8c6 3 12 4.8 18.5 5.6'/>
           <path class='sk-stroke' d='M55.4 26.4l3.8 0.7'/>
           <circle class='sk-stroke' cx='7' cy='14.6' r='1.5'/>
           <path class='sk-stroke' d='M5.5 14.2l-2.3-0.4'/>
@@ -6018,6 +6093,19 @@
       document.addEventListener('visibilitychange', function () {
         if (document.hidden) stopAutoPlay(); else startAutoPlay();
       });
+
+      // Never advance while the page is moving. At a 0.35 threshold the timer
+      // starts as soon as a third of the gallery is on screen, so scrolling
+      // slowly past it set a photograph sliding across the frame on the way
+      // through -- the next photograph appearing and leaving again for no
+      // reason the visitor could see. It only advances for someone who has
+      // stopped to look at it.
+      var scrollSettle = null;
+      window.addEventListener('scroll', function () {
+        stopAutoPlay();
+        if (scrollSettle) window.clearTimeout(scrollSettle);
+        scrollSettle = window.setTimeout(startAutoPlay, 900);
+      }, { passive: true });
 
       update();
       startAutoPlay();
