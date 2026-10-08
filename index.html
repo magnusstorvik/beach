@@ -5018,16 +5018,10 @@
       initial-value: #0e2733;
     }
 
-    @property --gal-tilt {
-      syntax: '<angle>';
+    @property --gal-iris {
+      syntax: '<percentage>';
       inherits: true;
-      initial-value: 0deg;
-    }
-
-    @property --gal-lift {
-      syntax: '<length>';
-      inherits: true;
-      initial-value: 0px;
+      initial-value: 100%;
     }
 
     @property --gal-lamp {
@@ -5050,19 +5044,30 @@
        the surround darken together and the photograph is the only lit thing in
        it. Held at the old navy it read as a grey letterbox bar above and below
        every landscape photograph once the section went black. */
+    /* An eight-bladed aperture. Every vertex is a linear function of one
+       radius -- calc(50% +/- r * cos) and calc(50% +/- r * sin) for the eight
+       angles of a regular octagon -- so the whole iris opens and closes off a
+       single registered property and interpolates exactly. A circle() would
+       have been simpler and read as a hole rather than as a lens.
+
+       The radius has to reach 77% for the octagon's flat edges to clear the
+       corners of a square frame (its inradius is cos(22.5deg) of its
+       circumradius), which is why it opens to 84 and not to 72.
+
+       The default is 100%, wide open, so a browser with no @property and no
+       scroll timelines gets an unclipped frame rather than a closed shutter. */
     .gallery__viewport {
       background: var(--gal-dark, #0e2733) !important;
-    }
-
-    /* The screen is tilted away and unlit, and comes up to face you as the lamp
-       warms. A first attempt opened it sideways with a clip-path, which is the
-       gesture the full-bleed Amfi row already uses -- the same trick twice is
-       not a second idea. This one is the only perspective on the page, which is
-       what makes the gallery read as a room you have walked into rather than
-       another band of the same page. */
-    .gallery__carousel {
-      transform: perspective(1500px) rotateX(var(--gal-tilt, 0deg)) translateY(var(--gal-lift, 0px));
-      transform-origin: 50% 100%;
+      clip-path: polygon(
+        calc(50% + var(--gal-iris, 100%) * 0.92388) calc(50% + var(--gal-iris, 100%) * 0.38268),
+        calc(50% + var(--gal-iris, 100%) * 0.38268) calc(50% + var(--gal-iris, 100%) * 0.92388),
+        calc(50% - var(--gal-iris, 100%) * 0.38268) calc(50% + var(--gal-iris, 100%) * 0.92388),
+        calc(50% - var(--gal-iris, 100%) * 0.92388) calc(50% + var(--gal-iris, 100%) * 0.38268),
+        calc(50% - var(--gal-iris, 100%) * 0.92388) calc(50% - var(--gal-iris, 100%) * 0.38268),
+        calc(50% - var(--gal-iris, 100%) * 0.38268) calc(50% - var(--gal-iris, 100%) * 0.92388),
+        calc(50% + var(--gal-iris, 100%) * 0.38268) calc(50% - var(--gal-iris, 100%) * 0.92388),
+        calc(50% + var(--gal-iris, 100%) * 0.92388) calc(50% - var(--gal-iris, 100%) * 0.38268)
+      );
     }
 
     /* The transition on filter set further up lagged this by 0.45s, which on a
@@ -5086,12 +5091,23 @@
 
     @supports (animation-timeline: view()) {
       @media (prefers-reduced-motion: no-preference) {
+        /* The room darkens on the section's own timeline; the lens runs on the
+           frame's. Driven from the section, the aperture was fully open before
+           the frame had cleared the fold -- the whole gesture happened four
+           hundred pixels below the bottom of the screen. The carousel is not
+           inside .gallery__viewport (the viewport is inside IT), and .gallery
+           is overflow-x: clip rather than hidden, so a view() timeline on the
+           carousel resolves against the page. */
         .gallery {
-          animation-name: gal-darken, gal-raise;
-          animation-timing-function: linear, cubic-bezier(0.22, 0.61, 0.36, 1);
-          animation-fill-mode: both, both;
-          animation-timeline: view(), view();
-          animation-range: entry 0% entry 88%, entry 12% entry 84%;
+          animation: gal-darken linear both;
+          animation-timeline: view();
+          animation-range: entry 0% entry 88%;
+        }
+
+        .gallery__carousel {
+          animation: gal-iris cubic-bezier(0.33, 0, 0.2, 1) both;
+          animation-timeline: view();
+          animation-range: cover 0% cover 100%;
         }
 
         @keyframes gal-darken {
@@ -5099,9 +5115,20 @@
           to { --gal-dark: #04070a; }
         }
 
-        @keyframes gal-raise {
-          from { --gal-tilt: 11deg; --gal-lift: 44px; --gal-lamp: 0.34; }
-          to { --gal-tilt: 0deg; --gal-lift: 0px; --gal-lamp: 1; }
+        /* Exposure travels with the aperture, because that is what exposure is:
+           the lamp comes up as the blades open and goes down as they shut. The
+           hold between 28% and 76% is the whole time the gallery is actually
+           yours to look at. */
+        /* It stays shut while the frame rises into view and only opens once the
+           frame is actually on the screen -- opening it over the first quarter
+           of the cover range meant the blades had finished while the frame was
+           still half below the fold, so nobody ever saw them move. */
+        @keyframes gal-iris {
+          0% { --gal-iris: 6%; --gal-lamp: 0.2; }
+          24% { --gal-iris: 8%; --gal-lamp: 0.24; }
+          50% { --gal-iris: 84%; --gal-lamp: 1; }
+          80% { --gal-iris: 84%; --gal-lamp: 1; }
+          100% { --gal-iris: 10%; --gal-lamp: 0.24; }
         }
       }
     }
