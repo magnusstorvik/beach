@@ -61,7 +61,11 @@
 
   <link rel='icon' type='image/png' sizes='64x64' href='assets/images/favicon.png'>
   <link rel='apple-touch-icon' sizes='180x180' href='assets/images/apple-touch-icon.png'>
-  <link rel='preload' as='image' href='assets/images/hero.jpg' fetchpriority='high'>
+  <link rel='preload' as='image' href='assets/images/hero-640.jpg' media='(max-width: 480px) and (max-resolution: 1.5dppx)' fetchpriority='high'>
+  <link rel='preload' as='image' href='assets/images/hero-1024.jpg' media='(max-width: 480px) and (min-resolution: 1.5dppx)' fetchpriority='high'>
+  <link rel='preload' as='image' href='assets/images/hero-1440.jpg' media='(min-width: 481px) and (max-width: 768px)' fetchpriority='high'>
+  <link rel='preload' as='image' href='assets/images/hero-1920.jpg' media='(min-width: 769px) and (max-width: 1280px)' fetchpriority='high'>
+  <link rel='preload' as='image' href='assets/images/hero.jpg' media='(min-width: 1281px)' fetchpriority='high'>
 
   <link rel='preload' href='assets/fonts/spectral-400.woff2' as='font' type='font/woff2' crossorigin>
 
@@ -399,7 +403,7 @@
     .hero__bg {
       position: absolute;
       inset: 0;
-      background-image: url('assets/images/hero.jpg');
+      background-image: var(--hero-src, url('assets/images/hero.jpg'));
       background-size: cover;
       background-position: 52% 58%;
       transform: scale(1.015);
@@ -2695,7 +2699,7 @@
           rgba(251,251,250,0.16) 97%,
           rgba(251,251,250,0.5) 100%
         ),
-        url('assets/images/aerial.jpg');
+        var(--aerial-src, url('assets/images/aerial.jpg'));
       background-size: cover;
       background-position: center 70%;
       filter: none;
@@ -4958,6 +4962,51 @@
       }
     }
 
+    /* ==================================================================
+       2026-10-08. Responsive photographs.
+       ================================================================== */
+
+    /* The two first-paint photographs are CSS backgrounds, so they cannot carry
+       a srcset. The file is a custom property instead and the tiers are plain
+       media queries: image-set() would be tidier but it is one declaration, so
+       a browser that does not understand it drops the background entirely and
+       the hero is a flat colour. The var() fallback is the full-size file for
+       the same reason. The phone tier assumes a 2x screen -- 1024 across a
+       381px box -- with a separate rule for the 1x ones, because serving 2400px
+       of hero to a phone was 547KB of a 1,080KB first paint. */
+    :root {
+      --hero-src: url('assets/images/hero-1024.jpg');
+      --aerial-src: url('assets/images/aerial-1024.jpg');
+    }
+
+    @media (max-width: 480px) and (max-resolution: 1.5dppx) {
+      :root {
+        --hero-src: url('assets/images/hero-640.jpg');
+        --aerial-src: url('assets/images/aerial-640.jpg');
+      }
+    }
+
+    @media (min-width: 481px) {
+      :root {
+        --hero-src: url('assets/images/hero-1440.jpg');
+        --aerial-src: url('assets/images/aerial-1440.jpg');
+      }
+    }
+
+    @media (min-width: 769px) {
+      :root {
+        --hero-src: url('assets/images/hero-1920.jpg');
+        --aerial-src: url('assets/images/aerial-1920.jpg');
+      }
+    }
+
+    @media (min-width: 1281px) {
+      :root {
+        --hero-src: url('assets/images/hero.jpg');
+        --aerial-src: url('assets/images/aerial.jpg');
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -5065,7 +5114,7 @@
             <div class='unit__media mini-carousel'>
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
-                  <figure class='mini-carousel__slide' data-photo-slot='stay-sjohus-01.jpg'><img src='assets/images/carousels/stay-sjohus-01.jpg' alt='The living and dining room inside a Sjøhus unit' data-i18n-alt='altSjohus' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide' data-photo-slot='stay-sjohus-01.jpg'><img src='assets/images/carousels/stay-sjohus-01.jpg' alt='The living and dining room inside a Sjøhus unit' data-i18n-alt='altSjohus' loading='lazy' srcset='assets/images/carousels/stay-sjohus-01-480.jpg 480w, assets/images/carousels/stay-sjohus-01-800.jpg 800w, assets/images/carousels/stay-sjohus-01-1200.jpg 1200w, assets/images/carousels/stay-sjohus-01.jpg 1600w' sizes='(min-width: 1400px) 716px, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
@@ -5084,7 +5133,7 @@
             <div class='unit__media mini-carousel'>
               <div class='mini-carousel__viewport'>
                 <div class='mini-carousel__track'>
-                  <figure class='mini-carousel__slide' data-photo-slot='stay-leilighet-01.jpg'><img src='assets/images/carousels/stay-leilighet-01.jpg' alt='A Leiligheter apartment seen from its deck, with a table and chairs' data-i18n-alt='altLeiligheter' loading='lazy'></figure>
+                  <figure class='mini-carousel__slide' data-photo-slot='stay-leilighet-01.jpg'><img src='assets/images/carousels/stay-leilighet-01.jpg' alt='A Leiligheter apartment seen from its deck, with a table and chairs' data-i18n-alt='altLeiligheter' loading='lazy' srcset='assets/images/carousels/stay-leilighet-01-480.jpg 480w, assets/images/carousels/stay-leilighet-01-800.jpg 800w, assets/images/carousels/stay-leilighet-01-1200.jpg 1200w, assets/images/carousels/stay-leilighet-01.jpg 1600w' sizes='(min-width: 1400px) 716px, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
                 </div>
               </div>
               <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
@@ -5135,7 +5184,7 @@
         <article class='site__feature reveal' id='restaurant'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-  <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-01.jpg'><img src='assets/images/carousels/restaurant-klippfiskbrygga-01.jpg' alt='Klippfiskbrygga, the white wharf building standing out over the water' data-i18n-alt='altKlippfisk' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='restaurant-klippfiskbrygga-01.jpg'><img src='assets/images/carousels/restaurant-klippfiskbrygga-01.jpg' alt='Klippfiskbrygga, the white wharf building standing out over the water' data-i18n-alt='altKlippfisk' loading='lazy' srcset='assets/images/carousels/restaurant-klippfiskbrygga-01-480.jpg 480w, assets/images/carousels/restaurant-klippfiskbrygga-01-800.jpg 800w, assets/images/carousels/restaurant-klippfiskbrygga-01-1200.jpg 1200w, assets/images/carousels/restaurant-klippfiskbrygga-01.jpg 1600w' sizes='(min-width: 1400px) 789px, (min-width: 961px) 62vw, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -5150,9 +5199,9 @@
         <article class='site__feature site__feature--reverse reveal' id='sauna'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-  <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-01.jpg'><img src='assets/images/carousels/sauna-strand-01.jpg' alt='The sandy beach and its shallow, clear water' data-i18n-alt='altSaunaBeach' loading='lazy'></figure>
-  <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/sauna-strand-02.jpg' alt='Rocks and sand where the beach meets the shoreline' data-i18n-alt='altBeachRocks' loading='lazy'></figure>
-  <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/sauna-strand-03.jpg' alt='Inside the sauna, with rolled towels and a robe' data-i18n-alt='altSaunaInside' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-01.jpg'><img src='assets/images/carousels/sauna-strand-01.jpg' alt='The sandy beach and its shallow, clear water' data-i18n-alt='altSaunaBeach' loading='lazy' srcset='assets/images/carousels/sauna-strand-01-480.jpg 480w, assets/images/carousels/sauna-strand-01-800.jpg 800w, assets/images/carousels/sauna-strand-01-1200.jpg 1200w, assets/images/carousels/sauna-strand-01.jpg 1600w' sizes='(min-width: 1400px) 716px, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/sauna-strand-02.jpg' alt='Rocks and sand where the beach meets the shoreline' data-i18n-alt='altBeachRocks' loading='lazy' data-srcset='assets/images/carousels/sauna-strand-02-480.jpg 480w, assets/images/carousels/sauna-strand-02-800.jpg 800w, assets/images/carousels/sauna-strand-02-1200.jpg 1200w, assets/images/carousels/sauna-strand-02.jpg 1600w' sizes='(min-width: 1400px) 716px, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='sauna-strand-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/sauna-strand-03.jpg' alt='Inside the sauna, with rolled towels and a robe' data-i18n-alt='altSaunaInside' loading='lazy' data-srcset='assets/images/carousels/sauna-strand-03-480.jpg 480w, assets/images/carousels/sauna-strand-03-800.jpg 800w, assets/images/carousels/sauna-strand-03-1200.jpg 1200w, assets/images/carousels/sauna-strand-03.jpg 1600w' sizes='(min-width: 1400px) 716px, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -5167,9 +5216,9 @@
         <article class='site__feature reveal'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-  <figure class='mini-carousel__slide' data-photo-slot='havn-01.jpg'><img src='assets/images/carousels/havn-01.jpg' alt='The harbour, with its boathouses and floating pontoon' data-i18n-alt='altHarbour' loading='lazy'></figure>
-  <figure class='mini-carousel__slide' data-photo-slot='havn-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/havn-02.jpg' alt='The gangway down to the floating pier' data-i18n-alt='altHarbourGangway' loading='lazy'></figure>
-  <figure class='mini-carousel__slide' data-photo-slot='havn-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/havn-03.jpg' alt='Floating pontoons at dusk, with a lifebuoy' data-i18n-alt='altHarbourDetail' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='havn-01.jpg'><img src='assets/images/carousels/havn-01.jpg' alt='The harbour, with its boathouses and floating pontoon' data-i18n-alt='altHarbour' loading='lazy' srcset='assets/images/carousels/havn-01-480.jpg 480w, assets/images/carousels/havn-01-800.jpg 800w, assets/images/carousels/havn-01-1200.jpg 1200w, assets/images/carousels/havn-01.jpg 1600w' sizes='(min-width: 1400px) 716px, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='havn-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/havn-02.jpg' alt='The gangway down to the floating pier' data-i18n-alt='altHarbourGangway' loading='lazy' data-srcset='assets/images/carousels/havn-02-480.jpg 480w, assets/images/carousels/havn-02-800.jpg 800w, assets/images/carousels/havn-02-1200.jpg 1200w, assets/images/carousels/havn-02.jpg 1600w' sizes='(min-width: 1400px) 716px, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='havn-03.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/havn-03.jpg' alt='Floating pontoons at dusk, with a lifebuoy' data-i18n-alt='altHarbourDetail' loading='lazy' data-srcset='assets/images/carousels/havn-03-480.jpg 480w, assets/images/carousels/havn-03-800.jpg 800w, assets/images/carousels/havn-03-1200.jpg 1200w, assets/images/carousels/havn-03.jpg 1600w' sizes='(min-width: 1400px) 716px, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -5184,8 +5233,8 @@
         <article class='site__feature site__feature--reverse reveal'>
           <div class='site__feature-media mini-carousel'>
             <div class='mini-carousel__viewport'><div class='mini-carousel__track'>
-  <figure class='mini-carousel__slide' data-photo-slot='amfi-01.jpg'><img src='assets/images/carousels/amfi-01.jpg' alt='The amphitheatre’s stepped seating, with autumn trees above' data-i18n-alt='altAmfi' loading='lazy'></figure>
-  <figure class='mini-carousel__slide' data-photo-slot='amfi-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/amfi-02.jpg' alt='The curve of the amphitheatre’s concrete tiers' data-i18n-alt='altAmfiSeating' loading='lazy'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='amfi-01.jpg'><img src='assets/images/carousels/amfi-01.jpg' alt='The amphitheatre’s stepped seating, with autumn trees above' data-i18n-alt='altAmfi' loading='lazy' srcset='assets/images/carousels/amfi-01-480.jpg 480w, assets/images/carousels/amfi-01-800.jpg 800w, assets/images/carousels/amfi-01-1200.jpg 1200w, assets/images/carousels/amfi-01.jpg 1600w' sizes='(min-width: 961px) 100vw, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
+  <figure class='mini-carousel__slide' data-photo-slot='amfi-02.jpg'><img src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' data-src='assets/images/carousels/amfi-02.jpg' alt='The curve of the amphitheatre’s concrete tiers' data-i18n-alt='altAmfiSeating' loading='lazy' data-srcset='assets/images/carousels/amfi-02-480.jpg 480w, assets/images/carousels/amfi-02-800.jpg 800w, assets/images/carousels/amfi-02-1200.jpg 1200w, assets/images/carousels/amfi-02.jpg 1600w' sizes='(min-width: 961px) 100vw, (min-width: 761px) 56vw, calc(100vw - 34px)'></figure>
             </div></div>
             <button class='mini-carousel__btn mini-carousel__btn--prev' aria-label='Previous photo' data-i18n-aria='ariaPrevPhoto'>&larr;</button>
             <button class='mini-carousel__btn mini-carousel__btn--next' aria-label='Next photo' data-i18n-aria='ariaNextPhoto'>&rarr;</button>
@@ -5271,19 +5320,19 @@
 
           <div class='gallery__viewport' id='galleryViewport'>
             <div class='gallery__track' id='galleryTrack'>
-              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/carousels/galleri-01.jpg' alt='Benches and standing stones on the shore' data-i18n-alt='altSurroundings' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-02.jpg'><img src='assets/images/amphitheatre.jpg' alt='The wooden edge of the amphitheatre seating' data-i18n-alt='altG02' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-03.jpg'><img src='assets/images/gallery1.jpg' alt='Shallow water running over the rock slabs by the shore' data-i18n-alt='altG03' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-04.jpg'><img src='assets/images/gallery2.jpg' alt='Stones under clear water, with a boathouse behind' data-i18n-alt='altG04' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-05.jpg'><img src='assets/images/gallery3.jpg' alt='Sunlight on the timbers of the old jetty' data-i18n-alt='altG05' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-06.jpg'><img src='assets/images/gallery4.jpg' alt='A mooring chain across a boulder on the shore' data-i18n-alt='altG06' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery5.jpg' alt='Weathered timber posts against the sea and sky' data-i18n-alt='altG07' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery6.jpg' alt='A lifebuoy and driftwood on a yellow boathouse wall' data-i18n-alt='altG08' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-09.jpg'><img src='assets/images/gallery7.jpg' alt='A lifebuoy marked Vikaneset beside a window' data-i18n-alt='altG09' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-10.jpg'><img src='assets/images/gallery8.jpg' alt='A model sailing ship and candles in a window' data-i18n-alt='altG10' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='Underneath a boathouse, its posts standing on the rock' data-i18n-alt='altG11' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga seen past the rocks at the water’s edge' data-i18n-alt='altG12' loading='lazy'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-13.jpg'><img src='assets/images/sauna.jpg' alt='Stones and seaweed where the water runs out over the shore' data-i18n-alt='altG13' loading='lazy'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/carousels/galleri-01.jpg' alt='Benches and standing stones on the shore' data-i18n-alt='altSurroundings' loading='lazy' srcset='assets/images/carousels/galleri-01-480.jpg 480w, assets/images/carousels/galleri-01-800.jpg 800w, assets/images/carousels/galleri-01-1200.jpg 1200w, assets/images/carousels/galleri-01.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-02.jpg'><img src='assets/images/amphitheatre.jpg' alt='The wooden edge of the amphitheatre seating' data-i18n-alt='altG02' loading='lazy' srcset='assets/images/amphitheatre-480.jpg 480w, assets/images/amphitheatre-800.jpg 800w, assets/images/amphitheatre-1200.jpg 1200w, assets/images/amphitheatre.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-03.jpg'><img src='assets/images/gallery1.jpg' alt='Shallow water running over the rock slabs by the shore' data-i18n-alt='altG03' loading='lazy' srcset='assets/images/gallery1-480.jpg 480w, assets/images/gallery1-800.jpg 800w, assets/images/gallery1-1200.jpg 1200w, assets/images/gallery1.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-04.jpg'><img src='assets/images/gallery2.jpg' alt='Stones under clear water, with a boathouse behind' data-i18n-alt='altG04' loading='lazy' srcset='assets/images/gallery2-480.jpg 480w, assets/images/gallery2-800.jpg 800w, assets/images/gallery2-1200.jpg 1200w, assets/images/gallery2.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-05.jpg'><img src='assets/images/gallery3.jpg' alt='Sunlight on the timbers of the old jetty' data-i18n-alt='altG05' loading='lazy' srcset='assets/images/gallery3-480.jpg 480w, assets/images/gallery3-800.jpg 800w, assets/images/gallery3-1200.jpg 1200w, assets/images/gallery3.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-06.jpg'><img src='assets/images/gallery4.jpg' alt='A mooring chain across a boulder on the shore' data-i18n-alt='altG06' loading='lazy' srcset='assets/images/gallery4-480.jpg 480w, assets/images/gallery4-800.jpg 800w, assets/images/gallery4-1200.jpg 1200w, assets/images/gallery4.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery5.jpg' alt='Weathered timber posts against the sea and sky' data-i18n-alt='altG07' loading='lazy' srcset='assets/images/gallery5-480.jpg 480w, assets/images/gallery5-800.jpg 800w, assets/images/gallery5-1200.jpg 1200w, assets/images/gallery5.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery6.jpg' alt='A lifebuoy and driftwood on a yellow boathouse wall' data-i18n-alt='altG08' loading='lazy' srcset='assets/images/gallery6-480.jpg 480w, assets/images/gallery6-800.jpg 800w, assets/images/gallery6-1200.jpg 1200w, assets/images/gallery6.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-09.jpg'><img src='assets/images/gallery7.jpg' alt='A lifebuoy marked Vikaneset beside a window' data-i18n-alt='altG09' loading='lazy' srcset='assets/images/gallery7-480.jpg 480w, assets/images/gallery7-800.jpg 800w, assets/images/gallery7-1200.jpg 1200w, assets/images/gallery7.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-10.jpg'><img src='assets/images/gallery8.jpg' alt='A model sailing ship and candles in a window' data-i18n-alt='altG10' loading='lazy' srcset='assets/images/gallery8-480.jpg 480w, assets/images/gallery8-800.jpg 800w, assets/images/gallery8-1200.jpg 1200w, assets/images/gallery8.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='Underneath a boathouse, its posts standing on the rock' data-i18n-alt='altG11' loading='lazy' srcset='assets/images/harbour-480.jpg 480w, assets/images/harbour-800.jpg 800w, assets/images/harbour-1200.jpg 1200w, assets/images/harbour.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga seen past the rocks at the water’s edge' data-i18n-alt='altG12' loading='lazy' srcset='assets/images/klippfiskbrygga-480.jpg 480w, assets/images/klippfiskbrygga-800.jpg 800w, assets/images/klippfiskbrygga-1200.jpg 1200w, assets/images/klippfiskbrygga.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-13.jpg'><img src='assets/images/sauna.jpg' alt='Stones and seaweed where the water runs out over the shore' data-i18n-alt='altG13' loading='lazy' srcset='assets/images/sauna-480.jpg 480w, assets/images/sauna-800.jpg 800w, assets/images/sauna-1200.jpg 1200w, assets/images/sauna.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
             </div>
           </div>
 
@@ -5583,6 +5632,20 @@
       'stay-sjohus-02.jpg': 1
     };
 
+    // Every placed photo is written at these widths as well as its own 1600,
+    // by tools/photos.py. A slot that swaps in a real photograph has to replace
+    // the whole srcset and not just the src: srcset wins over src, so setting
+    // src alone would leave the browser showing the placeholder it replaced.
+    var PHOTO_VARIANTS = [480, 800, 1200];
+
+    function slotSources(filename) {
+      var dir = 'assets/images/carousels/';
+      var stem = dir + filename.replace(/\.jpg$/, '');
+      var parts = PHOTO_VARIANTS.map(function (w) { return stem + '-' + w + '.jpg ' + w + 'w'; });
+      parts.push(dir + filename + ' 1600w');
+      return parts.join(', ');
+    }
+
     // A correctly named file in assets/images/carousels replaces the temporary
     // image in that carousel slot. The slot asks for its replacement first
     // (still lazily) and falls back to the temporary image if the file has gone,
@@ -5600,6 +5663,13 @@
           return image.hasAttribute('data-src') && /^data:/.test(image.getAttribute('src') || '');
         };
         var replacement = 'assets/images/carousels/' + filename;
+        var replacementSet = slotSources(filename);
+        var fallbackSet = image.getAttribute('srcset') || image.getAttribute('data-srcset') || '';
+
+        var useReplacement = function () {
+          image.srcset = replacementSet;
+          image.src = replacement;
+        };
 
         // Hide the alt text while a missing replacement falls back.
         image.style.color = 'transparent';
@@ -5615,6 +5685,7 @@
           // The fallback is the last attempt. If that fails too, the alt text is
           // everything the visitor gets, so stop hiding it.
           image.addEventListener('error', function () { image.style.color = ''; }, { once: true });
+          if (fallbackSet) image.srcset = fallbackSet; else image.removeAttribute('srcset');
           image.src = fallback;
         });
 
@@ -5622,13 +5693,13 @@
         if (isWaiting()) {
           var carousel = slot.closest('.mini-carousel');
           if (!carousel) {
-            image.src = replacement;
+            useReplacement();
             return;
           }
           var start = function () {
             if (!isWaiting()) return;
             image.loading = 'eager';
-            image.src = replacement;
+            useReplacement();
           };
           ['pointerenter', 'focusin', 'touchstart', 'click'].forEach(function (type) {
             carousel.addEventListener(type, start, { once: true, passive: true });
@@ -5636,7 +5707,7 @@
           return;
         }
 
-        image.src = replacement;
+        useReplacement();
       });
     }());
 
@@ -5791,9 +5862,14 @@
           if (img && img.hasAttribute('data-src') && /^data:/.test(img.getAttribute('src') || '')) {
             var waitingSlot = slides[index].getAttribute('data-photo-slot');
             img.loading = 'eager';
-            img.src = PHOTO_PRESENT[waitingSlot]
-              ? 'assets/images/carousels/' + waitingSlot
-              : img.getAttribute('data-src');
+            var waitingSet = img.getAttribute('data-srcset');
+            if (PHOTO_PRESENT[waitingSlot]) {
+              img.srcset = slotSources(waitingSlot);
+              img.src = 'assets/images/carousels/' + waitingSlot;
+            } else {
+              if (waitingSet) img.srcset = waitingSet;
+              img.src = img.getAttribute('data-src');
+            }
           }
           track.style.transform = 'translateX(-' + (index * 100) + '%)';
           slides.forEach(function (slide, i) {
