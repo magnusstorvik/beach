@@ -5278,11 +5278,21 @@
        display: none, so dropping the areas lets the title and the lead
        auto-place into the same row, which is the row they belong in. */
     .accommodation__header,
-    .site__header,
     .gallery__header,
     .practical__header,
     .contact__header {
       grid-template-areas: none !important;
+      align-items: baseline !important;
+    }
+
+    /* .site__header is the one head whose children are placed by name --
+       grid-area: eyebrow / title / intro. Clearing the areas there does not
+       auto-place them, it leaves three dangling line names that resolve to
+       nothing, so the grid invents implicit columns and the title and the lead
+       are laid one on top of the other. It keeps its areas; the lead just moves
+       into the title's row. */
+    .site__header {
+      grid-template-areas: 'eyebrow .' 'title intro' !important;
       align-items: baseline !important;
     }
 
