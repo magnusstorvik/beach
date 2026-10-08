@@ -181,7 +181,7 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(16px);
+      transform: translateY(40px);
     }
 
     .reveal.is-visible {
@@ -3718,6 +3718,7 @@
     @property --sk-sweep { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
     @property --sk-span { syntax: '<number>'; inherits: true; initial-value: 1; }
     @property --sk-fish { syntax: '<number>'; inherits: true; initial-value: 0; }
+    @property --sk-halo { syntax: '<color>'; inherits: true; initial-value: rgba(0, 0, 0, 0); }
 
     .skarv-flight { display: none; }
 
@@ -3733,15 +3734,16 @@
           color: #2f5d7a;
           opacity: 0;
           pointer-events: none;
-          animation-name: sk-reveal, sk-tint;
-          animation-timing-function: linear, linear;
-          animation-fill-mode: both, both;
-          animation-timeline: scroll(root block), scroll(root block);
+          animation-name: sk-reveal, sk-tint, sk-halo;
+          animation-timing-function: linear, linear, linear;
+          animation-fill-mode: both, both, both;
+          animation-timeline: scroll(root block), scroll(root block), scroll(root block);
         }
 
         .skarv-flight__bird {
           display: block;
           overflow: visible;
+          filter: drop-shadow(0 0 1.5px var(--sk-halo, transparent));
           animation-name: sk-path, sk-flap;
           animation-timing-function: linear, ease-in-out;
           animation-fill-mode: both, both;
@@ -3804,74 +3806,138 @@
 
         /* Out of sight until the hero has gone, under the water for a
            beat, and away again before the footer. */
+        /* Out of sight over the hero, then two dives rather than one. The single
+           dive used to sit at 71% of the scroll -- seven thousand pixels in at
+           1920 -- so most visitors never reached it, and the bird spent the
+           first two thirds of the page as a vertical line that moved 24px
+           sideways in total. It now plunges in Stay at about a third of the way
+           down, carries the fish through Explore, swallows it, and dives again
+           over Practical. */
         @keyframes sk-reveal {
           0% { opacity: 0; }
-          8% { opacity: 0; }
-          13% { opacity: 0.66; }
-          68% { opacity: 0.66; }
-          71% { opacity: 0.3; }
-          73% { opacity: 0.1; }
-          76% { opacity: 0.68; }
-          93% { opacity: 0.68; }
+          5% { opacity: 0; }
+          9% { opacity: 0.68; }
+          28% { opacity: 0.68; }
+          30% { opacity: 0.3; }
+          31.5% { opacity: 0.08; }
+          34% { opacity: 0.7; }
+          71% { opacity: 0.7; }
+          73.5% { opacity: 0.3; }
+          75% { opacity: 0.08; }
+          78% { opacity: 0.7; }
+          95% { opacity: 0.7; }
           100% { opacity: 0; }
         }
 
-        /* Sea blue over the pale sections, pale blue over the dark band. */
+        /* Set from the backdrop actually sampled under the bird at eighteen
+           points along its path, not from which section it is nominally over:
+           the bird's own height means it is often in the section below the one
+           filling the viewport, and over the full-bleed photograph it is over
+           neither. Measured: dark to 17%, light to 57%, dark again through the
+           Amfi photograph and the band under it to 73%, light to the end. */
         @keyframes sk-tint {
-          0% { color: #2f5d7a; }
-          63% { color: #2f5d7a; }
-          66% { color: #9dc0d4; }
+          0% { color: #9dc0d4; }
+          17% { color: #9dc0d4; }
+          20% { color: #2f5d7a; }
+          57% { color: #2f5d7a; }
+          61% { color: #9dc0d4; }
           72% { color: #9dc0d4; }
           75% { color: #2f5d7a; }
           100% { color: #2f5d7a; }
         }
 
-        /* The sideways drift stays inside the gutter: at 1400px there are
-           only a few pixels between the bird and the text measure. */
+        /* Over a photograph the bird is over sky and dark timber at the same
+           time, and measured there neither tint clears 2:1. A halo in the
+           opposite polarity to the tint gives it an edge whatever it is over.
+           It costs one small filtered element, and scroll still holds 16.7ms. */
+        @keyframes sk-halo {
+          0% { --sk-halo: rgba(6, 22, 31, 0.75); }
+          17% { --sk-halo: rgba(6, 22, 31, 0.75); }
+          20% { --sk-halo: rgba(255, 255, 255, 0.8); }
+          57% { --sk-halo: rgba(255, 255, 255, 0.8); }
+          61% { --sk-halo: rgba(6, 22, 31, 0.75); }
+          72% { --sk-halo: rgba(6, 22, 31, 0.75); }
+          75% { --sk-halo: rgba(255, 255, 255, 0.8); }
+          100% { --sk-halo: rgba(255, 255, 255, 0.8); }
+        }
+
+        /* Every X is a multiple of --sk-sway, so the path is as wide as the
+           gutter allows and never wider. */
         @keyframes sk-path {
-          0% { translate: 46px 4vh; }
-          13% { translate: 14px 10vh; }
-          30% { translate: -1px 22vh; }
-          46% { translate: 8px 34vh; }
-          58% { translate: -3px 47vh; }
-          66% { translate: 2px 58vh; }
-          71% { translate: 10px 80vh; }
-          73% { translate: 14px 90vh; }
-          76% { translate: 8px 72vh; }
-          82% { translate: -2px 44vh; }
-          90% { translate: 4px 28vh; }
-          100% { translate: 44px 12vh; }
+          0% { translate: calc(var(--sk-sway, 4px) * 1) 2vh; }
+          6% { translate: calc(var(--sk-sway, 4px) * 0.7) 9vh; }
+          12% { translate: calc(var(--sk-sway, 4px) * 0.1) 21vh; }
+          18% { translate: calc(var(--sk-sway, 4px) * -0.85) 31vh; }
+          23% { translate: calc(var(--sk-sway, 4px) * -0.3) 41vh; }
+          26% { translate: calc(var(--sk-sway, 4px) * 0.45) 53vh; }
+          29% { translate: calc(var(--sk-sway, 4px) * 0.6) 79vh; }
+          31% { translate: calc(var(--sk-sway, 4px) * 0.65) 91vh; }
+          34% { translate: calc(var(--sk-sway, 4px) * 0.3) 61vh; }
+          38% { translate: calc(var(--sk-sway, 4px) * -0.6) 39vh; }
+          44% { translate: calc(var(--sk-sway, 4px) * -0.95) 29vh; }
+          50% { translate: calc(var(--sk-sway, 4px) * -0.2) 43vh; }
+          56% { translate: calc(var(--sk-sway, 4px) * 0.85) 33vh; }
+          62% { translate: calc(var(--sk-sway, 4px) * 0.2) 49vh; }
+          67% { translate: calc(var(--sk-sway, 4px) * -0.55) 40vh; }
+          70% { translate: calc(var(--sk-sway, 4px) * 0.2) 59vh; }
+          73% { translate: calc(var(--sk-sway, 4px) * 0.5) 83vh; }
+          75% { translate: calc(var(--sk-sway, 4px) * 0.55) 92vh; }
+          78% { translate: calc(var(--sk-sway, 4px) * 0.2) 66vh; }
+          84% { translate: calc(var(--sk-sway, 4px) * -0.75) 40vh; }
+          90% { translate: calc(var(--sk-sway, 4px) * -0.2) 26vh; }
+          96% { translate: calc(var(--sk-sway, 4px) * 0.6) 14vh; }
+          100% { translate: calc(var(--sk-sway, 4px) * 1) 5vh; }
         }
 
         @keyframes sk-pitch {
-          0% { rotate: 4deg; }
-          30% { rotate: 4deg; }
-          46% { rotate: -3deg; }
-          58% { rotate: 5deg; }
-          66% { rotate: 28deg; }
-          71% { rotate: 74deg; }
-          73% { rotate: 78deg; }
-          76% { rotate: -46deg; }
-          82% { rotate: -22deg; }
-          90% { rotate: 2deg; }
+          0% { rotate: 6deg; }
+          12% { rotate: 4deg; }
+          18% { rotate: -9deg; }
+          23% { rotate: 2deg; }
+          26% { rotate: 26deg; }
+          29% { rotate: 72deg; }
+          31% { rotate: 80deg; }
+          34% { rotate: -42deg; }
+          38% { rotate: -18deg; }
+          44% { rotate: 0deg; }
+          50% { rotate: 5deg; }
+          56% { rotate: -7deg; }
+          62% { rotate: 3deg; }
+          67% { rotate: -5deg; }
+          70% { rotate: 26deg; }
+          73% { rotate: 74deg; }
+          75% { rotate: 80deg; }
+          78% { rotate: -44deg; }
+          84% { rotate: -16deg; }
+          90% { rotate: 0deg; }
           100% { rotate: 2deg; }
         }
 
-        /* Wing amplitude, sweep and span: beating, gliding, folded for the
-           plunge, hauling hard on the way back up with the catch. */
+        /* Wing amplitude, sweep and span: beating, gliding, folded for each
+           plunge, hauling hard on the way back up with the catch. The fish is
+           carried from the first dive through Explore and swallowed at 53%, so
+           the second dive has something to be for. */
         @keyframes sk-shape {
           0% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
-          20% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
-          34% { --sk-amp: 0.3; --sk-sweep: -6deg; --sk-span: 1.05; --sk-fish: 0; }
-          46% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
-          58% { --sk-amp: 0.35; --sk-sweep: -8deg; --sk-span: 1.06; --sk-fish: 0; }
-          66% { --sk-amp: 0.9; --sk-sweep: 6deg; --sk-span: 0.92; --sk-fish: 0; }
-          70% { --sk-amp: 0.15; --sk-sweep: 44deg; --sk-span: 0.62; --sk-fish: 0; }
-          73% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 0; }
-          74% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 1; }
-          78% { --sk-amp: 1.25; --sk-sweep: -6deg; --sk-span: 1.08; --sk-fish: 1; }
-          86% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 1; }
-          92% { --sk-amp: 0.7; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
+          12% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
+          20% { --sk-amp: 0.35; --sk-sweep: -7deg; --sk-span: 1.05; --sk-fish: 0; }
+          26% { --sk-amp: 0.9; --sk-sweep: 6deg; --sk-span: 0.92; --sk-fish: 0; }
+          29% { --sk-amp: 0.15; --sk-sweep: 46deg; --sk-span: 0.6; --sk-fish: 0; }
+          31% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 0; }
+          32% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 1; }
+          35% { --sk-amp: 1.3; --sk-sweep: -6deg; --sk-span: 1.08; --sk-fish: 1; }
+          44% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 1; }
+          50% { --sk-amp: 0.9; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 1; }
+          53% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
+          58% { --sk-amp: 0.4; --sk-sweep: -8deg; --sk-span: 1.06; --sk-fish: 0; }
+          66% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
+          70% { --sk-amp: 0.9; --sk-sweep: 6deg; --sk-span: 0.92; --sk-fish: 0; }
+          73% { --sk-amp: 0.15; --sk-sweep: 46deg; --sk-span: 0.6; --sk-fish: 0; }
+          75% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 0; }
+          76% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 1; }
+          79% { --sk-amp: 1.3; --sk-sweep: -6deg; --sk-span: 1.08; --sk-fish: 1; }
+          88% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 1; }
+          94% { --sk-amp: 0.7; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
           100% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
         }
 
@@ -3881,21 +3947,36 @@
           100% { --sk-flap: -1; }
         }
 
+        /* One ring per plunge. The scale has to be put back between them or the
+           second splash opens at the size the first one finished. */
         @keyframes sk-splash {
-          0% { translate: 0 88vh; scale: 0.2; opacity: 0; }
-          70% { translate: 0 88vh; scale: 0.2; opacity: 0; }
-          71.5% { opacity: 0.55; }
-          72% { scale: 0.5; }
-          76% { translate: 0 88vh; scale: 1.5; opacity: 0; }
-          100% { translate: 0 88vh; scale: 1.5; opacity: 0; }
+          0% { translate: 0 90vh; scale: 0.2; opacity: 0; }
+          29% { translate: 0 90vh; scale: 0.2; opacity: 0; }
+          30.5% { opacity: 0.55; }
+          31% { scale: 0.5; }
+          34% { translate: 0 90vh; scale: 1.5; opacity: 0; }
+          34.5% { scale: 0.2; opacity: 0; }
+          73% { translate: 0 90vh; scale: 0.2; opacity: 0; }
+          74.5% { opacity: 0.55; }
+          75% { scale: 0.5; }
+          78% { translate: 0 90vh; scale: 1.5; opacity: 0; }
+          100% { translate: 0 90vh; scale: 1.5; opacity: 0; }
         }
 
         /* The bird needs a gutter it can fly in without crossing the text. The
            wrap caps at 1280px, so below that the gutter is a fixed 48px and the
            bird has to be small; above it the gutter grows and the bird with it.
            Under 1200px there is no room at all and it stays away. */
+        /* --sk-sway is the lateral budget: how far the bird may wander from the
+           centre of its box before it touches the text measure. It is a
+           different number at every breakpoint because the gutter is. Measured
+           at 1200 there are 3px between the box and the viewport edge and about
+           ten to the text ink, so the bird essentially flies a line; at 1920
+           there are 128px to the left of the box and 80 to the right. The path
+           keyframes are written as multiples of it, so one set of keyframes is
+           safe everywhere and bold where there is room. */
         @media (min-width: 1200px) and (max-width: 1399px) {
-          .skarv-flight { display: block; right: 0.2rem; width: 40px; }
+          .skarv-flight { display: block; right: 0.2rem; width: 40px; --sk-sway: 7px; }
           .skarv-flight__bird { width: 40px; height: 23px; }
         }
 
@@ -3904,6 +3985,7 @@
             display: block;
             right: clamp(0.5rem, calc((100vw - 1280px) / 2 - 42px), 5rem);
             width: 84px;
+            --sk-sway: 13px;
           }
           .skarv-flight__bird { width: 84px; height: 48px; }
         }
@@ -3911,8 +3993,12 @@
         /* Above 1600 the gutter is wide enough that an 84px bird reads as
            incidental. The text measure caps at 1280 so the room only grows. */
         @media (min-width: 1600px) {
-          .skarv-flight { width: 112px; }
+          .skarv-flight { width: 112px; --sk-sway: 30px; }
           .skarv-flight__bird { width: 112px; height: 64px; }
+        }
+
+        @media (min-width: 1920px) {
+          .skarv-flight { --sk-sway: 56px; }
         }
 
       }
@@ -4324,14 +4410,25 @@
       animation-range: entry 0% entry 95%;
     }
 
+    /* 1.07 was a seven per cent scale spread over a whole viewport of scroll,
+       which is about a pixel a frame: measurable, invisible. */
     @keyframes media-settle {
-      from { --media-scale: 1.07; }
+      from { --media-scale: 1.2; }
       to { --media-scale: 1; }
     }
 
+    /* The photograph is uncovered from the bottom edge as it settles. The wipe
+       is derived from --media-scale rather than animated separately, so the two
+       gestures cannot drift apart and the row still carries one timeline: at
+       1.2 the clip is 36%, at 1 it is nothing. The side insets belong to the
+       full-bleed row's own opening and are 0 everywhere else -- they share the
+       declaration because an element only gets one clip-path. */
     .unit__media .mini-carousel__slide img,
     .site__feature-media .mini-carousel__slide img {
       scale: var(--media-scale, 1);
+      clip-path: inset(
+        calc((var(--media-scale, 1) - 1) * 180%)
+        var(--amfi-open, 0%) 0 var(--amfi-open, 0%));
     }
   }
 }
@@ -4367,7 +4464,7 @@
 
     @keyframes hero-push {
       from { scale: 1; }
-      to { scale: 1.075; }
+      to { scale: 1.14; }
     }
 
     /* The hero's name and location leave rather than simply vanishing. They are
@@ -4380,7 +4477,7 @@
 
     @keyframes hero-depart {
       from { opacity: 1; translate: 0 0; }
-      to { opacity: 0; translate: 0 -1.4rem; }
+      to { opacity: 0; translate: 0 -3.4rem; }
     }
   }
 }
@@ -4404,7 +4501,7 @@
     }
 
     .gallery__slide img {
-      scale: calc(1 + (var(--media-scale, 1) - 1) * 0.5);
+      scale: calc(1 + (var(--media-scale, 1) - 1) * 0.42);
     }
   }
 }
@@ -4459,8 +4556,8 @@
     }
 
     @keyframes aerial-pan {
-      from { --aerial-pan: 58%; }
-      to { --aerial-pan: 82%; }
+      from { --aerial-pan: 50%; }
+      to { --aerial-pan: 90%; }
     }
   }
 }
@@ -4723,9 +4820,28 @@
       initial-value: 0%;
     }
 
+    /* 26px over a whole row's entry read as nothing arriving. The three parts
+       are staggered off the one driver by remapping it with clamp(), so the
+       heading lands, then the sentence, then the figure -- which is what makes
+       an arrival read as composed rather than as a block sliding up. */
     .site__feature-copy {
       opacity: var(--copy-in, 1);
-      translate: 0 calc((1 - var(--copy-in, 1)) * 26px);
+      translate: 0 calc((1 - var(--copy-in, 1)) * 64px);
+    }
+
+    .site__feature-title {
+      opacity: clamp(0, calc(var(--copy-in, 1) / 0.55), 1);
+      translate: 0 calc((1 - clamp(0, calc(var(--copy-in, 1) / 0.55), 1)) * 22px);
+    }
+
+    .site__feature-body {
+      opacity: clamp(0, calc((var(--copy-in, 1) - 0.18) / 0.55), 1);
+      translate: 0 calc((1 - clamp(0, calc((var(--copy-in, 1) - 0.18) / 0.55), 1)) * 22px);
+    }
+
+    .site__feature-detail {
+      opacity: clamp(0, calc((var(--copy-in, 1) - 0.36) / 0.55), 1);
+      translate: 0 calc((1 - clamp(0, calc((var(--copy-in, 1) - 0.36) / 0.55), 1)) * 22px);
     }
 
     @supports (animation-timeline: view()) {
@@ -4759,7 +4875,7 @@
         }
 
         @keyframes amfi-open {
-          from { --amfi-open: 13%; }
+          from { --amfi-open: 24%; }
           to { --amfi-open: 0%; }
         }
       }
