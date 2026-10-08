@@ -4765,6 +4765,62 @@
       }
     }
 
+    /* ==================================================================
+       2026-10-08. "Reduce motion", not "remove every animation".
+       ================================================================== */
+
+    /* The preference exists for vestibular triggers, and those are movement
+       through space: translation, scale, parallax, a bird flying down the
+       gutter. Opacity is not one. Suppressing the fades as well left the page
+       completely static under the setting -- document.getAnimations() returned
+       literally zero, every section simply already there, nothing to tell you
+       one had arrived. Everything that moves stays off; the arrival fades come
+       back, slower and with no displacement.
+
+       This block is last so it wins over the earlier reduce blocks, which set
+       transition: none on the same elements. */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .hero__inner .hero__geo,
+      .hero__inner .hero__name,
+      .hero__inner .hero__motto {
+        transform: none !important;
+        translate: none !important;
+        scale: none !important;
+        transition: opacity 0.7s ease !important;
+      }
+
+      .reveal,
+      .hero__inner .hero__name,
+      .hero__inner .hero__motto {
+        opacity: 0;
+      }
+
+      .reveal.is-visible,
+      .hero__inner.is-visible .hero__geo,
+      .hero__inner.is-visible .hero__name,
+      .hero__inner.is-visible .hero__motto {
+        opacity: 1;
+      }
+
+      /* These four opt out of the reveal because each has its own settle or
+         pan. Under this setting they have neither, so the reason not to fade
+         them in has gone with it. */
+      .units.reveal,
+      .site__feature.reveal,
+      .gallery__carousel.reveal,
+      .aerial.reveal {
+        opacity: 0;
+      }
+
+      .units.reveal.is-visible,
+      .site__feature.reveal.is-visible,
+      .gallery__carousel.reveal.is-visible,
+      .aerial.reveal.is-visible {
+        opacity: 1;
+      }
+    }
+
   </style>
 </head>
 <body>
