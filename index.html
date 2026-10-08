@@ -69,6 +69,7 @@
     <style>
       .reveal,
       .hero__inner .hero__geo,
+      .hero__inner .hero__motto,
       .hero__inner .hero__name { opacity: 1 !important; transform: none !important; }
       .mini-carousel__btn,
       .gallery__btn,
@@ -4212,7 +4213,16 @@
         width: 100vw !important;
       }
 
-      .site__feature:last-child .site__feature-media { aspect-ratio: 21 / 9 !important; }
+      /* 16:9, anchored low. A 21:9 window through a 4:3 photograph took its
+         middle, and the middle of this photograph is sky and treetops -- the
+         amphitheatre sat below the cut, so the full-bleed close of the section
+         showed everything except its subject. The photograph's own 4:3 shows
+         all of it but stands 1440px tall at 1920, so the first screenful is
+         still sky. 16:9 is one viewport exactly at 1920, and anchoring the
+         window at 72% spends the crop on sky instead of on the amphitheatre. */
+      .site__feature:last-child .site__feature-media { aspect-ratio: 16 / 9 !important; }
+
+      .site__feature:last-child .mini-carousel__slide img { object-position: 50% 84% !important; }
 
       /* The full-bleed row's copy sits on the page's content column, so its
          heading lines up with the section title and with the media of the
@@ -4226,6 +4236,35 @@
            content column at every width rather than on the viewport edge. */
         padding-inline: clamp(1.05rem, 4vw, 3rem) !important;
         padding-top: 1.5rem !important;
+        /* The caption used to finish nine pixels above the photograph. */
+        padding-bottom: clamp(2rem, 3.5vw, 3.25rem) !important;
+        /* The same two-column head every other section uses. On one column the
+           heading took the left third and 1,200px of the row was empty. */
+        display: grid !important;
+        grid-template-columns: minmax(190px, 0.62fr) minmax(0, 1.38fr) !important;
+        column-gap: clamp(2.5rem, 7vw, 6rem) !important;
+        align-items: start !important;
+      }
+
+      .site__feature:last-child .site__feature-title {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        margin: 0 !important;
+      }
+
+      .site__feature:last-child .site__feature-body {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        margin: 0 !important;
+      }
+
+      /* The stat sits under the heading, not under the paragraph: it belongs to
+         the title as a subtitle does, and putting it there is what gives the
+         left column a second line so both columns carry something. */
+      .site__feature:last-child .site__feature-detail {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+        margin: 1.1rem 0 0 !important;
       }
 
       /* A row whose copy is on the left needs no left padding: it is already
@@ -4234,9 +4273,11 @@
       .site__feature--reverse .site__feature-copy { padding-left: 0 !important; }
 
       /* Full bleed is for the photograph, not the sentence: without this the
-         body runs the whole 1280 and lands on one 120-character line. */
-      .site__feature:last-child .site__feature-body,
-      .site__feature:last-child .site__feature-detail { max-width: 46ch !important; }
+         body runs the whole 1280 and lands on one 120-character line. 46ch was
+         over-corrected though -- it is shorter than the 36rem this page uses
+         everywhere else, so the paragraph sat in a third of its own column. */
+      .site__feature:last-child .site__feature-body { max-width: 54ch !important; }
+      .site__feature:last-child .site__feature-detail { max-width: none !important; }
     }
 
     /* The two dark bands get more room than the light sections, so arriving
@@ -4369,36 +4410,19 @@
 }
 
 
-@property --amfi-pan {
-  syntax: '<percentage>';
-  inherits: true;
-  initial-value: 50%;
-}
-
 @supports (animation-timeline: view()) {
   /* Only where the row is actually full-bleed; below 961px it is an ordinary
      4:3 frame with little overflow to pan through. */
   @media (min-width: 961px) and (prefers-reduced-motion: no-preference) {
-    /* The full-bleed row is the boldest frame on the page and it was static.
-       Its photograph is object-fit: cover in a 21:9 letterbox, so there is a
-       lot of image above and below the crop: the frame pans through it as the
-       row passes, which moves nothing on the page and reveals more of the
-       photograph than a fixed crop ever shows. */
-    .site__feature:last-child {
-      animation-name: media-settle, amfi-pan;
-      animation-timeline: view(), view();
-      animation-range: entry 0% entry 95%, cover 0% cover 100%;
-      animation-timing-function: linear, linear;
-      animation-fill-mode: both, both;
-    }
-
-    @keyframes amfi-pan {
-      from { --amfi-pan: 38%; }
-      to { --amfi-pan: 62%; }
-    }
-
+    /* The close of the section opens out: the photograph arrives at the width
+       of the content column and widens to the full viewport as the row comes
+       up. It replaces a pan that only worked because the frame was cropped --
+       with the whole picture showing there is nothing left to pan through, and
+       the widening says the same thing about the band being the biggest
+       thing on the page. The clip is on the image rather than on the frame so
+       the carousel arrows are never clipped with it. */
     .site__feature:last-child .mini-carousel__slide img {
-      object-position: 50% var(--amfi-pan, 50%);
+      clip-path: inset(0 var(--amfi-open, 0%));
     }
   }
 }
@@ -4631,6 +4655,116 @@
         }
       }
     }
+    /* ==================================================================
+       2026-10-08. The house line, and motion where the page was inert.
+       ================================================================== */
+
+    /* "I og ved sjøen" was only the intro kicker, four hundred pixels below
+       the fold, set in the same micro-caps as every other label. It is the
+       one line that says what the place is, so it goes under the wordmark
+       and it is set like a motto rather than like a category. */
+    .hero__motto {
+      order: 1;
+      margin: 0.1rem 0 0.95rem;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.05rem, 1.9vw, 1.4rem);
+      font-weight: 400;
+      letter-spacing: 0.012em;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.93);
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.34);
+    }
+
+    .hero__inner .hero__motto {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.7s var(--ease-move), transform 0.7s var(--ease-move);
+    }
+
+    .hero__inner.is-visible .hero__motto {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.34s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__inner .hero__motto {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* Explore's four rows had a settle on the photograph and nothing on the
+       words, so the half of each row that carries the sentence arrived already
+       finished. The reveal observer is switched off on .site__feature (one
+       arrival gesture per element, and the row is one of the largest things on
+       the page), which left the copy with no arrival at all -- most visible on
+       the full-bleed close, where the copy stands alone above the photograph
+       with nothing else moving near it.
+
+       Both of these are driven from .site__feature and read back down as
+       registered properties, for the reason written out above @property
+       --media-scale: .site__feature is overflow:hidden, so it is a scroll
+       container, and a view() timeline on anything inside it is pinned at 1 and
+       animates nothing at all. Written the obvious way first, both of these did
+       exactly that. The initial values are the finished state, so a browser
+       without @property or without scroll timelines shows the finished row. */
+    @property --copy-in {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 1;
+    }
+
+    @property --amfi-open {
+      syntax: '<percentage>';
+      inherits: true;
+      initial-value: 0%;
+    }
+
+    .site__feature-copy {
+      opacity: var(--copy-in, 1);
+      translate: 0 calc((1 - var(--copy-in, 1)) * 26px);
+    }
+
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .site__feature {
+          animation-name: media-settle, copy-arrive;
+          animation-timing-function: linear, linear;
+          animation-fill-mode: both, both;
+          animation-timeline: view(), view();
+          animation-range: entry 0% entry 95%, entry 10% entry 72%;
+        }
+
+        @keyframes copy-arrive {
+          from { --copy-in: 0; }
+          to { --copy-in: 1; }
+        }
+
+        /* The close of the section opens out: the photograph arrives at the
+           width of the content column and widens to the full viewport as the
+           row comes up. It replaces a pan that only worked because the frame
+           was cropped -- with the whole picture showing there is nothing left
+           to pan through, and the widening says the same thing about the band
+           being the biggest thing on the page. The clip is on the image rather
+           than on the frame so the carousel arrows are never clipped with it. */
+        .site__feature:last-child {
+          animation-name: media-settle, copy-arrive, amfi-open;
+          animation-timing-function: linear, linear, linear;
+          animation-fill-mode: both, both, both;
+          animation-timeline: view(), view(), view();
+          animation-range: entry 0% entry 95%, entry 10% entry 72%, entry 0% entry 68%;
+        }
+
+        @keyframes amfi-open {
+          from { --amfi-open: 13%; }
+          to { --amfi-open: 0%; }
+        }
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -4686,6 +4820,8 @@
           <p class='hero__geo' data-i18n='heroGeo'>Frei · Kristiansund · Norway</p>
 
           <h1 class='hero__name'>Vikaneset</h1>
+
+          <p class='hero__motto' data-i18n='heroMotto'>In and by the sea</p>
 
         </div>
       </div>
@@ -5516,6 +5652,7 @@
 
           heroGeo: 'Frei · Kristiansund · Norway',
 
+          heroMotto: 'In and by the sea',
           introKicker: 'In and by the sea',
           introLeadMain: 'A quiet coastal setting, surrounded by lush nature.',
           introDistanceLabel: 'From Kristiansund',
@@ -5642,6 +5779,7 @@
 
           heroGeo: 'Frei · Kristiansund · Norge',
 
+          heroMotto: 'I og ved sjøen',
           introKicker: 'I og ved sjøen',
           introLeadMain: 'Et rolig kystmiljø, omgitt av frodig natur.',
           introDistanceLabel: 'Fra Kristiansund',
