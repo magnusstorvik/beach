@@ -5,11 +5,11 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <meta name='description' content='Self-catering accommodation by the sea on Frei, 16 km from Kristiansund. Ten units, own harbour, sauna, sandy beach and amphitheatre. Opening spring 2027.'>
   <meta name='theme-color' content='#0e2733'>
-  <title>Vikaneset Retreat · Self-catering by the sea near Kristiansund</title>
+  <title>Vikaneset Seaside Retreat · Self-catering by the sea near Kristiansund</title>
 
   <meta property='og:type' content='website'>
-  <meta property='og:site_name' content='Vikaneset Retreat'>
-  <meta property='og:title' content='Vikaneset Retreat'>
+  <meta property='og:site_name' content='Vikaneset Seaside Retreat'>
+  <meta property='og:title' content='Vikaneset Seaside Retreat'>
   <meta property='og:description' content='Harbour property on Frei island, Kristiansund municipality. Self-catering accommodation by the sea.'>
   <meta property='og:locale' content='en_GB'>
   <meta property='og:locale:alternate' content='nb_NO'>
@@ -30,7 +30,7 @@
   {
     "@context": "https://schema.org",
     "@type": "LodgingBusiness",
-    "name": "Vikaneset Retreat",
+    "name": "Vikaneset Seaside Retreat",
     "alternateName": "Vikaneset",
     "url": "https://magnusstorvik.github.io/beach/",
     "image": "https://magnusstorvik.github.io/beach/assets/images/hero.jpg",
@@ -3817,38 +3817,23 @@
            sideways in total. It now plunges in Stay at about a third of the way
            down, carries the fish through Explore, swallows it, and dives again
            over Practical. */
-        @keyframes sk-reveal {
-          0% { opacity: 0; }
-          5% { opacity: 0; }
-          9% { opacity: 0.68; }
-          28% { opacity: 0.68; }
-          30% { opacity: 0.3; }
-          31.5% { opacity: 0.08; }
-          32.5% { opacity: 0.38; }
-          34% { opacity: 0.7; }
-          71% { opacity: 0.7; }
-          73.5% { opacity: 0.3; }
-          75% { opacity: 0.08; }
-          76% { opacity: 0.38; }
-          77.5% { opacity: 0.7; }
-          95% { opacity: 0.7; }
-          100% { opacity: 0; }
-        }
 
         /* Set from the backdrop actually sampled under the bird at eighteen
            points along its path, not from which section it is nominally over:
-           the bird's own height means it is often in the section below the one
-           filling the viewport, and over the full-bleed photograph it is over
-           neither. Measured: dark to 17%, light to 57%, dark again through the
-           Amfi photograph and the band under it to 73%, light to the end. */
+           the bird's own height means it is usually in the section below the
+           one filling the viewport, and over the full-bleed photograph it is
+           over neither. Re-measured 2026-10-08 after the aerial went full
+           height and the gallery went dark, which moved every boundary: dark to
+           22%, light to 57%, dark again from the Amfi photograph all the way
+           through Practical and the gallery to 87%, light to the end. */
         @keyframes sk-tint {
           0% { color: #9dc0d4; }
-          17% { color: #9dc0d4; }
-          20% { color: #2f5d7a; }
+          22% { color: #9dc0d4; }
+          25% { color: #2f5d7a; }
           57% { color: #2f5d7a; }
-          61% { color: #9dc0d4; }
-          72% { color: #9dc0d4; }
-          75% { color: #2f5d7a; }
+          59% { color: #9dc0d4; }
+          87% { color: #9dc0d4; }
+          89% { color: #2f5d7a; }
           100% { color: #2f5d7a; }
         }
 
@@ -3858,12 +3843,12 @@
            It costs one small filtered element, and scroll still holds 16.7ms. */
         @keyframes sk-halo {
           0% { --sk-halo: rgba(6, 22, 31, 0.75); }
-          17% { --sk-halo: rgba(6, 22, 31, 0.75); }
-          20% { --sk-halo: rgba(255, 255, 255, 0.8); }
+          22% { --sk-halo: rgba(6, 22, 31, 0.75); }
+          25% { --sk-halo: rgba(255, 255, 255, 0.8); }
           57% { --sk-halo: rgba(255, 255, 255, 0.8); }
-          61% { --sk-halo: rgba(6, 22, 31, 0.75); }
-          72% { --sk-halo: rgba(6, 22, 31, 0.75); }
-          75% { --sk-halo: rgba(255, 255, 255, 0.8); }
+          59% { --sk-halo: rgba(6, 22, 31, 0.75); }
+          87% { --sk-halo: rgba(6, 22, 31, 0.75); }
+          89% { --sk-halo: rgba(255, 255, 255, 0.8); }
           100% { --sk-halo: rgba(255, 255, 255, 0.8); }
         }
 
@@ -4519,11 +4504,7 @@
     /* The gallery settles like the carousels do, at a smaller amplitude: its
        photographs are object-fit: contain, so a larger scale would crop them
        against the mat on the way in. */
-    .gallery__carousel {
-      animation: media-settle linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 90%;
-    }
+    /* No settle here: the room's own gal-raise is this element's one arrival. */
 
     .gallery__slide img {
       scale: calc(1 + (var(--media-scale, 1) - 1) * 0.42);
@@ -4550,10 +4531,10 @@
 }
 
 
-@property --aerial-pan {
+@property --aerial-zoom {
   syntax: '<percentage>';
   inherits: true;
-  initial-value: 70%;
+  initial-value: 100%;
 }
 
 @supports (animation-timeline: view()) {
@@ -4573,17 +4554,30 @@
        The position is declared per layer because this element has two: the
        gradient that fades its top and bottom edges must stay put, or the fade
        travels with the photograph and stops meeting the sections either side. */
+    /* The band was a 650px letterbox through a 4:3 photograph, which threw away
+       the sky and, worse, the water -- the property reflected over the fjord is
+       half the picture and the best half. It is the photograph's own ratio now.
+       There is nothing left to pan through, so the movement is a slow push in
+       across the whole time the band is on screen: background-size rather than
+       a transform, because the gradient scrim is a layer of the same
+       background and must not move with it. */
     .aerial {
-      background-position: center, 50% var(--aerial-pan, 70%);
-      animation: aerial-pan linear both;
+      aspect-ratio: 4 / 3;
+      height: auto !important;
+      min-height: 0 !important;
+      background-position: center, center;
+      background-size: cover, var(--aerial-zoom, 100%) var(--aerial-zoom, 100%);
+      animation: aerial-zoom linear both;
       animation-timeline: view();
       animation-range: cover 0% cover 100%;
     }
 
-    @keyframes aerial-pan {
-      from { --aerial-pan: 50%; }
-      to { --aerial-pan: 90%; }
+    @keyframes aerial-zoom {
+      from { --aerial-zoom: 112%; }
+      to { --aerial-zoom: 100%; }
     }
+
+
   }
 }
 
@@ -5007,6 +5001,111 @@
       }
     }
 
+    /* ==================================================================
+       2026-10-08. The gallery as a room of its own.
+       ================================================================== */
+
+    /* It never read as a gallery: a light section with a photograph on it,
+       directly under the dark band, so the two fought. It is now the same navy
+       the band above ends on -- they join into one dark stretch -- and it
+       deepens towards black as you come into it, while the frame opens
+       sideways like a screen. The lit mat stays at the old navy, so by the end
+       it is lighter than the wall around it and reads as the screen rather
+       than as a panel. */
+    @property --gal-dark {
+      syntax: '<color>';
+      inherits: true;
+      initial-value: #0e2733;
+    }
+
+    @property --gal-tilt {
+      syntax: '<angle>';
+      inherits: true;
+      initial-value: 0deg;
+    }
+
+    @property --gal-lift {
+      syntax: '<length>';
+      inherits: true;
+      initial-value: 0px;
+    }
+
+    @property --gal-lamp {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 1;
+    }
+
+    .gallery {
+      background-image: none !important;
+      background-color: var(--gal-dark, #0e2733) !important;
+      color: #fbfbfa;
+    }
+
+    .gallery .section-title { color: #fff; }
+    .gallery .section-eyebrow { color: var(--blue-bright); }
+    .gallery .section-intro { color: rgba(238, 245, 247, 0.84); }
+
+    /* The mat tracks the wall rather than holding the old navy, so the room and
+       the surround darken together and the photograph is the only lit thing in
+       it. Held at the old navy it read as a grey letterbox bar above and below
+       every landscape photograph once the section went black. */
+    .gallery__viewport {
+      background: var(--gal-dark, #0e2733) !important;
+    }
+
+    /* The screen is tilted away and unlit, and comes up to face you as the lamp
+       warms. A first attempt opened it sideways with a clip-path, which is the
+       gesture the full-bleed Amfi row already uses -- the same trick twice is
+       not a second idea. This one is the only perspective on the page, which is
+       what makes the gallery read as a room you have walked into rather than
+       another band of the same page. */
+    .gallery__carousel {
+      transform: perspective(1500px) rotateX(var(--gal-tilt, 0deg)) translateY(var(--gal-lift, 0px));
+      transform-origin: 50% 100%;
+    }
+
+    /* The transition on filter set further up lagged this by 0.45s, which on a
+       scroll-driven value reads as the lamp trailing the scroll rather than
+       answering it. Nothing transitions these images any more; everything that
+       moves them is driven by position. */
+    .gallery__slide img {
+      filter: brightness(var(--gal-lamp, 1)) contrast(calc(0.82 + 0.18 * var(--gal-lamp, 1)));
+      transition: none;
+    }
+
+    /* The blurred copy of the photograph that fills the frame around a portrait
+       one was tuned against a light section. Against a near-black room it read
+       as a grey bar above and below every landscape photograph, so it is dimmer
+       and it warms with the lamp: light spilling off the screen rather than a
+       panel behind it. */
+    .gallery__slide::before {
+      filter: blur(70px) saturate(0.7) brightness(0.3) !important;
+      opacity: calc(0.42 * var(--gal-lamp, 1)) !important;
+    }
+
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .gallery {
+          animation-name: gal-darken, gal-raise;
+          animation-timing-function: linear, cubic-bezier(0.22, 0.61, 0.36, 1);
+          animation-fill-mode: both, both;
+          animation-timeline: view(), view();
+          animation-range: entry 0% entry 88%, entry 12% entry 84%;
+        }
+
+        @keyframes gal-darken {
+          from { --gal-dark: #0e2733; }
+          to { --gal-dark: #04070a; }
+        }
+
+        @keyframes gal-raise {
+          from { --gal-tilt: 11deg; --gal-lift: 44px; --gal-lamp: 0.34; }
+          to { --gal-tilt: 0deg; --gal-lift: 0px; --gal-lamp: 1; }
+        }
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -5016,7 +5115,7 @@
       <img class='nav__logo' src='assets/images/logo-mark-light.png' alt='' width='157' height='114'>
       <div class='nav__text'>
         <span class='nav__name'>Vikaneset</span>
-        <span class='nav__sub'>Retreat</span>
+        <span class='nav__sub'>Seaside Retreat</span>
       </div>
     </a>
 
@@ -5458,7 +5557,7 @@
       <img class='footer__logo' src='assets/images/logo-mark-light.png' alt='' width='157' height='114'>
       <div class='footer__text'>
         <span class='footer__name'>Vikaneset</span>
-        <span class='footer__sub'>Retreat</span>
+        <span class='footer__sub'>Seaside Retreat</span>
       </div>
     </div>
 
@@ -6036,7 +6135,7 @@
           ariaForm: 'Enquiry form',
           newTabNote: 'Opens in a new tab',
           formFallback: 'If your email app did not open, write to anette@vikaneset.com.',
-          pageTitle: 'Vikaneset Retreat · Self-catering by the sea near Kristiansund',
+          pageTitle: 'Vikaneset Seaside Retreat · Self-catering by the sea near Kristiansund',
           metaDescription: 'Self-catering accommodation by the sea on Frei, 16 km from Kristiansund. Ten units, own harbour, sauna, sandy beach and amphitheatre. Opening spring 2027.',
 
         },
@@ -6163,7 +6262,7 @@
           ariaForm: 'Kontaktskjema',
           newTabNote: 'Åpnes i ny fane',
           formFallback: 'Åpnet ikke e-postprogrammet? Skriv til anette@vikaneset.com.',
-          pageTitle: 'Vikaneset Retreat · Selvhushold ved sjøen på Frei, Kristiansund',
+          pageTitle: 'Vikaneset Seaside Retreat · Selvhushold ved sjøen på Frei, Kristiansund',
           metaDescription: 'Selvhusholdsenheter ved sjøen på Frei, 16 km fra Kristiansund. Ti enheter, egen havn, sauna, sandstrand og amfi. Åpner våren 2027.',
 
         }
