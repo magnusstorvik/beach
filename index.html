@@ -5044,20 +5044,67 @@
        the surround darken together and the photograph is the only lit thing in
        it. Held at the old navy it read as a grey letterbox bar above and below
        every landscape photograph once the section went black. */
-    /* An eight-bladed aperture. Every vertex is a linear function of one
-       radius -- calc(50% +/- r * cos) and calc(50% +/- r * sin) for the eight
-       angles of a regular octagon -- so the whole iris opens and closes off a
-       single registered property and interpolates exactly. A circle() would
-       have been simpler and read as a hole rather than as a lens.
+    /* There is no frame any more. The box was a square .gallery__viewport with
+       the photograph stretched across it at object-fit: contain, which is the
+       pair of rules that made the mat: every landscape photograph got a band
+       above and below it and every portrait one a panel either side, and no
+       colour fixes that, because the empty space is the problem. The photograph
+       sizes itself now -- a height band, width auto -- so it is exactly its own
+       shape and there is nothing around it but the room.
 
-       The radius has to reach 77% for the octagon's flat edges to clear the
-       corners of a square frame (its inradius is cos(22.5deg) of its
-       circumradius), which is why it opens to 84 and not to 72.
+       The viewport keeps overflow: hidden, because that is what hides the other
+       twelve slides. It just has no size and no colour of its own any more.
 
-       The default is 100%, wide open, so a browser with no @property and no
-       scroll timelines gets an unclipped frame rather than a closed shutter. */
+       The aperture moves onto the photograph with it. Eight vertices, each a
+       linear function of one radius: calc(50% +/- r * cos) and
+       calc(50% +/- r * sin) for the eight angles of a regular octagon, so the
+       whole iris runs off one registered property and interpolates exactly. It
+       has to reach 77% to clear the corners -- an octagon's inradius is
+       cos(22.5deg) of its circumradius -- so it opens to 84. The initial value
+       is 100%, wide open, so a browser with neither @property nor scroll
+       timelines gets the photograph unclipped rather than a shut shutter. */
+    .gallery__carousel {
+      max-width: min(1280px, 100%) !important;
+      padding: 0 !important;
+    }
+
     .gallery__viewport {
-      background: var(--gal-dark, #0e2733) !important;
+      aspect-ratio: auto !important;
+      width: 100% !important;
+      height: min(82vh, 880px) !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      background: transparent !important;
+      clip-path: none !important;
+    }
+
+    .gallery__track { align-items: center; }
+
+    .gallery__slide { background: transparent !important; }
+
+    /* The blurred copy existed only to fill the mat. There is no mat. */
+    .gallery__slide::before { display: none !important; }
+
+    .gallery__slide img {
+      width: auto !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain;
+      filter: brightness(var(--gal-lamp, 1)) contrast(calc(0.82 + 0.18 * var(--gal-lamp, 1)));
+      transition: none;
+      /* The photograph is a print lying on the dark room, not a picture painted
+         on it. A shadow is the only thing that says so -- but a shadow needs
+         somewhere to fall, which is why the room stops at #070e13 rather than
+         at black: against pure black the whole thing would have been invisible.
+         The hairline is what actually separates the two; the shadow gives it
+         weight. Both are inside the clip, and at a 84% radius the octagon
+         reaches a quarter of the box past its own edge, so there is room for
+         them. */
+      box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.6),
+        0 44px 110px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(214, 232, 240, 0.1);
       clip-path: polygon(
         calc(50% + var(--gal-iris, 100%) * 0.92388) calc(50% + var(--gal-iris, 100%) * 0.38268),
         calc(50% + var(--gal-iris, 100%) * 0.38268) calc(50% + var(--gal-iris, 100%) * 0.92388),
@@ -5070,24 +5117,33 @@
       );
     }
 
-    /* The transition on filter set further up lagged this by 0.45s, which on a
-       scroll-driven value reads as the lamp trailing the scroll rather than
-       answering it. Nothing transitions these images any more; everything that
-       moves them is driven by position. */
-    .gallery__slide img {
-      filter: brightness(var(--gal-lamp, 1)) contrast(calc(0.82 + 0.18 * var(--gal-lamp, 1)));
-      transition: none;
+    @media (max-width: 760px) {
+      .gallery__viewport { height: min(64vh, 540px) !important; }
     }
 
-    /* The blurred copy of the photograph that fills the frame around a portrait
-       one was tuned against a light section. Against a near-black room it read
-       as a grey bar above and below every landscape photograph, so it is dimmer
-       and it warms with the lamp: light spilling off the screen rather than a
-       panel behind it. */
-    .gallery__slide::before {
-      filter: blur(70px) saturate(0.7) brightness(0.3) !important;
-      opacity: calc(0.42 * var(--gal-lamp, 1)) !important;
+    /* The counter used to sit in the bottom-right corner of the frame, which
+       was a corner of the photograph. With no frame it was floating in the
+       room, 250px clear of a portrait photograph and touching a landscape one.
+       Centred under the frame it reads as a caption and is in the same place
+       whatever shape the photograph is. The glass chip goes with the frame. */
+    .gallery__status {
+      right: auto !important;
+      left: 50% !important;
+      bottom: auto !important;
+      top: calc(100% + 1.35rem) !important;
+      transform: translateX(-50%);
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      color: rgba(230, 240, 244, 0.72) !important;
+      letter-spacing: 0.22em !important;
     }
+
+    .gallery { padding-bottom: clamp(5rem, 8vw, 7rem) !important; }
+
 
     @supports (animation-timeline: view()) {
       @media (prefers-reduced-motion: no-preference) {
@@ -5112,7 +5168,7 @@
 
         @keyframes gal-darken {
           from { --gal-dark: #0e2733; }
-          to { --gal-dark: #04070a; }
+          to { --gal-dark: #070e13; }
         }
 
         /* Exposure travels with the aperture, because that is what exposure is:
@@ -5446,19 +5502,19 @@
 
           <div class='gallery__viewport' id='galleryViewport'>
             <div class='gallery__track' id='galleryTrack'>
-              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/carousels/galleri-01.jpg' alt='Benches and standing stones on the shore' data-i18n-alt='altSurroundings' loading='lazy' srcset='assets/images/carousels/galleri-01-480.jpg 480w, assets/images/carousels/galleri-01-800.jpg 800w, assets/images/carousels/galleri-01-1200.jpg 1200w, assets/images/carousels/galleri-01.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-02.jpg'><img src='assets/images/amphitheatre.jpg' alt='The wooden edge of the amphitheatre seating' data-i18n-alt='altG02' loading='lazy' srcset='assets/images/amphitheatre-480.jpg 480w, assets/images/amphitheatre-800.jpg 800w, assets/images/amphitheatre-1200.jpg 1200w, assets/images/amphitheatre.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-03.jpg'><img src='assets/images/gallery1.jpg' alt='Shallow water running over the rock slabs by the shore' data-i18n-alt='altG03' loading='lazy' srcset='assets/images/gallery1-480.jpg 480w, assets/images/gallery1-800.jpg 800w, assets/images/gallery1-1200.jpg 1200w, assets/images/gallery1.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-04.jpg'><img src='assets/images/gallery2.jpg' alt='Stones under clear water, with a boathouse behind' data-i18n-alt='altG04' loading='lazy' srcset='assets/images/gallery2-480.jpg 480w, assets/images/gallery2-800.jpg 800w, assets/images/gallery2-1200.jpg 1200w, assets/images/gallery2.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-05.jpg'><img src='assets/images/gallery3.jpg' alt='Sunlight on the timbers of the old jetty' data-i18n-alt='altG05' loading='lazy' srcset='assets/images/gallery3-480.jpg 480w, assets/images/gallery3-800.jpg 800w, assets/images/gallery3-1200.jpg 1200w, assets/images/gallery3.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-06.jpg'><img src='assets/images/gallery4.jpg' alt='A mooring chain across a boulder on the shore' data-i18n-alt='altG06' loading='lazy' srcset='assets/images/gallery4-480.jpg 480w, assets/images/gallery4-800.jpg 800w, assets/images/gallery4-1200.jpg 1200w, assets/images/gallery4.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery5.jpg' alt='Weathered timber posts against the sea and sky' data-i18n-alt='altG07' loading='lazy' srcset='assets/images/gallery5-480.jpg 480w, assets/images/gallery5-800.jpg 800w, assets/images/gallery5-1200.jpg 1200w, assets/images/gallery5.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery6.jpg' alt='A lifebuoy and driftwood on a yellow boathouse wall' data-i18n-alt='altG08' loading='lazy' srcset='assets/images/gallery6-480.jpg 480w, assets/images/gallery6-800.jpg 800w, assets/images/gallery6-1200.jpg 1200w, assets/images/gallery6.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-09.jpg'><img src='assets/images/gallery7.jpg' alt='A lifebuoy marked Vikaneset beside a window' data-i18n-alt='altG09' loading='lazy' srcset='assets/images/gallery7-480.jpg 480w, assets/images/gallery7-800.jpg 800w, assets/images/gallery7-1200.jpg 1200w, assets/images/gallery7.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-10.jpg'><img src='assets/images/gallery8.jpg' alt='A model sailing ship and candles in a window' data-i18n-alt='altG10' loading='lazy' srcset='assets/images/gallery8-480.jpg 480w, assets/images/gallery8-800.jpg 800w, assets/images/gallery8-1200.jpg 1200w, assets/images/gallery8.jpg 1536w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='Underneath a boathouse, its posts standing on the rock' data-i18n-alt='altG11' loading='lazy' srcset='assets/images/harbour-480.jpg 480w, assets/images/harbour-800.jpg 800w, assets/images/harbour-1200.jpg 1200w, assets/images/harbour.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga seen past the rocks at the water’s edge' data-i18n-alt='altG12' loading='lazy' srcset='assets/images/klippfiskbrygga-480.jpg 480w, assets/images/klippfiskbrygga-800.jpg 800w, assets/images/klippfiskbrygga-1200.jpg 1200w, assets/images/klippfiskbrygga.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
-              <figure class='gallery__slide' data-photo-slot='galleri-13.jpg'><img src='assets/images/sauna.jpg' alt='Stones and seaweed where the water runs out over the shore' data-i18n-alt='altG13' loading='lazy' srcset='assets/images/sauna-480.jpg 480w, assets/images/sauna-800.jpg 800w, assets/images/sauna-1200.jpg 1200w, assets/images/sauna.jpg 1600w' sizes='(min-width: 761px) 720px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-01.jpg'><img src='assets/images/carousels/galleri-01.jpg' alt='Benches and standing stones on the shore' data-i18n-alt='altSurroundings' loading='lazy' srcset='assets/images/carousels/galleri-01-480.jpg 480w, assets/images/carousels/galleri-01-800.jpg 800w, assets/images/carousels/galleri-01-1200.jpg 1200w, assets/images/carousels/galleri-01.jpg 1600w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-02.jpg'><img src='assets/images/amphitheatre.jpg' alt='The wooden edge of the amphitheatre seating' data-i18n-alt='altG02' loading='lazy' srcset='assets/images/amphitheatre-480.jpg 480w, assets/images/amphitheatre-800.jpg 800w, assets/images/amphitheatre-1200.jpg 1200w, assets/images/amphitheatre.jpg 1536w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-03.jpg'><img src='assets/images/gallery1.jpg' alt='Shallow water running over the rock slabs by the shore' data-i18n-alt='altG03' loading='lazy' srcset='assets/images/gallery1-480.jpg 480w, assets/images/gallery1-800.jpg 800w, assets/images/gallery1-1200.jpg 1200w, assets/images/gallery1.jpg 1536w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-04.jpg'><img src='assets/images/gallery2.jpg' alt='Stones under clear water, with a boathouse behind' data-i18n-alt='altG04' loading='lazy' srcset='assets/images/gallery2-480.jpg 480w, assets/images/gallery2-800.jpg 800w, assets/images/gallery2-1200.jpg 1200w, assets/images/gallery2.jpg 1536w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-05.jpg'><img src='assets/images/gallery3.jpg' alt='Sunlight on the timbers of the old jetty' data-i18n-alt='altG05' loading='lazy' srcset='assets/images/gallery3-480.jpg 480w, assets/images/gallery3-800.jpg 800w, assets/images/gallery3-1200.jpg 1200w, assets/images/gallery3.jpg 1600w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-06.jpg'><img src='assets/images/gallery4.jpg' alt='A mooring chain across a boulder on the shore' data-i18n-alt='altG06' loading='lazy' srcset='assets/images/gallery4-480.jpg 480w, assets/images/gallery4-800.jpg 800w, assets/images/gallery4-1200.jpg 1200w, assets/images/gallery4.jpg 1536w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-07.jpg'><img src='assets/images/gallery5.jpg' alt='Weathered timber posts against the sea and sky' data-i18n-alt='altG07' loading='lazy' srcset='assets/images/gallery5-480.jpg 480w, assets/images/gallery5-800.jpg 800w, assets/images/gallery5-1200.jpg 1200w, assets/images/gallery5.jpg 1536w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-08.jpg'><img src='assets/images/gallery6.jpg' alt='A lifebuoy and driftwood on a yellow boathouse wall' data-i18n-alt='altG08' loading='lazy' srcset='assets/images/gallery6-480.jpg 480w, assets/images/gallery6-800.jpg 800w, assets/images/gallery6-1200.jpg 1200w, assets/images/gallery6.jpg 1600w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-09.jpg'><img src='assets/images/gallery7.jpg' alt='A lifebuoy marked Vikaneset beside a window' data-i18n-alt='altG09' loading='lazy' srcset='assets/images/gallery7-480.jpg 480w, assets/images/gallery7-800.jpg 800w, assets/images/gallery7-1200.jpg 1200w, assets/images/gallery7.jpg 1600w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-10.jpg'><img src='assets/images/gallery8.jpg' alt='A model sailing ship and candles in a window' data-i18n-alt='altG10' loading='lazy' srcset='assets/images/gallery8-480.jpg 480w, assets/images/gallery8-800.jpg 800w, assets/images/gallery8-1200.jpg 1200w, assets/images/gallery8.jpg 1536w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-11.jpg'><img src='assets/images/harbour.jpg' alt='Underneath a boathouse, its posts standing on the rock' data-i18n-alt='altG11' loading='lazy' srcset='assets/images/harbour-480.jpg 480w, assets/images/harbour-800.jpg 800w, assets/images/harbour-1200.jpg 1200w, assets/images/harbour.jpg 1600w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-12.jpg'><img src='assets/images/klippfiskbrygga.jpg' alt='Klippfiskbrygga seen past the rocks at the water’s edge' data-i18n-alt='altG12' loading='lazy' srcset='assets/images/klippfiskbrygga-480.jpg 480w, assets/images/klippfiskbrygga-800.jpg 800w, assets/images/klippfiskbrygga-1200.jpg 1200w, assets/images/klippfiskbrygga.jpg 1600w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
+              <figure class='gallery__slide' data-photo-slot='galleri-13.jpg'><img src='assets/images/sauna.jpg' alt='Stones and seaweed where the water runs out over the shore' data-i18n-alt='altG13' loading='lazy' srcset='assets/images/sauna-480.jpg 480w, assets/images/sauna-800.jpg 800w, assets/images/sauna-1200.jpg 1200w, assets/images/sauna.jpg 1600w' sizes='(min-width: 761px) 1180px, calc(100vw - 34px)'></figure>
             </div>
           </div>
 
