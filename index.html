@@ -3820,11 +3820,13 @@
           28% { opacity: 0.68; }
           30% { opacity: 0.3; }
           31.5% { opacity: 0.08; }
+          32.5% { opacity: 0.38; }
           34% { opacity: 0.7; }
           71% { opacity: 0.7; }
           73.5% { opacity: 0.3; }
           75% { opacity: 0.08; }
-          78% { opacity: 0.7; }
+          76% { opacity: 0.38; }
+          77.5% { opacity: 0.7; }
           95% { opacity: 0.7; }
           100% { opacity: 0; }
         }
@@ -3889,32 +3891,49 @@
           100% { translate: calc(var(--sk-sway, 4px) * 1) 5vh; }
         }
 
+        /* Sign convention, measured rather than reasoned about: the head is the
+           circle at cx=7 and the tail is at x=59 in a 60-wide box rotated about
+           its centre, so a POSITIVE rotate lifts the head and a negative one
+           drops it. Every dive here used to be positive at its steepest -- at
+           +80deg the head renders 97px above the tail -- which means the bird
+           went into the water tail first and came out of it head down. It is
+           the other way round now: negative through both plunges, holding
+           head-down while the fish is taken, and positive as it climbs away. */
         @keyframes sk-pitch {
-          0% { rotate: 6deg; }
-          12% { rotate: 4deg; }
-          18% { rotate: -9deg; }
-          23% { rotate: 2deg; }
-          26% { rotate: 26deg; }
-          29% { rotate: 72deg; }
-          31% { rotate: 80deg; }
-          34% { rotate: -42deg; }
-          38% { rotate: -18deg; }
+          0% { rotate: 4deg; }
+          12% { rotate: 2deg; }
+          18% { rotate: -10deg; }
+          23% { rotate: 3deg; }
+          26% { rotate: -28deg; }
+          29% { rotate: -74deg; }
+          31% { rotate: -82deg; }
+          33% { rotate: -70deg; }
+          34.5% { rotate: -42deg; }
+          36% { rotate: 28deg; }
+          38% { rotate: 18deg; }
           44% { rotate: 0deg; }
-          50% { rotate: 5deg; }
-          56% { rotate: -7deg; }
-          62% { rotate: 3deg; }
-          67% { rotate: -5deg; }
-          70% { rotate: 26deg; }
-          73% { rotate: 74deg; }
-          75% { rotate: 80deg; }
-          78% { rotate: -44deg; }
-          84% { rotate: -16deg; }
+          50% { rotate: -4deg; }
+          56% { rotate: 7deg; }
+          62% { rotate: -3deg; }
+          67% { rotate: 5deg; }
+          70% { rotate: -28deg; }
+          73% { rotate: -76deg; }
+          75% { rotate: -82deg; }
+          77% { rotate: -70deg; }
+          78.5% { rotate: -42deg; }
+          80% { rotate: 32deg; }
+          84% { rotate: 16deg; }
           90% { rotate: 0deg; }
-          100% { rotate: 2deg; }
+          100% { rotate: -2deg; }
         }
 
         /* Wing amplitude, sweep and span: beating, gliding, folded for each
            plunge, hauling hard on the way back up with the catch. The fish is
+           taken at the bottom of the plunge while the bird is still head-down
+           -- it used to appear at 32%, by which point the pitch was already a
+           third of the way from +80deg to -42deg, so the catch was seen
+           mid-flip with the fish above the beak. The head now holds down
+           through 33% and only then whips up. The fish is
            carried from the first dive through Explore and swallowed at 53%, so
            the second dive has something to be for. */
         @keyframes sk-shape {
@@ -3924,8 +3943,9 @@
           26% { --sk-amp: 0.9; --sk-sweep: 6deg; --sk-span: 0.92; --sk-fish: 0; }
           29% { --sk-amp: 0.15; --sk-sweep: 46deg; --sk-span: 0.6; --sk-fish: 0; }
           31% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 0; }
-          32% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 1; }
-          35% { --sk-amp: 1.3; --sk-sweep: -6deg; --sk-span: 1.08; --sk-fish: 1; }
+          31.5% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 1; }
+          34.5% { --sk-amp: 0.55; --sk-sweep: 24deg; --sk-span: 0.78; --sk-fish: 1; }
+          36.5% { --sk-amp: 1.3; --sk-sweep: -6deg; --sk-span: 1.08; --sk-fish: 1; }
           44% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 1; }
           50% { --sk-amp: 0.9; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 1; }
           53% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
@@ -3934,8 +3954,9 @@
           70% { --sk-amp: 0.9; --sk-sweep: 6deg; --sk-span: 0.92; --sk-fish: 0; }
           73% { --sk-amp: 0.15; --sk-sweep: 46deg; --sk-span: 0.6; --sk-fish: 0; }
           75% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 0; }
-          76% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 1; }
-          79% { --sk-amp: 1.3; --sk-sweep: -6deg; --sk-span: 1.08; --sk-fish: 1; }
+          75.5% { --sk-amp: 0.1; --sk-sweep: 50deg; --sk-span: 0.56; --sk-fish: 1; }
+          78.5% { --sk-amp: 0.55; --sk-sweep: 24deg; --sk-span: 0.78; --sk-fish: 1; }
+          80.5% { --sk-amp: 1.3; --sk-sweep: -6deg; --sk-span: 1.08; --sk-fish: 1; }
           88% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 1; }
           94% { --sk-amp: 0.7; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
           100% { --sk-amp: 1; --sk-sweep: 0deg; --sk-span: 1; --sk-fish: 0; }
